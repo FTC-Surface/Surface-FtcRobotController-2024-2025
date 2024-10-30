@@ -5,8 +5,20 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
+import org.firstinspires.ftc.teamcode.Subsystems.Outtake.OuttakeArm;
+import org.firstinspires.ftc.teamcode.Subsystems.Outtake.OuttakeClaw;
+import org.firstinspires.ftc.teamcode.Subsystems.Outtake.OuttakeLinearSlides;
+
+import org.firstinspires.ftc.teamcode.Subsystems.Intake.IntakeLinearSlides;
+import org.firstinspires.ftc.teamcode.Subsystems.Intake.IntakeRotatingMotor;
+import org.firstinspires.ftc.teamcode.Subsystems.Intake.IntakeWrist;
+
 public class Robot {
     DcMotorEx topLeftMotor, topRightMotor, bottomLeftMotor, bottomRightMotor;
+
+    OuttakeArm arm = new OuttakeArm();
+
+
 
     double maxSpeed;
 
