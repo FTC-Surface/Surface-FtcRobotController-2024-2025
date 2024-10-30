@@ -5,20 +5,24 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
+import org.firstinspires.ftc.teamcode.Subsystems.Intake.IntakeActiveIntake;
+import org.firstinspires.ftc.teamcode.Subsystems.Intake.IntakeLinearSlides;
 import org.firstinspires.ftc.teamcode.Subsystems.Outtake.OuttakeArm;
 import org.firstinspires.ftc.teamcode.Subsystems.Outtake.OuttakeClaw;
 import org.firstinspires.ftc.teamcode.Subsystems.Outtake.OuttakeLinearSlides;
 
-import org.firstinspires.ftc.teamcode.Subsystems.Intake.IntakeLinearSlides;
-import org.firstinspires.ftc.teamcode.Subsystems.Intake.IntakeRotatingMotor;
 import org.firstinspires.ftc.teamcode.Subsystems.Intake.IntakeWrist;
 
 public class Robot {
     DcMotorEx topLeftMotor, topRightMotor, bottomLeftMotor, bottomRightMotor;
 
-    OuttakeArm arm = new OuttakeArm();
+    OuttakeArm oArm = new OuttakeArm();
+    OuttakeLinearSlides oSlides = new OuttakeLinearSlides();
+    OuttakeClaw oClaw = new OuttakeClaw();
 
-
+    IntakeWrist iWrist = new IntakeWrist();
+    IntakeActiveIntake iIntake = new IntakeActiveIntake();
+    IntakeLinearSlides iSlides = new IntakeLinearSlides();
 
     double maxSpeed;
 
@@ -35,6 +39,14 @@ public class Robot {
 
         topLeftMotor.setDirection(DcMotorEx.Direction.REVERSE);
         bottomLeftMotor.setDirection(DcMotorEx.Direction.REVERSE);
+
+        oClaw.init(hardwareMap);
+        oArm.init(hardwareMap);
+        oSlides.init(hardwareMap);
+
+        iIntake.init(hardwareMap);
+        iSlides.init((hardwareMap));
+        iWrist.init(hardwareMap);
 
         for (LynxModule module : hardwareMap.getAll(LynxModule.class)) {
             module.setBulkCachingMode(LynxModule.BulkCachingMode.AUTO);

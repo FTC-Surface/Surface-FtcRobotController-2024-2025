@@ -1,4 +1,17 @@
 package org.firstinspires.ftc.teamcode.Subsystems.Sensing;
 
-public class RevColorSensorColor {
+import com.qualcomm.robotcore.hardware.HardwareMap;
+
+import org.firstinspires.ftc.teamcode.Subsystems.Subsystem;
+
+public class RevColorSensorColor extends Subsystem {
+    @Override
+    public void init(HardwareMap hardwareMap) {
+
+    }
+
+    @Override
+    public void action() {
+
+    }
 }
