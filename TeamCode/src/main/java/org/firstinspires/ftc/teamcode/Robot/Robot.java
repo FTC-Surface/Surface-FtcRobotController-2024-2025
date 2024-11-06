@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.Robot;
 import com.qualcomm.hardware.lynx.LynxModule;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.Subsystems.Intake.IntakeActiveIntake;
@@ -37,8 +38,8 @@ public class Robot {
         bottomLeftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         bottomRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-        topLeftMotor.setDirection(DcMotorEx.Direction.REVERSE);
-        bottomLeftMotor.setDirection(DcMotorEx.Direction.REVERSE);
+        bottomLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        topRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
         oClaw.init(hardwareMap);
         oArm.init(hardwareMap);
@@ -55,10 +56,11 @@ public class Robot {
 
     public void teleOpDrive(double drive, double strafe, double rotate){
 
-        double[] motorPower = {drive+strafe+rotate,
-                drive-strafe+rotate,
+        double[] motorPower = {
+                drive-strafe-rotate,
                 drive+strafe-rotate,
-                drive-strafe-rotate};
+                drive+strafe+rotate,
+                drive-strafe+rotate};
 
         maxSpeed = Math.abs(motorPower[0]);
 
