@@ -6,6 +6,8 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
+import com.qualcomm.robotcore.util.ElapsedTime;
+
 import org.firstinspires.ftc.teamcode.Subsystems.Intake.IntakeActiveIntake;
 import org.firstinspires.ftc.teamcode.Subsystems.Intake.IntakeLinearSlides;
 import org.firstinspires.ftc.teamcode.Subsystems.Outtake.OuttakeArm;
@@ -38,8 +40,8 @@ public class Robot {
         bottomLeftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         bottomRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-        bottomLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         topRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        bottomRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
         oClaw.init(hardwareMap);
         oArm.init(hardwareMap);
@@ -80,5 +82,13 @@ public class Robot {
         bottomLeftMotor.setPower(motorPower[1]);
         topRightMotor.setPower(motorPower[2]);
         bottomRightMotor.setPower(motorPower[3]);
+    }
+
+    public void waitForSeconds(int seconds){
+        ElapsedTime timer = new ElapsedTime(ElapsedTime.Resolution.SECONDS);
+        timer.reset();
+
+        while(timer.time() < seconds){
+        }
     }
 }
