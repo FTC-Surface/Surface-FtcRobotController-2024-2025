@@ -59,10 +59,10 @@ public class Robot {
     public void teleOpDrive(double drive, double strafe, double rotate){
 
         double[] motorPower = {
-                drive-strafe-rotate,
                 drive+strafe-rotate,
-                drive+strafe+rotate,
-                drive-strafe+rotate};
+                drive-strafe-rotate,
+                drive-strafe+rotate,
+                drive+strafe+rotate};
 
         maxSpeed = Math.abs(motorPower[0]);
 
