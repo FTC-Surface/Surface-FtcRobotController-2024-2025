@@ -16,11 +16,11 @@ public class IntakeLinearSlidesTest extends LinearOpMode {
 
     public static int targetPos = 0;
 
+    public int currentPos = 0;
+
     public void runOpMode() {
         leftIntakeMotor = hardwareMap.get(DcMotorEx.class, "lInLinearSlide");
         rightIntakeMotor = hardwareMap.get(DcMotorEx.class, "rInLinearSlide");
-
-        leftIntakeMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
         leftIntakeMotor.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
         rightIntakeMotor.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
@@ -36,9 +36,19 @@ public class IntakeLinearSlidesTest extends LinearOpMode {
             rightIntakeMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
             leftIntakeMotor.setPower(1);
-            rightIntakeMotor.setPower(1);
+            rightIntakeMotor.setPower(-1);
 
-            //if(gamepad1.left_bumper)
+            if(gamepad1.left_bumper){
+                targetPos += 1;
+            }
+
+            if(gamepad1.right_bumper){
+                targetPos -= 1;
+            }
         }
     }
+
+//    public int getPos(){
+//        return (());leftIntakeMotor.getCurrentPosition()
+//    }
 }
