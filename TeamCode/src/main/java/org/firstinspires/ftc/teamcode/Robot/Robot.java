@@ -80,6 +80,10 @@ public class Robot {
             }
         }
 
+        for (double power : motorPower){
+            power *= 0.5;
+        }
+
         topLeftMotor.setPower(motorPower[0]);
         bottomLeftMotor.setPower(motorPower[1]);
         topRightMotor.setPower(motorPower[2]);

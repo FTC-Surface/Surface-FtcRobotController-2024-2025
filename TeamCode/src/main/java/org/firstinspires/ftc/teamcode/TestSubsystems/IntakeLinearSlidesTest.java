@@ -41,6 +41,8 @@ public class IntakeLinearSlidesTest extends LinearOpMode {
 
             leftIntakeMotor.setPower(1);
             rightIntakeMotor.setPower(1);
+
+            //if(gamepad1.left_bumper)
         }
     }
 }
