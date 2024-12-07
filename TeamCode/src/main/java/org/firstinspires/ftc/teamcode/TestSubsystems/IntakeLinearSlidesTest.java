@@ -30,6 +30,8 @@ public class IntakeLinearSlidesTest extends LinearOpMode {
         leftIntakeMotor.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
         rightIntakeMotor.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
 
+        waitForStart();
+
         while(opModeIsActive()){
             leftIntakeMotor.setTargetPosition(targetPos);
             rightIntakeMotor.setTargetPosition(targetPos);

@@ -24,7 +24,6 @@ public class OuttakeClawTest extends LinearOpMode {
 
         waitForStart();
 
-
         while (opModeIsActive() && !isStopRequested()) {
             clawR.setPosition(targetRight);
             clawL.setPosition(targetLeft);
