@@ -12,32 +12,32 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 public class OuttakeLinearSlidesTest extends LinearOpMode {
 
     //does intake and outtake linear slide use the same motors?
-    private DcMotorEx leftIntakeMotor;
-    private DcMotorEx rightIntakeMotor;
+    private DcMotorEx leftOuttakeMotor;
+    private DcMotorEx rightOuttakeMotor;
 
     public static int targetPos = 0;
 
     public void runOpMode() {
-        leftIntakeMotor = hardwareMap.get(DcMotorEx.class, "lOutLinearSlide");
-        rightIntakeMotor = hardwareMap.get(DcMotorEx.class, "rOutLinearSlide");
+        leftOuttakeMotor = hardwareMap.get(DcMotorEx.class, "lOutLinearSlide");
+        rightOuttakeMotor = hardwareMap.get(DcMotorEx.class, "rOutLinearSlide");
 
-        leftIntakeMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        leftOuttakeMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
-        leftIntakeMotor.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
-        rightIntakeMotor.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
+        leftOuttakeMotor.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
+        rightOuttakeMotor.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
 
-        leftIntakeMotor.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
-        rightIntakeMotor.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
+        leftOuttakeMotor.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
+        rightOuttakeMotor.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
 
         while(opModeIsActive()){
-            leftIntakeMotor.setTargetPosition(targetPos);
-            rightIntakeMotor.setTargetPosition(targetPos);
+            leftOuttakeMotor.setTargetPosition(targetPos);
+            rightOuttakeMotor.setTargetPosition(targetPos);
 
-            leftIntakeMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            rightIntakeMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            leftOuttakeMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            leftOuttakeMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-            leftIntakeMotor.setPower(1);
-            rightIntakeMotor.setPower(1);
+            leftOuttakeMotor.setPower(1);
+            leftOuttakeMotor.setPower(1);
         }
     }
 }
