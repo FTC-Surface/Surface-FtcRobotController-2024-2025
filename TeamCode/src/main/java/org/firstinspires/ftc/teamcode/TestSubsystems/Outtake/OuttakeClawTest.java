@@ -1,8 +1,6 @@
-package org.firstinspires.ftc.teamcode.TestSubsystems;
+package org.firstinspires.ftc.teamcode.TestSubsystems.Outtake;
 
-import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.config.Config;
-
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -23,6 +21,7 @@ public class OuttakeClawTest extends LinearOpMode {
         clawL = hardwareMap.get(Servo.class, "leftClaw");
 
         waitForStart();
+
 
         while (opModeIsActive() && !isStopRequested()) {
             clawR.setPosition(targetRight);

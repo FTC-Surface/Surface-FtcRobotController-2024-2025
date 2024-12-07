@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.TestSubsystems;
+package org.firstinspires.ftc.teamcode.TestSubsystems.Intake;
 
 import com.acmerobotics.dashboard.config.Config;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -6,8 +6,6 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
-import com.qualcomm.robotcore.hardware.HardwareMap;
-import com.qualcomm.robotcore.hardware.Servo;
 
 @TeleOp(name = "Intake Linear Slides Test")
 @Config
@@ -29,8 +27,6 @@ public class IntakeLinearSlidesTest extends LinearOpMode {
 
         leftIntakeMotor.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
         rightIntakeMotor.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
-
-        waitForStart();
 
         while(opModeIsActive()){
             leftIntakeMotor.setTargetPosition(targetPos);
