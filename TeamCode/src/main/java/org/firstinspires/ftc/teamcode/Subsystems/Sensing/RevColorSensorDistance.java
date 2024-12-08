@@ -10,7 +10,6 @@ public class RevColorSensorDistance extends Subsystem {
 
     }
 
-    @Override
     public void action() {
 
     }

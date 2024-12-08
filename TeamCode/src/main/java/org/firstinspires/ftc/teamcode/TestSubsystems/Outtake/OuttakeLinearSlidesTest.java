@@ -29,15 +29,29 @@ public class OuttakeLinearSlidesTest extends LinearOpMode {
         leftOuttakeMotor.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
         rightOuttakeMotor.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
 
-        while(opModeIsActive()){
-            leftOuttakeMotor.setTargetPosition(targetPos);
-            rightOuttakeMotor.setTargetPosition(targetPos);
+        while(opModeIsActive()) {
+//            leftOuttakeMotor.setTargetPosition(targetPos);
+//            rightOuttakeMotor.setTargetPosition(targetPos);
+//
+//            leftOuttakeMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+//            leftOuttakeMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+//
+//            leftOuttakeMotor.setPower(1);
+//            leftOuttakeMotor.setPower(1);
 
-            leftOuttakeMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            leftOuttakeMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-            leftOuttakeMotor.setPower(1);
-            leftOuttakeMotor.setPower(1);
+            telemetry.addData("Left Motor Position", leftOuttakeMotor.getCurrentPosition());
+            telemetry.addData("Right Motor Position", leftOuttakeMotor.getCurrentPosition());
+
+            if (gamepad1.left_bumper) {
+                leftOuttakeMotor.setPower(1);
+                rightOuttakeMotor.setPower(-1);
+            }
+
+            if (gamepad1.right_bumper) {
+                leftOuttakeMotor.setPower(-1);
+                rightOuttakeMotor.setPower(1);
+            }
         }
     }
 }

@@ -37,6 +37,7 @@ public class Robot {
         bottomLeftMotor = hardwareMap.get(DcMotorEx.class, "bottomLeft");
         bottomRightMotor = hardwareMap.get(DcMotorEx.class, "bottomRight");
 
+//        Might Turn On
         topLeftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         topRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         bottomLeftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -61,10 +62,10 @@ public class Robot {
     public void teleOpDrive(double drive, double strafe, double rotate){
 
         double[] motorPower = {
-                drive+strafe-rotate,
                 drive-strafe-rotate,
-                drive-strafe+rotate,
-                drive+strafe+rotate};
+                drive+strafe-rotate,
+                drive+strafe+rotate,
+                drive-strafe+rotate};
 
         maxSpeed = Math.abs(motorPower[0]);
 
@@ -80,9 +81,9 @@ public class Robot {
             }
         }
 
-        for (double power : motorPower){
-            power *= 0.5;
-        }
+//        for (double power : motorPower){
+//            power *= 0.5;
+//        }
 
         topLeftMotor.setPower(motorPower[0]);
         bottomLeftMotor.setPower(motorPower[1]);

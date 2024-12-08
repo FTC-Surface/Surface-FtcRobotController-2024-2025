@@ -9,9 +9,4 @@ public class OuttakeArm extends Subsystem {
     public void init(HardwareMap hardwareMap) {
 
     }
-
-    @Override
-    public void action() {
-
-    }
 }
