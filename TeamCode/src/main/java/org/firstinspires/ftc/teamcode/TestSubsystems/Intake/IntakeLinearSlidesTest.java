@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 
-@TeleOp(name = "Intake Linear Slides Test")
+@TeleOp(name = "Intake Linear Slides Test", group = "Tests")
 @Config
 public class IntakeLinearSlidesTest extends LinearOpMode {
 

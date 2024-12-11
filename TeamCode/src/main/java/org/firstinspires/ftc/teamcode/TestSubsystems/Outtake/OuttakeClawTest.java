@@ -5,8 +5,9 @@ import com.acmerobotics.dashboard.config.Config;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
 
-@TeleOp(name = "Claw Test Op")
+@TeleOp(name = "Outtake Claw Test Op", group = "Tests")
 @Config
 public class OuttakeClawTest extends LinearOpMode {
     Servo clawR;

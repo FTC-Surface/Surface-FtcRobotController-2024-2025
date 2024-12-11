@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.OpMode;
 
 import com.acmerobotics.dashboard.FtcDashboard;
+import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
 
 
@@ -11,17 +12,22 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 
 import org.firstinspires.ftc.teamcode.Robot.Robot;
 
-@TeleOp(name = "Mecanum Drive")
+@TeleOp(name = "Mecanum Drive", group = "OpModes")
+@Config
 public class TeleOpMode extends LinearOpMode {
-    DcMotorEx topLeftMotor, topRightMotor, bottomLeftMotor, bottomRightMotor;
 
-    double maxSpeed;
+    public static int testNum = 0;
 
     @Override
     public void runOpMode() throws InterruptedException {
         Robot robot = new Robot(hardwareMap);
 
+        telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
+
         waitForStart();
+
+
+        telemetry.update();
 
         while (opModeIsActive()) {
             double drive = gamepad1.left_stick_y;
@@ -29,6 +35,9 @@ public class TeleOpMode extends LinearOpMode {
             double rotate = gamepad1.right_stick_x;
 
             robot.teleOpDrive(drive /* * 0.8*/ ,strafe /* * 0.8*/,rotate /* * 0.8*/);
+
+            telemetry.addData("Test Num:", testNum);
+            telemetry.update();
         }
     }
 }
