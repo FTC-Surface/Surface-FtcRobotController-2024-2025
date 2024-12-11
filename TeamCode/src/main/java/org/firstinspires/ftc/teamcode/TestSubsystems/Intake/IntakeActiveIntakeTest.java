@@ -16,17 +16,19 @@ public class IntakeActiveIntakeTest extends LinearOpMode {
     public static double targetRight = 0.3;
     public static double targetLeft = 0.415;
 
+
+
     @Override
     public void runOpMode() throws InterruptedException {
-        lIntake = hardwareMap.get(Servo.class, "lIntake");
-        rIntake = hardwareMap.get((Servo.class), "rIntake");
+         lIntake = hardwareMap.get(Servo.class, "lIntake");
+         rIntake = hardwareMap.get(Servo.class, "rIntake");
 
-        waitForStart();
+         waitForStart();
 
-        while(opModeIsActive() && !isStopRequested()){
-            rIntake.setPosition(targetRight);
-            lIntake.setPosition(targetLeft);
-        }
+         while(opModeIsActive() && !isStopRequested()) {
+             rIntake.setPosition(targetRight);
+             lIntake.setPosition(targetLeft);
+         }
     }
 
 }
