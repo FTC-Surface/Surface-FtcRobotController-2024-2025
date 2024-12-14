@@ -18,8 +18,8 @@ public class OuttakeLinearSlidesTest extends LinearOpMode {
     public static int targetPos = 0;
 
     public void runOpMode() {
-        leftOuttakeMotor = hardwareMap.get(DcMotorEx.class, "lOutLinearSlide");
-        rightOuttakeMotor = hardwareMap.get(DcMotorEx.class, "rOutLinearSlide");
+        leftOuttakeMotor = hardwareMap.get(DcMotorEx.class, "outtakeLinearSlideOne");
+        rightOuttakeMotor = hardwareMap.get(DcMotorEx.class, "outtakeLinearSlideTwo");
 
         leftOuttakeMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
@@ -45,12 +45,12 @@ public class OuttakeLinearSlidesTest extends LinearOpMode {
 
             if (gamepad1.left_bumper) {
                 leftOuttakeMotor.setPower(1);
-                rightOuttakeMotor.setPower(-1);
+                rightOuttakeMotor.setPower(1);
             }
 
             if (gamepad1.right_bumper) {
                 leftOuttakeMotor.setPower(-1);
-                rightOuttakeMotor.setPower(1);
+                rightOuttakeMotor.setPower(-1);
             }
         }
     }
