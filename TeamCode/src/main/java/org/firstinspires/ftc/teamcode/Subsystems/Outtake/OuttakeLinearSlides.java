@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.Subsystems.Outtake;
 
+import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
@@ -21,6 +22,9 @@ public class OuttakeLinearSlides extends Subsystem {
         outtakeLinearSlideOne = hardwareMap.get(DcMotorEx.class, "outtakeLinearSlideOne");
         outtakeLinearSlideTwo = hardwareMap.get(DcMotorEx.class, "outtakeLinearSlideTwo");
 
+        outtakeLinearSlideOne.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        outtakeLinearSlideTwo.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
         outtakeLinearSlideOne.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
         outtakeLinearSlideTwo.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
 
@@ -31,10 +35,15 @@ public class OuttakeLinearSlides extends Subsystem {
     public void moveElevator(Constants.eOElevatorState state) {
         switch(state){
             case BottomClip:
+                break;
             case TopClip:
+                break;
             case Ground:
+                break;
             case Basket:
+                break;
             case Hang:
+                break;
         }
     }
 

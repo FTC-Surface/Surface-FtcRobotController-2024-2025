@@ -32,6 +32,8 @@ public class IntakeLinearSlidesTest extends LinearOpMode {
 
         telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
 
+        waitForStart();
+
         while(opModeIsActive()){
 //            leftIntakeMotor.setTargetPosition(targetPos);
 //            rightIntakeMotor.setTargetPosition(targetPos);
