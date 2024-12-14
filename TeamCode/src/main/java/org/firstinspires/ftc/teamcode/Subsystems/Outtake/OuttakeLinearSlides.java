@@ -18,8 +18,8 @@ public class OuttakeLinearSlides extends Subsystem {
 
     @Override
     public void init(HardwareMap hardwareMap) {
-        outtakeLinearSlideOne = hardwareMap.get(DcMotorEx.class, "lInLinearSlide");
-        outtakeLinearSlideTwo = hardwareMap.get(DcMotorEx.class, "rInLinearSlide");
+        outtakeLinearSlideOne = hardwareMap.get(DcMotorEx.class, "outtakeLinearSlideOne");
+        outtakeLinearSlideTwo = hardwareMap.get(DcMotorEx.class, "outtakeLinearSlideTwo");
 
         outtakeLinearSlideOne.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
         outtakeLinearSlideTwo.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
