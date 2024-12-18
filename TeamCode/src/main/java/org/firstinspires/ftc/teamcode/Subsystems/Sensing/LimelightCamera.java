@@ -15,8 +15,4 @@ public class LimelightCamera extends Subsystem {
     public void init(HardwareMap hardwareMap) {
 
     }
-
-    public void action() {
-
-    }
 }

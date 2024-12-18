@@ -4,30 +4,42 @@ package org.firstinspires.ftc.teamcode.TestSubsystems.Intake;
 import com.acmerobotics.dashboard.config.Config;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.Servo;
 
 @TeleOp(name="Intake Active Intake Test", group = "Tests")
 @Config
 public class IntakeActiveIntakeTest extends LinearOpMode {
 
-    Servo lIntake;
-    Servo rIntake;
+    private CRServo rIntake;
+    private CRServo lIntake;
 
-    public static double targetRight = 0.3;
-    public static double targetLeft = 0.415;
-
+    public static double targetRight = 0;
+    public static double targetLeft = 0;
 
 
     @Override
     public void runOpMode() throws InterruptedException {
-         lIntake = hardwareMap.get(Servo.class, "lIntake");
-         rIntake = hardwareMap.get(Servo.class, "rIntake");
+         lIntake = hardwareMap.get(CRServo.class, "lIntake");
+         rIntake = hardwareMap.get(CRServo.class, "rIntake");
+
+         lIntake.setDirection(CRServo.Direction.REVERSE);
 
          waitForStart();
 
          while(opModeIsActive() && !isStopRequested()) {
-             rIntake.setPosition(targetRight);
-             lIntake.setPosition(targetLeft);
+             rIntake.setPower(targetRight);
+             lIntake.setPower(targetLeft);
+
+             if(gamepad1.a){
+                 targetRight = 1;
+                 targetLeft = 1;
+             }
+
+             if(gamepad1.b){
+                 targetRight = -1;
+                 targetLeft = -1;
+             }
          }
     }
 
