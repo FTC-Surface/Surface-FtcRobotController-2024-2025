@@ -66,7 +66,7 @@ public class IntakeLinearSlides extends Subsystem {
         currentPos = getPos();
     }
 
-    private double getPos(){
+    public double getPos(){
         return (double) (intakeLinearSlideOne.getCurrentPosition() + intakeLinearSlideTwo.getCurrentPosition()) /2;
     }
 

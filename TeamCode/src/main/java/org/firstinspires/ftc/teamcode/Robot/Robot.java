@@ -107,9 +107,11 @@ public class Robot {
         iIntake.stopActiveIntake();
     }
 
-
-
     public void outtakeElevGetHeight(){
         oSlides.getPos();
+    }
+
+    public void intakeElevGetHeight(){
+        iSlides.getPos();
     }
 }
