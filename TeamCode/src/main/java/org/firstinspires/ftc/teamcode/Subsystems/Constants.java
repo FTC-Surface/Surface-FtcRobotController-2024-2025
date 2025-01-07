@@ -4,8 +4,8 @@ public class Constants {
     public enum eOElevatorState{
         Ground,
         Basket,
-        TopClip,
-        BottomClip,
+        Clip,
+        PrepareClip,
         Hang
     }
 
@@ -27,6 +27,8 @@ public class Constants {
     public final double closeClawR = 0;
     public final double closeClawL = 0;
 
-    public final double ActiveIntakeIn = 0;
-    public final double ActiveIntakeOut = 0;
+    public final double outtakeElevatorMotorPower = 0.75;
+    public final double intakeElevatorMotorPower = 0.75;
+
+    public final double ActiveIntakePow = 0.3;
 }

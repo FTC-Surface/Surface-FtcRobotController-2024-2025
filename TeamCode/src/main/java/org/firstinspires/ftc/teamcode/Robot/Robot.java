@@ -48,9 +48,9 @@ public class Robot {
 
 //        oClaw.init(hardwareMap);
 //        oArm.init(hardwareMap);
-//        oSlides.init(hardwareMap);
+        oSlides.init(hardwareMap);
 //
-//        iIntake.init(hardwareMap);
+        iIntake.init(hardwareMap);
 //        iSlides.init((hardwareMap));
 //        iWrist.init(hardwareMap);
 
@@ -81,10 +81,6 @@ public class Robot {
             }
         }
 
-//        for (double power : motorPower){
-//            power *= 0.5;
-//        }
-
         topLeftMotor.setPower(motorPower[0]);
         bottomLeftMotor.setPower(motorPower[1]);
         topRightMotor.setPower(motorPower[2]);
@@ -99,5 +95,21 @@ public class Robot {
         }
     }
 
+    public void intakeIn(){
+        iIntake.intake();
+    }
 
+    public void intakeOut(){
+        iIntake.outTake();
+    }
+
+    public void intakeStop(){
+        iIntake.stopActiveIntake();
+    }
+
+
+
+    public void outtakeElevGetHeight(){
+        oSlides.getPos();
+    }
 }

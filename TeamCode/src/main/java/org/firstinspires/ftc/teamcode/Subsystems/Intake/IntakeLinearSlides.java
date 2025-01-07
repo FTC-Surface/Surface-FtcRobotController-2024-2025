@@ -10,8 +10,8 @@ import org.firstinspires.ftc.teamcode.Subsystems.Subsystem;
 
 public class IntakeLinearSlides extends Subsystem {
 
-    private DcMotorEx leftIntakeMotor;
-    private DcMotorEx rightIntakeMotor;
+    private DcMotorEx intakeLinearSlideOne;
+    private DcMotorEx intakeLinearSlideTwo;
 
     private double currentPos;
 
@@ -20,14 +20,14 @@ public class IntakeLinearSlides extends Subsystem {
 
     @Override
     public void init(HardwareMap hardwareMap) {
-        leftIntakeMotor = hardwareMap.get(DcMotorEx.class, "lInLinearSlide");
-        rightIntakeMotor = hardwareMap.get(DcMotorEx.class, "rInLinearSlide");
+        intakeLinearSlideOne = hardwareMap.get(DcMotorEx.class, "lInLinearSlide");
+        intakeLinearSlideTwo = hardwareMap.get(DcMotorEx.class, "rInLinearSlide");
 
-        leftIntakeMotor.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
-        rightIntakeMotor.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
+        intakeLinearSlideOne.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
+        intakeLinearSlideTwo.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
 
-        leftIntakeMotor.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
-        rightIntakeMotor.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
+        intakeLinearSlideOne.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
+        intakeLinearSlideTwo.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
     }
 
     public void moveElevator(Constants.eIElevatorState state, int manualMove) {
@@ -54,20 +54,20 @@ public class IntakeLinearSlides extends Subsystem {
 
         }
 
-        leftIntakeMotor.setTargetPosition(height);
-        rightIntakeMotor.setTargetPosition(height);
+        intakeLinearSlideOne.setTargetPosition(height);
+        intakeLinearSlideTwo.setTargetPosition(height);
 
-        leftIntakeMotor.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
-        rightIntakeMotor.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
+        intakeLinearSlideOne.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
+        intakeLinearSlideTwo.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
 
-        leftIntakeMotor.setPower(lPower);
-        rightIntakeMotor.setPower((rPower));
+        intakeLinearSlideOne.setPower(lPower);
+        intakeLinearSlideTwo.setPower((rPower));
 
         currentPos = getPos();
     }
 
     private double getPos(){
-        return 0;
+        return (double) (intakeLinearSlideOne.getCurrentPosition() + intakeLinearSlideTwo.getCurrentPosition()) /2;
     }
 
     public boolean isBusy(){
