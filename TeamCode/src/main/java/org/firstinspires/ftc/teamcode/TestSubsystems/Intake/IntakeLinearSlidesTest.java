@@ -7,69 +7,104 @@ import com.acmerobotics.dashboard.FtcDashboard;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
+import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 
 @TeleOp(name = "Intake Linear Slides Test", group = "Tests")
 @Config
 public class IntakeLinearSlidesTest extends LinearOpMode {
 
-    private DcMotorEx leftIntakeMotor;
-    private DcMotorEx rightIntakeMotor;
+    private DcMotorEx intakeLinearSlideOne;
+    private DcMotorEx intakeLinearSlideTwo;
 
     public static int targetPos = 0;
+    public static int maxHeight = 2350;
+    public static int minHeight = 0;
 
-    public int currentPos = 0;
+    public int currentHeight = 0;
+
+    public static double motorPower = 0.75;
 
     public void runOpMode() {
-        leftIntakeMotor = hardwareMap.get(DcMotorEx.class, "lInLinearSlide");
-        rightIntakeMotor = hardwareMap.get(DcMotorEx.class, "rInLinearSlide");
+        intakeLinearSlideOne = hardwareMap.get(DcMotorEx.class, "lInLinearSlide");
+        intakeLinearSlideTwo = hardwareMap.get(DcMotorEx.class, "rInLinearSlide");
 
-        leftIntakeMotor.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
-        rightIntakeMotor.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
+        intakeLinearSlideOne.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
+        intakeLinearSlideTwo.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
 
-        leftIntakeMotor.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
-        rightIntakeMotor.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
+        intakeLinearSlideOne.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
+        intakeLinearSlideTwo.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
 
         telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
 
         waitForStart();
 
         while(opModeIsActive()){
-//            leftIntakeMotor.setTargetPosition(targetPos);
-//            rightIntakeMotor.setTargetPosition(targetPos);
+            telemetry.addData("Left Motor Position", intakeLinearSlideOne.getCurrentPosition());
+            telemetry.addData("Right Motor Position", intakeLinearSlideTwo.getCurrentPosition());
+            telemetry.addData("Height", currentHeight);
+
+            telemetry.update();
+
+//            intakeLinearSlideOne.setTargetPosition(targetPos);
+//            intakeLinearSlideTwo.setTargetPosition(targetPos);
 //
-//            leftIntakeMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-//            rightIntakeMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
-//            leftIntakeMotor.setPower(1);
-//            rightIntakeMotor.setPower(-1);
-
-//            if(getCurrentPos() > targetPos){
-//                leftIntakeMotor.setPower(1);
-//                rightIntakeMotor.setPower(-1);
+//            intakeLinearSlideOne.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+//            intakeLinearSlideTwo.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+//
+//            if(currentHeight > targetPos){
+//                intakeLinearSlideOne.setPower(-motorPower);
+//                intakeLinearSlideTwo.setPower(-motorPower);
 //            }
 //
-//            if(getCurrentPos() < targetPos){
-//                leftIntakeMotor.setPower(1);
-//                rightIntakeMotor.setPower(-1);
+//            if(currentHeight < targetPos){
+//                intakeLinearSlideOne.setPower(motorPower);
+//                intakeLinearSlideTwo.setPower(motorPower);
+//            }
+//
+//            if(currentHeight <= targetPos + 1.5 && currentHeight >= targetPos - 1.5){
+//                intakeLinearSlideOne.setPower(0.05);
+//                intakeLinearSlideTwo.setPower(0.05);
+//
+//                if(currentHeight == targetPos){
+//                    intakeLinearSlideOne.setPower(0);
+//                    intakeLinearSlideTwo.setPower(0);
+//                }
+//            }
+//
+//            currentHeight = (intakeLinearSlideTwo.getCurrentPosition() + intakeLinearSlideOne.getCurrentPosition())/2;
+//
+//            telemetry.addData(("Is Busy"), isBusy());
+//            telemetry.update();
+
+//            if (gamepad1.a) {
+//                targetPos = 2200;
+//            }
+//
+//            if (gamepad1.b) {
+//                targetPos = 0;
 //            }
 
-            telemetry.addData("Left Motor Position", leftIntakeMotor.getCurrentPosition());
-            telemetry.addData("Right Motor Position", leftIntakeMotor.getCurrentPosition());
+//            Max height = 3550;
 
-            if(gamepad1.left_bumper){
-                leftIntakeMotor.setPower(1);
-                rightIntakeMotor.setPower(-1);
-            }
-
-            if(gamepad1.right_bumper){
-                leftIntakeMotor.setPower(-1);
-                rightIntakeMotor.setPower(1);
+            if (gamepad1.a && currentHeight < maxHeight) {
+                intakeLinearSlideOne.setPower(0.3);
+                intakeLinearSlideTwo.setPower(0.3);
+            } else if (gamepad1.b && currentHeight > minHeight) {
+                intakeLinearSlideOne.setPower(-0.3);
+                intakeLinearSlideTwo.setPower(-0.3);
+            } else {
+                intakeLinearSlideOne.setPower(0);
+                intakeLinearSlideTwo.setPower(0);
             }
         }
     }
 
-//    public int getCurrentPos(){
-//        return ();
-//    }
+    public boolean isBusy(){
+        double position = currentHeight;
+        if (position != currentHeight){
+            return true;
+        }
+        return false;
+    }
 }

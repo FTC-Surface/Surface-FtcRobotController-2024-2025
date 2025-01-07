@@ -9,6 +9,7 @@ import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.Robot.Robot;
 
@@ -16,11 +17,13 @@ import org.firstinspires.ftc.teamcode.Robot.Robot;
 @Config
 public class TeleOpMode extends LinearOpMode {
 
-    public static int testNum = 0;
+    public int inputHeight = 0;
 
     @Override
     public void runOpMode() throws InterruptedException {
         Robot robot = new Robot(hardwareMap);
+
+        ElapsedTime intakeTimer = new ElapsedTime(ElapsedTime.Resolution.MILLISECONDS);
 
         telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
 
@@ -33,10 +36,21 @@ public class TeleOpMode extends LinearOpMode {
             double strafe = gamepad1.left_stick_x;
             double rotate = gamepad1.right_stick_x;
 
-            robot.teleOpDrive(drive /* * 0.8*/ ,strafe /* * 0.8*/,rotate /* * 0.8*/);
+            robot.teleOpDrive(drive * 0.6,strafe * 0.6,rotate * 0.6);
 
-            telemetry.addData("Test Num:", testNum);
-            telemetry.update();
+            if(gamepad2.a){
+                intakeTimer.reset();
+                robot.intakeIn();
+            }
+
+            if(gamepad2.b){
+                intakeTimer.reset();
+                robot.intakeOut();
+            }
+
+            if(intakeTimer.milliseconds() >= 1000){
+                robot.intakeStop();
+            }
         }
     }
 }

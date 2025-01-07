@@ -4,6 +4,8 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
+import org.apache.commons.math3.analysis.function.Constant;
+import org.firstinspires.ftc.robotcore.external.Const;
 import org.firstinspires.ftc.teamcode.Subsystems.Constants;
 import org.firstinspires.ftc.teamcode.Subsystems.Subsystem;
 
@@ -14,8 +16,11 @@ public class OuttakeLinearSlides extends Subsystem {
 
     private double currentPos;
 
-    private double lPower;
-    private double rPower;
+    private int targetPos;
+
+    private Constants constants = new Constants();
+
+    public double outtakeElevMotPow = 0;
 
     @Override
     public void init(HardwareMap hardwareMap) {
@@ -27,16 +32,13 @@ public class OuttakeLinearSlides extends Subsystem {
 
         outtakeLinearSlideOne.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
         outtakeLinearSlideTwo.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
-
-        outtakeLinearSlideOne.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
-        outtakeLinearSlideTwo.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
     }
 
     public void moveElevator(Constants.eOElevatorState state) {
         switch(state){
-            case BottomClip:
+            case Clip:
                 break;
-            case TopClip:
+            case PrepareClip:
                 break;
             case Ground:
                 break;
@@ -52,30 +54,29 @@ public class OuttakeLinearSlides extends Subsystem {
     }
 
     private void setPos(int height){
-        double currentPosition = getPos();
+        currentPos = getPos();
+        targetPos = height;
 
         if(currentPos > height){
-
+            outtakeElevMotPow = -constants.outtakeElevatorMotorPower;
         }
 
         if(currentPos < height){
-
+            outtakeElevMotPow = constants.outtakeElevatorMotorPower;
         }
 
-        outtakeLinearSlideOne.setTargetPosition(height);
-        outtakeLinearSlideTwo.setTargetPosition(height);
+        outtakeLinearSlideTwo.setPower(outtakeElevMotPow);
+        outtakeLinearSlideOne.setPower(outtakeElevMotPow);
+
+        outtakeLinearSlideOne.setTargetPosition(targetPos);
+        outtakeLinearSlideTwo.setTargetPosition(targetPos);
 
         outtakeLinearSlideOne.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
         outtakeLinearSlideTwo.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
-
-        outtakeLinearSlideOne.setPower(lPower);
-        outtakeLinearSlideTwo.setPower((rPower));
-
-        currentPos = getPos();
     }
 
-    private double getPos(){
-        return 0;
+    public double getPos(){
+        return (double) (outtakeLinearSlideOne.getCurrentPosition() + outtakeLinearSlideTwo.getCurrentPosition()) /2;
     }
 
     public boolean isBusy(){
