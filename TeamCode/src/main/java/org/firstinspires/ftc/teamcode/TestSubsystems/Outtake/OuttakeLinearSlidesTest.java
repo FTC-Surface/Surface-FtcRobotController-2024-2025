@@ -17,7 +17,7 @@ public class OuttakeLinearSlidesTest extends LinearOpMode {
     private DcMotorEx rightOuttakeMotor;
 
     public static int targetPos = 0;
-    public static int maxHeight = 2350;
+    public static int maxHeight = 3000;
     public static int minHeight = 0;
 
     public int currentHeight = 0;
@@ -78,15 +78,14 @@ public class OuttakeLinearSlidesTest extends LinearOpMode {
 
             telemetry.addData(("Is Busy"), isBusy());
             telemetry.update();
-//            if (gamepad1.a) {
-//                targetPos = 2200;
-//            }
-//
-//            if (gamepad1.b) {
-//                targetPos = 0;
-//            }
+            if (gamepad1.a) {
+                targetPos = 3000;
+            }
+            if (gamepad1.b) {
+                targetPos = 0;
+            }
 
-            //Max height = 3550
+//            Max height = 3000
 
 //            if (gamepad1.a && currentHeight < maxHeight) {
 //                leftOuttakeMotor.setPower(0.3);
