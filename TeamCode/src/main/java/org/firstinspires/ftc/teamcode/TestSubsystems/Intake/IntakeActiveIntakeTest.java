@@ -40,6 +40,11 @@ public class IntakeActiveIntakeTest extends LinearOpMode {
                  targetRight = -1;
                  targetLeft = 1;
              }
+
+             if(gamepad1.y){
+                 targetRight = 0;
+                 targetLeft = 0;
+             }
          }
     }
 
