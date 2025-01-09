@@ -11,14 +11,11 @@ import com.acmerobotics.dashboard.config.Config;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 
-@TeleOp(name = "Servo Move Test", group = "Tests")
+@TeleOp(name = "Servo Set Position Test", group = "Tests")
 @Config
-public class TestServoMove extends LinearOpMode {
+public class TestRegServo extends LinearOpMode {
 
     private Servo testServo;
-
-    public static double testMove = 0;
-    public static double testSensitivity = 0.005;
 
     public static double testSetPos = 0;
 
@@ -32,18 +29,10 @@ public class TestServoMove extends LinearOpMode {
 
         while(opModeIsActive() &&!isStopRequested()){
 
-            if(testMove <= 1 && testMove >= 0){
-                testMove += gamepad1.left_stick_x * testSensitivity;
-            }
-
-            if(testMove > 1){
-                testMove = 1;
-            } else if(testMove < 0){
-                testMove = 0;
-            }
+            testServo.setPosition(testSetPos);
 
             telemetry.addData("Gamepad Left Stick", gamepad1.left_stick_x);
-            telemetry.addData("Test move", testMove);
+            telemetry.addData("Test Pos", testSetPos);
             telemetry.update();
         }
     }

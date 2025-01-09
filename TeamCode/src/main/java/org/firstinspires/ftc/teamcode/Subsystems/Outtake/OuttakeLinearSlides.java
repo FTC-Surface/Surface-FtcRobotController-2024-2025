@@ -49,6 +49,20 @@ public class OuttakeLinearSlides extends Subsystem {
         }
     }
 
+    public void loop(){
+        if(currentPos <= targetPos + 1.5 && currentPos >= targetPos - 1.5){
+            outtakeLinearSlideOne.setPower(0.05);
+            outtakeLinearSlideTwo.setPower(0.05);
+
+            if(currentPos == targetPos){
+                outtakeLinearSlideOne.setPower(0);
+                outtakeLinearSlideOne.setPower(0);
+            }
+        }
+
+        currentPos = getPos();
+    }
+
     private void move(int height){
         setPos(height);
     }
@@ -79,11 +93,5 @@ public class OuttakeLinearSlides extends Subsystem {
         return (double) (outtakeLinearSlideOne.getCurrentPosition() + outtakeLinearSlideTwo.getCurrentPosition()) /2;
     }
 
-    public boolean isBusy(){
-        double position = currentPos;
-        if (position != currentPos){
-            return true;
-        }
-        return false;
-    }
+    public boolean isBusy(){ return Math.abs(getPos()-targetPos) < 10;}
 }
