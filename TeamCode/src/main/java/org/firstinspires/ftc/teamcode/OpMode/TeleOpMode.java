@@ -29,6 +29,11 @@ public class TeleOpMode extends LinearOpMode {
 
         telemetry.update();
 
+        robot.iArmStart();
+        robot.oArmStart();
+        robot.oWristStart();
+        robot.openClaw();
+
         while (opModeIsActive()) {
 
             robot.oSlideLoop();
