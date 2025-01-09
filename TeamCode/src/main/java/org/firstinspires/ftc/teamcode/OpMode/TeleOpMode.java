@@ -27,7 +27,7 @@ public class TeleOpMode extends LinearOpMode {
 
         telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
 
-        waitForStart();
+        waitForStart();    
 
         telemetry.update();
 
