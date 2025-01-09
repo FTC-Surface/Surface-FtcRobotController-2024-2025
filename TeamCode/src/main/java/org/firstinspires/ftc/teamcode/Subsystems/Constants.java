@@ -21,13 +21,13 @@ public class Constants {
         Close
     }
 
-    public final double openClaw = 0;
-    public final double closeClaw = 0.31;
+    public final double OpenClaw = 0;
+    public final double CloseClaw = 0.31;
 
-    public final double outtakeElevatorMotorPower = 0.75;
-    public final double intakeElevatorMotorPower = 0.75;
+    public final double OuttakeElevatorMotorPower = 0.5;
+    public final double IntakeElevatorMotorPower = 0.5;
 
     public final double ActiveIntakePow = 0.3;
 
-
+    public final double IntakeWristPow = 0.5;
 }

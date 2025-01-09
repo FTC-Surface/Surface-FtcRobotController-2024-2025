@@ -11,10 +11,6 @@ public class OuttakeArmTest extends LinearOpMode {
     Servo armOne;
 
     public static double armOneTarget = 0;
-    public static double armTwoTarget = 0;
-
-    //0.8 is drop off position
-    //
 
     @Override
     public void runOpMode() throws InterruptedException {

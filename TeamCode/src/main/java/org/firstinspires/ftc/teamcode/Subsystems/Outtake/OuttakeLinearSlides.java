@@ -4,8 +4,6 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
-import org.apache.commons.math3.analysis.function.Constant;
-import org.firstinspires.ftc.robotcore.external.Const;
 import org.firstinspires.ftc.teamcode.Subsystems.Constants;
 import org.firstinspires.ftc.teamcode.Subsystems.Subsystem;
 
@@ -72,11 +70,11 @@ public class OuttakeLinearSlides extends Subsystem {
         targetPos = height;
 
         if(currentPos > height){
-            outtakeElevMotPow = -constants.outtakeElevatorMotorPower;
+            outtakeElevMotPow = -constants.OuttakeElevatorMotorPower;
         }
 
         if(currentPos < height){
-            outtakeElevMotPow = constants.outtakeElevatorMotorPower;
+            outtakeElevMotPow = constants.OuttakeElevatorMotorPower;
         }
 
         outtakeLinearSlideTwo.setPower(outtakeElevMotPow);

@@ -6,6 +6,9 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.util.ElapsedTime;
+
+import java.util.Timer;
 
 @TeleOp(name="Intake Active Intake Test", group = "Tests")
 @Config
@@ -16,6 +19,8 @@ public class IntakeActiveIntakeTest extends LinearOpMode {
 
     public static double targetRight = 0;
     public static double targetLeft = 0;
+
+    ElapsedTime timer = new ElapsedTime();
 
     @Override
     public void runOpMode() throws InterruptedException {

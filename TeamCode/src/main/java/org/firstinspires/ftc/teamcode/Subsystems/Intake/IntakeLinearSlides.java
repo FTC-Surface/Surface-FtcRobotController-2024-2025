@@ -1,7 +1,5 @@
 package org.firstinspires.ftc.teamcode.Subsystems.Intake;
 
-import android.widget.Switch;
-
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
@@ -17,8 +15,9 @@ public class IntakeLinearSlides extends Subsystem {
 
     private int targetPos;
 
-    private double lPower;
-    private double rPower;
+    private double intakeElevPower;
+
+    private Constants constants = new Constants();
 
     @Override
     public void init(HardwareMap hardwareMap) {
@@ -64,11 +63,11 @@ public class IntakeLinearSlides extends Subsystem {
         targetPos = height;
 
         if(currentPos > height){
-
+            intakeElevPower = -constants.IntakeElevatorMotorPower;
         }
 
         if(currentPos < height){
-
+            intakeElevPower = constants.IntakeElevatorMotorPower;
         }
 
         intakeLinearSlideOne.setTargetPosition(height);
@@ -77,8 +76,8 @@ public class IntakeLinearSlides extends Subsystem {
         intakeLinearSlideOne.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
         intakeLinearSlideTwo.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
 
-        intakeLinearSlideOne.setPower(lPower);
-        intakeLinearSlideTwo.setPower((rPower));
+        intakeLinearSlideOne.setPower(intakeElevPower);
+        intakeLinearSlideTwo.setPower(intakeElevPower);
     }
 
     public double getPos(){

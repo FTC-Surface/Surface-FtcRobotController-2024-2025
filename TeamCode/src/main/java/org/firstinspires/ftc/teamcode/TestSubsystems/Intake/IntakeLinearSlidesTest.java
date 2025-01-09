@@ -43,6 +43,7 @@ public class IntakeLinearSlidesTest extends LinearOpMode {
             telemetry.addData("Left Motor Position", intakeLinearSlideOne.getCurrentPosition());
             telemetry.addData("Right Motor Position", intakeLinearSlideTwo.getCurrentPosition());
             telemetry.addData("Height", currentHeight);
+            telemetry.addData("Is Busy", isBusy());
 
             telemetry.update();
 
@@ -95,11 +96,5 @@ public class IntakeLinearSlidesTest extends LinearOpMode {
         }
     }
 
-    public boolean isBusy(){
-        double position = currentHeight;
-        if (position != currentHeight){
-            return true;
-        }
-        return false;
-    }
+    public boolean isBusy(){return Math.abs(currentHeight-targetPos) > 10;}
 }

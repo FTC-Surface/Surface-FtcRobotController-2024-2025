@@ -7,12 +7,10 @@ import org.firstinspires.ftc.teamcode.Subsystems.Subsystem;
 
 public class OuttakeArm extends Subsystem {
 
-    private Servo armRight;
-    private Servo armLeft;
+    Servo armOne;
 
     @Override
     public void init(HardwareMap hardwareMap) {
-        armRight = hardwareMap.get(Servo.class, "Outtake Arm Right");
-        armLeft = hardwareMap.get(Servo.class, "Outtake Arm Left");
+        armOne = hardwareMap.get(Servo.class, "Outtake Arm Right");
     }
 }

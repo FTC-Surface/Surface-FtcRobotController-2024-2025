@@ -50,7 +50,7 @@ public class TeleOpMode extends LinearOpMode {
                 robot.intakeOut();
             }
 
-            if(intakeTimer.milliseconds() >= 1000){
+            if(intakeTimer.milliseconds() >= 1000 || gamepad2.y){
                 robot.intakeStop();
             }
         }
