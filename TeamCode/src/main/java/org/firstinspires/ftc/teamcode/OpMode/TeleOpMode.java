@@ -4,8 +4,6 @@ import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
 
-
-
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
@@ -27,11 +25,15 @@ public class TeleOpMode extends LinearOpMode {
 
         telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
 
-        waitForStart();    
+        waitForStart();
 
         telemetry.update();
 
         while (opModeIsActive()) {
+
+            robot.oSlideLoop();
+            robot.iSlideLoop();
+
             double drive = gamepad1.left_stick_y;
             double strafe = gamepad1.left_stick_x;
             double rotate = gamepad1.right_stick_x;

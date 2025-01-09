@@ -10,9 +10,14 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.Subsystems.Intake.IntakeActiveIntake;
 import org.firstinspires.ftc.teamcode.Subsystems.Intake.IntakeLinearSlides;
+import org.firstinspires.ftc.teamcode.Subsystems.Intake.IntakeWrist;
+import org.firstinspires.ftc.teamcode.Subsystems.Intake.IntakeArm;
+
+
 import org.firstinspires.ftc.teamcode.Subsystems.Outtake.OuttakeArm;
 import org.firstinspires.ftc.teamcode.Subsystems.Outtake.OuttakeClaw;
 import org.firstinspires.ftc.teamcode.Subsystems.Outtake.OuttakeLinearSlides;
+import org.firstinspires.ftc.teamcode.Subsystems.Outtake.OuttakeWrist;
 
 import com.qualcomm.robotcore.util.ElapsedTime;
 
@@ -24,7 +29,9 @@ public class Robot {
     OuttakeArm oArm = new OuttakeArm();
     OuttakeLinearSlides oSlides = new OuttakeLinearSlides();
     OuttakeClaw oClaw = new OuttakeClaw();
+    OuttakeWrist oWrist = new OuttakeWrist();
 
+    IntakeArm iArm = new IntakeArm();
     IntakeWrist iWrist = new IntakeWrist();
     IntakeActiveIntake iIntake = new IntakeActiveIntake();
     IntakeLinearSlides iSlides = new IntakeLinearSlides();
@@ -49,10 +56,13 @@ public class Robot {
 //        oClaw.init(hardwareMap);
 //        oArm.init(hardwareMap);
         oSlides.init(hardwareMap);
+//        oWrist.init(hardwareMap);
+
 //
         iIntake.init(hardwareMap);
 //        iSlides.init((hardwareMap));
 //        iWrist.init(hardwareMap);
+//        iArm.init(hardwareMap);
 
         for (LynxModule module : hardwareMap.getAll(LynxModule.class)) {
             module.setBulkCachingMode(LynxModule.BulkCachingMode.AUTO);
@@ -94,6 +104,10 @@ public class Robot {
         while(timer.time() < seconds){
         }
     }
+
+    public void oSlideLoop(){oSlides.loop();}
+
+    public void iSlideLoop(){iSlides.loop();}
 
     public void intakeIn(){
         iIntake.intake();

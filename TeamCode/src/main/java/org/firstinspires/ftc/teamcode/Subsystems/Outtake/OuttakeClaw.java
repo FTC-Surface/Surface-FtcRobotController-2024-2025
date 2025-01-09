@@ -9,24 +9,20 @@ import org.firstinspires.ftc.teamcode.Subsystems.Subsystem;
 
 public class OuttakeClaw extends Subsystem {
 
-    private Servo rClaw;
-    private Servo lClaw;
+    private Servo claw;
 
     private Constants constants;
 
     @Override
     public void init(HardwareMap hardwareMap) {
-        rClaw = hardwareMap.get(Servo.class, "Right Claw");
-        lClaw = hardwareMap.get(Servo.class, "Left Claw");
+        claw = hardwareMap.get(Servo.class, "Claw");
     }
 
     public void open(){
-        rClaw.setPosition(constants.openClawR);
-        lClaw.setPosition(constants.openClawL);
+        claw.setPosition(constants.openClaw);
     }
 
     public void close(){
-        rClaw.setPosition(constants.closeClawR);
-        lClaw.setPosition(constants.closeClawL);
+        claw.setPosition(constants.closeClaw);
     }
 }

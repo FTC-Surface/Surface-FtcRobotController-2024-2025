@@ -15,6 +15,8 @@ public class IntakeLinearSlides extends Subsystem {
 
     private double currentPos;
 
+    private int targetPos;
+
     private double lPower;
     private double rPower;
 
@@ -39,12 +41,27 @@ public class IntakeLinearSlides extends Subsystem {
         }
     }
 
+    public void loop(){
+        if(currentPos <= targetPos + 1.5 && currentPos >= targetPos - 1.5){
+            intakeLinearSlideTwo.setPower(0.05);
+            intakeLinearSlideOne.setPower(0.05);
+
+            if(currentPos == targetPos){
+                intakeLinearSlideTwo.setPower(0);
+                intakeLinearSlideOne.setPower(0);
+            }
+        }
+
+        currentPos = getPos();
+    }
+
     private void move(int height){
         setPos(height);
     }
 
     private void setPos(int height){
-        double currentPosition = getPos();
+        currentPos = getPos();
+        targetPos = height;
 
         if(currentPos > height){
 
@@ -62,19 +79,11 @@ public class IntakeLinearSlides extends Subsystem {
 
         intakeLinearSlideOne.setPower(lPower);
         intakeLinearSlideTwo.setPower((rPower));
-
-        currentPos = getPos();
     }
 
     public double getPos(){
         return (double) (intakeLinearSlideOne.getCurrentPosition() + intakeLinearSlideTwo.getCurrentPosition()) /2;
     }
 
-    public boolean isBusy(){
-        double position = currentPos;
-        if (position != currentPos){
-            return true;
-        }
-        return false;
-    }
+    public boolean isBusy(){ return Math.abs(getPos()-targetPos) < 10;}
 }

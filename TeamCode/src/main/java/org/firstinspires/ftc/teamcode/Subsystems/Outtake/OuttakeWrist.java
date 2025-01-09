@@ -1,16 +1,16 @@
-package org.firstinspires.ftc.teamcode.Subsystems.Intake;
+package org.firstinspires.ftc.teamcode.Subsystems.Outtake;
 
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.teamcode.Subsystems.Subsystem;
 
-public class IntakeArm extends Subsystem {
+public class OuttakeWrist extends Subsystem {
 
-    private Servo armServo;
+    Servo OuttakeWrist;
 
     @Override
     public void init(HardwareMap hardwareMap) {
-        armServo = hardwareMap.get(Servo.class,"testServo");
+        OuttakeWrist = hardwareMap.get(Servo.class, "Outtake Wrist Left");
     }
 }
