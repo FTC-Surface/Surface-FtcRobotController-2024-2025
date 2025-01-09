@@ -17,7 +17,6 @@ public class IntakeActiveIntakeTest extends LinearOpMode {
     public static double targetRight = 0;
     public static double targetLeft = 0;
 
-
     @Override
     public void runOpMode() throws InterruptedException {
          lIntake = hardwareMap.get(CRServo.class, "lIntake");
