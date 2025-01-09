@@ -7,10 +7,16 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.Servo;
 
-@TeleOp(name = "Outtake Slides Test Op", group = "Tests")
+@TeleOp(name = "Outtake", group = "Tests")
 @Config
-public class OuttakeLinearSlidesTest extends LinearOpMode {
+public class OuttakeTest extends LinearOpMode {
+    Servo armOne;
+    Servo armTwo;
+
+    public static double armOneTarget = 0;
+    public static double armTwoTarget = 0;
 
     //does intake and outtake linear slide use the same motors?
     private DcMotorEx leftOuttakeMotor;
@@ -22,9 +28,13 @@ public class OuttakeLinearSlidesTest extends LinearOpMode {
 
     public int currentHeight = 0;
 
-    public double motorPower = 0.75;
+    public double motorPower = 0.5;
 
-    public void runOpMode() {
+    @Override
+    public void runOpMode() throws InterruptedException {
+        armOne = hardwareMap.get(Servo.class, "Outtake Arm Right");
+        armTwo = hardwareMap.get(Servo.class, "Outtake Wrist Left");
+
         leftOuttakeMotor = hardwareMap.get(DcMotorEx.class, "outtakeLinearSlideOne");
         rightOuttakeMotor = hardwareMap.get(DcMotorEx.class, "outtakeLinearSlideTwo");
 
@@ -38,9 +48,7 @@ public class OuttakeLinearSlidesTest extends LinearOpMode {
 
         waitForStart();
 
-        telemetry.addData("Height", currentHeight);
-
-        while(opModeIsActive()) {
+        while (opModeIsActive() && !isStopRequested()) {
 
             telemetry.addData("Left Motor Position", leftOuttakeMotor.getCurrentPosition());
             telemetry.addData("Right Motor Position", rightOuttakeMotor.getCurrentPosition());
@@ -48,6 +56,9 @@ public class OuttakeLinearSlidesTest extends LinearOpMode {
             telemetry.addData("Is Busy", isBusy());
 
             telemetry.update();
+
+            armOne.setPosition(armOneTarget);
+            armTwo.setPosition(armTwoTarget);
 
             leftOuttakeMotor.setTargetPosition(targetPos);
             rightOuttakeMotor.setTargetPosition(targetPos);
@@ -71,26 +82,6 @@ public class OuttakeLinearSlidesTest extends LinearOpMode {
             }
 
             currentHeight = (rightOuttakeMotor.getCurrentPosition() + leftOuttakeMotor.getCurrentPosition())/2;
-
-            if (gamepad1.a) {
-                targetPos = 3000;
-            }
-            if (gamepad1.b) {
-                targetPos = 0;
-            }
-
-//            Max height = 3000
-
-//            if (gamepad1.a && currentHeight < maxHeight) {
-//                leftOuttakeMotor.setPower(0.3);
-//                rightOuttakeMotor.setPower(0.3);
-//            } else if (gamepad1.b && currentHeight > minHeight) {
-//                leftOuttakeMotor.setPower(-0.3);
-//                rightOuttakeMotor.setPower(-0.3);
-//            } else {
-//                leftOuttakeMotor.setPower(0);
-//                rightOuttakeMotor.setPower(0);
-//            }
         }
     }
 

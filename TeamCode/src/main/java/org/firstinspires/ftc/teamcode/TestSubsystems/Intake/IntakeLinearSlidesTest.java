@@ -63,13 +63,8 @@ public class IntakeLinearSlidesTest extends LinearOpMode {
 //            }
 //
 //            if(currentHeight <= targetPos + 1.5 && currentHeight >= targetPos - 1.5){
-//                intakeLinearSlideOne.setPower(0.05);
-//                intakeLinearSlideTwo.setPower(0.05);
-//
-//                if(currentHeight == targetPos){
-//                    intakeLinearSlideOne.setPower(0);
-//                    intakeLinearSlideTwo.setPower(0);
-//                }
+//                intakeLinearSlideOne.setPower(0.1);
+//                intakeLinearSlideTwo.setPower(0.1);
 //            }
 //
 //            currentHeight = (intakeLinearSlideTwo.getCurrentPosition() + intakeLinearSlideOne.getCurrentPosition())/2;
