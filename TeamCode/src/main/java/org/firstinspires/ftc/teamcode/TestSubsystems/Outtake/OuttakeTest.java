@@ -85,5 +85,5 @@ public class OuttakeTest extends LinearOpMode {
         }
     }
 
-    public boolean isBusy(){return Math.abs(currentHeight-targetPos) < 10;}
+    public boolean isBusy(){return Math.abs(currentHeight-targetPos) > 10;}
 }
