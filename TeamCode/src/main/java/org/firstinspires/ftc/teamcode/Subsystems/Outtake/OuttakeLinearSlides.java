@@ -32,7 +32,7 @@ public class OuttakeLinearSlides extends Subsystem {
         outtakeLinearSlideTwo.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
     }
 
-    public void moveElevator(constants.eOElevatorState state) {
+    public void moveElevator(Constants.eOElevatorState state) {
         switch(state){
             case Clip:
                 break;
