@@ -17,6 +17,10 @@ public class TeleOpMode extends LinearOpMode {
 
     public int inputHeight = 0;
 
+    public enum eDropOff{
+        DropOff_start
+    }
+
     @Override
     public void runOpMode() throws InterruptedException {
         Robot robot = new Robot(hardwareMap);
@@ -34,6 +38,8 @@ public class TeleOpMode extends LinearOpMode {
         robot.oWristStart();
         robot.openClaw();
 
+        eDropOff eDropOffState = eDropOff.DropOff_start;
+
         while (opModeIsActive()) {
 
             robot.oSlideLoop();
@@ -45,12 +51,12 @@ public class TeleOpMode extends LinearOpMode {
 
             robot.teleOpDrive(drive * 0.6,strafe * 0.6,rotate * 0.6);
 
-            if(gamepad2.a){
+            if(gamepad1.a){
                 intakeTimer.reset();
                 robot.intakeIn();
             }
 
-            if(gamepad2.b){
+            if(gamepad1.b){
                 intakeTimer.reset();
                 robot.intakeOut();
             }
