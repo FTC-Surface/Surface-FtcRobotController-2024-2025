@@ -19,6 +19,10 @@ public class OuttakeWristTest extends LinearOpMode {
         //start pos is 0
         //Max pos is 0.9
 
+        //0.62 when raising
+
+        //Drop odd 0.775
+
         waitForStart();
 
         while (opModeIsActive() && !isStopRequested()) {
