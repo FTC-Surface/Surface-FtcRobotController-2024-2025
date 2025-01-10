@@ -42,13 +42,8 @@ public class IntakeLinearSlides extends Subsystem {
 
     public void loop(){
         if(currentPos <= targetPos + 1.5 && currentPos >= targetPos - 1.5){
-            intakeLinearSlideTwo.setPower(0.05);
-            intakeLinearSlideOne.setPower(0.05);
-
-            if(currentPos == targetPos){
-                intakeLinearSlideTwo.setPower(0);
-                intakeLinearSlideOne.setPower(0);
-            }
+            intakeLinearSlideOne.setPower(0);
+            intakeLinearSlideTwo.setPower(0);
         }
 
         currentPos = getPos();

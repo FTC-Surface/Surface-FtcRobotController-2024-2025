@@ -29,9 +29,6 @@ public class IntakeArmTest extends LinearOpMode{
 
         while(opModeIsActive() && !isStopRequested()){
             armServo.setPosition(position);
-
-            lWrist.setPower(0);
-            rWrist.setPower(0);
         }
     }
 }
