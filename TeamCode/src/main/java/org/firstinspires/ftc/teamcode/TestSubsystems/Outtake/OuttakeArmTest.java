@@ -12,6 +12,9 @@ public class OuttakeArmTest extends LinearOpMode {
 
     public static double armOneTarget = 0;
 
+    //Start pos is 0
+    //Max pos is 1
+
     @Override
     public void runOpMode() throws InterruptedException {
         armOne = hardwareMap.get(Servo.class, "Outtake Arm Right");

@@ -9,6 +9,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.Robot.Robot;
+import org.firstinspires.ftc.teamcode.Subsystems.Constants;
 
 @TeleOp(name = "Mecanum Drive", group = "OpModes")
 @Config
@@ -36,6 +37,7 @@ public class TeleOpMode extends LinearOpMode {
         robot.oArmStart();
         robot.oWristStart();
         robot.openClaw();
+        robot.oElevMove(Constants.eOElevatorState.Ground);
 
         eDropOff eDropOffState = eDropOff.DropOff_start;
 

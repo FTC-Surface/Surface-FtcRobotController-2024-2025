@@ -16,6 +16,9 @@ public class OuttakeWristTest extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
         armTwo = hardwareMap.get(Servo.class, "Outtake Wrist Left");
 
+        //start pos is 0
+        //Max pos is 0.9
+
         waitForStart();
 
         while (opModeIsActive() && !isStopRequested()) {
