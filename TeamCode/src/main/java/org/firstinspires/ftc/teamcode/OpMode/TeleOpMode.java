@@ -24,8 +24,9 @@ public class TeleOpMode extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
         Robot robot = new Robot(hardwareMap);
-
         ElapsedTime intakeTimer = new ElapsedTime(ElapsedTime.Resolution.MILLISECONDS);
+        ElapsedTime grabTimer = new ElapsedTime(ElapsedTime.Resolution.MILLISECONDS);
+        Constants constants = new Constants();
 
         telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
 
@@ -52,18 +53,51 @@ public class TeleOpMode extends LinearOpMode {
 
             robot.teleOpDrive(drive * 0.6,strafe * 0.6,rotate * 0.6);
 
-            if(gamepad1.a){
+            if(gamepad2.left_bumper){
                 intakeTimer.reset();
                 robot.intakeIn();
             }
 
-            if(gamepad1.b){
+            if(gamepad2.right_bumper){
                 intakeTimer.reset();
                 robot.intakeOut();
             }
 
             if(intakeTimer.milliseconds() >= 1000 || gamepad2.y){
                 robot.intakeStop();
+            }
+
+            if(gamepad2.dpad_down){
+                robot.oElevMove(Constants.eOElevatorState.Ground);
+            }
+            if(gamepad2.dpad_up){
+                robot.oElevMove(Constants.eOElevatorState.Basket);
+            }
+            if(gamepad2.dpad_left){
+                robot.oElevMove(Constants.eOElevatorState.Ready);
+            }
+            if(gamepad2.dpad_right){
+                robot.oElevMove(Constants.eOElevatorState.Grab);
+            }
+
+            if(gamepad2.a){
+                robot.oElevMove(Constants.eOElevatorState.Ready);
+                robot.oWristReady();
+                robot.oArmReady();
+            }
+
+            if(gamepad2.b){
+                robot.oElevMove(Constants.eOElevatorState.Grab);
+                grabTimer.reset();
+                if(grabTimer.milliseconds() > 500){
+                    robot.closeClaw();
+                }
+            }
+
+            if(gamepad2.x){
+                robot.oElevMove(Constants.eOElevatorState.Basket);
+                robot.oWristReady();
+                robot.oArmReady();
             }
         }
     }

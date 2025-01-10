@@ -22,4 +22,5 @@ public class OuttakeWrist extends Subsystem {
     }
     public void raisingPos(){OuttakeWrist.setPosition(constants.OutakeWristRaisePos);}
     public void outPos(){OuttakeWrist.setPosition(constants.OutakeWristOutPos);}
+    public void readyPos(){OuttakeWrist.setPosition(constants.OutakeWristReadyPos);}
 }

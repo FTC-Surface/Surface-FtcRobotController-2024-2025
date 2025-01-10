@@ -6,7 +6,9 @@ public class Constants {
         Basket,
         Clip,
         PrepareClip,
-        Hang
+        Hang,
+        Ready,
+        Grab
     }
 
     public enum eIElevatorState{

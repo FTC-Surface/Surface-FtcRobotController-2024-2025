@@ -139,4 +139,9 @@ public class Robot {
     public void iArmOut(){iArm.outPos();}
     public void oArmOut(){oArm.outPos();}
     public void oWristOut(){oWrist.outPos();}
+
+    public void oWristRaise(){oWristRaise();}
+    public void oWristReady(){oWristReady();}
+
+    public void oArmReady(){oArmReady();}
 }

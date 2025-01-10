@@ -20,7 +20,7 @@ public class OuttakeArm extends Subsystem {
     public void startPos(){
         armOne.setPosition(constants.OutakeArmStartPos);
     }
-
+    public void readyPos(){armOne.setPosition(constants.OutakeArmReadyPos);}
     public void outPos(){
         armOne.setPosition(constants.OutakeArmOutPos);
     }
