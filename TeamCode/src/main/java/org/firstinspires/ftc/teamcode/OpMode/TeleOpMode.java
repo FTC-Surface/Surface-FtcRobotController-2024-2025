@@ -52,12 +52,12 @@ public class TeleOpMode extends LinearOpMode {
 
             robot.teleOpDrive(drive * 0.6,strafe * 0.6,rotate * 0.6);
 
-            if(gamepad2.left_bumper){
+            while(gamepad2.left_bumper){
                 intakeTimer.reset();
                 robot.intakeIn();
             }
 
-            if(gamepad2.right_bumper){
+            while(gamepad2.right_bumper){
                 intakeTimer.reset();
                 robot.intakeOut();
             }

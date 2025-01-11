@@ -15,6 +15,9 @@ public class IntakeWristTest extends LinearOpMode {
     public static double lPos;
     public static double rPos;
 
+    /*
+    * */
+
     @Override
     public void runOpMode() throws InterruptedException {
         lWrist = hardwareMap.get(Servo.class, "lWrist");

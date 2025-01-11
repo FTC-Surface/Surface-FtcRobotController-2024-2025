@@ -31,8 +31,6 @@ public class Constants {
 
     public final double ActiveIntakePow = 0.3;
 
-    public final double IntakeWristPow = 0.5;
-
     public final double OutakeWristStartPos = 0.8;
     public final double OutakeWristRaisePos = 0.62;
     public final double OutakeWristOutPos = 0.775;
@@ -44,4 +42,8 @@ public class Constants {
 
     public final double IntakeArmStartPos = 0;
     public final double IntakeArmOutPos = 0;
+
+    public final double IntakeWristStart = 0;
+    public final double IntakeWristIntake = 0;
+    public final double IntakeWristOuttake = 0;
 }
