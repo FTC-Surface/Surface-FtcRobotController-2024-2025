@@ -33,15 +33,15 @@ public class TeleOpMode extends LinearOpMode {
 
         telemetry.update();
 
-        robot.iArmStart();
-        robot.iWristStart();
-        robot.oArmStart();
-        robot.oWristStart();
-        robot.oArmStart();
-        robot.openClaw();
-        robot.oElevMove(Constants.eOElevatorState.Ground,0);
-
-        eDropOff eDropOffState = eDropOff.DropOff_start;
+//        robot.iArmStart();
+//        robot.iWristStart();
+//        robot.oArmStart();
+//        robot.oWristStart();
+//        robot.oArmStart();
+//        robot.openClaw();
+//        robot.oElevMove(Constants.eOElevatorState.Ground,0);
+//
+//        eDropOff eDropOffState = eDropOff.DropOff_start;
 
         while (opModeIsActive()) {
 
