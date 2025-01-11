@@ -17,6 +17,8 @@ public class OuttakeClawTest extends LinearOpMode {
 
         claw = hardwareMap.get(Servo.class, "Claw");
 
+        claw.setDirection(Servo.Direction.REVERSE);
+
         waitForStart();
 
         while (opModeIsActive() && !isStopRequested()) {
