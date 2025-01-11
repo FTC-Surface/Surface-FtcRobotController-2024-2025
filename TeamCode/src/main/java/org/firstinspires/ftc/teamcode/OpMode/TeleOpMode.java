@@ -22,6 +22,7 @@ public class TeleOpMode extends LinearOpMode {
         Constants constants = new Constants();
 
         double armPos = 1;
+        int height = 0;
 
         telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
 
@@ -59,15 +60,6 @@ public class TeleOpMode extends LinearOpMode {
                 robot.closeClaw();
             }
 //
-            if(gamepad1.a){
-                armPos += 0.01;
-                robot.iArmMove(armPos);
-            }
-
-            if(gamepad1.b){
-                armPos -= 0.01;
-                robot.iArmMove(armPos);
-            }
 
 //            if(gamepad2.dpad_up || gamepad1.dpad_up){
 //                robot.iSlideMoveElevator(1);
