@@ -34,6 +34,7 @@ public class TeleOpMode extends LinearOpMode {
         telemetry.update();
 
         robot.iArmStart();
+        robot.iWristStart();
         robot.oArmStart();
         robot.oWristStart();
         robot.oArmStart();
@@ -83,10 +84,6 @@ public class TeleOpMode extends LinearOpMode {
                 robot.iSlideMoveElevator(-1);
             }
 
-//            if(intakeTimer.milliseconds() >= 1000 || gamepad1.y || !gamepad2.left_bumper || !gamepad2.right_bumper){
-//                robot.intakeStop();
-//            }
-
             if(gamepad2.a){
                 robot.iArmOut();
                 robot.iWristOut();
@@ -115,11 +112,11 @@ public class TeleOpMode extends LinearOpMode {
                 robot.oWristStart();
             }
 
-            if(gamepad1.a){
+            if(gamepad2.right_trigger > 0.5){
                 robot.oElevMove(Constants.eOElevatorState.ManualUp, 10);
             }
 
-            if(gamepad1.b){
+            if(gamepad2.left_trigger > 0.5){
                 robot.oElevMove(Constants.eOElevatorState.ManualDown, 10);
             }
 
@@ -134,6 +131,9 @@ public class TeleOpMode extends LinearOpMode {
 //            }
 //            if(gamepad2.dpad_right){
 //                robot.oElevMove(Constants.eOElevatorState.Grab);
+//            }
+//            if(intakeTimer.milliseconds() >= 1000 || gamepad1.y || !gamepad2.left_bumper || !gamepad2.right_bumper){
+//                robot.intakeStop();
 //            }
         }
     }
