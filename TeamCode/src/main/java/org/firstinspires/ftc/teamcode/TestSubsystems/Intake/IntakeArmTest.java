@@ -13,8 +13,10 @@ public class IntakeArmTest extends LinearOpMode{
 
     private Servo armServo;
 
-    private CRServo lWrist;
-    private CRServo rWrist;
+    private Servo lWrist;
+    private Servo rWrist;
+    public static double lPos;
+    public static double rPos;
 
     public static double position;
 
@@ -22,13 +24,16 @@ public class IntakeArmTest extends LinearOpMode{
     public void runOpMode() throws InterruptedException {
         armServo = hardwareMap.get(Servo.class,"testServo");
 
-        lWrist = hardwareMap.get(CRServo.class, "lWrist");
-        rWrist = hardwareMap.get(CRServo.class, "rWrist");
+        lWrist = hardwareMap.get(Servo.class, "lWrist");
+        rWrist = hardwareMap.get(Servo.class, "rWrist");
 
         waitForStart();
 
         while(opModeIsActive() && !isStopRequested()){
             armServo.setPosition(position);
+            
+            lWrist.setPosition(lPos);
+            rWrist.setPosition(lPos);
         }
     }
 }

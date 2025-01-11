@@ -20,15 +20,13 @@ public class IntakeWristTest extends LinearOpMode {
         lWrist = hardwareMap.get(Servo.class, "lWrist");
         rWrist = hardwareMap.get(Servo.class, "rWrist");
 
-        rWrist.setDirection(Servo.Direction.REVERSE);
+        lWrist.setDirection(Servo.Direction.REVERSE);
 
         waitForStart();
 
         while(opModeIsActive() && !isStopRequested()){
-            if(gamepad1.a){
-                lWrist.setPosition(lPos);
-                rWrist.setPosition(rPos);
-            }
+            lWrist.setPosition(lPos);
+            rWrist.setPosition(lPos);
         }
     }
 }
