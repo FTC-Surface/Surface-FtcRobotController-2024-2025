@@ -88,7 +88,7 @@ public class TeleOpMode extends LinearOpMode {
 //            }
 
             if(armPos <= 1 && armPos >= 0){
-                armPos += gamepad1.left_stick_x * 0.0075;
+                armPos += gamepad2.left_stick_x * 0.0075;
             }
 
             if(armPos > 1){
