@@ -14,6 +14,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 public class OuttakeTest extends LinearOpMode {
     Servo armOne;
     Servo armTwo;
+    Servo claw;
 
     public static double armOneTarget = 0;
     public static double armTwoTarget = 0;
@@ -23,6 +24,7 @@ public class OuttakeTest extends LinearOpMode {
     private DcMotorEx rightOuttakeMotor;
 
     public static int targetPos = 0;
+    public static int target = 0;
     public static int maxHeight = 3000;
     public static int minHeight = 0;
 
@@ -40,6 +42,10 @@ public class OuttakeTest extends LinearOpMode {
 
         leftOuttakeMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         rightOuttakeMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+        claw = hardwareMap.get(Servo.class, "Claw");
+
+        claw.setDirection(Servo.Direction.REVERSE);
 
         leftOuttakeMotor.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
         rightOuttakeMotor.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
@@ -62,6 +68,8 @@ public class OuttakeTest extends LinearOpMode {
 
             leftOuttakeMotor.setTargetPosition(targetPos);
             rightOuttakeMotor.setTargetPosition(targetPos);
+
+            claw.setPosition(target);
 
             leftOuttakeMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             rightOuttakeMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);

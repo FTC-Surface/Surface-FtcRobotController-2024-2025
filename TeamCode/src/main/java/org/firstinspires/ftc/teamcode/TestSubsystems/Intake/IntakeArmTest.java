@@ -26,7 +26,7 @@ public class IntakeArmTest extends LinearOpMode{
 
         lWrist = hardwareMap.get(Servo.class, "lWrist");
         rWrist = hardwareMap.get(Servo.class, "rWrist");
-
+        lWrist.setDirection(Servo.Direction.REVERSE);
         waitForStart();
 
         while(opModeIsActive() && !isStopRequested()){
