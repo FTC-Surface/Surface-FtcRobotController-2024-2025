@@ -76,13 +76,13 @@ public class TeleOpMode extends LinearOpMode {
                 robot.iWristStart();
             }
 
-            if(gamepad2.dpad_up || gamepad1.dpad_up){
-                robot.iSlideMoveElevator(1);
-            }
-
-            if(gamepad2.dpad_down || gamepad1.dpad_down){
-                robot.iSlideMoveElevator(-1);
-            }
+//            if(gamepad2.dpad_up || gamepad1.dpad_up){
+//                robot.iSlideMoveElevator(1);
+//            }
+//
+//            if(gamepad2.dpad_down || gamepad1.dpad_down){
+//                robot.iSlideMoveElevator(-1);
+//            }
 
             if(gamepad2.a){
                 robot.iArmOut();
