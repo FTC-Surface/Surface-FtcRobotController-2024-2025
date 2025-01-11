@@ -70,6 +70,7 @@ public class TeleOpMode extends LinearOpMode {
                 robot.oElevMove(Constants.eOElevatorState.Ready);
                 robot.oWristReady();
                 robot.oArmReady();
+                robot.openClaw();
             }
 
             if(gamepad2.b){

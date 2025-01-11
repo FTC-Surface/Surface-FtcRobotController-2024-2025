@@ -24,7 +24,7 @@ public class OuttakeTest extends LinearOpMode {
     private DcMotorEx rightOuttakeMotor;
 
     public static int targetPos = 0;
-    public static int target = 0;
+    public static double target = 0.9;
     public static int maxHeight = 3000;
     public static int minHeight = 0;
 
@@ -39,11 +39,12 @@ public class OuttakeTest extends LinearOpMode {
 
         leftOuttakeMotor = hardwareMap.get(DcMotorEx.class, "outtakeLinearSlideOne");
         rightOuttakeMotor = hardwareMap.get(DcMotorEx.class, "outtakeLinearSlideTwo");
+        claw = hardwareMap.get(Servo.class, "Claw");
 
         leftOuttakeMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         rightOuttakeMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
-        claw = hardwareMap.get(Servo.class, "Claw");
+
 
         claw.setDirection(Servo.Direction.REVERSE);
 
