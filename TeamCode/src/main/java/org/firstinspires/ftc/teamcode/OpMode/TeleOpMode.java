@@ -15,14 +15,13 @@ import org.firstinspires.ftc.teamcode.Subsystems.Constants;
 @Config
 public class TeleOpMode extends LinearOpMode {
 
-    public int inputHeight = 0;
-    public double armPos = 1;
-
     @Override
     public void runOpMode() throws InterruptedException {
         Robot robot = new Robot(hardwareMap);
         ElapsedTime intakeTimer = new ElapsedTime(ElapsedTime.Resolution.MILLISECONDS);
         Constants constants = new Constants();
+
+        double armPos = 1;
 
         telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
 
@@ -107,13 +106,13 @@ public class TeleOpMode extends LinearOpMode {
                 robot.oElevMove(Constants.eOElevatorState.Ground, 0);
             }
 
-//            if(gamepad2.right_trigger > 0.5){
-//                robot.oElevMove(Constants.eOElevatorState.ManualUp, 10);
-//            }
-//
-//            if(gamepad2.left_trigger > 0.5){
-//                robot.oElevMove(Constants.eOElevatorState.ManualDown, 10);
-//            }
+            if(gamepad2.right_trigger > 0.5){
+                robot.oElevMove(Constants.eOElevatorState.ManualUp, 10);
+            }
+
+            if(gamepad2.left_trigger > 0.5){
+                robot.oElevMove(Constants.eOElevatorState.ManualDown, 10);
+            }
 
 //            if(gamepad2.dpad_down){
 //                robot.oElevMove(Constants.eOElevatorState.Ground);
