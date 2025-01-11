@@ -127,7 +127,6 @@ public class Robot {
     public void openClaw(){oClaw.open();}
     public void closeClaw(){oClaw.close();}
 
-    public void oArmReady(){oArm.readyPos();}
     public void oArmStart(){oArm.startPos();}
     public void oArmOut(){oArm.outPos();}
 

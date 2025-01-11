@@ -33,18 +33,18 @@ public class TeleOpMode extends LinearOpMode {
 
         telemetry.update();
 
-        robot.iArmStart();
-        robot.iWristStart();
-        robot.oArmStart();
-        robot.oArmStart();
-        robot.openClaw();
-        robot.oElevMove(Constants.eOElevatorState.Ground,0);
+        //robot.iArmStart();
+        //robot.iWristStart();
+//        robot.oArmStart();
+//        robot.oArmStart();
+//        robot.openClaw();
+//        robot.oElevMove(Constants.eOElevatorState.Ground,0);
 
-        eDropOff eDropOffState = eDropOff.DropOff_start;
+        //eDropOff eDropOffState = eDropOff.DropOff_start;
 
         while (opModeIsActive()) {
 
-            robot.oSlideLoop();
+            //robot.oSlideLoop();
 
             double drive = gamepad1.left_stick_y;
             double strafe = gamepad1.left_stick_x;
@@ -52,27 +52,27 @@ public class TeleOpMode extends LinearOpMode {
 
             robot.teleOpDrive(drive * 0.6,strafe * 0.6,rotate * 0.6);
 
-            if(gamepad2.left_bumper || gamepad1.left_bumper){
-//                intakeTimer.reset();
-//                robot.intakeIn();
-
-                robot.openClaw();
-            }
-
-            if(gamepad2.right_bumper || gamepad1.right_bumper){
+//            if(gamepad2.left_bumper || gamepad1.left_bumper){
+////                intakeTimer.reset();
+////                robot.intakeIn();
+//
+//                robot.openClaw();
+//            }
+//
+//            if(gamepad2.right_bumper || gamepad1.right_bumper){
 //                intakeTimer.reset();
 //                robot.intakeOut();
-
-                robot.closeClaw();
-            }
-
-            if(gamepad1.a){
-                robot.iWristIn();
-            }
-
-            if(gamepad1.b){
-                robot.iWristStart();
-            }
+//
+//                robot.closeClaw();
+//            }
+//
+//            if(gamepad1.a){
+//                robot.iWristIn();
+//            }
+//
+//            if(gamepad1.b){
+//                robot.iWristStart();
+//            }
 
 //            if(gamepad2.dpad_up || gamepad1.dpad_up){
 //                robot.iSlideMoveElevator(1);
@@ -82,38 +82,29 @@ public class TeleOpMode extends LinearOpMode {
 //                robot.iSlideMoveElevator(-1);
 //            }
 
-            if(gamepad2.a){
-                robot.iArmOut();
-                robot.iWristOut();
-            }
+//            if(gamepad2.a)
+//            {
+//                robot.oArmOut();
+//            }
+//            if(gamepad2.b)
+//            {
+//                robot.oArmStart();
+//            }
+//            if(gamepad2.x){
+//                robot.oElevMove(Constants.eOElevatorState.Basket, 0);
+//            }
+//
+//            if(gamepad2.y){
+//                robot.oElevMove(Constants.eOElevatorState.Ground, 0);
+//            }
 
-            if(gamepad2.b){
-                robot.iArmStart();
-                robot.iWristStart();
-            }
-
-            if(gamepad2.x){
-                robot.oElevMove(Constants.eOElevatorState.Basket, 0);
-                robot.oArmOut();
-
-                if(!robot.oElevIsBusy()){
-                    waitForSeconds(1.5);
-                    robot.oArmOut();
-                }
-            }
-
-            if(gamepad2.y){
-                robot.oElevMove(Constants.eOElevatorState.Ground, 0);
-                robot.oArmStart();
-            }
-
-            if(gamepad2.right_trigger > 0.5){
-                robot.oElevMove(Constants.eOElevatorState.ManualUp, 10);
-            }
-
-            if(gamepad2.left_trigger > 0.5){
-                robot.oElevMove(Constants.eOElevatorState.ManualDown, 10);
-            }
+//            if(gamepad2.right_trigger > 0.5){
+//                robot.oElevMove(Constants.eOElevatorState.ManualUp, 10);
+//            }
+//
+//            if(gamepad2.left_trigger > 0.5){
+//                robot.oElevMove(Constants.eOElevatorState.ManualDown, 10);
+//            }
 
 //            if(gamepad2.dpad_down){
 //                robot.oElevMove(Constants.eOElevatorState.Ground);
