@@ -22,7 +22,7 @@ public class TeleOpMode extends LinearOpMode {
         Constants constants = new Constants();
 
         double armPos = 1;
-        int height = 0;
+        double height = 0;
 
         telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
 
@@ -98,12 +98,20 @@ public class TeleOpMode extends LinearOpMode {
                 robot.oElevMove(Constants.eOElevatorState.Ground, 0);
             }
 
+            height = robot.oElevGetHeight();
+
             if(gamepad2.right_trigger > 0.5){
-                robot.oElevMove(Constants.eOElevatorState.ManualUp, 10);
+                if (height <= 2980) {
+                    robot.oElevMove(Constants.eOElevatorState.ManualUp, (int)height);
+                    height += 13;
+                }
             }
 
             if(gamepad2.left_trigger > 0.5){
-                robot.oElevMove(Constants.eOElevatorState.ManualDown, 10);
+                if (height >= 15) {
+                    robot.oElevMove(Constants.eOElevatorState.ManualUp, (int)height);
+                    height -= 13;
+                }
             }
 
 //            if(gamepad2.dpad_down){

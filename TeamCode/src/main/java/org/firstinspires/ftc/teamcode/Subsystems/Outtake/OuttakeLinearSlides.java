@@ -55,12 +55,10 @@ public class OuttakeLinearSlides extends Subsystem {
                 move(450);
                 break;
             case ManualUp:
-                if(getPos() < Maxpos)
-                    move((int)currentPos + manualMove);
+                move((int)manualMove);
                 break;
             case ManualDown:
-                if(getPos() > Minpos)
-                    move((int)currentPos - manualMove);
+                move((int)manualMove);
                 break;
         }
     }

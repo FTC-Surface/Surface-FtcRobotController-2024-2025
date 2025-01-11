@@ -106,8 +106,8 @@ public class Robot {
     public void oSlideLoop(){oSlides.loop();}
 //    public void iSlideLoop(){iSlides.loop();}
 
-    public void oElevGetHeight(){
-        oSlides.getPos();
+    public double oElevGetHeight(){
+        return oSlides.getPos();
     }
 //    public void iElevGetHeight(){iSlides.getPos();}
 
