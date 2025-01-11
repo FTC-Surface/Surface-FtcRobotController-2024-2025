@@ -50,15 +50,15 @@ public class Robot {
         topRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         bottomRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
-        oClaw.init(hardwareMap);
+//        oClaw.init(hardwareMap);
         oArm.init(hardwareMap);
         oSlides.init(hardwareMap);
 
 //
 //        iIntake.init(hardwareMap);
-        iSlides.init((hardwareMap));
-        iWrist.init(hardwareMap);
-        iArm.init(hardwareMap);
+//        iSlides.init((hardwareMap));
+//        iWrist.init(hardwareMap);
+//        iArm.init(hardwareMap);
 
         for (LynxModule module : hardwareMap.getAll(LynxModule.class)) {
             module.setBulkCachingMode(LynxModule.BulkCachingMode.AUTO);

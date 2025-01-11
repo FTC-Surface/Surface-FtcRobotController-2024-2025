@@ -15,14 +15,13 @@ public class IntakeWristTest extends LinearOpMode {
 
     @Override
     public void runOpMode() throws InterruptedException {
-        wrist = hardwareMap.get(Servo.class, "iWrist");
+        wrist = hardwareMap.get(Servo.class, "Claw");
 
         wrist.setDirection(Servo.Direction.REVERSE);
 
         waitForStart();
 
         while(opModeIsActive() && !isStopRequested()){
-            wrist.setPosition(pos);
             wrist.setPosition(pos);
         }
     }

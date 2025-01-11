@@ -13,6 +13,8 @@ public class OuttakeLinearSlides extends Subsystem {
     private DcMotorEx outtakeLinearSlideTwo;
 
     private double currentPos;
+    private double Minpos=0;
+    private double Maxpos=3001;
 
     private int targetPos;
 
@@ -53,10 +55,12 @@ public class OuttakeLinearSlides extends Subsystem {
                 move(450);
                 break;
             case ManualUp:
-                move((int)currentPos + manualMove);
+                if(getPos() < Maxpos)
+                    move((int)currentPos + manualMove);
                 break;
             case ManualDown:
-                move((int)currentPos - manualMove);
+                if(getPos() > Minpos)
+                    move((int)currentPos - manualMove);
                 break;
         }
     }

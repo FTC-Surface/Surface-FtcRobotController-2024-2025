@@ -12,6 +12,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 public class IntakeArmTest extends LinearOpMode{
 
     private Servo armServo;
+    private Servo wrist;
 
     public static double lPos;
     public static double rPos;
@@ -21,11 +22,13 @@ public class IntakeArmTest extends LinearOpMode{
     @Override
     public void runOpMode() throws InterruptedException {
         armServo = hardwareMap.get(Servo.class,"iArm");
+        wrist = hardwareMap.get(Servo.class, "iWrist");
 
         waitForStart();
 
         while(opModeIsActive() && !isStopRequested()){
             armServo.setPosition(position);
+            wrist.setPosition(position);
         }
     }
 }
