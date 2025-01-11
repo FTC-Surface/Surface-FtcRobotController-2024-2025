@@ -36,7 +36,6 @@ public class TeleOpMode extends LinearOpMode {
         robot.iArmStart();
         robot.iWristStart();
         robot.oArmStart();
-        robot.oWristStart();
         robot.oArmStart();
         robot.openClaw();
         robot.oElevMove(Constants.eOElevatorState.Ground,0);
@@ -46,7 +45,6 @@ public class TeleOpMode extends LinearOpMode {
         while (opModeIsActive()) {
 
             robot.oSlideLoop();
-//            robot.iSlideLoop();
 
             double drive = gamepad1.left_stick_y;
             double strafe = gamepad1.left_stick_x;
@@ -96,20 +94,17 @@ public class TeleOpMode extends LinearOpMode {
 
             if(gamepad2.x){
                 robot.oElevMove(Constants.eOElevatorState.Basket, 0);
-                robot.oWristOut();
                 robot.oArmOut();
 
                 if(!robot.oElevIsBusy()){
                     waitForSeconds(1.5);
-
-                    robot.oWristDrop();
+                    robot.oArmOut();
                 }
             }
 
             if(gamepad2.y){
                 robot.oElevMove(Constants.eOElevatorState.Ground, 0);
                 robot.oArmStart();
-                robot.oWristStart();
             }
 
             if(gamepad2.right_trigger > 0.5){
