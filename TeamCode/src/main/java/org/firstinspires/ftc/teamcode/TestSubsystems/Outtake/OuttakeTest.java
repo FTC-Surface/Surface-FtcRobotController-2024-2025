@@ -65,7 +65,7 @@ public class OuttakeTest extends LinearOpMode {
             telemetry.update();
 
             armOne.setPosition(armOneTarget);
-            armTwo.setPosition(armTwoTarget);
+            armTwo.setPosition(armOneTarget);
 
             leftOuttakeMotor.setTargetPosition(targetPos);
             rightOuttakeMotor.setTargetPosition(targetPos);
