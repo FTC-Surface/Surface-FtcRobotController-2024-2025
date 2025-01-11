@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 //import org.firstinspires.ftc.teamcode.Subsystems.Intake.IntakeActiveIntake;
-//import org.firstinspires.ftc.teamcode.Subsystems.Intake.IntakeLinearSlides;
+import org.firstinspires.ftc.teamcode.Subsystems.Intake.IntakeLinearSlides;
 import org.firstinspires.ftc.teamcode.Subsystems.Intake.IntakeWrist;
 import org.firstinspires.ftc.teamcode.Subsystems.Intake.IntakeArm;
 
@@ -29,7 +29,7 @@ public class Robot {
     IntakeArm iArm = new IntakeArm();
     IntakeWrist iWrist = new IntakeWrist();
 //    IntakeActiveIntake iIntake = new IntakeActiveIntake();
-//    IntakeLinearSlides iSlides = new IntakeLinearSlides();
+    IntakeLinearSlides iSlides = new IntakeLinearSlides();
 
     Constants constants = new Constants();
 
@@ -56,7 +56,7 @@ public class Robot {
 
 //
 //        iIntake.init(hardwareMap);
-//        iSlides.init((hardwareMap));
+        iSlides.init((hardwareMap));
         iWrist.init(hardwareMap);
         iArm.init(hardwareMap);
 
@@ -101,7 +101,7 @@ public class Robot {
         }
     }
 
-//    public void iSlideMoveElevator(int multiplier){iSlides.moveElevator(multiplier);}
+    public void iSlideMoveElevator(int multiplier){iSlides.moveElevator(multiplier);}
 
     public void oSlideLoop(){oSlides.loop();}
 //    public void iSlideLoop(){iSlides.loop();}

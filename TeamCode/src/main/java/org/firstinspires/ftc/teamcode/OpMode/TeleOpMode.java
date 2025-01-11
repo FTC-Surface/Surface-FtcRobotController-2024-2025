@@ -17,10 +17,6 @@ public class TeleOpMode extends LinearOpMode {
 
     public int inputHeight = 0;
 
-    public enum eDropOff{
-        DropOff_start
-    }
-
     @Override
     public void runOpMode() throws InterruptedException {
         Robot robot = new Robot(hardwareMap);
@@ -35,12 +31,10 @@ public class TeleOpMode extends LinearOpMode {
 
         //robot.iArmStart();
         //robot.iWristStart();
-//        robot.oArmStart();
-//        robot.oArmStart();
-//        robot.openClaw();
-//        robot.oElevMove(Constants.eOElevatorState.Ground,0);
-
-        //eDropOff eDropOffState = eDropOff.DropOff_start;
+        robot.oArmStart();
+        robot.oArmStart();
+        robot.openClaw();
+        robot.oElevMove(Constants.eOElevatorState.Ground,0);
 
         while (opModeIsActive()) {
 
@@ -82,21 +76,21 @@ public class TeleOpMode extends LinearOpMode {
 //                robot.iSlideMoveElevator(-1);
 //            }
 
-//            if(gamepad2.a)
-//            {
-//                robot.oArmOut();
-//            }
-//            if(gamepad2.b)
-//            {
-//                robot.oArmStart();
-//            }
-//            if(gamepad2.x){
-//                robot.oElevMove(Constants.eOElevatorState.Basket, 0);
-//            }
-//
-//            if(gamepad2.y){
-//                robot.oElevMove(Constants.eOElevatorState.Ground, 0);
-//            }
+            if(gamepad2.a)
+            {
+                robot.oArmOut();
+            }
+            if(gamepad2.b)
+            {
+                robot.oArmStart();
+            }
+            if(gamepad2.x){
+                robot.oElevMove(Constants.eOElevatorState.Basket, 0);
+            }
+
+            if(gamepad2.y){
+                robot.oElevMove(Constants.eOElevatorState.Ground, 0);
+            }
 
 //            if(gamepad2.right_trigger > 0.5){
 //                robot.oElevMove(Constants.eOElevatorState.ManualUp, 10);
