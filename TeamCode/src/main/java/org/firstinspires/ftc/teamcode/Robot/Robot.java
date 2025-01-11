@@ -121,9 +121,7 @@ public class Robot {
 
     public boolean oElevIsBusy(){return oElevIsBusy();}
 
-    public void intakeIn(){
-        iIntake.intake();
-    }
+    public void intakeIn(){iIntake.intake();}
     public void intakeOut(){
         iIntake.outTake();
     }
@@ -134,16 +132,19 @@ public class Robot {
     public void openClaw(){oClaw.open();}
     public void closeClaw(){oClaw.close();}
 
-    public void iArmStart(){iArm.startPos();}
+    public void oArmReady(){oArm.readyPos();}
     public void oArmStart(){oArm.startPos();}
+    public void oArmOut(){oArm.outPos();}
+
     public void oWristStart(){oWrist.startPos();}
+    public void oWristOut(){oWrist.outPos();}
+    public void oWristRaise(){oWrist.raisingPos();}
+    public void oWristReady(){oWrist.readyPos();}
 
     public void iArmOut(){iArm.outPos();}
-    public void oArmOut(){oArm.outPos();}
-    public void oWristOut(){oWrist.outPos();}
+    public void iArmStart(){iArm.startPos();}
 
-    public void oWristRaise(){oWristRaise();}
-    public void oWristReady(){oWristReady();}
-
-    public void oArmReady(){oArmReady();}
+    public void iWristStart(){iWrist.startPos();}
+    public void iWristIn(){iWrist.inPos();}
+    public void iWristOut(){iWrist.outPos();}
 }
