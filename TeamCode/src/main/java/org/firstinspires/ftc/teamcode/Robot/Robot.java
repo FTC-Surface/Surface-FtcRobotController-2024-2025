@@ -130,7 +130,7 @@ public class Robot {
     public void oArmStart(){oArm.startPos();}
     public void oArmOut(){oArm.outPos();}
 
-    public void iArmOut(){iArm.outPos();}
+    public void iArmMove(double pos){iArm.moveArm(pos);}
     public void iArmStart(){iArm.startPos();}
 
     public void iWristStart(){iWrist.startPos();}

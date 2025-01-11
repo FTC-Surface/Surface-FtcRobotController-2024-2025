@@ -25,6 +25,12 @@ public class Constants {
         Close
     }
 
+    public enum AutoState{
+        idle,
+        ready,
+        park
+    }
+
     public final double OpenClaw = 0.9;
     public final double CloseClaw = 0.68;
 
@@ -41,10 +47,10 @@ public class Constants {
     public final double OutakeArmStartPos = 0.1;
     public final double OutakeArmOutPos = 0.5;
 
-    public final double IntakeArmStartPos = 0;
+    public final double IntakeArmStartPos = 1;
     public final double IntakeArmOutPos = 0;
 
     public final double IntakeWristStart = 0;
-    public final double IntakeWristIntake = 0;
-    public final double IntakeWristOuttake = 0;
+//    public final double IntakeWristIntake = 0;
+//    public final double IntakeWristOuttake = 0;
 }

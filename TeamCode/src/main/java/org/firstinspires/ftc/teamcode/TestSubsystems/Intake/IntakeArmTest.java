@@ -14,10 +14,8 @@ public class IntakeArmTest extends LinearOpMode{
     private Servo armServo;
     private Servo wrist;
 
-    public static double lPos;
-    public static double rPos;
-
-    public static double position;
+    public static double positionOne;
+    public static double positionTwo;
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -27,8 +25,8 @@ public class IntakeArmTest extends LinearOpMode{
         waitForStart();
 
         while(opModeIsActive() && !isStopRequested()){
-            armServo.setPosition(position);
-            wrist.setPosition(position);
+            armServo.setPosition(positionOne);
+            wrist.setPosition(positionTwo);
         }
     }
 }
