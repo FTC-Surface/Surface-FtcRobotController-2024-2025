@@ -9,31 +9,16 @@ import org.firstinspires.ftc.teamcode.Subsystems.Subsystem;
 
 public class IntakeWrist extends Subsystem {
 
-    Servo lWrist;
-    Servo rWrist;
-
-    private double wristPower;
+    Servo wrist;
 
     private Constants constants = new Constants();
 
     @Override
     public void init(HardwareMap hardwareMap) {
-        lWrist = hardwareMap.get(Servo.class, "lWrist");
-        rWrist = hardwareMap.get(Servo.class, "rWrist");
+        wrist = hardwareMap.get(Servo.class, "iWrist");
     }
 
-    public void startPos(){
-        lWrist.setPosition(constants.IntakeWristStart);
-        rWrist.setPosition(constants.IntakeWristStart);
-    }
-
-    public void inPos(){
-        lWrist.setPosition(constants.IntakeWristIntake);
-        rWrist.setPosition(constants.IntakeWristIntake);
-    }
-
-    public void outPos(){
-        lWrist.setPosition(constants.IntakeWristOuttake);
-        rWrist.setPosition(constants.IntakeWristOuttake);
-    }
+    public void startPos(){wrist.setPosition(constants.IntakeWristStart);}
+    public void outPos(){wrist.setPosition(constants.IntakeWristOuttake);}
+    public void inPos(){wrist.setPosition(constants.IntakeWristIntake);}
 }

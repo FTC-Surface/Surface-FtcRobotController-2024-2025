@@ -8,7 +8,9 @@ public class Constants {
         PrepareClip,
         Hang,
         Ready,
-        Grab
+        Grab,
+        ManualUp,
+        ManualDown
     }
 
     public enum eIElevatorState{
@@ -26,8 +28,8 @@ public class Constants {
     public final double OpenClaw = 0.9;
     public final double CloseClaw = 0.68;
 
-    public final double OuttakeElevatorMotorPower = 0.5;
-    public final double IntakeElevatorMotorPower = 0.5;
+    public final double OuttakeElevatorMotorPower = 0.7;
+    public final double IntakeElevatorMotorPower = 0.3;
 
     public final double ActiveIntakePow = 0.3;
 

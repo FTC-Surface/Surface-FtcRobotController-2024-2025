@@ -26,58 +26,63 @@ public class IntakeLinearSlides extends Subsystem {
 
         intakeLinearSlideOne.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
         intakeLinearSlideTwo.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
-
-        intakeLinearSlideOne.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
-        intakeLinearSlideTwo.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
+//
+//        intakeLinearSlideOne.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
+//        intakeLinearSlideTwo.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
     }
 
-    public void moveElevator(Constants.eIElevatorState state, int manualMove) {
-        switch(state){
-            case Intake:
-            case Outtake:
-            case ManualUp:
-            case ManualDown:
-        }
+    public void moveElevator(int multiplier){
+        intakeLinearSlideOne.setPower(constants.IntakeElevatorMotorPower * multiplier);
+        intakeLinearSlideOne.setPower(constants.IntakeElevatorMotorPower * multiplier);
     }
 
-    public void loop(){
-        if(currentPos <= targetPos + 1.5 && currentPos >= targetPos - 1.5){
-            intakeLinearSlideOne.setPower(0);
-            intakeLinearSlideTwo.setPower(0);
-        }
-
-        currentPos = getPos();
-    }
-
-    private void move(int height){
-        setPos(height);
-    }
-
-    private void setPos(int height){
-        currentPos = getPos();
-        targetPos = height;
-
-        if(currentPos > height){
-            intakeElevPower = -constants.IntakeElevatorMotorPower;
-        }
-
-        if(currentPos < height){
-            intakeElevPower = constants.IntakeElevatorMotorPower;
-        }
-
-        intakeLinearSlideOne.setTargetPosition(height);
-        intakeLinearSlideTwo.setTargetPosition(height);
-
-        intakeLinearSlideOne.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
-        intakeLinearSlideTwo.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
-
-        intakeLinearSlideOne.setPower(intakeElevPower);
-        intakeLinearSlideTwo.setPower(intakeElevPower);
-    }
-
-    public double getPos(){
-        return (double) (intakeLinearSlideOne.getCurrentPosition() + intakeLinearSlideTwo.getCurrentPosition()) /2;
-    }
-
-    public boolean isBusy(){ return Math.abs(getPos()-targetPos) < 10;}
+//    public void moveElevator(Constants.eIElevatorState state, int manualMove) {
+//        switch(state){
+//            case Intake:
+//            case Outtake:
+//            case ManualUp:
+//            case ManualDown:
+//        }
+//    }
+//
+//    public void loop(){
+//        if(currentPos <= targetPos + 1.5 && currentPos >= targetPos - 1.5){
+//            intakeLinearSlideOne.setPower(0);
+//            intakeLinearSlideTwo.setPower(0);
+//        }
+//
+//        currentPos = getPos();
+//    }
+//
+//    private void move(int height){
+//        setPos(height);
+//    }
+//
+//    private void setPos(int height){
+//        currentPos = getPos();
+//        targetPos = height;
+//
+//        if(currentPos > height){
+//            intakeElevPower = -constants.IntakeElevatorMotorPower;
+//        }
+//
+//        if(currentPos < height){
+//            intakeElevPower = constants.IntakeElevatorMotorPower;
+//        }
+//
+//        intakeLinearSlideOne.setTargetPosition(height);
+//        intakeLinearSlideTwo.setTargetPosition(height);
+//
+//        intakeLinearSlideOne.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
+//        intakeLinearSlideTwo.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
+//
+//        intakeLinearSlideOne.setPower(intakeElevPower);
+//        intakeLinearSlideTwo.setPower(intakeElevPower);
+//    }
+//
+//    public double getPos(){
+//        return (double) (intakeLinearSlideOne.getCurrentPosition() + intakeLinearSlideTwo.getCurrentPosition()) /2;
+//    }
+//
+//    public boolean isBusy(){ return Math.abs(getPos()-targetPos) < 10;}
 }

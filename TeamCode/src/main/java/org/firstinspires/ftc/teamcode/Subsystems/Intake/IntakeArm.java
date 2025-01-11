@@ -13,13 +13,12 @@ public class IntakeArm extends Subsystem {
 
     @Override
     public void init(HardwareMap hardwareMap) {
-        armServo = hardwareMap.get(Servo.class,"testServo");
+        armServo = hardwareMap.get(Servo.class,"iArm");
     }
 
     public void startPos(){
         armServo.setPosition(constants.IntakeArmStartPos);
     }
-
     public void outPos(){
         armServo.setPosition(constants.IntakeArmOutPos);
     }

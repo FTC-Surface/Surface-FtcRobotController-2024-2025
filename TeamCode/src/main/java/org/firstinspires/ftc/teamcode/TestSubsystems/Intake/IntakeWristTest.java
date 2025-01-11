@@ -9,27 +9,21 @@ import com.qualcomm.robotcore.hardware.Servo;
 @Config
 public class IntakeWristTest extends LinearOpMode {
 
-    Servo lWrist;
-    Servo rWrist;
+    Servo wrist;
 
-    public static double lPos;
-    public static double rPos;
-
-    /*
-    * */
+    public static double pos;
 
     @Override
     public void runOpMode() throws InterruptedException {
-        lWrist = hardwareMap.get(Servo.class, "lWrist");
-        rWrist = hardwareMap.get(Servo.class, "rWrist");
+        wrist = hardwareMap.get(Servo.class, "iWrist");
 
-        lWrist.setDirection(Servo.Direction.REVERSE);
+        wrist.setDirection(Servo.Direction.REVERSE);
 
         waitForStart();
 
         while(opModeIsActive() && !isStopRequested()){
-            lWrist.setPosition(lPos);
-            rWrist.setPosition(lPos);
+            wrist.setPosition(pos);
+            wrist.setPosition(pos);
         }
     }
 }

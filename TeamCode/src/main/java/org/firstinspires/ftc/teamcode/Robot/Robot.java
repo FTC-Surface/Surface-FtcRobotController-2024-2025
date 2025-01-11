@@ -32,7 +32,7 @@ public class Robot {
 
     IntakeArm iArm = new IntakeArm();
     IntakeWrist iWrist = new IntakeWrist();
-    IntakeActiveIntake iIntake = new IntakeActiveIntake();
+//    IntakeActiveIntake iIntake = new IntakeActiveIntake();
     IntakeLinearSlides iSlides = new IntakeLinearSlides();
 
     Constants constants = new Constants();
@@ -60,7 +60,7 @@ public class Robot {
         oWrist.init(hardwareMap);
 
 //
-        iIntake.init(hardwareMap);
+//        iIntake.init(hardwareMap);
         iSlides.init((hardwareMap));
         iWrist.init(hardwareMap);
         iArm.init(hardwareMap);
@@ -106,28 +106,28 @@ public class Robot {
         }
     }
 
+    public void iSlideMoveElevator(int multiplier){iSlides.moveElevator(multiplier);}
+
     public void oSlideLoop(){oSlides.loop();}
-    public void iSlideLoop(){iSlides.loop();}
+//    public void iSlideLoop(){iSlides.loop();}
 
     public void oElevGetHeight(){
         oSlides.getPos();
     }
-    public void iElevGetHeight(){
-        iSlides.getPos();
-    }
+//    public void iElevGetHeight(){iSlides.getPos();}
 
-    public void oElevMove(Constants.eOElevatorState state){oSlides.moveElevator(state);}
-    public void iElevMove(Constants.eIElevatorState state, int manualMove){iSlides.moveElevator(state, manualMove);}
+    public void oElevMove(Constants.eOElevatorState state, int manualMove){oSlides.moveElevator(state, manualMove);}
+//    public void iElevMove(Constants.eIElevatorState state, int manualMove){iSlides.moveElevator(state, manualMove);}
 
     public boolean oElevIsBusy(){return oElevIsBusy();}
 
-    public void intakeIn(){iIntake.intake();}
-    public void intakeOut(){
-        iIntake.outTake();
-    }
-    public void intakeStop(){
-        iIntake.stopActiveIntake();
-    }
+//    public void intakeIn(){iIntake.intake();}
+//    public void intakeOut(){
+//        iIntake.outTake();
+//    }
+//    public void intakeStop(){
+//        iIntake.stopActiveIntake();
+//    }
 
     public void openClaw(){oClaw.open();}
     public void closeClaw(){oClaw.close();}
@@ -138,13 +138,13 @@ public class Robot {
 
     public void oWristStart(){oWrist.startPos();}
     public void oWristOut(){oWrist.outPos();}
-    public void oWristRaise(){oWrist.raisingPos();}
+    public void oWristDrop(){oWrist.dropPos();}
     public void oWristReady(){oWrist.readyPos();}
 
     public void iArmOut(){iArm.outPos();}
     public void iArmStart(){iArm.startPos();}
 
     public void iWristStart(){iWrist.startPos();}
-    public void iWristIn(){iWrist.inPos();}
     public void iWristOut(){iWrist.outPos();}
+    public void iWristIn(){iWristIn();}
 }
