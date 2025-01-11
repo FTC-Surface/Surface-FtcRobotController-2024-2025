@@ -119,6 +119,8 @@ public class Robot {
     public void oElevMove(Constants.eOElevatorState state){oSlides.moveElevator(state);}
     public void iElevMove(Constants.eIElevatorState state, int manualMove){iSlides.moveElevator(state, manualMove);}
 
+    public boolean oElevIsBusy(){return oElevIsBusy();}
+
     public void intakeIn(){
         iIntake.intake();
     }

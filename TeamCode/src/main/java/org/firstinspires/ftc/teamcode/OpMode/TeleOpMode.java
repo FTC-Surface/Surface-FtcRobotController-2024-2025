@@ -25,7 +25,6 @@ public class TeleOpMode extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
         Robot robot = new Robot(hardwareMap);
         ElapsedTime intakeTimer = new ElapsedTime(ElapsedTime.Resolution.MILLISECONDS);
-        ElapsedTime grabTimer = new ElapsedTime(ElapsedTime.Resolution.MILLISECONDS);
         Constants constants = new Constants();
 
         telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
@@ -63,21 +62,8 @@ public class TeleOpMode extends LinearOpMode {
                 robot.intakeOut();
             }
 
-            if(intakeTimer.milliseconds() >= 1000 || gamepad2.y){
+            if(intakeTimer.milliseconds() >= 1000 || gamepad1.y){
                 robot.intakeStop();
-            }
-
-            if(gamepad2.dpad_down){
-                robot.oElevMove(Constants.eOElevatorState.Ground);
-            }
-            if(gamepad2.dpad_up){
-                robot.oElevMove(Constants.eOElevatorState.Basket);
-            }
-            if(gamepad2.dpad_left){
-                robot.oElevMove(Constants.eOElevatorState.Ready);
-            }
-            if(gamepad2.dpad_right){
-                robot.oElevMove(Constants.eOElevatorState.Grab);
             }
 
             if(gamepad2.a){
@@ -88,17 +74,41 @@ public class TeleOpMode extends LinearOpMode {
 
             if(gamepad2.b){
                 robot.oElevMove(Constants.eOElevatorState.Grab);
-                grabTimer.reset();
-                if(grabTimer.milliseconds() > 500){
+
+                if(!robot.oElevIsBusy()){
                     robot.closeClaw();
                 }
             }
 
             if(gamepad2.x){
                 robot.oElevMove(Constants.eOElevatorState.Basket);
-                robot.oWristReady();
-                robot.oArmReady();
+                robot.oWristOut();
+                robot.oArmOut();
+
+                if(!robot.oElevIsBusy()){
+                    robot.openClaw();
+                }
             }
+
+            if(gamepad2.y){
+                robot.oElevMove(Constants.eOElevatorState.Ground);
+                robot.oArmStart();
+                robot.oWristStart();
+                robot.closeClaw();
+            }
+
+//            if(gamepad2.dpad_down){
+//                robot.oElevMove(Constants.eOElevatorState.Ground);
+//            }
+//            if(gamepad2.dpad_up){
+//                robot.oElevMove(Constants.eOElevatorState.Basket);
+//            }
+//            if(gamepad2.dpad_left){
+//                robot.oElevMove(Constants.eOElevatorState.Ready);
+//            }
+//            if(gamepad2.dpad_right){
+//                robot.oElevMove(Constants.eOElevatorState.Grab);
+//            }
         }
     }
 }
