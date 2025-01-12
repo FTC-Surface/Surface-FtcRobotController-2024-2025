@@ -20,11 +20,6 @@ public class Constants {
         ManualDown
     }
 
-    public enum eClawState{
-        Open,
-        Close
-    }
-
     public enum AutoState{
         idle,
         ready,

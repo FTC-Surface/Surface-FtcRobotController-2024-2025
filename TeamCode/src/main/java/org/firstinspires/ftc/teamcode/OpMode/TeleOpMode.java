@@ -37,6 +37,8 @@ public class TeleOpMode extends LinearOpMode {
             telemetry.addData("Outtake Elev Height", robot.oElevGetHeight());
             telemetry.addData("Outtake Elev Is Busy", robot.oElevIsBusy());
 
+            telemetry.update();
+
             robot.oSlideLoop();
 
             double drive = gamepad1.left_stick_y;
@@ -53,13 +55,13 @@ public class TeleOpMode extends LinearOpMode {
                 robot.oElevMove(Constants.eOElevatorState.Ground, 0);
             }
 
-            if(gamepad1.y){
-                robot.oElevMove(Constants.eOElevatorState.Ground, 0);
-            }
-
-            if(gamepad1.x){
-                robot.oElevMove(Constants.eOElevatorState.Ground, 0);
-            }
+//            if(gamepad1.y){
+//                robot.oElevMove(Constants.eOElevatorState.Ground, 0);
+//            }
+//
+//            if(gamepad1.x){
+//                robot.oElevMove(Constants.eOElevatorState.Ground, 0);
+//            }
 
             //Player Two Controls
             //Outtake
@@ -81,17 +83,19 @@ public class TeleOpMode extends LinearOpMode {
             {
                 robot.iArmStart();
             }
+
             if(gamepad2.dpad_down){
                 robot.iArmHover();
+                //robot.iOpenClaw();
             }
 
             if(gamepad2.left_bumper)//Open
             {
-                robot.IopenClaw();
+                robot.iOpenClaw();
             }
             if(gamepad2.right_bumper)//Close
             {
-                robot.IcloseClaw();
+                robot.iCloseClaw();
             }
 
 //            height = robot.oElevGetHeight();

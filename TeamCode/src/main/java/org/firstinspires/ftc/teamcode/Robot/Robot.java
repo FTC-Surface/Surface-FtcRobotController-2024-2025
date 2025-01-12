@@ -104,8 +104,8 @@ public class Robot {
 
     public boolean oElevIsBusy(){return oElevIsBusy();}
 
-    public void IopenClaw(){iClaw.openClawIn();}
-    public void IcloseClaw(){iClaw.closeClawIn();}
+    public void iOpenClaw(){iClaw.openClawIn();}
+    public void iCloseClaw(){iClaw.closeClawIn();}
 
     public void oArmStart(){oArm.startPos();}
     public void oArmOut(){oArm.outPos();}
