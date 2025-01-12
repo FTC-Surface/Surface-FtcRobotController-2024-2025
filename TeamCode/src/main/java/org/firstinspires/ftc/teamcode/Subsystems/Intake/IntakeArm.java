@@ -20,13 +20,19 @@ public class IntakeArm extends Subsystem {
         Wrist = hardwareMap.get(Servo.class, "Wrist");
     }
 
-    public void UpPos(){
+    public void upPos(){
         armServo1.setPosition(constants.IntakeArmStartPos);
 //        armServo2.setPosition(constants.IntakeArmStartPos);
         Wrist.setPosition(constants.IntakeWristStart);
     }
 
-    public void DownPos(){
+    public void downPos(){
+        armServo1.setPosition(constants.IntakeArmGrabPos);
+//        armServo2.setPosition(constants.IntakeArmGrabPos);
+        Wrist.setPosition(constants.IntakeWristGrab);
+    }
+
+    public void hoverPos(){
         armServo1.setPosition(constants.IntakeArmGrabPos);
 //        armServo2.setPosition(constants.IntakeArmGrabPos);
         Wrist.setPosition(constants.IntakeWristGrab);

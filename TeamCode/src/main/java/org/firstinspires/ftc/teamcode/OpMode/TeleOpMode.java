@@ -21,7 +21,6 @@ public class TeleOpMode extends LinearOpMode {
         //ElapsedTime intakeTimer = new ElapsedTime(ElapsedTime.Resolution.MILLISECONDS);
         Constants constants = new Constants();
 
-
         telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
 
         waitForStart();
@@ -35,7 +34,10 @@ public class TeleOpMode extends LinearOpMode {
 
         while (opModeIsActive() && !isStopRequested()) {
 
-            //robot.oSlideLoop();
+            telemetry.addData("Outtake Elev Height", robot.oElevGetHeight());
+            telemetry.addData("Outtake Elev Is Busy", robot.oElevIsBusy());
+
+            robot.oSlideLoop();
 
             double drive = gamepad1.left_stick_y;
             double strafe = gamepad1.left_stick_x;
@@ -43,6 +45,24 @@ public class TeleOpMode extends LinearOpMode {
 
             robot.teleOpDrive(drive * 0.6,strafe * 0.6,rotate * 0.6);
 
+            if(gamepad1.a){
+                robot.oElevMove(Constants.eOElevatorState.Basket, 0);
+            }
+
+            if(gamepad1.b){
+                robot.oElevMove(Constants.eOElevatorState.Ground, 0);
+            }
+
+            if(gamepad1.y){
+                robot.oElevMove(Constants.eOElevatorState.Ground, 0);
+            }
+
+            if(gamepad1.x){
+                robot.oElevMove(Constants.eOElevatorState.Ground, 0);
+            }
+
+            //Player Two Controls
+            //Outtake
             if(gamepad2.a)
             {
                 robot.oArmOut();
@@ -52,13 +72,7 @@ public class TeleOpMode extends LinearOpMode {
                 robot.oArmStart();
             }
 
-            if(gamepad1.a){
-                robot.oElevMove(Constants.eOElevatorState.Basket, 0);
-            }
-
-            if(gamepad1.b){
-                robot.oElevMove(Constants.eOElevatorState.Ground, 0);
-            }
+            //Intake
             if(gamepad2.x)//Down
             {
                 robot.iArmGrab();
@@ -67,13 +81,17 @@ public class TeleOpMode extends LinearOpMode {
             {
                 robot.iArmStart();
             }
+            if(gamepad2.dpad_down){
+                robot.iArmHover();
+            }
+
             if(gamepad2.left_bumper)//Open
             {
-                robot.InopenClaw();
+                robot.IopenClaw();
             }
             if(gamepad2.right_bumper)//Close
             {
-                robot.IncloseClaw();
+                robot.IcloseClaw();
             }
 
 //            height = robot.oElevGetHeight();
@@ -82,30 +100,6 @@ public class TeleOpMode extends LinearOpMode {
 //            }
 //            if(gamepad2.right_trigger >0.5){
 //                robot.iArmMove(0.5);
-//            }
-
-            if(gamepad2.y){
-                robot.oElevMove(Constants.eOElevatorState.Ground, 0);
-            }
-
-            if(gamepad1.x){
-                robot.oElevMove(Constants.eOElevatorState.Ground, 0);
-            }
-
-//            if(gamepad2.dpad_down){
-//                robot.oElevMove(Constants.eOElevatorState.Ground);
-//            }
-//            if(gamepad2.dpad_up){
-//                robot.oElevMove(Constants.eOElevatorState.Basket);
-//            }
-//            if(gamepad2.dpad_left){
-//                robot.oElevMove(Constants.eOElevatorState.Ready);
-//            }
-//            if(gamepad2.dpad_right){
-//                robot.oElevMove(Constants.eOElevatorState.Grab);
-//            }
-//            if(intakeTimer.milliseconds() >= 1000 || gamepad1.y || !gamepad2.left_bumper || !gamepad2.right_bumper){
-//                robot.intakeStop();
 //            }
         }
     }

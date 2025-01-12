@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 @Config
 public class OuttakeArmTest extends LinearOpMode {
     Servo armOne;
-    Servo claw;
+    Servo armTwo;
 
     public static double armOneTarget = 0;
 
@@ -19,6 +19,7 @@ public class OuttakeArmTest extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
         armOne = hardwareMap.get(Servo.class, "Outtake Arm Right");
+        armTwo = hardwareMap.get(Servo.class, "Outtake Wrist Left");
 
         waitForStart();
 

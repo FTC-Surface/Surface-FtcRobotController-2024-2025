@@ -10,11 +10,10 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 //import org.firstinspires.ftc.teamcode.Subsystems.Intake.IntakeActiveIntake;
 import org.firstinspires.ftc.teamcode.Subsystems.Intake.IntakeLinearSlides;
-import org.firstinspires.ftc.teamcode.Subsystems.Intake.IntakeWrist;
+import org.firstinspires.ftc.teamcode.Subsystems.Intake.IntakeClaw;
 import org.firstinspires.ftc.teamcode.Subsystems.Intake.IntakeArm;
 
 import org.firstinspires.ftc.teamcode.Subsystems.Outtake.OuttakeArm;
-import org.firstinspires.ftc.teamcode.Subsystems.Outtake.OuttakeClaw;
 import org.firstinspires.ftc.teamcode.Subsystems.Outtake.OuttakeLinearSlides;
 
 import org.firstinspires.ftc.teamcode.Subsystems.Constants;
@@ -25,7 +24,7 @@ public class Robot {
     OuttakeArm oArm = new OuttakeArm();
     OuttakeLinearSlides oSlides = new OuttakeLinearSlides();
     IntakeArm iArm = new IntakeArm();
-    IntakeWrist iClaw = new IntakeWrist();
+    IntakeClaw iClaw = new IntakeClaw();
 //    IntakeActiveIntake iIntake = new IntakeActiveIntake();
     IntakeLinearSlides iSlides = new IntakeLinearSlides();
 
@@ -48,11 +47,9 @@ public class Robot {
         topRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         bottomRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
-//        oClaw.init(hardwareMap);
         oArm.init(hardwareMap);
         oSlides.init(hardwareMap);
 
-//
 //        iIntake.init(hardwareMap);
 //        iSlides.init((hardwareMap));
         iClaw.init(hardwareMap);
@@ -91,14 +88,6 @@ public class Robot {
         bottomRightMotor.setPower(motorPower[3]);
     }
 
-    public void waitForSeconds(int seconds){
-        ElapsedTime timer = new ElapsedTime(ElapsedTime.Resolution.SECONDS);
-        timer.reset();
-
-        while(timer.time() < seconds){
-        }
-    }
-
     public void iSlideMoveElevator(int multiplier){iSlides.moveElevator(multiplier);}
 
     public void oSlideLoop(){oSlides.loop();}
@@ -110,26 +99,27 @@ public class Robot {
 //    public void iElevGetHeight(){iSlides.getPos();}
 
     public void oElevMove(Constants.eOElevatorState state, int manualMove){oSlides.moveElevator(state, manualMove);}
+    public void oElevStop(){oSlides.setPowerZero();}
 //    public void iElevMove(Constants.eIElevatorState state, int manualMove){iSlides.moveElevator(state, manualMove);}
 
     public boolean oElevIsBusy(){return oElevIsBusy();}
 
-//    public void intakeIn(){iIntake.intake();}
-//    public void intakeOut(){
-//        iIntake.outTake();
-//    }
-//    public void intakeStop(){
-//        iIntake.stopActiveIntake();
-//    }
-
-
-    public void InopenClaw(){iClaw.OpenClawIn();}
-    public void IncloseClaw(){iClaw.CloseClawIn();}
+    public void IopenClaw(){iClaw.openClawIn();}
+    public void IcloseClaw(){iClaw.closeClawIn();}
 
     public void oArmStart(){oArm.startPos();}
     public void oArmOut(){oArm.outPos();}
 
-    public void iArmGrab(){iArm.UpPos();}
-    public void iArmStart(){iArm.DownPos();}
+    public void iArmGrab(){iArm.upPos();}
+    public void iArmStart(){iArm.downPos();}
+    public void iArmHover(){}
 
+
+    public void waitForSeconds(int seconds){
+        ElapsedTime timer = new ElapsedTime(ElapsedTime.Resolution.SECONDS);
+        timer.reset();
+
+        while(timer.time() < seconds){
+        }
+    }
 }

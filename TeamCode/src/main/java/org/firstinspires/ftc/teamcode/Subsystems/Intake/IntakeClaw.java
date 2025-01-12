@@ -7,7 +7,7 @@ import org.firstinspires.ftc.teamcode.Subsystems.Constants;
 import org.firstinspires.ftc.teamcode.Subsystems.Subsystem;
 
 
-public class IntakeWrist extends Subsystem {
+public class IntakeClaw extends Subsystem {
 
     Servo Iclaw;
 
@@ -18,6 +18,6 @@ public class IntakeWrist extends Subsystem {
         Iclaw = hardwareMap.get(Servo.class, "Claw");
     }
 
-    public void OpenClawIn(){Iclaw.setPosition(constants.IOpenClaw); }
-    public void CloseClawIn(){Iclaw.setPosition(constants.ICloseClaw); }
+    public void openClawIn(){Iclaw.setPosition(constants.IOpenClaw); }
+    public void closeClawIn(){Iclaw.setPosition(constants.ICloseClaw); }
 }
