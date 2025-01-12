@@ -103,9 +103,10 @@ public class Robot {
 //    public void iElevMove(Constants.eIElevatorState state, int manualMove){iSlides.moveElevator(state, manualMove);}
 
     public boolean oElevIsBusy(){return oElevIsBusy();}
+    public double oElevGetPower(){return oElevGetPower();}
 
-    public void IopenClaw(){iClaw.openClawIn();}
-    public void IcloseClaw(){iClaw.closeClawIn();}
+    public void iOpenClaw(){iClaw.openClawIn();}
+    public void iCloseClaw(){iClaw.closeClawIn();}
 
     public void oArmStart(){oArm.startPos();}
     public void oArmOut(){oArm.outPos();}

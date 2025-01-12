@@ -107,4 +107,6 @@ public class OuttakeLinearSlides extends Subsystem {
     }
 
     public boolean isBusy(){ return Math.abs(getPos()-targetPos) < 10;}
+
+    public double getPower(){return outtakeLinearSlideTwo.getPower();}
 }

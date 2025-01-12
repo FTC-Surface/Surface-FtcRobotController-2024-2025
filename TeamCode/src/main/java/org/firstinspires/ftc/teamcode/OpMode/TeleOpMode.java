@@ -28,16 +28,24 @@ public class TeleOpMode extends LinearOpMode {
         telemetry.update();
 
         //robot.iArmStart();
-        //robot.oArmStart();
+        robot.oArmStart();
         //robot.openClaw();
         //robot.oElevMove(Constants.eOElevatorState.Ground,0);
 
         while (opModeIsActive() && !isStopRequested()) {
 
+<<<<<<< HEAD
+//            telemetry.addData("Outtake Elev Height", robot.oElevGetHeight());
+//            telemetry.addData("Outtake Elev Is Busy", robot.oElevIsBusy());
+=======
             telemetry.addData("Outtake Elev Height", robot.oElevGetHeight());
             telemetry.addData("Outtake Elev Is Busy", robot.oElevIsBusy());
+            telemetry.addData("Outtake Elev Get Power", robot.oElevGetPower());
 
-            robot.oSlideLoop();
+            telemetry.update();
+>>>>>>> 67f55462d235598c457b4235da84637f5a391674
+
+            //robot.oSlideLoop();
 
             double drive = gamepad1.left_stick_y;
             double strafe = gamepad1.left_stick_x;
@@ -53,13 +61,13 @@ public class TeleOpMode extends LinearOpMode {
                 robot.oElevMove(Constants.eOElevatorState.Ground, 0);
             }
 
-            if(gamepad1.y){
-                robot.oElevMove(Constants.eOElevatorState.Ground, 0);
-            }
-
-            if(gamepad1.x){
-                robot.oElevMove(Constants.eOElevatorState.Ground, 0);
-            }
+//            if(gamepad1.y){
+//                robot.oElevMove(Constants.eOElevatorState.Ground, 0);
+//            }
+//
+//            if(gamepad1.x){
+//                robot.oElevMove(Constants.eOElevatorState.Ground, 0);
+//            }
 
             //Player Two Controls
             //Outtake
@@ -81,17 +89,25 @@ public class TeleOpMode extends LinearOpMode {
             {
                 robot.iArmStart();
             }
+<<<<<<< HEAD
+//            if(gamepad2.dpad_down){
+//                robot.iArmHover();
+//            }
+=======
+
             if(gamepad2.dpad_down){
                 robot.iArmHover();
+                //robot.iOpenClaw();
             }
+>>>>>>> 67f55462d235598c457b4235da84637f5a391674
 
             if(gamepad2.left_bumper)//Open
             {
-                robot.IopenClaw();
+                robot.iOpenClaw();
             }
             if(gamepad2.right_bumper)//Close
             {
-                robot.IcloseClaw();
+                robot.iCloseClaw();
             }
 
 //            height = robot.oElevGetHeight();

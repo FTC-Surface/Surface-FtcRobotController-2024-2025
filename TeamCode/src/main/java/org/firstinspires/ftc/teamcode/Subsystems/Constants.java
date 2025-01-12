@@ -20,11 +20,6 @@ public class Constants {
         ManualDown
     }
 
-    public enum eClawState{
-        Open,
-        Close
-    }
-
     public enum AutoState{
         idle,
         ready,
@@ -37,7 +32,7 @@ public class Constants {
     public final double OuttakeElevatorMotorPower = 0.7;
     public final double IntakeElevatorMotorPower = 0.3;
 
-    public final double OutakeArmStartPos = 0.1;
+    public final double OutakeArmStartPos = 0.15;
     public final double OutakeArmOutPos = 0.5;
 
     public final double IntakeArmStartPos = 1.0;
@@ -45,6 +40,6 @@ public class Constants {
     public final double IntakeArmHoverPos = 0;
 
     public final double IntakeWristStart = 1.0;
-    public final double IntakeWristGrab = 0.5;
+    public final double IntakeWristGrab = 0.4;
     public final double IntakeWristHoverPos = 0;
 }

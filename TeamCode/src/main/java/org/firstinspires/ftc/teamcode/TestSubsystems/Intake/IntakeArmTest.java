@@ -16,10 +16,17 @@ public class IntakeArmTest extends LinearOpMode{
     private Servo Wrist;
     private Servo Claw;
 
-    public static double positionOne = 0.5;
+<<<<<<< HEAD
+    public static double positionOne;
     public static double positionTwo = 0.5;
-    public static double positionWrist = 0.45;
-    public static double positionClaw = 0.6;
+    public static double positionWrist;
+    public static double positionClaw;
+=======
+    public static double positionOne = 1;
+    public static double positionTwo = 1;
+    public static double positionWrist = 1;
+    public static double positionClaw = 0;
+>>>>>>> 67f55462d235598c457b4235da84637f5a391674
 
     public static int activateTestMode;
 
@@ -36,30 +43,32 @@ public class IntakeArmTest extends LinearOpMode{
 
             if(activateTestMode == 0){
                 armServo1.setPosition(positionOne);
-                //armServo2.setPosition(positionTwo);
+                //armServo2.setPosition(positionOne);
                 Wrist.setPosition(positionWrist);
                 Claw.setPosition(positionClaw);
             }
 
-            if(gamepad2.x)//Down
-            {
-                armServo1.setPosition(0.5);
-                //armServo2.setPosition(0.5);
-                Wrist.setPosition(0.45);
-            }
-            if(gamepad2.y)//up
-            {
-                armServo1.setPosition(1);
-                //armServo2.setPosition(1);
-                Wrist.setPosition(1);
-            }
-            if(gamepad2.left_bumper)//Open
-            {
-                Claw.setPosition(0.6);
-            }
-            if(gamepad2.right_bumper)//Close
-            {
-                Claw.setPosition(0);
+            if(activateTestMode == 1){
+                if(gamepad2.x)//Down
+                {
+                    armServo1.setPosition(0.5);
+                    //armServo2.setPosition(0.5);
+                    Wrist.setPosition(0.5);
+                }
+                if(gamepad2.y)//up
+                {
+                    armServo1.setPosition(1);
+                    //armServo2.setPosition(1);
+                    Wrist.setPosition(1);
+                }
+                if(gamepad2.left_bumper)//Open
+                {
+                    Claw.setPosition(0.6);
+                }
+                if(gamepad2.right_bumper)//Close
+                {
+                    Claw.setPosition(0);
+                }
             }
         }
     }
