@@ -27,9 +27,9 @@ public class TeleOpMode extends LinearOpMode {
 
         telemetry.update();
 
-        //robot.iArmStart();
+        robot.iArmHover();
         robot.oArmStart();
-        //robot.openClaw();
+        robot.iOpenClaw();
         //robot.oElevMove(Constants.eOElevatorState.Ground,0);
 
         while (opModeIsActive() && !isStopRequested()) {
@@ -80,20 +80,23 @@ public class TeleOpMode extends LinearOpMode {
             if(gamepad2.x)//Down
             {
                 robot.iArmGrab();
+                robot.iCloseClaw();
             }
             if(gamepad2.y)//up
             {
                 robot.iArmStart();
+                robot.iOpenClaw();
+                robot.iArmHover();
             }
 
 //            if(gamepad2.dpad_down){
 //                robot.iArmHover();
 //            }
 
-            if(gamepad2.dpad_down){
-                robot.iArmHover();
-                //robot.iOpenClaw();
-            }
+//            if(gamepad2.dpad_down){
+//                robot.iArmHover();
+//                //robot.iOpenClaw();
+//            }
 
             if(gamepad2.left_bumper)//Open
             {

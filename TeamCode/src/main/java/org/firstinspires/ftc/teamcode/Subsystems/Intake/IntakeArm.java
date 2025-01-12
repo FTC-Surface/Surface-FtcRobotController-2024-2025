@@ -33,8 +33,8 @@ public class IntakeArm extends Subsystem {
     }
 
     public void hoverPos(){
-        armServo1.setPosition(constants.IntakeArmGrabPos);
+        armServo1.setPosition(constants.IntakeArmHoverPos);
 //        armServo2.setPosition(constants.IntakeArmGrabPos);
-        Wrist.setPosition(constants.IntakeWristGrab);
+        Wrist.setPosition(constants.IntakeWristHoverPos);
     }
 }

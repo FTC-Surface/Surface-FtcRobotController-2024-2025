@@ -113,7 +113,7 @@ public class Robot {
 
     public void iArmGrab(){iArm.upPos();}
     public void iArmStart(){iArm.downPos();}
-    public void iArmHover(){}
+    public void iArmHover(){iArm.hoverPos();}
 
 
     public void waitForSeconds(int seconds){

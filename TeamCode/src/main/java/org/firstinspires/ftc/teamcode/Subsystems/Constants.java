@@ -37,9 +37,9 @@ public class Constants {
 
     public final double IntakeArmStartPos = 1.0;
     public final double IntakeArmGrabPos = 0.5;
-    public final double IntakeArmHoverPos = 0;
+    public final double IntakeArmHoverPos = 0.65;
 
     public final double IntakeWristStart = 1.0;
-    public final double IntakeWristGrab = 0.4;
-    public final double IntakeWristHoverPos = 0;
+    public final double IntakeWristGrab = 0.45;
+    public final double IntakeWristHoverPos = 0.45;
 }

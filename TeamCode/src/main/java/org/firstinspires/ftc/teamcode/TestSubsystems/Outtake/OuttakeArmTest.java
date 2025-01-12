@@ -25,6 +25,7 @@ public class OuttakeArmTest extends LinearOpMode {
 
         while (opModeIsActive() && !isStopRequested()) {
             armOne.setPosition(armOneTarget);
+            armTwo.setPosition(armOneTarget);
         }
     }
 }
