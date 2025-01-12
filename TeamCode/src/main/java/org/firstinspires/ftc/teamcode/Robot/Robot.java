@@ -50,7 +50,6 @@ public class Robot {
         oArm.init(hardwareMap);
         oSlides.init(hardwareMap);
 
-//        iIntake.init(hardwareMap);
 //        iSlides.init((hardwareMap));
         iClaw.init(hardwareMap);
         iArm.init(hardwareMap);

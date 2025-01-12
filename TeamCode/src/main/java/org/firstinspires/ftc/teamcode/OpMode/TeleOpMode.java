@@ -18,7 +18,7 @@ public class TeleOpMode extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
         Robot robot = new Robot(hardwareMap);
-        //ElapsedTime intakeTimer = new ElapsedTime(ElapsedTime.Resolution.MILLISECONDS);
+        ElapsedTime intakeTimer = new ElapsedTime(ElapsedTime.Resolution.MILLISECONDS);
         Constants constants = new Constants();
 
         telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
@@ -34,14 +34,14 @@ public class TeleOpMode extends LinearOpMode {
 
         while (opModeIsActive() && !isStopRequested()) {
 
-//            telemetry.addData("Outtake Elev Height", robot.oElevGetHeight());
-//            telemetry.addData("Outtake Elev Is Busy", robot.oElevIsBusy());
+            telemetry.addData("Outtake Elev Height", robot.oElevGetHeight());
+            telemetry.addData("Outtake Elev Is Busy", robot.oElevIsBusy());
 //            telemetry.addData("Outtake Elev Get Power", robot.oElevGetPower());
 //
-//            telemetry.update();
+            telemetry.update();
 
 
-            //robot.oSlideLoop();
+            robot.oSlideLoop();
 
             double drive = gamepad1.left_stick_y;
             double strafe = gamepad1.left_stick_x;
@@ -85,6 +85,7 @@ public class TeleOpMode extends LinearOpMode {
             if(gamepad2.y)//up
             {
                 robot.iArmStart();
+
                 robot.iOpenClaw();
                 robot.iArmHover();
             }
