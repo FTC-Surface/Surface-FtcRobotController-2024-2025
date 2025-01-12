@@ -16,17 +16,12 @@ public class IntakeArmTest extends LinearOpMode{
     private Servo Wrist;
     private Servo Claw;
 
-<<<<<<< HEAD
-    public static double positionOne;
-    public static double positionTwo = 0.5;
-    public static double positionWrist;
-    public static double positionClaw;
-=======
+
     public static double positionOne = 1;
     public static double positionTwo = 1;
     public static double positionWrist = 1;
     public static double positionClaw = 0;
->>>>>>> 67f55462d235598c457b4235da84637f5a391674
+
 
     public static int activateTestMode;
 
@@ -53,7 +48,7 @@ public class IntakeArmTest extends LinearOpMode{
                 {
                     armServo1.setPosition(0.5);
                     //armServo2.setPosition(0.5);
-                    Wrist.setPosition(0.5);
+                    Wrist.setPosition(0.4);
                 }
                 if(gamepad2.y)//up
                 {

@@ -34,16 +34,12 @@ public class TeleOpMode extends LinearOpMode {
 
         while (opModeIsActive() && !isStopRequested()) {
 
-<<<<<<< HEAD
 //            telemetry.addData("Outtake Elev Height", robot.oElevGetHeight());
 //            telemetry.addData("Outtake Elev Is Busy", robot.oElevIsBusy());
-=======
-            telemetry.addData("Outtake Elev Height", robot.oElevGetHeight());
-            telemetry.addData("Outtake Elev Is Busy", robot.oElevIsBusy());
-            telemetry.addData("Outtake Elev Get Power", robot.oElevGetPower());
+//            telemetry.addData("Outtake Elev Get Power", robot.oElevGetPower());
+//
+//            telemetry.update();
 
-            telemetry.update();
->>>>>>> 67f55462d235598c457b4235da84637f5a391674
 
             //robot.oSlideLoop();
 
@@ -89,17 +85,15 @@ public class TeleOpMode extends LinearOpMode {
             {
                 robot.iArmStart();
             }
-<<<<<<< HEAD
+
 //            if(gamepad2.dpad_down){
 //                robot.iArmHover();
 //            }
-=======
 
             if(gamepad2.dpad_down){
                 robot.iArmHover();
                 //robot.iOpenClaw();
             }
->>>>>>> 67f55462d235598c457b4235da84637f5a391674
 
             if(gamepad2.left_bumper)//Open
             {
