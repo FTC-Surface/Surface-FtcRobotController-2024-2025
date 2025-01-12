@@ -24,10 +24,8 @@ public class Robot {
 
     OuttakeArm oArm = new OuttakeArm();
     OuttakeLinearSlides oSlides = new OuttakeLinearSlides();
-    OuttakeClaw oClaw = new OuttakeClaw();
-
     IntakeArm iArm = new IntakeArm();
-    IntakeWrist iWrist = new IntakeWrist();
+    IntakeWrist iClaw = new IntakeWrist();
 //    IntakeActiveIntake iIntake = new IntakeActiveIntake();
     IntakeLinearSlides iSlides = new IntakeLinearSlides();
 
@@ -124,16 +122,14 @@ public class Robot {
 //        iIntake.stopActiveIntake();
 //    }
 
-    public void openClaw(){oClaw.open();}
-    public void closeClaw(){oClaw.close();}
+
+    public void InopenClaw(){iClaw.OpenClawIn();}
+    public void IncloseClaw(){iClaw.CloseClawIn();}
 
     public void oArmStart(){oArm.startPos();}
     public void oArmOut(){oArm.outPos();}
 
-    public void iArmMove(double pos){iArm.moveArm(pos);}
-    public void iArmStart(){iArm.startPos();}
+    public void iArmGrab(){iArm.UpPos();}
+    public void iArmStart(){iArm.DownPos();}
 
-    public void iWristStart(){iWrist.startPos();}
-    public void iWristOut(){iWrist.outPos();}
-    public void iWristIn(){iWristIn();}
 }

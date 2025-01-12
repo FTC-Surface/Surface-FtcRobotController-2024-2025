@@ -31,8 +31,10 @@ public class Constants {
         park
     }
 
-    public final double OpenClaw = 0.9;
-    public final double CloseClaw = 0.68;
+    public final double IOpenClaw = 0.6;
+    public final double ICloseClaw = 0;
+    public final double OOpenClaw = 1;
+    public final double OCloseClaw = 0.6;
 
     public final double OuttakeElevatorMotorPower = 0.7;
     public final double IntakeElevatorMotorPower = 0.3;
@@ -47,10 +49,9 @@ public class Constants {
     public final double OutakeArmStartPos = 0.1;
     public final double OutakeArmOutPos = 0.5;
 
-    public final double IntakeArmStartPos = 0;
-    public final double IntakeArmOutPos = 0;
+    public final double IntakeArmStartPos = 1.0;
+    public final double IntakeArmGrabPos = 0.5;
 
-    public final double IntakeWristStart = 0;
-    public final double IntakeWristIntake = 0;
-    public final double IntakeWristOuttake = 0;
+    public final double IntakeWristStart = 1.0;
+    public final double IntakeWristGrab = 0.5;
 }

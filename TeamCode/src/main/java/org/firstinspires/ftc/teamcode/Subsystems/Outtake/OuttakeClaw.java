@@ -19,10 +19,10 @@ public class OuttakeClaw extends Subsystem {
     }
 
     public void open(){
-        claw.setPosition(constants.OpenClaw);
+        claw.setPosition(constants.OOpenClaw);
     }
 
     public void close(){
-        claw.setPosition(constants.CloseClaw);
+        claw.setPosition(constants.OCloseClaw);
     }
 }

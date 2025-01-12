@@ -9,6 +9,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 @Config
 public class OuttakeArmTest extends LinearOpMode {
     Servo armOne;
+    Servo claw;
 
     public static double armOneTarget = 0;
 

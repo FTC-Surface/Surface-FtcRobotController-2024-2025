@@ -18,11 +18,9 @@ public class TeleOpMode extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
         Robot robot = new Robot(hardwareMap);
-        ElapsedTime intakeTimer = new ElapsedTime(ElapsedTime.Resolution.MILLISECONDS);
+        //ElapsedTime intakeTimer = new ElapsedTime(ElapsedTime.Resolution.MILLISECONDS);
         Constants constants = new Constants();
 
-        double armPos = 1;
-        double height = 0;
 
         telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
 
@@ -31,10 +29,9 @@ public class TeleOpMode extends LinearOpMode {
         telemetry.update();
 
         //robot.iArmStart();
-        //robot.iWristStart();
-        robot.oArmStart();
-        robot.openClaw();
-        robot.oElevMove(Constants.eOElevatorState.Ground,0);
+        //robot.oArmStart();
+        //robot.openClaw();
+        //robot.oElevMove(Constants.eOElevatorState.Ground,0);
 
         while (opModeIsActive() && !isStopRequested()) {
 
@@ -46,72 +43,53 @@ public class TeleOpMode extends LinearOpMode {
 
             robot.teleOpDrive(drive * 0.6,strafe * 0.6,rotate * 0.6);
 
-            if(gamepad2.left_bumper || gamepad1.left_bumper){
-//                intakeTimer.reset();
-//                robot.intakeIn();
-
-                robot.openClaw();
+            if(gamepad2.a)
+            {
+                robot.oArmOut();
             }
-//
-            if(gamepad2.right_bumper || gamepad1.right_bumper){
-//                intakeTimer.reset();
-//                robot.intakeOut();
-
-                robot.closeClaw();
-            }
-//
-
-//            if(gamepad2.dpad_up || gamepad1.dpad_up){
-//                robot.iSlideMoveElevator(1);
-//            }
-//
-//            if(gamepad2.dpad_down || gamepad1.dpad_down){
-//                robot.iSlideMoveElevator(-1);
-//            }
-
-//            if(gamepad2.a)
-//            {
-//                robot.oArmOut();
-//            }
-//            if(gamepad2.b)
-//            {
-//                robot.oArmStart();
-//            }
-
-            if(armPos <= 1 && armPos >= 0){
-                armPos += gamepad2.left_stick_x * 0.0075;
+            if(gamepad2.b)
+            {
+                robot.oArmStart();
             }
 
-            if(armPos > 1){
-                armPos = 1;
-            } else if(armPos < 0){
-                armPos = 0;
-            }
-
-            robot.iArmMove(armPos);
-
-            if(gamepad2.x){
+            if(gamepad1.a){
                 robot.oElevMove(Constants.eOElevatorState.Basket, 0);
             }
+
+            if(gamepad1.b){
+                robot.oElevMove(Constants.eOElevatorState.Ground, 0);
+            }
+            if(gamepad2.x)//Down
+            {
+                robot.iArmGrab();
+            }
+            if(gamepad2.y)//up
+            {
+                robot.iArmStart();
+            }
+            if(gamepad2.left_bumper)//Open
+            {
+                robot.InopenClaw();
+            }
+            if(gamepad2.right_bumper)//Close
+            {
+                robot.IncloseClaw();
+            }
+
+//            height = robot.oElevGetHeight();
+//            if(gamepad2.left_trigger >0.5){
+//                robot.iArmStart();
+//            }
+//            if(gamepad2.right_trigger >0.5){
+//                robot.iArmMove(0.5);
+//            }
 
             if(gamepad2.y){
                 robot.oElevMove(Constants.eOElevatorState.Ground, 0);
             }
 
-            height = robot.oElevGetHeight();
-
-            if(gamepad2.right_trigger > 0.5){
-                if (height <= 2980) {
-                    robot.oElevMove(Constants.eOElevatorState.ManualUp, (int)height);
-                    height += 13;
-                }
-            }
-
-            if(gamepad2.left_trigger > 0.5){
-                if (height >= 15) {
-                    robot.oElevMove(Constants.eOElevatorState.ManualUp, (int)height);
-                    height -= 13;
-                }
+            if(gamepad1.x){
+                robot.oElevMove(Constants.eOElevatorState.Ground, 0);
             }
 
 //            if(gamepad2.dpad_down){
