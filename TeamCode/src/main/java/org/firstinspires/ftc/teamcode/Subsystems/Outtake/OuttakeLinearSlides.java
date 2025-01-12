@@ -64,10 +64,10 @@ public class OuttakeLinearSlides extends Subsystem {
     }
 
     public void loop(){
-        if(currentPos <= targetPos + 1.5 && currentPos >= targetPos - 1.5){
-            outtakeLinearSlideOne.setPower(0);
-            outtakeLinearSlideTwo.setPower(0);
-        }
+//        if(currentPos <= targetPos + 1.5 && currentPos >= targetPos - 1.5){
+//            outtakeLinearSlideOne.setPower(0);
+//            outtakeLinearSlideTwo.setPower(0);
+//        }
 
         currentPos = getPos();
     }
