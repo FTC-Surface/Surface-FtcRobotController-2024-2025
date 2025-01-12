@@ -53,5 +53,5 @@ public class Constants {
     public final double IntakeArmGrabPos = 0.5;
 
     public final double IntakeWristStart = 1.0;
-    public final double IntakeWristGrab = 0.5;
+    public final double IntakeWristGrab = 0.45;
 }

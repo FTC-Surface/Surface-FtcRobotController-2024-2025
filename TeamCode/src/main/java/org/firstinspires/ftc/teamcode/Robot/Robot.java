@@ -55,8 +55,8 @@ public class Robot {
 //
 //        iIntake.init(hardwareMap);
 //        iSlides.init((hardwareMap));
-//        iWrist.init(hardwareMap);
-//        iArm.init(hardwareMap);
+        iClaw.init(hardwareMap);
+        iArm.init(hardwareMap);
 
         for (LynxModule module : hardwareMap.getAll(LynxModule.class)) {
             module.setBulkCachingMode(LynxModule.BulkCachingMode.AUTO);
