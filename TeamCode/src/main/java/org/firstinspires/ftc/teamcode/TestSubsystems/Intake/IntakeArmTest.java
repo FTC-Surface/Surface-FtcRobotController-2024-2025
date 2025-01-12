@@ -41,25 +41,27 @@ public class IntakeArmTest extends LinearOpMode{
                 Claw.setPosition(positionClaw);
             }
 
-            if(gamepad2.x)//Down
-            {
-                armServo1.setPosition(0.5);
-                //armServo2.setPosition(0.5);
-                Wrist.setPosition(0.45);
-            }
-            if(gamepad2.y)//up
-            {
-                armServo1.setPosition(1);
-                //armServo2.setPosition(1);
-                Wrist.setPosition(1);
-            }
-            if(gamepad2.left_bumper)//Open
-            {
-                Claw.setPosition(0.6);
-            }
-            if(gamepad2.right_bumper)//Close
-            {
-                Claw.setPosition(0);
+            if(activateTestMode == 1){
+                if(gamepad2.x)//Down
+                {
+                    armServo1.setPosition(0.5);
+                    //armServo2.setPosition(0.5);
+                    Wrist.setPosition(0.45);
+                }
+                if(gamepad2.y)//up
+                {
+                    armServo1.setPosition(1);
+                    //armServo2.setPosition(1);
+                    Wrist.setPosition(1);
+                }
+                if(gamepad2.left_bumper)//Open
+                {
+                    Claw.setPosition(0.6);
+                }
+                if(gamepad2.right_bumper)//Close
+                {
+                    Claw.setPosition(0);
+                }
             }
         }
     }

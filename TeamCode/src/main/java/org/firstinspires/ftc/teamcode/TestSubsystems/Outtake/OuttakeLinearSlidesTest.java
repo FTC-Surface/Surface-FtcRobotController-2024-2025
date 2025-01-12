@@ -46,6 +46,7 @@ public class OuttakeLinearSlidesTest extends LinearOpMode {
             telemetry.addData("Right Motor Position", rightOuttakeMotor.getCurrentPosition());
             telemetry.addData("Height", currentHeight);
             telemetry.addData("Is Busy", isBusy());
+            telemetry.addData("Get Power", rightOuttakeMotor.getPower());
 
             telemetry.update();
 
@@ -65,9 +66,8 @@ public class OuttakeLinearSlidesTest extends LinearOpMode {
                 rightOuttakeMotor.setPower(motorPower);
             }
 
-            if(currentHeight <= targetPos + 1.5 && currentHeight >= targetPos - 1.5){
-                leftOuttakeMotor.setPower(0);
-                rightOuttakeMotor.setPower(0);
+            if(currentHeight == targetPos - 10){
+                setPowerZero();
             }
 
             currentHeight = (rightOuttakeMotor.getCurrentPosition() + leftOuttakeMotor.getCurrentPosition())/2;
@@ -95,4 +95,9 @@ public class OuttakeLinearSlidesTest extends LinearOpMode {
     }
 
     public boolean isBusy(){return Math.abs(currentHeight-targetPos) > 10;}
+
+    public void setPowerZero(){
+        leftOuttakeMotor.setPower(0);
+        rightOuttakeMotor.setPower(0);
+    }
 }
