@@ -14,6 +14,7 @@ import org.firstinspires.ftc.teamcode.Subsystems.Intake.IntakeClaw;
 import org.firstinspires.ftc.teamcode.Subsystems.Intake.IntakeArm;
 
 import org.firstinspires.ftc.teamcode.Subsystems.Outtake.OuttakeArm;
+import org.firstinspires.ftc.teamcode.Subsystems.Outtake.OuttakeClaw;
 import org.firstinspires.ftc.teamcode.Subsystems.Outtake.OuttakeLinearSlides;
 
 import org.firstinspires.ftc.teamcode.Subsystems.Constants;
@@ -21,6 +22,7 @@ import org.firstinspires.ftc.teamcode.Subsystems.Constants;
 public class Robot {
     DcMotorEx topLeftMotor, topRightMotor, bottomLeftMotor, bottomRightMotor;
 
+    OuttakeClaw oClaw = new OuttakeClaw();
     OuttakeArm oArm = new OuttakeArm();
     OuttakeLinearSlides oSlides = new OuttakeLinearSlides();
     IntakeArm iArm = new IntakeArm();
@@ -107,12 +109,17 @@ public class Robot {
     public void iOpenClaw(){iClaw.openClawIn();}
     public void iCloseClaw(){iClaw.closeClawIn();}
 
-    public void oArmStart(){oArm.startPos();}
-    public void oArmOut(){oArm.outPos();}
-
     public void iArmGrab(){iArm.downPos();}
     public void iArmStart(){iArm.upPos();}
     public void iArmHover(){iArm.hoverPos();}
+
+    public void oOpenClaw(){oClaw.openClawOut();}
+    public void oCloseClaw(){oClaw.closeClawOut();}
+
+    public void oArmStart(){oArm.startPos();}
+    public void oArmOut(){oArm.outPos();}
+
+
 
 
     public void waitForSeconds(int seconds){

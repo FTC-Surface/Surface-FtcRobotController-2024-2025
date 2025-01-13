@@ -73,13 +73,12 @@ public class TeleOpMode extends LinearOpMode {
             //Player Two Controls
             //Outtake
             if(gamepad2.a)
-            {
                 robot.oArmOut();
-            }
             if(gamepad2.b)
-            {
                 robot.oArmStart();
-            }
+
+            if(gamepad2.left_trigger>0.5)
+                   
 
             //(Down+Up)
             if (gamepad2.y && !yPressed) {
