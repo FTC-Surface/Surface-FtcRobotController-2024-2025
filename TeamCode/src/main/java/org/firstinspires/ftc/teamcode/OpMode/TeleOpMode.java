@@ -37,14 +37,14 @@ public class TeleOpMode extends LinearOpMode {
 
         while (opModeIsActive() && !isStopRequested()) {
 
-            telemetry.addData("Outtake Elev Height", robot.oElevGetHeight());
-            telemetry.addData("Outtake Elev Is Busy", robot.oElevIsBusy());
+            //telemetry.addData("Outtake Elev Height", robot.oElevGetHeight());
+            //telemetry.addData("Outtake Elev Is Busy", robot.oElevIsBusy());
 //            telemetry.addData("Outtake Elev Get Power", robot.oElevGetPower());
 //
             telemetry.update();
 
 
-            robot.oSlideLoop();
+            //robot.oSlideLoop();
 
             double drive = gamepad1.left_stick_y;
             double strafe = gamepad1.left_stick_x;
