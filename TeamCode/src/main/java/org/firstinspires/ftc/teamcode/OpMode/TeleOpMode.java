@@ -23,6 +23,8 @@ public class TeleOpMode extends LinearOpMode {
         boolean xPressed = false;
         long xActionStartTime = 0;
         boolean xOpenClawDone = false;
+        boolean yOpenClawDone = false;
+        boolean yArmstartDown=false;
         boolean yPressed = false;
         long yActionStartTime = 0;
         telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
@@ -84,23 +86,28 @@ public class TeleOpMode extends LinearOpMode {
             if (gamepad2.y && !yPressed) {
                 yPressed = true;
                 xOpenClawDone = false;
+                yOpenClawDone=false;
                 yActionStartTime = (long) intakeTimer.milliseconds();
                 robot.iArmGrab();
             }
 
-            if (yPressed && intakeTimer.milliseconds() - yActionStartTime >= 100) {
+            if (yPressed && !yOpenClawDone && intakeTimer.milliseconds() - yActionStartTime >= 100) {
                 robot.iCloseClaw();
+                yOpenClawDone=true;
             }
 
-            if (yPressed && intakeTimer.milliseconds() - yActionStartTime >= 500) {
+            if (yPressed && yOpenClawDone && !yArmstartDown && intakeTimer.milliseconds() - yActionStartTime >= 500) {
                  // Reset flag for the open claw action
                 robot.iArmStart();
+                yArmstartDown=true;
             }
-            if (yPressed && !xOpenClawDone && intakeTimer.milliseconds() - yActionStartTime >= 2500) {
+
+            if (yPressed && !xOpenClawDone && yArmstartDown && yOpenClawDone && intakeTimer.milliseconds() - yActionStartTime >= 2500) {
                 robot.iOpenClaw();
                 xOpenClawDone = true;
             }
-            if (yPressed && xOpenClawDone && intakeTimer.milliseconds() - yActionStartTime >= 3000) {
+
+            if (yPressed && xOpenClawDone && yOpenClawDone && intakeTimer.milliseconds() - yActionStartTime >= 3000) {
                 robot.iArmHover();
                 yPressed = false;
             }
