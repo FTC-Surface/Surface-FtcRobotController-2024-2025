@@ -15,16 +15,28 @@ import org.firstinspires.ftc.teamcode.Subsystems.Constants;
 @Config
 public class TeleOpMode extends LinearOpMode {
 
+    private enum eIntakeState{
+        iIntakeReady,
+        iCloseClaw,
+        iStartArm,
+        iOpenClaw,
+        iResetArm
+    }
+
     @Override
     public void runOpMode() throws InterruptedException {
         Robot robot = new Robot(hardwareMap);
         ElapsedTime intakeTimer = new ElapsedTime(ElapsedTime.Resolution.MILLISECONDS);
         Constants constants = new Constants();
+
         boolean xPressed = false;
         long xActionStartTime = 0;
         boolean xOpenClawDone = false;
         boolean yPressed = false;
         long yActionStartTime = 0;
+
+        eIntakeState intakeState = eIntakeState.iIntakeReady;
+
         telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
         waitForStart();
         telemetry.update();
@@ -78,7 +90,49 @@ public class TeleOpMode extends LinearOpMode {
                 robot.oArmStart();
 
             //if(gamepad2.left_trigger>0.5)
-                   
+
+            switch(intakeState){
+                case iIntakeReady:
+                    if (gamepad2.y) {
+                        yPressed = true;
+                        xOpenClawDone = false;
+                        yActionStartTime = (long) intakeTimer.milliseconds();
+                        robot.iArmGrab();
+                        intakeState = eIntakeState.iCloseClaw;
+                    }
+                    break;
+
+                case iCloseClaw:
+                    if(intakeTimer.milliseconds() - yActionStartTime >= 100){
+                        robot.iCloseClaw();
+                        intakeState = eIntakeState.iStartArm;
+                    }
+                    break;
+
+                case iStartArm:
+                    if (intakeTimer.milliseconds() - yActionStartTime >= 500) {
+                        // Reset flag for the open claw action
+                        robot.iArmStart();
+                        intakeState = eIntakeState.iOpenClaw;
+                    }
+                    break;
+
+                case iOpenClaw:
+                    if(intakeTimer.milliseconds() - yActionStartTime >= 2500){
+                        robot.iOpenClaw();
+                        xOpenClawDone = true;
+                        intakeState = eIntakeState.iResetArm;
+                    }
+                    break;
+
+                case iResetArm:
+                    if(intakeTimer.milliseconds() - yActionStartTime >= 3000){
+                        robot.iArmHover();
+                        yPressed = false;
+                        intakeState = eIntakeState.iIntakeReady;
+                    }
+                    break;
+            }
 
             //(Down+Up)
             if (gamepad2.y && !yPressed) {
