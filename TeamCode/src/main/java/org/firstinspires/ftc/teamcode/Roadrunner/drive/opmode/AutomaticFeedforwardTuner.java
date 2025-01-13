@@ -18,6 +18,8 @@ import org.firstinspires.ftc.robotcore.internal.system.Misc;
 import org.firstinspires.ftc.teamcode.Roadrunner.drive.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.Roadrunner.util.LoggingUtil;
 import org.firstinspires.ftc.teamcode.Roadrunner.util.RegressionUtil;
+import org.firstinspires.ftc.teamcode.Subsystems.Intake.IntakeArm;
+import org.firstinspires.ftc.teamcode.Subsystems.Intake.IntakeClaw;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,8 +37,11 @@ import java.util.List;
 @Config
 @Autonomous(group = "drive")
 public class AutomaticFeedforwardTuner extends LinearOpMode {
-    public static double MAX_POWER = 0.7;
+    public static double MAX_POWER = 0.65;
     public static double DISTANCE = 100; // in
+
+    IntakeArm iArm = new IntakeArm();
+    IntakeClaw iClaw = new IntakeClaw();
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -44,6 +49,9 @@ public class AutomaticFeedforwardTuner extends LinearOpMode {
             RobotLog.setGlobalErrorMsg("Feedforward constants usually don't need to be tuned " +
                     "when using the built-in drive motor velocity PID.");
         }
+
+        iArm.init(hardwareMap);
+        iClaw.init(hardwareMap);
 
         Telemetry telemetry = new MultipleTelemetry(this.telemetry, FtcDashboard.getInstance().getTelemetry());
 
@@ -55,6 +63,9 @@ public class AutomaticFeedforwardTuner extends LinearOpMode {
         telemetry.update();
 
         waitForStart();
+
+        iArm.upPos();
+        iClaw.closeClawIn();
 
         if (isStopRequested()) return;
 
