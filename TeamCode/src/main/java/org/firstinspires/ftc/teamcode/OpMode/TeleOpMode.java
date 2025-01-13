@@ -93,48 +93,48 @@ public class TeleOpMode extends LinearOpMode {
 
             //if(gamepad2.left_trigger>0.5)
 
-            switch(intakeState){
-                case iIntakeReady:
-                    if (gamepad2.y) {
-                        yPressed = true;
-                        xOpenClawDone = false;
-                        yActionStartTime = (long) intakeTimer.milliseconds();
-                        robot.iArmGrab();
-                        intakeState = eIntakeState.iCloseClaw;
-                    }
-                    break;
-
-                case iCloseClaw:
-                    if(intakeTimer.milliseconds() - yActionStartTime >= 100){
-                        robot.iCloseClaw();
-                        intakeState = eIntakeState.iStartArm;
-                    }
-                    break;
-
-                case iStartArm:
-                    if (intakeTimer.milliseconds() - yActionStartTime >= 500) {
-                        // Reset flag for the open claw action
-                        robot.iArmStart();
-                        intakeState = eIntakeState.iOpenClaw;
-                    }
-                    break;
-
-                case iOpenClaw:
-                    if(intakeTimer.milliseconds() - yActionStartTime >= 2500){
-                        robot.iOpenClaw();
-                        xOpenClawDone = true;
-                        intakeState = eIntakeState.iResetArm;
-                    }
-                    break;
-
-                case iResetArm:
-                    if(intakeTimer.milliseconds() - yActionStartTime >= 3000){
-                        robot.iArmHover();
-                        yPressed = false;
-                        intakeState = eIntakeState.iIntakeReady;
-                    }
-                    break;
-            }
+//            switch(intakeState){
+//                case iIntakeReady:
+//                    if (gamepad2.y) {
+//                        yPressed = true;
+//                        xOpenClawDone = false;
+//                        yActionStartTime = (long) intakeTimer.milliseconds();
+//                        robot.iArmGrab();
+//                        intakeState = eIntakeState.iCloseClaw;
+//                    }
+//                    break;
+//
+//                case iCloseClaw:
+//                    if(intakeTimer.milliseconds() - yActionStartTime >= 100){
+//                        robot.iCloseClaw();
+//                        intakeState = eIntakeState.iStartArm;
+//                    }
+//                    break;
+//
+//                case iStartArm:
+//                    if (intakeTimer.milliseconds() - yActionStartTime >= 500) {
+//                        // Reset flag for the open claw action
+//                        robot.iArmStart();
+//                        intakeState = eIntakeState.iOpenClaw;
+//                    }
+//                    break;
+//
+//                case iOpenClaw:
+//                    if(intakeTimer.milliseconds() - yActionStartTime >= 2500){
+//                        robot.iOpenClaw();
+//                        xOpenClawDone = true;
+//                        intakeState = eIntakeState.iResetArm;
+//                    }
+//                    break;
+//
+//                case iResetArm:
+//                    if(intakeTimer.milliseconds() - yActionStartTime >= 3000){
+//                        robot.iArmHover();
+//                        yPressed = false;
+//                        intakeState = eIntakeState.iIntakeReady;
+//                    }
+//                    break;
+//            }
 
             //(Down+Up)
             if (gamepad2.y && !yPressed) {
