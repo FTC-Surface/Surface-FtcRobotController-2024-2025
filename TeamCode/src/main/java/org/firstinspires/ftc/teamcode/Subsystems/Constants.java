@@ -26,8 +26,8 @@ public class Constants {
         park
     }
 
-    public final double IOpenClaw = 0;
-    public final double ICloseClaw = 0.6;
+    public final double IOpenClaw = 0.4;
+    public final double ICloseClaw = 0.65;
 
     public final double OOpenClaw = 0;
     public final double OCloseClaw = 0.6;

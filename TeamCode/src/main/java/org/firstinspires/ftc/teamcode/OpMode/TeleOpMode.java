@@ -120,7 +120,7 @@ public class TeleOpMode extends LinearOpMode {
 //                    break;
 //
 //                case iOpenClaw:
-//                    if(intakeTimer.milliseconds() - yActionStartTime >= 2500){
+//                    if(intakeTimer.milliseconds() - yActionStartTime >= 1000){
 //                        robot.iOpenClaw();
 //                        xOpenClawDone = true;
 //                        intakeState = eIntakeState.iResetArm;
@@ -128,7 +128,7 @@ public class TeleOpMode extends LinearOpMode {
 //                    break;
 //
 //                case iResetArm:
-//                    if(intakeTimer.milliseconds() - yActionStartTime >= 3000){
+//                    if(intakeTimer.milliseconds() - yActionStartTime >= 1500){
 //                        robot.iArmHover();
 //                        yPressed = false;
 //                        intakeState = eIntakeState.iIntakeReady;
@@ -136,12 +136,12 @@ public class TeleOpMode extends LinearOpMode {
 //                    break;
 //            }
 
-            //(Down+Up)
+//            (Down+Up)
             if (gamepad2.y && !yPressed) {
                 yPressed = true;
                 xOpenClawDone = false;
                 yOpenClawDone=false;
-                yArmstartDown=true;
+                yArmstartDown=false;
                 yActionStartTime = (long) intakeTimer.milliseconds();
                 robot.iArmGrab();
             }
@@ -150,7 +150,7 @@ public class TeleOpMode extends LinearOpMode {
                 robot.iCloseClaw();
                 yOpenClawDone=true;
             }
-            if (yPressed && yOpenClawDone && !yArmstartDown && intakeTimer.milliseconds() - yActionStartTime >= 500) {
+            if (yPressed && yOpenClawDone && !yArmstartDown && intakeTimer.milliseconds() - yActionStartTime >= 600) {
                  // Reset flag for the open claw action
                 robot.iArmStart();
                 yArmstartDown=true;
@@ -162,6 +162,10 @@ public class TeleOpMode extends LinearOpMode {
             if (yPressed && xOpenClawDone && yOpenClawDone && intakeTimer.milliseconds() - yActionStartTime >= 1500) {
                 robot.iArmHover();
                 yPressed = false;
+            }
+
+            if(gamepad2.x){
+                robot.iArmStart();
             }
 
 

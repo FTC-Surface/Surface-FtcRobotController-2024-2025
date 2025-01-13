@@ -25,6 +25,8 @@ import com.qualcomm.robotcore.util.RobotLog;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.Roadrunner.drive.DriveConstants;
 import org.firstinspires.ftc.teamcode.Roadrunner.drive.SampleMecanumDrive;
+import org.firstinspires.ftc.teamcode.Subsystems.Intake.IntakeArm;
+import org.firstinspires.ftc.teamcode.Subsystems.Intake.IntakeClaw;
 
 import java.util.Objects;
 
@@ -59,6 +61,9 @@ public class ManualFeedforwardTuner extends LinearOpMode {
 
     private Mode mode;
 
+    IntakeArm iArm = new IntakeArm();
+    IntakeClaw iClaw = new IntakeClaw();
+
     private static MotionProfile generateProfile(boolean movingForward) {
         MotionState start = new MotionState(movingForward ? 0 : DISTANCE, 0, 0, 0);
         MotionState goal = new MotionState(movingForward ? DISTANCE : 0, 0, 0, 0);
@@ -71,6 +76,9 @@ public class ManualFeedforwardTuner extends LinearOpMode {
             RobotLog.setGlobalErrorMsg("Feedforward constants usually don't need to be tuned " +
                     "when using the built-in drive motor velocity PID.");
         }
+
+        iArm.init(hardwareMap);
+        iClaw.init(hardwareMap);
 
         Telemetry telemetry = new MultipleTelemetry(this.telemetry, dashboard.getTelemetry());
 
@@ -87,6 +95,9 @@ public class ManualFeedforwardTuner extends LinearOpMode {
         telemetry.clearAll();
 
         waitForStart();
+
+        iArm.upPos();
+        iClaw.closeClawIn();
 
         if (isStopRequested()) return;
 
