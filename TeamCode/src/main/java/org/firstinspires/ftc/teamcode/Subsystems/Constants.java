@@ -26,13 +26,13 @@ public class Constants {
         park
     }
 
-    public final double IOpenClaw = 0.6;
-    public final double ICloseClaw = 0;
+    public final double IOpenClaw = 0;
+    public final double ICloseClaw = 0.6;
 
     public final double OuttakeElevatorMotorPower = 0.7;
     public final double IntakeElevatorMotorPower = 0.3;
 
-    public final double OutakeArmStartPos = 0.15;
+    public final double OutakeArmStartPos = 0;
     public final double OutakeArmOutPos = 0.5;
 
     public final double IntakeArmStartPos = 1.0;

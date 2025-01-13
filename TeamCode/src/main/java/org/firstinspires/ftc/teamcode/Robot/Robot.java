@@ -50,7 +50,6 @@ public class Robot {
         oArm.init(hardwareMap);
         oSlides.init(hardwareMap);
 
-//        iIntake.init(hardwareMap);
 //        iSlides.init((hardwareMap));
         iClaw.init(hardwareMap);
         iArm.init(hardwareMap);
@@ -111,8 +110,8 @@ public class Robot {
     public void oArmStart(){oArm.startPos();}
     public void oArmOut(){oArm.outPos();}
 
-    public void iArmGrab(){iArm.upPos();}
-    public void iArmStart(){iArm.downPos();}
+    public void iArmGrab(){iArm.downPos();}
+    public void iArmStart(){iArm.upPos();}
     public void iArmHover(){iArm.hoverPos();}
 
 

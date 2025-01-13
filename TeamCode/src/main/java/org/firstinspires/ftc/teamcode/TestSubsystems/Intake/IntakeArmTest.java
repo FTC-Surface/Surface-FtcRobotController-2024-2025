@@ -23,7 +23,7 @@ public class IntakeArmTest extends LinearOpMode{
     public static double positionClaw = 0;
 
 
-    public static int activateTestMode;
+    public static int activateTestMode = 0;
 
     @Override
     public void runOpMode() throws InterruptedException {

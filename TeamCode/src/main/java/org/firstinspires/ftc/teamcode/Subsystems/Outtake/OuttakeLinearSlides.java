@@ -41,10 +41,10 @@ public class OuttakeLinearSlides extends Subsystem {
             case PrepareClip:
                 break;
             case Ground:
-                move(0);
+                move(100);
                 break;
             case Basket:
-                move(3000);
+                move(2900);
                 break;
             case Hang:
                 break;
