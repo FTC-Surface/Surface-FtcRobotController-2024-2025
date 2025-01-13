@@ -141,6 +141,7 @@ public class TeleOpMode extends LinearOpMode {
                 yPressed = true;
                 xOpenClawDone = false;
                 yOpenClawDone=false;
+                yArmstartDown=true;
                 yActionStartTime = (long) intakeTimer.milliseconds();
                 robot.iArmGrab();
             }
@@ -149,19 +150,16 @@ public class TeleOpMode extends LinearOpMode {
                 robot.iCloseClaw();
                 yOpenClawDone=true;
             }
-
             if (yPressed && yOpenClawDone && !yArmstartDown && intakeTimer.milliseconds() - yActionStartTime >= 500) {
                  // Reset flag for the open claw action
                 robot.iArmStart();
                 yArmstartDown=true;
             }
-
-            if (yPressed && !xOpenClawDone && yArmstartDown && yOpenClawDone && intakeTimer.milliseconds() - yActionStartTime >= 2500) {
+            if (yPressed && !xOpenClawDone && yArmstartDown && yOpenClawDone && intakeTimer.milliseconds() - yActionStartTime >= 1000) {
                 robot.iOpenClaw();
                 xOpenClawDone = true;
             }
-
-            if (yPressed && xOpenClawDone && yOpenClawDone && intakeTimer.milliseconds() - yActionStartTime >= 3000) {
+            if (yPressed && xOpenClawDone && yOpenClawDone && intakeTimer.milliseconds() - yActionStartTime >= 1500) {
                 robot.iArmHover();
                 yPressed = false;
             }
