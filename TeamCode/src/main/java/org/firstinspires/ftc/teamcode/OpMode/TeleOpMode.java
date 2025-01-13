@@ -54,11 +54,11 @@ public class TeleOpMode extends LinearOpMode {
 
             robot.teleOpDrive(drive * 0.6,strafe * 0.6,rotate * 0.6);
 
-            if(gamepad1.a){
+            if(gamepad1.x){
                 robot.oElevMove(Constants.eOElevatorState.Basket, 0);
             }
 
-            if(gamepad1.b){
+            if(gamepad1.y){
                 robot.oElevMove(Constants.eOElevatorState.Ground, 0);
             }
 
