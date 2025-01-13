@@ -44,7 +44,7 @@ public class OuttakeLinearSlides extends Subsystem {
                 move(100);
                 break;
             case Basket:
-                move(2900);
+                move(2700);
                 break;
             case Hang:
                 break;
