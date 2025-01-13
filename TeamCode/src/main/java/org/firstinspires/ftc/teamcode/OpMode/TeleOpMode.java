@@ -106,14 +106,6 @@ public class TeleOpMode extends LinearOpMode {
                 yPressed = false;
             }
 
-//            if(gamepad2.dpad_down){
-//                robot.iArmHover();
-//            }
-
-//            if(gamepad2.dpad_down){
-//                robot.iArmHover();
-//                //robot.iOpenClaw();
-//            }
 
             if(gamepad2.left_bumper)//Open
             {
