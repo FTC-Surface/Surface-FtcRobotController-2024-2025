@@ -91,7 +91,10 @@ public class TeleOpMode extends LinearOpMode {
             if(gamepad2.b)
                 robot.oArmStart();
 
-            //if(gamepad2.left_trigger>0.5)
+            if(gamepad2.left_trigger>0.5)
+                robot.oOpenClaw();
+            if(gamepad2.right_trigger>0.5)
+                robot.oCloseClaw();
 
 //            switch(intakeState){
 //                case iIntakeReady:
