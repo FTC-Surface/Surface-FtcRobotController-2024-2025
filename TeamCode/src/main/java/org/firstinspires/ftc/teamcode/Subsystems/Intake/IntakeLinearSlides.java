@@ -33,6 +33,8 @@ public class IntakeLinearSlides extends Subsystem {
 
     public void moveElevator(Constants.eIElevatorState state, int manualMove) {
         switch(state){
+//            case InIntake:
+//            case InOuttake:
             case ManualUp:
             case ManualDown:
         }
