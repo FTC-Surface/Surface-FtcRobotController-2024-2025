@@ -8,25 +8,25 @@ import com.qualcomm.robotcore.hardware.Servo;
 @TeleOp(name = "Outtake Arm", group = "Tests")
 @Config
 public class OuttakeArmTest extends LinearOpMode {
-    Servo armOne;
-    Servo armTwo;
+    Servo arm;
+    Servo wrist;
 
-    public static double armOneTarget = 0;
-    public static double armTwoTarget = 0;
+    public static double armTarget = 0;
+    public static double wristTarget = 0;
 
     //Start pos is 0
     //Max pos is 1
 
     @Override
     public void runOpMode() throws InterruptedException {
-        armOne = hardwareMap.get(Servo.class, "Outtake Arm Right");
-        armTwo = hardwareMap.get(Servo.class, "Outtake Wrist Left");
+        arm = hardwareMap.get(Servo.class, "Outtake Arm Right");
+        wrist = hardwareMap.get(Servo.class, "Outtake Wrist Left");
 
         waitForStart();
 
         while (opModeIsActive() && !isStopRequested()) {
-            armOne.setPosition(armOneTarget);
-            armTwo.setPosition(armTwoTarget);
+            arm.setPosition(armTarget);
+            wrist.setPosition(wristTarget);
         }
     }
 }

@@ -99,7 +99,7 @@ public class Robot {
     }
 //    public void iElevGetHeight(){iSlides.getPos();}
 
-    public void oElevMove(Constants.eOElevatorState state, int manualMove){oSlides.moveElevator(state, manualMove);}
+    public void oElevMove(Constants.eOElevatorState state){oSlides.moveElevator(state);}
     public void oElevStop(){oSlides.setPowerZero();}
 //    public void iElevMove(Constants.eIElevatorState state, int manualMove){iSlides.moveElevator(state, manualMove);}
 

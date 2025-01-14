@@ -78,6 +78,12 @@ public class IntakeLinearSlidesTest extends LinearOpMode {
             } else {
                 intakeLinearSlideOne.setPower(0);
             }
+
+            if(targetPos >= maxHeight){
+                targetPos = maxHeight;
+            } else if(targetPos <= minHeight){
+                targetPos = minHeight;
+            }
         }
     }
 

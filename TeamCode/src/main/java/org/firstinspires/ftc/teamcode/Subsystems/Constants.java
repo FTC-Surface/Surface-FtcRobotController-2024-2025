@@ -14,8 +14,8 @@ public class Constants {
     }
 
     public enum eIElevatorState{
-        Intake,
-        Outtake,
+        Start,
+        MaxOut,
         ManualUp,
         ManualDown
     }
@@ -38,6 +38,10 @@ public class Constants {
         iStartArm,
         iOpenClaw,
         iResetArm
+    }
+
+    public enum eOuttakeState{
+
     }
 
     public final double IOpenClaw = 0.4;
