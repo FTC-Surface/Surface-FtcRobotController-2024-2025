@@ -30,7 +30,7 @@ import org.firstinspires.ftc.teamcode.Subsystems.Intake.IntakeClaw;
 @Autonomous(group = "drive")
 public class BackAndForth extends LinearOpMode {
 
-    public static double DISTANCE = 50;
+    public static double DISTANCE = 40;
 
     IntakeArm iArm = new IntakeArm();
     IntakeClaw iClaw = new IntakeClaw();
