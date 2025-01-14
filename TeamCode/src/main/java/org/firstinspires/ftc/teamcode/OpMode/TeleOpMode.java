@@ -21,12 +21,11 @@ public class TeleOpMode extends LinearOpMode {
         ElapsedTime intakeTimer = new ElapsedTime(ElapsedTime.Resolution.MILLISECONDS);
         Constants constants = new Constants();
 
-        boolean xPressed = false;
-        long xActionStartTime = 0;
         boolean xOpenClawDone = false;
         boolean yOpenClawDone = false;
-        boolean yArmstartDown=false;
+        boolean yArmstartDone = false;
         boolean yPressed = false;
+        boolean bumperPressed = false;
         long yActionStartTime = 0;
 
         Constants.eIntakeState intakeState = Constants.eIntakeState.iIntakeReady;
@@ -36,43 +35,56 @@ public class TeleOpMode extends LinearOpMode {
         waitForStart();
 
         robot.iArmHover();
-//        robot.oArmStart();
         robot.iOpenClaw();
+
+        robot.oArmStart();
+        robot.oOpenClaw();
         intakeTimer.reset();
-        //robot.oElevMove(Constants.eOElevatorState.Ground,0);
+        robot.oElevMove(Constants.eOElevatorState.Ready,0);
 
         while (opModeIsActive() && !isStopRequested()) {
 
-            telemetry.addData("Outtake Elev Height", robot.oElevGetHeight());
-            telemetry.addData("Outtake Elev Is Busy", robot.oElevIsBusy());
+//            telemetry.addData("Outtake Elev Height", robot.oElevGetHeight());
+//            telemetry.addData("Outtake Elev Is Busy", robot.oElevIsBusy());
+//            height = robot.oElevGetHeight();
+//            telemetry.update();
+//            robot.oSlideLoop();
 
-            telemetry.update();
+//********** Player One Controls ***************************************************
 
-            robot.oSlideLoop();
-
+            //Drive
             double drive = gamepad1.left_stick_y;
             double strafe = gamepad1.left_stick_x;
             double rotate = gamepad1.right_stick_x;
 
             robot.teleOpDrive(drive * 0.6,strafe * 0.6,rotate * 0.6);
 
-//********** Player One Controls ***************************************************
-
-            if(gamepad1.x){
+            //Outtake Linear Slides
+            if(gamepad1.x)
                 robot.oElevMove(Constants.eOElevatorState.Basket, 0);
-            }
 
-            if(gamepad1.y){
-                robot.oElevMove(Constants.eOElevatorState.Ground, 0);
-            }
+            if(gamepad1.y)
+                robot.oElevMove(Constants.eOElevatorState.Ready, 0);
+
+            if(gamepad1.a)
+                robot.oElevMove(Constants.eOElevatorState.Grab, 0);
 
 //********** Player Two Controls ***************************************************
 
-            //Arm
+//********** Outtake ***************************************************
+            //Basket
             if(gamepad2.a)
-                robot.oArmOut();
+                robot.oArmDump();
+
+            //Take
             if(gamepad2.b)
-                robot.oArmStart();
+                robot.oArmTake();
+
+            //Hook
+            if(gamepad2.y)
+                robot.oArmHookstart();
+            if(gamepad2.x)
+                robot.oArmHookup();
 
             //Claw
             if(gamepad2.left_trigger>0.5)
@@ -80,7 +92,65 @@ public class TeleOpMode extends LinearOpMode {
             if(gamepad2.right_trigger>0.5)
                 robot.oCloseClaw();
 
-//            switch(intakeState){
+
+//********** Intake ***************************************************
+
+//          Intake Version 1 (Down+Up)
+            if (gamepad2.y && !yPressed) {
+                yPressed = true;
+                xOpenClawDone = false;
+                yOpenClawDone=false;
+                yArmstartDone=false;
+                yActionStartTime = (long) intakeTimer.milliseconds();
+                robot.iArmGrab();
+            }
+
+            if (yPressed && !yOpenClawDone && intakeTimer.milliseconds() - yActionStartTime >= 100) {
+                robot.iCloseClaw();
+                yOpenClawDone=true;
+            }
+            if (yPressed && yOpenClawDone && !yArmstartDone && intakeTimer.milliseconds() - yActionStartTime >= 600) {
+                 // Reset flag for the open claw action
+                robot.iArmStart();
+                yArmstartDone=true;
+            }
+            if (yPressed && !xOpenClawDone && yArmstartDone && yOpenClawDone && intakeTimer.milliseconds() - yActionStartTime >= 1000) {
+                robot.iOpenClaw();
+                xOpenClawDone = true;
+            }
+            if (yPressed && xOpenClawDone && yArmstartDone && yOpenClawDone && intakeTimer.milliseconds() - yActionStartTime >= 1500) {
+                robot.iArmHover();
+                yPressed = false;
+            }
+
+//          Intake Version 2
+
+            if(gamepad2.left_bumper)//Arm_Down
+                robot.iArmGrab();
+
+            if (gamepad2.right_bumper && !bumperPressed) {
+                robot.iCloseClaw();
+                bumperPressed = true;
+                xOpenClawDone = false;
+                yArmstartDone=false;
+                yActionStartTime = (long) intakeTimer.milliseconds();
+            }
+            if (bumperPressed && !yArmstartDone && intakeTimer.milliseconds() - yActionStartTime >= 300) {
+                robot.iArmStart();
+                yArmstartDone=true;
+            }
+            if (bumperPressed && yArmstartDone && !xOpenClawDone && intakeTimer.milliseconds() - yActionStartTime >= 1000) {
+                robot.iOpenClaw();
+                xOpenClawDone = true;
+            }
+            if (bumperPressed && xOpenClawDone && yOpenClawDone && intakeTimer.milliseconds() - yActionStartTime >= 1500) {
+                robot.iArmHover();
+                bumperPressed = false;
+            }
+        }
+    }
+
+    //            switch(intakeState){
 //                case iIntakeReady:
 //                    if (gamepad2.y) {
 //                        yPressed = true;
@@ -126,60 +196,6 @@ public class TeleOpMode extends LinearOpMode {
 //                    }
 //                    break;
 //            }
-
-//********** Claw ***************************************************
-
-//            (Down+Up)
-            if (gamepad2.y && !yPressed) {
-                yPressed = true;
-                xOpenClawDone = false;
-                yOpenClawDone=false;
-                yArmstartDown=false;
-                yActionStartTime = (long) intakeTimer.milliseconds();
-                robot.iArmGrab();
-            }
-
-            if (yPressed && !yOpenClawDone && intakeTimer.milliseconds() - yActionStartTime >= 100) {
-                robot.iCloseClaw();
-                yOpenClawDone=true;
-            }
-            if (yPressed && yOpenClawDone && !yArmstartDown && intakeTimer.milliseconds() - yActionStartTime >= 600) {
-                 // Reset flag for the open claw action
-                robot.iArmStart();
-                yArmstartDown=true;
-            }
-            if (yPressed && !xOpenClawDone && yArmstartDown && yOpenClawDone && intakeTimer.milliseconds() - yActionStartTime >= 1000) {
-                robot.iOpenClaw();
-                xOpenClawDone = true;
-            }
-            if (yPressed && xOpenClawDone && yOpenClawDone && intakeTimer.milliseconds() - yActionStartTime >= 1500) {
-                robot.iArmHover();
-                yPressed = false;
-            }
-
-            if(gamepad2.x){
-                robot.iArmStart();
-            }
-
-
-            if(gamepad2.left_bumper)//Open
-            {
-                robot.iOpenClaw();
-            }
-            if(gamepad2.right_bumper)//Close
-            {
-                robot.iCloseClaw();
-            }
-
-//            height = robot.oElevGetHeight();
-//            if(gamepad2.left_trigger >0.5){
-//                robot.iArmStart();
-//            }
-//            if(gamepad2.right_trigger >0.5){
-//                robot.iArmMove(0.5);
-//            }
-        }
-    }
 
     public void waitForSeconds(double seconds){
         ElapsedTime timer = new ElapsedTime(ElapsedTime.Resolution.SECONDS);

@@ -19,14 +19,24 @@ public class OuttakeArm extends Subsystem {
         armTwo = hardwareMap.get(Servo.class, "Outtake Wrist Left");
     }
 
-    public void startPos(){
+    public void startPos(){//when it faces up during the beginning
         armOne.setPosition(constants.OutakeArmStartPos);
-        armTwo.setPosition(constants.OutakeArmStartPos);
-        //armTwo.setPosition(constants.OutakeWristStartPos);
+        armTwo.setPosition(constants.OutakeWristStartPos);
     }
-    public void outPos(){
-        armOne.setPosition(constants.OutakeArmOutPos);
-        armTwo.setPosition(constants.OutakeArmOutPos);
-        //armTwo.setPosition(constants.OutakeWristOuttPos);
+    public void takePos(){//when it takes the sample from the box
+        armOne.setPosition(constants.OutakeArmTakePos);
+        armTwo.setPosition(constants.OutakeWristTakePos);
+    }
+    public void dumpPos(){//when it dumps the sample to the basket
+        armOne.setPosition(constants.OutakeArmDumpPos);
+        armTwo.setPosition(constants.OutakeWristDumpPos);
+    }
+    public void hookstartPos(){//when it goes below the hook bar
+        armOne.setPosition(constants.OutakeArmHookstartPos);
+        armTwo.setPosition(constants.OutakeWristHookstartPos);
+    }
+    public void hookupPos(){// when it is ready to hook the specimen on
+        armOne.setPosition(constants.OutakeArmHookupPos);
+        armTwo.setPosition(constants.OutakeWristHookupPos);
     }
 }

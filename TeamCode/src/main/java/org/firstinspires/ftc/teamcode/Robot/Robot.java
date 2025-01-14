@@ -117,7 +117,10 @@ public class Robot {
     public void oCloseClaw(){oClaw.closeClawOut();}
 
     public void oArmStart(){oArm.startPos();}
-    public void oArmOut(){oArm.outPos();}
+    public void oArmDump(){oArm.dumpPos();}
+    public void oArmTake(){oArm.takePos();}
+    public void oArmHookstart(){oArm.hookstartPos();}
+    public void oArmHookup(){oArm.hookupPos();}
 
 
 

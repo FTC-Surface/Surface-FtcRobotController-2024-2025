@@ -37,6 +37,10 @@ public class TestAutoOpMode extends LinearOpMode {
 
         robot.iArmHover();
         robot.iOpenClaw();
+
+        robot.oArmStart();
+        robot.oOpenClaw();
+
         robot.oElevMove(Constants.eOElevatorState.Ground,0);
 
         TrajectorySequence depositInit = drive.trajectorySequenceBuilder(startPose)

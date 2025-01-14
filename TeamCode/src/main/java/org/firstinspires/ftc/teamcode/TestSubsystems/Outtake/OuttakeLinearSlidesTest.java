@@ -41,6 +41,10 @@ public class OuttakeLinearSlidesTest extends LinearOpMode {
         telemetry.addData("Height", currentHeight);
 
         while(opModeIsActive()) {
+            if(targetPos>=maxHeight)
+                targetPos=maxHeight;
+            else if(targetPos<=minHeight)
+                targetPos=minHeight;
 
             telemetry.addData("Left Motor Position", leftOuttakeMotor.getCurrentPosition());
             telemetry.addData("Right Motor Position", rightOuttakeMotor.getCurrentPosition());
@@ -72,12 +76,6 @@ public class OuttakeLinearSlidesTest extends LinearOpMode {
 
             currentHeight = (rightOuttakeMotor.getCurrentPosition() + leftOuttakeMotor.getCurrentPosition())/2;
 
-            if (gamepad1.a) {
-                targetPos = 3000;
-            }
-            if (gamepad1.b) {
-                targetPos = 0;
-            }
 
 //            Max height = 3000
 

@@ -14,7 +14,7 @@ public class OuttakeLinearSlides extends Subsystem {
 
     private double currentPos;
     private double Minpos=0;
-    private double Maxpos=3001;
+    private double Maxpos=2900;
 
     private int targetPos;
 
@@ -41,18 +41,18 @@ public class OuttakeLinearSlides extends Subsystem {
             case PrepareClip:
                 break;
             case Ground:
-                move(100);
+                move(0);
                 break;
             case Basket:
-                move(2700);
+                move(2800);
                 break;
             case Hang:
                 break;
             case Ready:
-                move(500);
+                move(700);
                 break;
             case Grab:
-                move(450);
+                move(600);
                 break;
             case ManualUp:
                 move((int)manualMove);

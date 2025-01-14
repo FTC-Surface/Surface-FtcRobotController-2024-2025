@@ -12,6 +12,7 @@ public class OuttakeArmTest extends LinearOpMode {
     Servo armTwo;
 
     public static double armOneTarget = 0;
+    public static double armTwoTarget = 0;
 
     //Start pos is 0
     //Max pos is 1
@@ -25,7 +26,7 @@ public class OuttakeArmTest extends LinearOpMode {
 
         while (opModeIsActive() && !isStopRequested()) {
             armOne.setPosition(armOneTarget);
-            armTwo.setPosition(armOneTarget);
+            armTwo.setPosition(armTwoTarget);
         }
     }
 }
