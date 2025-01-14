@@ -19,6 +19,7 @@ public class TeleOpMode extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
         Robot robot = new Robot(hardwareMap);
         ElapsedTime intakeTimer = new ElapsedTime(ElapsedTime.Resolution.MILLISECONDS);
+        ElapsedTime outtakeTimer = new ElapsedTime(ElapsedTime.Resolution.MILLISECONDS);
         Constants constants = new Constants();
 
         boolean xOpenClawDone = false;
@@ -28,20 +29,29 @@ public class TeleOpMode extends LinearOpMode {
         boolean bumperPressed = false;
         long yActionStartTime = 0;
 
+        long OuttakeStartTime1=0;
+        long OuttakeStartTime2=0;
+        boolean Outtakepressed1 = false;
+        boolean Outtakepressed2 = false;
+        boolean OuttakeclawDone = false;
+        boolean ArmTakeDone = false;
+        boolean OpenClawDone = false;
+
         Constants.eIntakeState intakeState = Constants.eIntakeState.iIntakeReady;
 
         telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
 
         waitForStart();
+        robot.oElevMove(Constants.eOElevatorState.Ready);
 
         robot.iArmHover();
         robot.iOpenClaw();
 
-        robot.oArmStart();
+        robot.oArmTake();
         robot.oOpenClaw();
 
         intakeTimer.reset();
-        robot.oElevMove(Constants.eOElevatorState.Ready);
+
 
         while (opModeIsActive() && !isStopRequested()) {
 
@@ -69,31 +79,54 @@ public class TeleOpMode extends LinearOpMode {
             if(gamepad1.y)
                 robot.oElevMove(Constants.eOElevatorState.Ready);
 
-            if(gamepad1.a)
-                robot.oElevMove(Constants.eOElevatorState.Grab);
-
 //********** Player Two Controls ***************************************************
 
 //********** Outtake ***************************************************
-            //Basket
-            if(gamepad2.a)
+            //Dump + Claw_Open + Arm_Back + Slide_Ready
+            if(gamepad2.left_trigger > 0.5 && !Outtakepressed2)
+            {
                 robot.oArmDump();
-
-            //Take
-            if(gamepad2.b)
+                OuttakeStartTime2 = (long) outtakeTimer.milliseconds();
+                Outtakepressed2 = true;
+                ArmTakeDone = false;
+                OpenClawDone = false;
+            }
+            if(Outtakepressed1 && !OpenClawDone && outtakeTimer.milliseconds() - OuttakeStartTime2 >= 300){
+                robot.oOpenClaw();
+                OpenClawDone = true;
+            }
+            if(Outtakepressed1 && !ArmTakeDone && OpenClawDone && outtakeTimer.milliseconds() - OuttakeStartTime2 >= 500){
                 robot.oArmTake();
+                ArmTakeDone = true;
+            }
+            if(Outtakepressed1 && ArmTakeDone && OpenClawDone && outtakeTimer.milliseconds() - OuttakeStartTime2 >= 800){
+                robot.oElevMove(Constants.eOElevatorState.Ready);
+                Outtakepressed2 = false;
+            }
+
+            //Grab + Claw_close + Up
+            if(gamepad2.right_trigger > 0.5 && !Outtakepressed1){
+                robot.oElevMove(Constants.eOElevatorState.Grab);
+                Outtakepressed1 = true;
+                OuttakeclawDone = false;
+                OuttakeStartTime1 = (long) outtakeTimer.milliseconds();
+            }
+            if(Outtakepressed1 && !OuttakeclawDone && outtakeTimer.milliseconds() - OuttakeStartTime1 >= 300){
+                robot.oCloseClaw();
+                OuttakeclawDone = true;
+            }
+            if(Outtakepressed1 && OuttakeclawDone && outtakeTimer.milliseconds() - OuttakeStartTime1 >= 500){
+                robot.oElevMove(Constants.eOElevatorState.Basket);
+                robot.oArmStart();
+                Outtakepressed1 = false;
+            }
+
 
             //Hook
             if(gamepad2.y)
                 robot.oArmHookstart();
             if(gamepad2.x)
                 robot.oArmHookup();
-
-            //Claw
-            if(gamepad2.left_trigger>0.5)
-                robot.oOpenClaw();
-            if(gamepad2.right_trigger>0.5)
-                robot.oCloseClaw();
 
 //********** Intake ***************************************************
 
