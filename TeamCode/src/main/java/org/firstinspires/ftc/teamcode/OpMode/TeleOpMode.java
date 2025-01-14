@@ -127,7 +127,11 @@ public class TeleOpMode extends LinearOpMode {
                 robot.oArmHookstart();
             if(gamepad2.b)
                 robot.oArmHookup();
-            
+            if(gamepad2.right_bumper)
+                robot.oOpenClaw();
+            if(gamepad2.left_bumper)
+                robot.oCloseClaw();
+                
 
 //********** Intake ***************************************************
 
