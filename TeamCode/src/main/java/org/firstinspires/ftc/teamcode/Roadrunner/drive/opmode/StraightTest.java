@@ -34,13 +34,13 @@ public class StraightTest extends LinearOpMode {
                 .forward(DISTANCE)
                 .build();
 
-        iArm.init(hardwareMap);
-        iClaw.init(hardwareMap);
+//        iArm.init(hardwareMap);
+//        iClaw.init(hardwareMap);
 
         waitForStart();
 
-        iArm.upPos();
-        iClaw.closeClawIn();
+//        iArm.upPos();
+//        iClaw.closeClawIn();
 
         if (isStopRequested()) return;
 

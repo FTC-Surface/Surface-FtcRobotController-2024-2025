@@ -23,13 +23,13 @@ public class TurnTest extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
         SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
 
-        iArm.init(hardwareMap);
-        iClaw.init(hardwareMap);
+//        iArm.init(hardwareMap);
+//        iClaw.init(hardwareMap);
 
         waitForStart();
 
-        iArm.upPos();
-        iClaw.closeClawIn();
+//        iArm.upPos();
+//        iClaw.closeClawIn();
 
         if (isStopRequested()) return;
 

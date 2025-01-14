@@ -23,13 +23,13 @@ public class SplineTest extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
         SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
 
-        iArm.init(hardwareMap);
-        iClaw.init(hardwareMap);
+//        iArm.init(hardwareMap);
+//        iClaw.init(hardwareMap);
 
         waitForStart();
 
-        iArm.upPos();
-        iClaw.openClawIn();
+//        iArm.upPos();
+//        iClaw.openClawIn();
 
         if (isStopRequested()) return;
 

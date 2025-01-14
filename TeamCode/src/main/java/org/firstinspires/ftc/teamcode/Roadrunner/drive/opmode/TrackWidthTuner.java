@@ -43,8 +43,8 @@ public class TrackWidthTuner extends LinearOpMode {
         // TODO: if you haven't already, set the localizer to something that doesn't depend on
         // drive encoders for computing the heading
 
-        iArm.init(hardwareMap);
-        iClaw.init(hardwareMap);
+//        iArm.init(hardwareMap);
+//        iClaw.init(hardwareMap);
 
         telemetry.addLine("Press play to begin the track width tuner routine");
         telemetry.addLine("Make sure your robot has enough clearance to turn smoothly");
@@ -52,8 +52,8 @@ public class TrackWidthTuner extends LinearOpMode {
 
         waitForStart();
 
-        iArm.upPos();
-        iClaw.closeClawIn();
+//        iArm.upPos();
+//        iClaw.closeClawIn();
 
         if (isStopRequested()) return;
 

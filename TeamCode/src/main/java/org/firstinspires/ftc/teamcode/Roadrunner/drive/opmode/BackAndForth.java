@@ -47,13 +47,13 @@ public class BackAndForth extends LinearOpMode {
                 .back(DISTANCE)
                 .build();
 
-        iArm.init(hardwareMap);
-        iClaw.init(hardwareMap);
+//        iArm.init(hardwareMap);
+//        iClaw.init(hardwareMap);
 
         waitForStart();
 
-        iArm.upPos();
-        iClaw.closeClawIn();
+//        iArm.upPos();
+//        iClaw.closeClawIn();
 
         while (opModeIsActive() && !isStopRequested()) {
             drive.followTrajectory(trajectoryForward);

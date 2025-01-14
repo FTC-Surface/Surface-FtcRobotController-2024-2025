@@ -77,8 +77,8 @@ public class ManualFeedforwardTuner extends LinearOpMode {
                     "when using the built-in drive motor velocity PID.");
         }
 
-        iArm.init(hardwareMap);
-        iClaw.init(hardwareMap);
+//        iArm.init(hardwareMap);
+//        iClaw.init(hardwareMap);
 
         Telemetry telemetry = new MultipleTelemetry(this.telemetry, dashboard.getTelemetry());
 
