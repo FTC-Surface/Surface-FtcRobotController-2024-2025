@@ -45,13 +45,13 @@ public class TeleOpMode extends LinearOpMode {
 
         while (opModeIsActive() && !isStopRequested()) {
 
-            robot.oSlideLoop();
 
-//            telemetry.addData("Outtake Elev Height", robot.oElevGetHeight());
-//            telemetry.addData("Outtake Elev Is Busy", robot.oElevIsBusy());
-//            height = robot.oElevGetHeight();
-//            telemetry.update();
-//            robot.oSlideLoop();
+            telemetry.addData("Outtake Elev Height", robot.oElevGetHeight());
+            telemetry.addData("Outtake Elev Is Busy", robot.oElevIsBusy());
+
+            telemetry.update();
+
+            robot.oSlideLoop();
 
 //********** Player One Controls ***************************************************
 
@@ -94,7 +94,6 @@ public class TeleOpMode extends LinearOpMode {
                 robot.oOpenClaw();
             if(gamepad2.right_trigger>0.5)
                 robot.oCloseClaw();
-
 
 //********** Intake ***************************************************
 
