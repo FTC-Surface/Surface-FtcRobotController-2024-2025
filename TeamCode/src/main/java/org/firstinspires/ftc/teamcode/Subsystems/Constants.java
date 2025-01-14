@@ -47,7 +47,7 @@ public class Constants {
     public final double IOpenClaw = 0.4;
     public final double ICloseClaw = 0.7;
 
-    public final double OOpenClaw = 0;
+    public final double OOpenClaw = 0.4;
     public final double OCloseClaw = 0.6;
 
     public final double OuttakeElevatorMotorPower = 0.7;
@@ -55,7 +55,7 @@ public class Constants {
 
     public final double OutakeArmStartPos = 0.5;
     public final double OutakeArmDumpPos = 0.7;
-    public final double OutakeArmTakePos = 0.05;
+    public final double OutakeArmTakePos = 0.35;
     public final double OutakeArmHookstartPos = 0.3;
     public final double OutakeArmHookupPos = 0.35;
 
