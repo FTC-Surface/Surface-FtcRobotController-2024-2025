@@ -45,7 +45,7 @@ public class Constants {
     }
 
     public final double IOpenClaw = 0.4;
-    public final double ICloseClaw = 0.65;
+    public final double ICloseClaw = 0.7;
 
     public final double OOpenClaw = 0;
     public final double OCloseClaw = 0.6;

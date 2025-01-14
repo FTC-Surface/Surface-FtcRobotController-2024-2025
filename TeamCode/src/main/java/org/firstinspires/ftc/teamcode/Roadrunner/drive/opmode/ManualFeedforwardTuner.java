@@ -96,9 +96,6 @@ public class ManualFeedforwardTuner extends LinearOpMode {
 
         waitForStart();
 
-        iArm.upPos();
-        iClaw.closeClawIn();
-
         if (isStopRequested()) return;
 
         boolean movingForwards = true;
