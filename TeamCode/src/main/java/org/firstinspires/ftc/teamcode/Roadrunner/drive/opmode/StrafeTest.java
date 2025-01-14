@@ -39,9 +39,6 @@ public class StrafeTest extends LinearOpMode {
 
         waitForStart();
 
-        iArm.upPos();
-        iClaw.closeClawIn();
-
         if (isStopRequested()) return;
 
         drive.followTrajectory(trajectory);

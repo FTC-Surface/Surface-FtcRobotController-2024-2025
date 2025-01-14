@@ -48,7 +48,7 @@ import java.util.Objects;
 @Config
 @Autonomous(group = "drive")
 public class ManualFeedforwardTuner extends LinearOpMode {
-    public static double DISTANCE = 72; // in
+    public static double DISTANCE = 80; // in
 
     private FtcDashboard dashboard = FtcDashboard.getInstance();
 
@@ -77,9 +77,6 @@ public class ManualFeedforwardTuner extends LinearOpMode {
                     "when using the built-in drive motor velocity PID.");
         }
 
-        iArm.init(hardwareMap);
-        iClaw.init(hardwareMap);
-
         Telemetry telemetry = new MultipleTelemetry(this.telemetry, dashboard.getTelemetry());
 
         drive = new SampleMecanumDrive(hardwareMap);
@@ -95,9 +92,6 @@ public class ManualFeedforwardTuner extends LinearOpMode {
         telemetry.clearAll();
 
         waitForStart();
-
-        iArm.upPos();
-        iClaw.closeClawIn();
 
         if (isStopRequested()) return;
 

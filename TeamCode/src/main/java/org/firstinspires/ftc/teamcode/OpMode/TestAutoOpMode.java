@@ -41,7 +41,7 @@ public class TestAutoOpMode extends LinearOpMode {
         robot.oArmStart();
         robot.oOpenClaw();
 
-        robot.oElevMove(Constants.eOElevatorState.Ground,0);
+        robot.oElevMove(Constants.eOElevatorState.Ground);
 
         TrajectorySequence depositInit = drive.trajectorySequenceBuilder(startPose)
                 .splineToLinearHeading(new Pose2d(-55, -54, Math.toRadians(45)), 180 )

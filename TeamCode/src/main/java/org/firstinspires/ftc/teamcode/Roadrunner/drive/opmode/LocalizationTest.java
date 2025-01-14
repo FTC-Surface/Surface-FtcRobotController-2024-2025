@@ -33,9 +33,6 @@ public class LocalizationTest extends LinearOpMode {
 
         waitForStart();
 
-        iArm.upPos();
-        iClaw.openClawIn();
-
         while (!isStopRequested()) {
             drive.setWeightedDrivePower(
                     new Pose2d(
