@@ -31,9 +31,14 @@ public class LocalizationTest extends LinearOpMode {
         iArm.init(hardwareMap);
         iClaw.init(hardwareMap);
 
+        while(opModeInInit()){
+            iArm.upPos();
+            iClaw.closeClawIn();
+        }
+
         waitForStart();
 
-        iArm.hoverPos();
+        iArm.upPos();
         iClaw.openClawIn();
 
         while (!isStopRequested()) {

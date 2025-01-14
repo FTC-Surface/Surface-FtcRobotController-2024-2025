@@ -7,17 +7,29 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.Roadrunner.drive.SampleMecanumDrive;
+import org.firstinspires.ftc.teamcode.Subsystems.Intake.IntakeArm;
+import org.firstinspires.ftc.teamcode.Subsystems.Intake.IntakeClaw;
 
 /*
  * This is an example of a more complex path to really test the tuning.
  */
 @Autonomous(group = "drive")
 public class SplineTest extends LinearOpMode {
+
+    IntakeArm iArm = new IntakeArm();
+    IntakeClaw iClaw = new IntakeClaw();
+
     @Override
     public void runOpMode() throws InterruptedException {
         SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
 
+        iArm.init(hardwareMap);
+        iClaw.init(hardwareMap);
+
         waitForStart();
+
+        iArm.upPos();
+        iClaw.openClawIn();
 
         if (isStopRequested()) return;
 

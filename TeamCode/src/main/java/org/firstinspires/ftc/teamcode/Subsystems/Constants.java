@@ -22,8 +22,22 @@ public class Constants {
 
     public enum AutoState{
         idle,
-        ready,
+        depositInit,
+        grabFirst,
+        depositFirst,
+        grabSecond,
+        depositSecond,
+        grabThird,
+        depositThird,
         park
+    }
+
+    public enum eIntakeState{
+        iIntakeReady,
+        iCloseClaw,
+        iStartArm,
+        iOpenClaw,
+        iResetArm
     }
 
     public final double IOpenClaw = 0.4;

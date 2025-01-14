@@ -15,14 +15,6 @@ import org.firstinspires.ftc.teamcode.Subsystems.Constants;
 @Config
 public class TeleOpMode extends LinearOpMode {
 
-    private enum eIntakeState{
-        iIntakeReady,
-        iCloseClaw,
-        iStartArm,
-        iOpenClaw,
-        iResetArm
-    }
-
     @Override
     public void runOpMode() throws InterruptedException {
         Robot robot = new Robot(hardwareMap);
@@ -37,36 +29,34 @@ public class TeleOpMode extends LinearOpMode {
         boolean yPressed = false;
         long yActionStartTime = 0;
 
-        eIntakeState intakeState = eIntakeState.iIntakeReady;
+        Constants.eIntakeState intakeState = Constants.eIntakeState.iIntakeReady;
 
         telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
+
         waitForStart();
-        telemetry.update();
 
         robot.iArmHover();
-        robot.oArmStart();
+//        robot.oArmStart();
         robot.iOpenClaw();
         intakeTimer.reset();
         //robot.oElevMove(Constants.eOElevatorState.Ground,0);
 
         while (opModeIsActive() && !isStopRequested()) {
 
-            //telemetry.addData("Outtake Elev Height", robot.oElevGetHeight());
-            //telemetry.addData("Outtake Elev Is Busy", robot.oElevIsBusy());
-//            telemetry.addData("Outtake Elev Get Power", robot.oElevGetPower());
-//
+            telemetry.addData("Outtake Elev Height", robot.oElevGetHeight());
+            telemetry.addData("Outtake Elev Is Busy", robot.oElevIsBusy());
+
             telemetry.update();
 
-
-            //robot.oSlideLoop();
+            robot.oSlideLoop();
 
             double drive = gamepad1.left_stick_y;
             double strafe = gamepad1.left_stick_x;
             double rotate = gamepad1.right_stick_x;
-            // Define these at the class level (or in a suitable scope)
-
 
             robot.teleOpDrive(drive * 0.6,strafe * 0.6,rotate * 0.6);
+
+//********** Player One Controls ***************************************************
 
             if(gamepad1.x){
                 robot.oElevMove(Constants.eOElevatorState.Basket, 0);
@@ -76,21 +66,15 @@ public class TeleOpMode extends LinearOpMode {
                 robot.oElevMove(Constants.eOElevatorState.Ground, 0);
             }
 
-//            if(gamepad1.y){
-//                robot.oElevMove(Constants.eOElevatorState.Ground, 0);
-//            }
-//
-//            if(gamepad1.x){
-//                robot.oElevMove(Constants.eOElevatorState.Ground, 0);
-//            }
+//********** Player Two Controls ***************************************************
 
-            //Player Two Controls
-            //Outtake
+            //Arm
             if(gamepad2.a)
                 robot.oArmOut();
             if(gamepad2.b)
                 robot.oArmStart();
 
+            //Claw
             if(gamepad2.left_trigger>0.5)
                 robot.oOpenClaw();
             if(gamepad2.right_trigger>0.5)
@@ -101,7 +85,11 @@ public class TeleOpMode extends LinearOpMode {
 //                    if (gamepad2.y) {
 //                        yPressed = true;
 //                        xOpenClawDone = false;
+//                        yOpenClawDone=false;
+//                        yArmstartDown=false;
+
 //                        yActionStartTime = (long) intakeTimer.milliseconds();
+
 //                        robot.iArmGrab();
 //                        intakeState = eIntakeState.iCloseClaw;
 //                    }
@@ -138,6 +126,8 @@ public class TeleOpMode extends LinearOpMode {
 //                    }
 //                    break;
 //            }
+
+//********** Claw ***************************************************
 
 //            (Down+Up)
             if (gamepad2.y && !yPressed) {

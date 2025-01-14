@@ -13,6 +13,8 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.internal.system.Misc;
 import org.firstinspires.ftc.teamcode.Roadrunner.drive.DriveConstants;
 import org.firstinspires.ftc.teamcode.Roadrunner.drive.SampleMecanumDrive;
+import org.firstinspires.ftc.teamcode.Subsystems.Intake.IntakeArm;
+import org.firstinspires.ftc.teamcode.Subsystems.Intake.IntakeClaw;
 
 /*
  * This routine determines the effective track width. The procedure works by executing a point turn
@@ -30,6 +32,9 @@ public class TrackWidthTuner extends LinearOpMode {
     public static int NUM_TRIALS = 5;
     public static int DELAY = 1000; // ms
 
+    IntakeArm iArm = new IntakeArm();
+    IntakeClaw iClaw = new IntakeClaw();
+
     @Override
     public void runOpMode() throws InterruptedException {
         Telemetry telemetry = new MultipleTelemetry(this.telemetry, FtcDashboard.getInstance().getTelemetry());
@@ -38,11 +43,17 @@ public class TrackWidthTuner extends LinearOpMode {
         // TODO: if you haven't already, set the localizer to something that doesn't depend on
         // drive encoders for computing the heading
 
+        iArm.init(hardwareMap);
+        iClaw.init(hardwareMap);
+
         telemetry.addLine("Press play to begin the track width tuner routine");
         telemetry.addLine("Make sure your robot has enough clearance to turn smoothly");
         telemetry.update();
 
         waitForStart();
+
+        iArm.upPos();
+        iClaw.closeClawIn();
 
         if (isStopRequested()) return;
 

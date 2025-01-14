@@ -10,6 +10,8 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.Roadrunner.drive.SampleMecanumDrive;
+import org.firstinspires.ftc.teamcode.Subsystems.Intake.IntakeArm;
+import org.firstinspires.ftc.teamcode.Subsystems.Intake.IntakeClaw;
 
 /*
  * This is a simple routine to test translational drive capabilities.
@@ -18,6 +20,9 @@ import org.firstinspires.ftc.teamcode.Roadrunner.drive.SampleMecanumDrive;
 @Autonomous(group = "drive")
 public class StraightTest extends LinearOpMode {
     public static double DISTANCE = 60; // in
+
+    IntakeArm iArm = new IntakeArm();
+    IntakeClaw iClaw = new IntakeClaw();
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -29,7 +34,13 @@ public class StraightTest extends LinearOpMode {
                 .forward(DISTANCE)
                 .build();
 
+        iArm.init(hardwareMap);
+        iClaw.init(hardwareMap);
+
         waitForStart();
+
+        iArm.upPos();
+        iClaw.closeClawIn();
 
         if (isStopRequested()) return;
 
