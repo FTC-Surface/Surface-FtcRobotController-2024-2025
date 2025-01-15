@@ -82,7 +82,7 @@ public class TeleOpMode extends LinearOpMode {
 //********** Player Two Controls ***************************************************
 
 //********** Outtake ***************************************************
-            //Dump + Claw_Open + Arm_Back + Slide_Ready
+            //Dump + Claw_Open + Arm_Start + Slide_Ready
             if(gamepad2.left_trigger > 0.5 && !Outtakepressed2)
             {
                 robot.oArmDump();
@@ -96,7 +96,7 @@ public class TeleOpMode extends LinearOpMode {
                 OpenClawDone = true;
             }
             if(Outtakepressed2 && !ArmTakeDone && OpenClawDone && outtakeTimer.milliseconds() - OuttakeStartTime2 >= 500){
-                robot.oArmTake();
+                robot.oArmStart();
                 ArmTakeDone = true;
             }
             if(Outtakepressed2 && ArmTakeDone && OpenClawDone && outtakeTimer.milliseconds() - OuttakeStartTime2 >= 800){
@@ -104,7 +104,7 @@ public class TeleOpMode extends LinearOpMode {
                 Outtakepressed2 = false;
             }
 
-            //Grab + Claw_close + Up
+            //Grab + Claw_close + Up/Arm_start
             if(gamepad2.right_trigger > 0.5 && !Outtakepressed1){
                 robot.oElevMove(Constants.eOElevatorState.Grab);
                 Outtakepressed1 = true;
@@ -116,7 +116,7 @@ public class TeleOpMode extends LinearOpMode {
                 OuttakeclawDone = true;
             }
             if(Outtakepressed1 && OuttakeclawDone && outtakeTimer.milliseconds() - OuttakeStartTime1 >= 500){
-                robot.oElevMove(Constants.eOElevatorState.Basket);
+//                robot.oElevMove(Constants.eOElevatorState.Basket);
                 robot.oArmStart();
                 Outtakepressed1 = false;
             }
@@ -127,6 +127,14 @@ public class TeleOpMode extends LinearOpMode {
                 robot.oArmHookstart();
             if(gamepad2.b)
                 robot.oArmHookup();
+
+            //Arm_position
+            if(gamepad2.dpad_up)
+                robot.oArmHookgrab();
+            if(gamepad2.dpad_down)
+                robot.oArmTake();
+
+            //Outtake_claw
             if(gamepad2.right_bumper)
                 robot.oOpenClaw();
             if(gamepad2.left_bumper)
