@@ -28,17 +28,17 @@ public class IntakeArmTest extends LinearOpMode{
     @Override
     public void runOpMode() throws InterruptedException {
         armServo1 = hardwareMap.get(Servo.class,"iArm1");
-        //armServo2 = hardwareMap.get(Servo.class, "iArm2");
+        armServo2 = hardwareMap.get(Servo.class, "iArm2");
         Wrist = hardwareMap.get(Servo.class, "Wrist");
         Claw = hardwareMap.get(Servo.class, "Claw");
-
+        armServo2.setDirection(Servo.Direction.REVERSE);
         waitForStart();
 
         while(opModeIsActive() && !isStopRequested()){
 
             if(activateTestMode == 0){
                 armServo1.setPosition(positionOne);
-                //armServo2.setPosition(positionOne);
+                armServo2.setPosition(positionOne);
                 Wrist.setPosition(positionWrist);
                 Claw.setPosition(positionClaw);
             }

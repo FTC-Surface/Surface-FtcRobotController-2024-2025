@@ -21,8 +21,7 @@ public class OuttakeArmTest extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
         arm = hardwareMap.get(Servo.class, "Outtake Arm Right");
         wrist = hardwareMap.get(Servo.class, "Outtake Wrist Left");
-        arm.setDirection(Servo.Direction.REVERSE);
-        wrist.setDirection(Servo.Direction.REVERSE);
+
         waitForStart();
 
         while (opModeIsActive() && !isStopRequested()) {

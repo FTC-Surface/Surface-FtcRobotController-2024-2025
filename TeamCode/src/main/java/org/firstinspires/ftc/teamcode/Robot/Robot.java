@@ -49,10 +49,12 @@ public class Robot {
         topRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         bottomRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
+        oClaw.init(hardwareMap);
         oArm.init(hardwareMap);
         oSlides.init(hardwareMap);
 
 //        iSlides.init((hardwareMap));
+
         iClaw.init(hardwareMap);
         iArm.init(hardwareMap);
 
