@@ -11,8 +11,8 @@ public class OuttakeArmTest extends LinearOpMode {
     Servo arm;
     Servo wrist;
 
-    public static double armTarget = 0;
-    public static double wristTarget = 0;
+    public static double Target1 = 0;
+    public static double Target2 = 0;
 
     //Start pos is 0
     //Max pos is 1
@@ -21,12 +21,13 @@ public class OuttakeArmTest extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
         arm = hardwareMap.get(Servo.class, "Outtake Arm Right");
         wrist = hardwareMap.get(Servo.class, "Outtake Wrist Left");
-
+        arm.setDirection(Servo.Direction.REVERSE);
+        wrist.setDirection(Servo.Direction.REVERSE);
         waitForStart();
 
         while (opModeIsActive() && !isStopRequested()) {
-            arm.setPosition(armTarget);
-            wrist.setPosition(wristTarget);
+            arm.setPosition(Target1);
+            wrist.setPosition(Target2);
         }
     }
 }

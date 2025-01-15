@@ -17,6 +17,8 @@ public class OuttakeArm extends Subsystem {
     public void init(HardwareMap hardwareMap) {
         arm = hardwareMap.get(Servo.class, "Outtake Arm Right");
         wrist = hardwareMap.get(Servo.class, "Outtake Wrist Left");
+        arm.setDirection(Servo.Direction.REVERSE);
+        wrist.setDirection(Servo.Direction.REVERSE);
     }
 
     public void startPos(){//when it faces up during the beginning
@@ -30,6 +32,10 @@ public class OuttakeArm extends Subsystem {
     public void dumpPos(){//when it dumps the sample to the basket
         arm.setPosition(constants.OutakeArmDumpPos);
         wrist.setPosition(constants.OutakeWristDumpPos);
+    }
+    public void hookgrabPos(){//when it goes below the hook bar
+        arm.setPosition(constants.OutakeArmHookgrabPos);
+        wrist.setPosition(constants.OutakeWristHookgrabPos);
     }
     public void hookstartPos(){//when it goes below the hook bar
         arm.setPosition(constants.OutakeArmHookstartPos);

@@ -119,6 +119,7 @@ public class Robot {
     public void oArmStart(){oArm.startPos();}
     public void oArmDump(){oArm.dumpPos();}
     public void oArmTake(){oArm.takePos();}
+    public void oArmHookgrab(){oArm.hookgrabPos();}
     public void oArmHookstart(){oArm.hookstartPos();}
     public void oArmHookup(){oArm.hookupPos();}
 
