@@ -1,31 +1,37 @@
 package com.example.meepmeeptesting;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
-import com.acmerobotics.roadrunner.geometry.Vector2d;
 
 import org.rowlandhall.meepmeep.MeepMeep;
 import org.rowlandhall.meepmeep.roadrunner.DefaultBotBuilder;
 import org.rowlandhall.meepmeep.roadrunner.entity.RoadRunnerBotEntity;
 
-public class MeepMeepTest3 {
+public class MeepMeepTest3_Basket {
     public static void main(String[] args) {
         MeepMeep meepMeep = new MeepMeep(800);
 
         RoadRunnerBotEntity myBot = new DefaultBotBuilder(meepMeep)
                 // Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width
-                .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 15)
-                .followTrajectorySequence(drive -> drive.trajectorySequenceBuilder(new Pose2d(-40,-58, Math.toRadians(90)))
+                .setConstraints(60, 60, Math.toRadians(470), Math.toRadians(180), 16)
+                .followTrajectorySequence(drive -> drive.trajectorySequenceBuilder(new Pose2d(-35,-60, Math.toRadians(90)))
 
-                        .splineToLinearHeading(new Pose2d(-55, -54, Math.toRadians(45)), 180 )
+                        .splineToLinearHeading(new Pose2d(-53, -52, Math.toRadians(45)), 180 )
+                        .waitSeconds(4)
 
                         .lineToLinearHeading(new Pose2d(-48,-37, Math.toRadians(90)))
-                        .lineToLinearHeading(new Pose2d(-55, -54, Math.toRadians(45)))
+                        .waitSeconds(2)
+                        .lineToLinearHeading(new Pose2d(-53, -52, Math.toRadians(45)))
+                        .waitSeconds(4)
 
                         .lineToLinearHeading(new Pose2d(-58,-37, Math.toRadians(90)))
-                        .lineToLinearHeading(new Pose2d(-55, -54, Math.toRadians(45)))
+                        .waitSeconds(2)
+                        .lineToLinearHeading(new Pose2d(-53, -52, Math.toRadians(45)))
+                        .waitSeconds(4)
 
                         .lineToLinearHeading(new Pose2d(-62,-37, Math.toRadians(120)))
-                        .lineToLinearHeading(new Pose2d(-55, -54, Math.toRadians(45)))
+                        .waitSeconds(2)
+                        .lineToLinearHeading(new Pose2d(-53, -52, Math.toRadians(45)))
+                        .waitSeconds(4)
 
                         .build());
 

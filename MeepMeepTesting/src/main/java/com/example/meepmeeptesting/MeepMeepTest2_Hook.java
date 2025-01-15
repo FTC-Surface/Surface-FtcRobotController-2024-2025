@@ -7,18 +7,19 @@ import org.rowlandhall.meepmeep.MeepMeep;
 import org.rowlandhall.meepmeep.roadrunner.DefaultBotBuilder;
 import org.rowlandhall.meepmeep.roadrunner.entity.RoadRunnerBotEntity;
 
-public class MeepMeepTest2 {
+public class MeepMeepTest2_Hook {
     public static void main(String[] args) {
         MeepMeep meepMeep = new MeepMeep(800);
 
         RoadRunnerBotEntity myBot = new DefaultBotBuilder(meepMeep)
                 // Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width
-                .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 15)
-                .followTrajectorySequence(drive -> drive.trajectorySequenceBuilder(new Pose2d(7.5,-58, 0))
+                .setConstraints(60, 60, Math.toRadians(470), Math.toRadians(180), 15)
+                .followTrajectorySequence(drive -> drive.trajectorySequenceBuilder(new Pose2d(7.5,-58, Math.toRadians(270)))
                         .lineTo(new Vector2d(7.5,-34))
+                        .waitSeconds(2)
                         .lineTo(new Vector2d(7.5,-50))
 
-                        .splineToLinearHeading(new Pose2d(48, -13, Math.toRadians(90)), Math.toRadians(270))
+                        .splineToLinearHeading(new Pose2d(48, -13, Math.toRadians(180)), Math.toRadians(270))
 
                         .lineTo((new Vector2d(48, -53)))
 
