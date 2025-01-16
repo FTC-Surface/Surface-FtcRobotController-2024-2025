@@ -36,7 +36,7 @@ public class TeleOpMode extends LinearOpMode {
         boolean OuttakeclawDone = false;
         boolean ArmTakeDone = false;
         boolean OpenClawDone = false;
-        boolean ArmDumpDone = false;
+        boolean LinearSlidereadyDone = false;
 
         Constants.eIntakeState intakeState = Constants.eIntakeState.iIntakeReady;
 
@@ -111,18 +111,18 @@ public class TeleOpMode extends LinearOpMode {
                 robot.oElevMove(Constants.eOElevatorState.Grab);
                 Outtakepressed1 = true;
                 OuttakeclawDone = false;
-                ArmDumpDone = false;
+                LinearSlidereadyDone = false;
                 OuttakeStartTime1 = (long) outtakeTimer.milliseconds();
             }
-            if(Outtakepressed1 && !OuttakeclawDone && !ArmDumpDone && outtakeTimer.milliseconds() - OuttakeStartTime1 >= 300){
+            if(Outtakepressed1 && !OuttakeclawDone && !LinearSlidereadyDone && outtakeTimer.milliseconds() - OuttakeStartTime1 >= 300){
                 robot.oCloseClaw();
                 OuttakeclawDone = true;
             }
-            if(Outtakepressed1 &&  !ArmDumpDone && OuttakeclawDone && outtakeTimer.milliseconds() - OuttakeStartTime1 >= 500){
+            if(Outtakepressed1 &&  !LinearSlidereadyDone && OuttakeclawDone && outtakeTimer.milliseconds() - OuttakeStartTime1 >= 500){
                 robot.oElevMove(Constants.eOElevatorState.Ready);
-                ArmDumpDone = true;
+                LinearSlidereadyDone = true;
             }
-            if(Outtakepressed1 && OuttakeclawDone &&  ArmDumpDone && outtakeTimer.milliseconds() - OuttakeStartTime1 >= 1000){
+            if(Outtakepressed1 && OuttakeclawDone && LinearSlidereadyDone && outtakeTimer.milliseconds() - OuttakeStartTime1 >= 1000){
                 robot.oArmDump();
                 Outtakepressed1 = false;
             }
