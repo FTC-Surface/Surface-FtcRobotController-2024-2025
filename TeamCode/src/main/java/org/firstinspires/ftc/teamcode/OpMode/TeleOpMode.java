@@ -90,15 +90,15 @@ public class TeleOpMode extends LinearOpMode {
                 LinearSlidereadyDone = false;
                 OuttakeStartTime1 = (long) outtakeTimer.milliseconds();
             }
-            if(Outtakepressed1 && !OuttakeclawDone && !LinearSlidereadyDone && outtakeTimer.milliseconds() - OuttakeStartTime1 >= 500){
+            if(Outtakepressed1 && !OuttakeclawDone && !LinearSlidereadyDone && outtakeTimer.milliseconds() - OuttakeStartTime1 >= 700){
                 robot.oCloseClaw();
                 OuttakeclawDone = true;
             }
-            if(Outtakepressed1 &&  !LinearSlidereadyDone && OuttakeclawDone && outtakeTimer.milliseconds() - OuttakeStartTime1 >= 800){
+            if(Outtakepressed1 &&  !LinearSlidereadyDone && OuttakeclawDone && outtakeTimer.milliseconds() - OuttakeStartTime1 >= 1000){
                 robot.oElevMove(Constants.eOElevatorState.Ready);
                 LinearSlidereadyDone = true;
             }
-            if(Outtakepressed1 && OuttakeclawDone && LinearSlidereadyDone && outtakeTimer.milliseconds() - OuttakeStartTime1 >= 1300){
+            if(Outtakepressed1 && OuttakeclawDone && LinearSlidereadyDone && outtakeTimer.milliseconds() - OuttakeStartTime1 >= 1500){
                 robot.oArmDump();
                 Outtakepressed1 = false;
             }
