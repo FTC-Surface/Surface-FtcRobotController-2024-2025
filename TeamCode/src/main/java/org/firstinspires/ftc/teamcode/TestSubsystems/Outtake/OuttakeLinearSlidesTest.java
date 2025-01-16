@@ -28,6 +28,9 @@ public class OuttakeLinearSlidesTest extends LinearOpMode {
         leftOuttakeMotor = hardwareMap.get(DcMotorEx.class, "outtakeLinearSlideOne");
         rightOuttakeMotor = hardwareMap.get(DcMotorEx.class, "outtakeLinearSlideTwo");
 
+        leftOuttakeMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rightOuttakeMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
         leftOuttakeMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         rightOuttakeMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
