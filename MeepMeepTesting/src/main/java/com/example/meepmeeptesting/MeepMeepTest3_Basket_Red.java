@@ -15,27 +15,27 @@ public class MeepMeepTest3_Basket_Red {
                 .setConstraints(60, 60, Math.toRadians(470), Math.toRadians(180), 15.25)
                 .followTrajectorySequence(drive -> drive.trajectorySequenceBuilder(new Pose2d(-35,-60, Math.toRadians(90)))
 
-                        .lineToLinearHeading(new Pose2d(-53, -52, Math.toRadians(45)))
+                        .lineToLinearHeading(new Pose2d(-55, -50, Math.toRadians(45)))
                         //.splineToLinearHeading(new Pose2d(-53, -52, Math.toRadians(45)),Math.toRadians(180))
                         
                         .waitSeconds(2)
 
-                        .lineToLinearHeading(new Pose2d(-48,-37, Math.toRadians(90)))
+                        .lineToLinearHeading(new Pose2d(-48,-35, Math.toRadians(90)))
                         .waitSeconds(1)
 
-                        .lineToLinearHeading(new Pose2d(-53, -52, Math.toRadians(45)))
+                        .lineToLinearHeading(new Pose2d(-55, -50, Math.toRadians(45)))
                         .waitSeconds(2)
 
-                        .lineToLinearHeading(new Pose2d(-58,-37, Math.toRadians(90)))
+                        .lineToLinearHeading(new Pose2d(-58,-35, Math.toRadians(90)))
                         .waitSeconds(1)
 
-                        .lineToLinearHeading(new Pose2d(-53, -52, Math.toRadians(45)))
+                        .lineToLinearHeading(new Pose2d(-55, -50, Math.toRadians(45)))
                         .waitSeconds(2)
 
-                        .lineToLinearHeading(new Pose2d(-62,-37, Math.toRadians(120)))
+                        .lineToLinearHeading(new Pose2d(-62,-35, Math.toRadians(120)))
                         .waitSeconds(1)
 
-                        .lineToLinearHeading(new Pose2d(-53, -52, Math.toRadians(45)))
+                        .lineToLinearHeading(new Pose2d(-55, -50, Math.toRadians(45)))
                         .waitSeconds(2)
 
                         .build());

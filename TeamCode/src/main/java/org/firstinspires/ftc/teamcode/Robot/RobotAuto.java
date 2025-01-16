@@ -34,6 +34,7 @@ public class RobotAuto {
     public RobotAuto(HardwareMap hardwareMap){
         oArm.init(hardwareMap);
         oSlides.init(hardwareMap);
+        oClaw.init(hardwareMap);
 
 //        iSlides.init((hardwareMap));
         iClaw.init(hardwareMap);

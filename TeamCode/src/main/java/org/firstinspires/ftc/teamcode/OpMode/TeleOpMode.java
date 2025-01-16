@@ -134,20 +134,20 @@ public class TeleOpMode extends LinearOpMode {
                 stickmoved1 = false;
             }
 
-            if(gamepad2.right_stick_y >= 0.5 && gamepad2.right_stick_y <1 && !stickmoved2) {
-                robot.oArmHookstart();
+            if(gamepad2.right_stick_y >= 0.5 && !stickmoved2) {
+                robot.oElevMove(Constants.eOElevatorState.Clip_Hang);
                 OuttakeStartTime4 = (long) outtakeTimer.milliseconds();
                 stickmoved2 = true;
             }
             if(stickmoved2 && outtakeTimer.milliseconds() - OuttakeStartTime4 >= 500) {
-                robot.oElevMove(Constants.eOElevatorState.Clip_Hang);
+                robot.oArmHookstart();
                 stickmoved2 = false;
             }
 
-            if(gamepad2.right_stick_y >=1)
+            if(gamepad2.square)
                 robot.oArmHookup();
 
-            if(gamepad2.right_stick_y <=-1){
+            if(gamepad2.circle){
                 robot.oOpenClaw();
                 robot.oArmTake();
                 robot.oElevMove(Constants.eOElevatorState.Ready);
