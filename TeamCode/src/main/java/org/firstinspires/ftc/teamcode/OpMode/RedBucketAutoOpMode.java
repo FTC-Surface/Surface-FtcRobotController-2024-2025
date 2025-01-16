@@ -34,13 +34,13 @@ public class RedBucketAutoOpMode extends LinearOpMode {
         currentTraj = Constants.AutoState.depositInit;
 
         while(opModeInInit()){
-            robot.oElevMove(Constants.eOElevatorState.Ready);
-
-            robot.iArmHover();
-            robot.iOpenClaw();
-
-            robot.oOpenClaw();
-            robot.oArmDump();
+//            robot.oElevMove(Constants.eOElevatorState.Ready);
+//
+//            robot.iArmHover();
+//            robot.iOpenClaw();
+//
+//            robot.oOpenClaw();
+//            robot.oArmDump();
         }
 
         waitForStart();
@@ -194,16 +194,34 @@ public class RedBucketAutoOpMode extends LinearOpMode {
                         nextTraj(Constants.AutoState.depositFirst);
                     }
                     break;
+                case depositFirst:
+                    if(!drive.isBusy()){
+                        drive.followTrajectorySequence(depositFirst);
+                        nextTraj(Constants.AutoState.grabSecond);
+                    }
+                    break;
                 case grabSecond:
                     if(!drive.isBusy()){
                         drive.followTrajectorySequence(grabSecond);
                         nextTraj(Constants.AutoState.depositSecond);
                     }
                     break;
+                case depositSecond:
+                    if(!drive.isBusy()){
+                        drive.followTrajectorySequence(depositSecond);
+                        nextTraj(Constants.AutoState.grabThird);
+                    }
+                    break;
                 case grabThird:
                     if(!drive.isBusy()){
                         drive.followTrajectorySequence(grabThird);
                         nextTraj(Constants.AutoState.depositThird);
+                    }
+                    break;
+                case depositThird:
+                    if(!drive.isBusy()){
+                        drive.followTrajectorySequence(depositThird);
+                        nextTraj(Constants.AutoState.grabFirst);
                     }
                     break;
                 case idle:

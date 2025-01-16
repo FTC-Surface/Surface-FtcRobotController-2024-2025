@@ -27,7 +27,6 @@ public class Robot {
     OuttakeLinearSlides oSlides = new OuttakeLinearSlides();
     IntakeArm iArm = new IntakeArm();
     IntakeClaw iClaw = new IntakeClaw();
-//    IntakeActiveIntake iIntake = new IntakeActiveIntake();
     IntakeLinearSlides iSlides = new IntakeLinearSlides();
 
     Constants constants = new Constants();
