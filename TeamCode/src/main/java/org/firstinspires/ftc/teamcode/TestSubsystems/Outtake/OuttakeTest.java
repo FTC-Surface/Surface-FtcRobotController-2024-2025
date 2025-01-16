@@ -12,19 +12,19 @@ import com.qualcomm.robotcore.hardware.Servo;
 @TeleOp(name = "Outtake", group = "Tests")
 @Config
 public class OuttakeTest extends LinearOpMode {
-    Servo armOne;
-    Servo armTwo;
+    Servo Arm;
+    Servo Wrist;
     Servo claw;
 
-    public static double armOneTarget = 0;
-    public static double armTwoTarget = 0;
+    public static double ArmTarget = 0.9;
+    public static double WristTarget = 1;
 
     //does intake and outtake linear slide use the same motors?
     private DcMotorEx leftOuttakeMotor;
     private DcMotorEx rightOuttakeMotor;
 
     public static int targetPos = 0;
-    public static double target = 0.9;
+    public static double ClawTarget= 0.3;
     public static int maxHeight = 3000;
     public static int minHeight = 0;
 
@@ -34,8 +34,8 @@ public class OuttakeTest extends LinearOpMode {
 
     @Override
     public void runOpMode() throws InterruptedException {
-        armOne = hardwareMap.get(Servo.class, "Outtake Arm Right");
-        armTwo = hardwareMap.get(Servo.class, "Outtake Wrist Left");
+        Arm = hardwareMap.get(Servo.class, "Outtake Wrist Left");
+        Wrist = hardwareMap.get(Servo.class, "Outtake Arm Right");
 
         leftOuttakeMotor = hardwareMap.get(DcMotorEx.class, "outtakeLinearSlideOne");
         rightOuttakeMotor = hardwareMap.get(DcMotorEx.class, "outtakeLinearSlideTwo");
@@ -64,13 +64,12 @@ public class OuttakeTest extends LinearOpMode {
 
             telemetry.update();
 
-            armOne.setPosition(armOneTarget);
-            armTwo.setPosition(armTwoTarget);
+            Arm.setPosition(ArmTarget);
+            Wrist.setPosition(WristTarget);
+            claw.setPosition(ClawTarget);
 
             leftOuttakeMotor.setTargetPosition(targetPos);
             rightOuttakeMotor.setTargetPosition(targetPos);
-
-            claw.setPosition(target);
 
             leftOuttakeMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             rightOuttakeMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);

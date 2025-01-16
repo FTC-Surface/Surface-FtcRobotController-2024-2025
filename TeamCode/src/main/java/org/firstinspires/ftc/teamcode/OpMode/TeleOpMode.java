@@ -118,7 +118,9 @@ public class TeleOpMode extends LinearOpMode {
             //Hook
             if(gamepad2.right_stick_y <= -0.5)
                 robot.oArmHookgrab();
-            if(gamepad2.right_stick_y >= 0.5)
+            if(gamepad2.right_stick_y >=1)
+                robot.oArmHookstart();
+            if(gamepad2.right_stick_y >= 0.5 && gamepad2.right_stick_y <1)
                 robot.oArmHookup();
 
 //            if(gamepad2.a)
