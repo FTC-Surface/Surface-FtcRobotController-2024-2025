@@ -26,6 +26,9 @@ public class OuttakeLinearSlides extends Subsystem {
         outtakeLinearSlideOne = hardwareMap.get(DcMotorEx.class, "outtakeLinearSlideOne");
         outtakeLinearSlideTwo = hardwareMap.get(DcMotorEx.class, "outtakeLinearSlideTwo");
 
+        outtakeLinearSlideOne.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        outtakeLinearSlideTwo.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
         outtakeLinearSlideOne.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         outtakeLinearSlideTwo.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
