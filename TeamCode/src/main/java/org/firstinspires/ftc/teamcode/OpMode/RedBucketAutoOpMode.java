@@ -40,41 +40,144 @@ public class RedBucketAutoOpMode extends LinearOpMode {
             robot.iOpenClaw();
 
             robot.oOpenClaw();
+            robot.oArmDump();
         }
 
         waitForStart();
 
-        robot.oElevMove(Constants.eOElevatorState.Ready);
 
         TrajectorySequence depositInit = drive.trajectorySequenceBuilder(startPose)
                 .lineToLinearHeading(new Pose2d(-53, -52, Math.toRadians(45)))
-//                .addDisplacementMarker(()->{
+//               .addTemporalMarker(1, () -> {
+//
 //                    robot.oElevMove(Constants.eOElevatorState.Basket);
 //
 //                })
+//
+//                .waitSeconds(2)
+//
+//                .addTemporalMarker(2, () -> {
+//                    robot.oOpenClaw();
+//
+//                })
+//
+//                .waitSeconds(0.5)
+//
+//                .addTemporalMarker(2.5, () -> {
+//                    robot.oElevMove(Constants.eOElevatorState.Ready)
+//                })
                 //.splineToLinearHeading(new Pose2d(-53, -52, Math.toRadians(45)),Math.toRadians(180))
-                .waitSeconds(4)
+                .waitSeconds(2)
                 .build();
 
         TrajectorySequence grabFirst = drive.trajectorySequenceBuilder(depositInit.end())
                 .lineToLinearHeading(new Pose2d(-48,-37, Math.toRadians(90)))
-                .waitSeconds(2)
-                .lineToLinearHeading(new Pose2d(-53, -52, Math.toRadians(45)))
-                .waitSeconds(4)
+//                .addTemporalMarker(2, () -> {
+//
+//                    robot.iArmGrab();
+//                    robot.iCloseClaw();
+//                    robot.iArmStart();
+//                    robot.iOpenClaw();
+//
+//                })
+//                .waitSeconds(2)
+//                .lineToLinearHeading(new Pose2d(-53, -52, Math.toRadians(45)))
+//                .waitSeconds(4)
+//                .addTemporalMarker(6, () -> {
+//
+//                    robot.oElevMove(Constants.eOElevatorState.Grab);
+//                    robot.oCloseClaw();
+//                    robot.oElevMove(Constants.eOElevatorState.Grab);
+//                    robot.oArmDump();
+//                })
+
                 .build();
 
-        TrajectorySequence grabSecond = drive.trajectorySequenceBuilder(depositInit.end())
+        TrajectorySequence depositFirst = drive.trajectorySequenceBuilder(startPose)
+                .lineToLinearHeading(new Pose2d(-53, -52, Math.toRadians(45)))
+
+//               .addTemporalMarker(1, () -> {
+//
+//                    robot.oElevMove(Constants.eOElevatorState.Basket);
+//
+//                })
+//
+//                .waitSeconds(2)
+//
+//                .addTemporalMarker(2, () -> {
+//                    robot.oOpenClaw();
+//
+//                })
+//
+//                .waitSeconds(0.5)
+//
+//                .addTemporalMarker(2.5, () -> {
+//                    robot.oElevMove(Constants.eOElevatorState.Ready);
+//                })
+                //.splineToLinearHeading(new Pose2d(-53, -52, Math.toRadians(45)),Math.toRadians(180))
+                .waitSeconds(2)
+                .build();
+
+        TrajectorySequence grabSecond = drive.trajectorySequenceBuilder(depositFirst.end())
                 .lineToLinearHeading(new Pose2d(-58,-37, Math.toRadians(90)))
                 .waitSeconds(2)
                 .lineToLinearHeading(new Pose2d(-53, -52, Math.toRadians(45)))
                 .waitSeconds(4)
                 .build();
 
-        TrajectorySequence grabThird = drive.trajectorySequenceBuilder(depositInit.end())
+        TrajectorySequence depositSecond = drive.trajectorySequenceBuilder(grabSecond.end())
+                .lineToLinearHeading(new Pose2d(-53, -52, Math.toRadians(45)))
+//               .addTemporalMarker(1, () -> {
+//
+//                    robot.oElevMove(Constants.eOElevatorState.Basket);
+//
+//                })
+//
+//                .waitSeconds(2)
+//
+//                .addTemporalMarker(2, () -> {
+//                    robot.oOpenClaw();
+//
+//                })
+//
+//                .waitSeconds(0.5)
+//
+//                .addTemporalMarker(2.5, () -> {
+//                    robot.oElevMove(Constants.eOElevatorState.Ready);
+//                })
+                //.splineToLinearHeading(new Pose2d(-53, -52, Math.toRadians(45)),Math.toRadians(180))
+                .waitSeconds(2)
+                .build();
+
+        TrajectorySequence grabThird = drive.trajectorySequenceBuilder(depositSecond.end())
                 .lineToLinearHeading(new Pose2d(-62,-37, Math.toRadians(120)))
                 .waitSeconds(2)
                 .lineToLinearHeading(new Pose2d(-53, -52, Math.toRadians(45)))
                 .waitSeconds(4)
+                .build();
+
+        TrajectorySequence depositThird = drive.trajectorySequenceBuilder(grabThird.end())
+                .lineToLinearHeading(new Pose2d(-53, -52, Math.toRadians(45)))
+//               .addTemporalMarker(1, () -> {
+//
+//                    robot.oElevMove(Constants.eOElevatorState.Basket);
+//
+//                })
+//
+//                .waitSeconds(2)
+//
+//                .addTemporalMarker(2, () -> {
+//                    robot.oOpenClaw();
+//
+//                })
+//
+//                .waitSeconds(0.5)
+//
+//                .addTemporalMarker(2.5, () -> {
+//                    robot.oElevMove(Constants.eOElevatorState.Ready);
+//                })
+                //.splineToLinearHeading(new Pose2d(-53, -52, Math.toRadians(45)),Math.toRadians(180))
+                .waitSeconds(2)
                 .build();
 
         while(opModeIsActive()){
@@ -82,7 +185,7 @@ public class RedBucketAutoOpMode extends LinearOpMode {
                 case depositInit:
                     if(!drive.isBusy()){
                         drive.followTrajectorySequence(depositInit);
-                        nextTraj(Constants.AutoState.idle);
+                        nextTraj(Constants.AutoState.grabFirst);
                     }
                     break;
                 case grabFirst:
