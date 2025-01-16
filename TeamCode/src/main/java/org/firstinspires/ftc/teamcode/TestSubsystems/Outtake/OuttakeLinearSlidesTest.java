@@ -17,7 +17,7 @@ public class OuttakeLinearSlidesTest extends LinearOpMode {
     private DcMotorEx rightOuttakeMotor;
 
     public static int targetPos = 0;
-    public static int maxHeight = 3000;
+    public static int maxHeight = 3200;
     public static int minHeight = 0;
 
     public int currentHeight = 0;
