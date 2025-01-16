@@ -221,7 +221,7 @@ public class RedBucketAutoOpMode extends LinearOpMode {
                 case depositThird:
                     if(!drive.isBusy()){
                         drive.followTrajectorySequence(depositThird);
-                        nextTraj(Constants.AutoState.grabFirst);
+                        nextTraj(Constants.AutoState.idle);
                     }
                     break;
                 case idle:
