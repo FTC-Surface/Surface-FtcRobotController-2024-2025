@@ -7,7 +7,7 @@ import org.rowlandhall.meepmeep.MeepMeep;
 import org.rowlandhall.meepmeep.roadrunner.DefaultBotBuilder;
 import org.rowlandhall.meepmeep.roadrunner.entity.RoadRunnerBotEntity;
 
-public class MeepMeepTest2_Hook {
+public class MeepMeepTest2_Hook_Red {
     public static void main(String[] args) {
         MeepMeep meepMeep = new MeepMeep(800);
 
@@ -55,8 +55,6 @@ public class MeepMeepTest2_Hook {
 
                         .splineToLinearHeading(new Pose2d(-2, -30, Math.toRadians(270)), Math.toRadians(180))
                         .lineTo((new Vector2d(-2, -35)))
-
-
 
                         .build());
 
