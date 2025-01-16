@@ -105,9 +105,9 @@ public class TeleOpMode extends LinearOpMode {
 
             //Arm_position
             if(gamepad2.triangle)
-                robot.oArmDump();
-            if(gamepad2.cross)
                 robot.oArmTake();
+            if(gamepad2.cross)
+                robot.oArmDump();
 
             //Outtake_claw
             if(gamepad2.right_bumper)
