@@ -67,7 +67,7 @@ public class RedBucketAutoOpMode extends LinearOpMode {
 //                    robot.oElevMove(Constants.eOElevatorState.Ready)
 //                })
                 //.splineToLinearHeading(new Pose2d(-53, -52, Math.toRadians(45)),Math.toRadians(180))
-                .waitSeconds(2)
+                .waitSeconds(5)
                 .build();
 
         TrajectorySequence grabFirst = drive.trajectorySequenceBuilder(depositInit.end())
@@ -90,6 +90,7 @@ public class RedBucketAutoOpMode extends LinearOpMode {
 //                    robot.oElevMove(Constants.eOElevatorState.Grab);
 //                    robot.oArmDump();
 //                })
+                .waitSeconds(5)
 
                 .build();
 
@@ -115,14 +116,14 @@ public class RedBucketAutoOpMode extends LinearOpMode {
 //                    robot.oElevMove(Constants.eOElevatorState.Ready);
 //                })
                 //.splineToLinearHeading(new Pose2d(-53, -52, Math.toRadians(45)),Math.toRadians(180))
-                .waitSeconds(2)
+                .waitSeconds(5)
                 .build();
 
         TrajectorySequence grabSecond = drive.trajectorySequenceBuilder(depositFirst.end())
                 .lineToLinearHeading(new Pose2d(-58,-37, Math.toRadians(90)))
-                .waitSeconds(2)
-                .lineToLinearHeading(new Pose2d(-53, -52, Math.toRadians(45)))
-                .waitSeconds(4)
+//                .waitSeconds(2)
+//                .lineToLinearHeading(new Pose2d(-53, -52, Math.toRadians(45)))
+                .waitSeconds(5)
                 .build();
 
         TrajectorySequence depositSecond = drive.trajectorySequenceBuilder(grabSecond.end())
@@ -146,14 +147,14 @@ public class RedBucketAutoOpMode extends LinearOpMode {
 //                    robot.oElevMove(Constants.eOElevatorState.Ready);
 //                })
                 //.splineToLinearHeading(new Pose2d(-53, -52, Math.toRadians(45)),Math.toRadians(180))
-                .waitSeconds(2)
+                .waitSeconds(5)
                 .build();
 
         TrajectorySequence grabThird = drive.trajectorySequenceBuilder(depositSecond.end())
                 .lineToLinearHeading(new Pose2d(-62,-37, Math.toRadians(120)))
-                .waitSeconds(2)
-                .lineToLinearHeading(new Pose2d(-53, -52, Math.toRadians(45)))
-                .waitSeconds(4)
+//                .waitSeconds(2)
+//                .lineToLinearHeading(new Pose2d(-53, -52, Math.toRadians(45)))
+                .waitSeconds(5)
                 .build();
 
         TrajectorySequence depositThird = drive.trajectorySequenceBuilder(grabThird.end())
@@ -177,7 +178,7 @@ public class RedBucketAutoOpMode extends LinearOpMode {
 //                    robot.oElevMove(Constants.eOElevatorState.Ready);
 //                })
                 //.splineToLinearHeading(new Pose2d(-53, -52, Math.toRadians(45)),Math.toRadians(180))
-                .waitSeconds(2)
+                .waitSeconds(5)
                 .build();
 
         while(opModeIsActive()){
@@ -221,7 +222,7 @@ public class RedBucketAutoOpMode extends LinearOpMode {
                 case depositThird:
                     if(!drive.isBusy()){
                         drive.followTrajectorySequence(depositThird);
-                        nextTraj(Constants.AutoState.grabFirst);
+                        nextTraj(Constants.AutoState.idle);
                     }
                     break;
                 case idle:
