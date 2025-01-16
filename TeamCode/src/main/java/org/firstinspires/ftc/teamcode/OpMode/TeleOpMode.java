@@ -90,42 +90,52 @@ public class TeleOpMode extends LinearOpMode {
                 LinearSlidereadyDone = false;
                 OuttakeStartTime1 = (long) outtakeTimer.milliseconds();
             }
-            if(Outtakepressed1 && !OuttakeclawDone && !LinearSlidereadyDone && outtakeTimer.milliseconds() - OuttakeStartTime1 >= 300){
+            if(Outtakepressed1 && !OuttakeclawDone && !LinearSlidereadyDone && outtakeTimer.milliseconds() - OuttakeStartTime1 >= 500){
                 robot.oCloseClaw();
                 OuttakeclawDone = true;
             }
-            if(Outtakepressed1 &&  !LinearSlidereadyDone && OuttakeclawDone && outtakeTimer.milliseconds() - OuttakeStartTime1 >= 500){
+            if(Outtakepressed1 &&  !LinearSlidereadyDone && OuttakeclawDone && outtakeTimer.milliseconds() - OuttakeStartTime1 >= 800){
                 robot.oElevMove(Constants.eOElevatorState.Ready);
                 LinearSlidereadyDone = true;
             }
-            if(Outtakepressed1 && OuttakeclawDone && LinearSlidereadyDone && outtakeTimer.milliseconds() - OuttakeStartTime1 >= 1000){
+            if(Outtakepressed1 && OuttakeclawDone && LinearSlidereadyDone && outtakeTimer.milliseconds() - OuttakeStartTime1 >= 1300){
                 robot.oArmDump();
                 Outtakepressed1 = false;
             }
 
             //Arm_position
-            if(gamepad2.dpad_left)
+            if(gamepad2.triangle)
                 robot.oArmDump();
-            if(gamepad2.dpad_right)
+            if(gamepad2.cross)
                 robot.oArmTake();
 
             //Outtake_claw
             if(gamepad2.right_bumper)
-                robot.oOpenClaw();
-            if(gamepad2.left_bumper)
                 robot.oCloseClaw();
+            if(gamepad2.left_bumper)
+                robot.oOpenClaw();
+
+            //Hook
+            if(gamepad2.right_stick_y <= -0.5)
+                robot.oArmHookgrab();
+            if(gamepad2.right_stick_y >= 0.5)
+                robot.oArmHookup();
+
+//            if(gamepad2.a)
+//                robot.oArmHookstart();
                 
 
 //********** Intake ***************************************************
 
 //          Intake Version 2
 
-            if(gamepad2.dpad_down)//Arm_Down
-                robot.iArmGrab();
             if(gamepad2.dpad_up)//Arm_Up
                 robot.iArmHover();
+            if(gamepad2.dpad_down)//Arm_Down
+                robot.iArmGrab();
 
-            if (gamepad2.y && !bumperPressed) {
+
+            if (gamepad2.left_trigger >=0.5 && !bumperPressed) {
                 robot.iCloseClaw();
                 bumperPressed = true;
                 xOpenClawDone = false;
@@ -158,12 +168,7 @@ public class TeleOpMode extends LinearOpMode {
 
 //
 //
-//            //Hook
-//            if(gamepad2.a)
-//                robot.oArmHookstart();
-//            if(gamepad2.b)
-//                robot.oArmHookup();
-//
+
 
 ////          Intake Version 1 (Down+Up)
 //            if (gamepad2.y && !yPressed) {
