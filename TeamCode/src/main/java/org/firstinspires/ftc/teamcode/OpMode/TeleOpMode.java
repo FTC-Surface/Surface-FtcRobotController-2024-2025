@@ -31,8 +31,12 @@ public class TeleOpMode extends LinearOpMode {
 
         long OuttakeStartTime1=0;
         long OuttakeStartTime2=0;
+        long OuttakeStartTime3=0;
+        long OuttakeStartTime4=0;
         boolean Outtakepressed1 = false;
         boolean Outtakepressed2 = false;
+        boolean stickmoved1 = false;
+        boolean stickmoved2 = false;
         boolean OuttakeclawDone = false;
         boolean ArmTakeDone = false;
         boolean OpenClawDone = false;
@@ -43,13 +47,14 @@ public class TeleOpMode extends LinearOpMode {
         telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
 
         waitForStart();
-//        robot.oArmStart();
+
         robot.oElevMove(Constants.eOElevatorState.Ready);
 
         robot.iArmHover();
         robot.iOpenClaw();
 
         robot.oOpenClaw();
+        robot.oArmStart();
 
         intakeTimer.reset();
 
@@ -90,21 +95,22 @@ public class TeleOpMode extends LinearOpMode {
                 LinearSlidereadyDone = false;
                 OuttakeStartTime1 = (long) outtakeTimer.milliseconds();
             }
-            if(Outtakepressed1 && !OuttakeclawDone && !LinearSlidereadyDone && outtakeTimer.milliseconds() - OuttakeStartTime1 >= 700){
+            if(Outtakepressed1 && !OuttakeclawDone && !LinearSlidereadyDone && outtakeTimer.milliseconds() - OuttakeStartTime1 >= 400){
                 robot.oCloseClaw();
                 OuttakeclawDone = true;
             }
-            if(Outtakepressed1 &&  !LinearSlidereadyDone && OuttakeclawDone && outtakeTimer.milliseconds() - OuttakeStartTime1 >= 1000){
+            if(Outtakepressed1 &&  !LinearSlidereadyDone && OuttakeclawDone && outtakeTimer.milliseconds() - OuttakeStartTime1 >= 700){
                 robot.oElevMove(Constants.eOElevatorState.Ready);
                 LinearSlidereadyDone = true;
             }
-            if(Outtakepressed1 && OuttakeclawDone && LinearSlidereadyDone && outtakeTimer.milliseconds() - OuttakeStartTime1 >= 1500){
+            if(Outtakepressed1 && OuttakeclawDone && LinearSlidereadyDone && outtakeTimer.milliseconds() - OuttakeStartTime1 >= 1200){
                 robot.oArmDump();
                 Outtakepressed1 = false;
             }
 
             //Arm_position
             if(gamepad2.triangle) {
+                robot.oElevMove(Constants.eOElevatorState.Ready);
                 robot.oArmTake();
                 robot.oOpenClaw();
             }
@@ -118,15 +124,37 @@ public class TeleOpMode extends LinearOpMode {
                 robot.oOpenClaw();
 
             //Hook
-            if(gamepad2.right_stick_y <= -0.5)
+            if(gamepad2.right_stick_y <= -0.5 && !stickmoved1) {
                 robot.oArmHookgrab();
-            if(gamepad2.right_stick_y >=1)
+                OuttakeStartTime3 = (long) outtakeTimer.milliseconds();
+                stickmoved1 = true;
+            }
+            if(stickmoved1 && outtakeTimer.milliseconds() - OuttakeStartTime3 >= 500) {
+                robot.oElevMove(Constants.eOElevatorState.Clip_Grab);
+                stickmoved1 = false;
+            }
+
+            if(gamepad2.right_stick_y >= 0.5 && gamepad2.right_stick_y <1 && !stickmoved2) {
                 robot.oArmHookstart();
-            if(gamepad2.right_stick_y >= 0.5 && gamepad2.right_stick_y <1)
+                OuttakeStartTime4 = (long) outtakeTimer.milliseconds();
+                stickmoved2 = true;
+            }
+            if(stickmoved2 && outtakeTimer.milliseconds() - OuttakeStartTime4 >= 500) {
+                robot.oElevMove(Constants.eOElevatorState.Clip_Hang);
+                stickmoved2 = false;
+            }
+
+            if(gamepad2.right_stick_y >=1)
                 robot.oArmHookup();
 
-//            if(gamepad2.a)
-//                robot.oArmHookstart();
+            if(gamepad2.right_stick_y <=-1){
+                robot.oOpenClaw();
+                robot.oArmTake();
+                robot.oElevMove(Constants.eOElevatorState.Ready);
+            }
+
+
+
                 
 
 //********** Intake ***************************************************

@@ -36,11 +36,11 @@ public class RedBucketAutoOpMode extends LinearOpMode {
         while(opModeInInit()){
 //            robot.oElevMove(Constants.eOElevatorState.Ready);
 //
-//            robot.iArmHover();
-//            robot.iOpenClaw();
+            robot.iArmHover();
+            robot.iOpenClaw();
 //
-//            robot.oOpenClaw();
-//            robot.oArmDump();
+            robot.oOpenClaw();
+            robot.oArmDump();
         }
 
         waitForStart();
