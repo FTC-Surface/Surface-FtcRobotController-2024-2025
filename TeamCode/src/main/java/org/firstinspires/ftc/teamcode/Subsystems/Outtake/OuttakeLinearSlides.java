@@ -14,7 +14,6 @@ public class OuttakeLinearSlides extends Subsystem {
 
     private double currentPos;
 
-
     private int targetPos;
 
     private Constants constants = new Constants();

@@ -21,17 +21,16 @@ public class MeepMeepTest2_Hook_Red {
                         .splineToLinearHeading(new Pose2d(48, -13, Math.toRadians(90)), Math.toRadians(270))
 
                         .lineTo((new Vector2d(48, -49)))
-
                         .splineToLinearHeading(new Pose2d(59, -13, Math.toRadians(90)), Math.toRadians(0))
 
                         .lineTo((new Vector2d(59, -49)))
-
                         .splineToLinearHeading(new Pose2d(62, -13, Math.toRadians(90)), Math.toRadians(0))
 
                         .lineTo((new Vector2d(62, -49)))
-
                         .splineToLinearHeading(new Pose2d(35, -58, Math.toRadians(90)), Math.toRadians(-90))
+
                         .lineTo((new Vector2d(35, -60)))
+
                         .waitSeconds(0.75)
 
                         .splineToLinearHeading(new Pose2d(7, -30, Math.toRadians(270)), Math.toRadians(180))
@@ -43,12 +42,14 @@ public class MeepMeepTest2_Hook_Red {
 
                         .splineToLinearHeading(new Pose2d(4, -30, Math.toRadians(270)), Math.toRadians(180))
                         .lineTo((new Vector2d(4, -35)))
+
                         .splineToLinearHeading(new Pose2d(35, -58, Math.toRadians(90)), Math.toRadians(-90))
                         .lineTo((new Vector2d(35, -60)))
                         .waitSeconds(0.75)
 
                         .splineToLinearHeading(new Pose2d(1, -30, Math.toRadians(270)), Math.toRadians(180))
                         .lineTo((new Vector2d(1, -35)))
+
                         .splineToLinearHeading(new Pose2d(35, -58, Math.toRadians(90)), Math.toRadians(-90))
                         .lineTo((new Vector2d(35, -60)))
                         .waitSeconds(0.75)
