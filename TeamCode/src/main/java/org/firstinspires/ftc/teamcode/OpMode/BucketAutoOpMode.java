@@ -54,13 +54,8 @@ public class BucketAutoOpMode extends LinearOpMode {
                 .addTemporalMarker(2.5, () -> {
                     robot.oOpenClaw();
                 })
-<<<<<<< HEAD:TeamCode/src/main/java/org/firstinspires/ftc/teamcode/OpMode/RedBucketAutoOpMode.java
                 .waitSeconds(0.25)
-=======
-//
-                .waitSeconds(0.5)
 
->>>>>>> 92e0607ec186d6206f309cf176261016bb039c4e:TeamCode/src/main/java/org/firstinspires/ftc/teamcode/OpMode/BucketAutoOpMode.java
                 .lineToLinearHeading(new Pose2d(-52, -47, Math.toRadians(45)))
                 .build();
 
@@ -99,10 +94,7 @@ public class BucketAutoOpMode extends LinearOpMode {
 
                 })
                 .addTemporalMarker(0.5, () -> {
-
-
                     robot.oCloseClaw();
-
                 })
                 .addTemporalMarker(1, () -> {
                     robot.oElevMove(Constants.eOElevatorState.Basket);

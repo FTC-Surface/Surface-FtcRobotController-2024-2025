@@ -124,7 +124,7 @@ public class TeleOpMode extends LinearOpMode {
                 robot.oOpenClaw();
 
             //Hook
-            if(gamepad2.right_stick_y <= -0.5 && !stickmoved1) {
+            if(gamepad2.right_stick_y >= 0.5 && !stickmoved1) {
                 robot.oArmHookgrab();
                 OuttakeStartTime3 = (long) outtakeTimer.milliseconds();
                 stickmoved1 = true;
@@ -134,7 +134,7 @@ public class TeleOpMode extends LinearOpMode {
                 stickmoved1 = false;
             }
 
-            if(gamepad2.right_stick_y >= 0.5 && !stickmoved2) {
+            if(gamepad2.right_stick_y <=-0.5 && !stickmoved2) {
                 robot.oElevMove(Constants.eOElevatorState.Clip_Hang);
                 OuttakeStartTime4 = (long) outtakeTimer.milliseconds();
                 stickmoved2 = true;
