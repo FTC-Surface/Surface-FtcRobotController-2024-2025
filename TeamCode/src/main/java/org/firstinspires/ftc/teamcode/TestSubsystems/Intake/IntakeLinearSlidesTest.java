@@ -6,6 +6,7 @@ import com.acmerobotics.dashboard.FtcDashboard;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 
 @TeleOp(name = "Intake Linear Slides Test", group = "Tests")
@@ -20,7 +21,7 @@ public class IntakeLinearSlidesTest extends LinearOpMode {
 
     public int currentHeight = 0;
 
-    public static double motorPower = 0.75;
+    public static double motorPower = 0.3;
 
     public void runOpMode() {
         intakeLinearSlide = hardwareMap.get(DcMotorEx.class, "InLinearSlide");
@@ -28,6 +29,8 @@ public class IntakeLinearSlidesTest extends LinearOpMode {
         intakeLinearSlide.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
 
         intakeLinearSlide.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
+
+        intakeLinearSlide.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
 
@@ -52,28 +55,18 @@ public class IntakeLinearSlidesTest extends LinearOpMode {
                 intakeLinearSlide.setPower(motorPower);
             }
 
-            if(currentHeight <= targetPos + 1.5 && currentHeight >= targetPos - 1.5){
-                intakeLinearSlide.setPower(0.1);
-            }
 
             currentHeight = intakeLinearSlide.getCurrentPosition();
 
             telemetry.addData(("Is Busy"), isBusy());
             telemetry.update();
 
-            if (gamepad1.a) {
-                targetPos = maxHeight;
-            }
 
-            if (gamepad1.b) {
-                targetPos = minHeight;
-            }
 
-            //Max height = 3550;
 
-            if (gamepad1.x && currentHeight < maxHeight) {
+            if (gamepad2.left_stick_x <= -0.5 && currentHeight < maxHeight) {
                 intakeLinearSlide.setPower(0.3);
-            } else if (gamepad1.y && currentHeight > minHeight) {
+            } else if (gamepad2.left_stick_x >= 0.5 && currentHeight > minHeight) {
                 intakeLinearSlide.setPower(-0.3);
             } else {
                 intakeLinearSlide.setPower(0);
