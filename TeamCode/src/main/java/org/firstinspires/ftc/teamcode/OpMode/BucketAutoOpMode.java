@@ -7,13 +7,12 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.Roadrunner.drive.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.Roadrunner.trajectorysequence.TrajectorySequence;
-import org.firstinspires.ftc.teamcode.Robot.Robot;
 import org.firstinspires.ftc.teamcode.Robot.RobotAuto;
 import org.firstinspires.ftc.teamcode.Subsystems.Constants;
 
-@Autonomous(name = "Test Auto", group = "Auto Test")
+@Autonomous(name = "Bucket Auto Mode", group = "Auto Test")
 @Config
-public class RedBucketAutoOpMode extends LinearOpMode {
+public class BucketAutoOpMode extends LinearOpMode {
 
     SampleMecanumDrive drive;
     Constants.AutoState currentTraj = Constants.AutoState.idle;
@@ -33,12 +32,7 @@ public class RedBucketAutoOpMode extends LinearOpMode {
 
         currentTraj = Constants.AutoState.depositInit;
 
-        while(opModeInInit()){
-
-        }
-
         waitForStart();
-
 
         TrajectorySequence depositInit = drive.trajectorySequenceBuilder(startPose)
                 .addTemporalMarker(0, () -> {
@@ -59,9 +53,14 @@ public class RedBucketAutoOpMode extends LinearOpMode {
                 .waitSeconds(1)
                 .addTemporalMarker(2.5, () -> {
                     robot.oOpenClaw();
-
                 })
+<<<<<<< HEAD:TeamCode/src/main/java/org/firstinspires/ftc/teamcode/OpMode/RedBucketAutoOpMode.java
                 .waitSeconds(0.25)
+=======
+//
+                .waitSeconds(0.5)
+
+>>>>>>> 92e0607ec186d6206f309cf176261016bb039c4e:TeamCode/src/main/java/org/firstinspires/ftc/teamcode/OpMode/BucketAutoOpMode.java
                 .lineToLinearHeading(new Pose2d(-52, -47, Math.toRadians(45)))
                 .build();
 

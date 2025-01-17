@@ -23,13 +23,15 @@ public class Constants {
     public enum AutoState{
         idle,
         depositInit,
+        readySamples,
         grabFirst,
         depositFirst,
         grabSecond,
         depositSecond,
         grabThird,
         depositThird,
-        park
+        grabFourth,
+        depositFourth
     }
 
     public enum eIntakeState{
@@ -55,11 +57,11 @@ public class Constants {
 
     public final double OutakeArmStartPos = 0;
     public final double OutakeArmDumpPos = 0;
+    
     public final double OutakeArmTakePos = 0.85;
     public final double OutakeArmHookgrabPos = 0.5;
     public final double OutakeArmHookstartPos = 0.1;
     public final double OutakeArmHookupPos = 0.15;
-
 
     public final double OutakeWristStartPos = 0.2;
     public final double OutakeWristDumpPos = 0.7;
