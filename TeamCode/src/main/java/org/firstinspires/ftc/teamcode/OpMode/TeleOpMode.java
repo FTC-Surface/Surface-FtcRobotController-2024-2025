@@ -80,15 +80,15 @@ public class TeleOpMode extends LinearOpMode {
             if(gamepad1.dpad_up)
                 robot.oElevMove(Constants.eOElevatorState.Basket);
 
-            if(gamepad1.dpad_down)
-                robot.oElevMove(Constants.eOElevatorState.Ready);
+//            if(gamepad1.dpad_down)
+//                robot.oElevMove(Constants.eOElevatorState.Ready);
 
 //********** Player Two Controls ***************************************************
 
 //********** Outtake ***************************************************
 
             //Grab + Claw_close + Up/Arm_dump
-            if(gamepad2.right_trigger > 0.5 && !Outtakepressed1){
+            if(gamepad2.circle && !Outtakepressed1){
                 robot.oElevMove(Constants.eOElevatorState.Grab);
                 Outtakepressed1 = true;
                 OuttakeclawDone = false;
@@ -110,9 +110,9 @@ public class TeleOpMode extends LinearOpMode {
 
             //Arm_position
             if(gamepad2.triangle) {
+                robot.oOpenClaw();
                 robot.oElevMove(Constants.eOElevatorState.Ready);
                 robot.oArmTake();
-                robot.oOpenClaw();
             }
             if(gamepad2.cross)
                 robot.oArmDump();
@@ -123,8 +123,13 @@ public class TeleOpMode extends LinearOpMode {
             if(gamepad2.left_bumper)
                 robot.oOpenClaw();
 
+            if(gamepad2.right_trigger >= 0.5)
+                robot.iCloseClaw();
+            if(gamepad2.left_trigger >= 0.5)
+                robot.iOpenClaw();
+
             //Hook
-            if(gamepad2.right_stick_y >= 0.5 && !stickmoved1) {
+            if(gamepad2.left_stick_y >= 0.5 && !stickmoved1) {
                 robot.oArmHookgrab();
                 OuttakeStartTime3 = (long) outtakeTimer.milliseconds();
                 stickmoved1 = true;
@@ -134,7 +139,7 @@ public class TeleOpMode extends LinearOpMode {
                 stickmoved1 = false;
             }
 
-            if(gamepad2.right_stick_y <=-0.5 && !stickmoved2) {
+            if(gamepad2.left_stick_y <=-0.5 && !stickmoved2) {
                 robot.oElevMove(Constants.eOElevatorState.Clip_Hang);
                 OuttakeStartTime4 = (long) outtakeTimer.milliseconds();
                 stickmoved2 = true;
@@ -147,13 +152,6 @@ public class TeleOpMode extends LinearOpMode {
             if(gamepad2.square)
                 robot.oArmHookup();
 
-            if(gamepad2.circle){
-                robot.oOpenClaw();
-                robot.oArmTake();
-                robot.oElevMove(Constants.eOElevatorState.Ready);
-            }
-
-
 
                 
 
@@ -161,13 +159,13 @@ public class TeleOpMode extends LinearOpMode {
 
 //          Intake Version 2
 
-            if(gamepad2.dpad_up)//Arm_Up
+            if(gamepad2.dpad_down)//Arm_Hover
                 robot.iArmHover();
-            if(gamepad2.dpad_down)//Arm_Down
+            if(gamepad2.dpad_up)//Arm_Grab
                 robot.iArmGrab();
 
 
-            if (gamepad2.left_trigger >=0.5 && !bumperPressed) {
+            if (gamepad2.right_stick_button && !bumperPressed) {
                 robot.iCloseClaw();
                 bumperPressed = true;
                 xOpenClawDone = false;

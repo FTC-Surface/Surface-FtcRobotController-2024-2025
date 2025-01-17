@@ -16,7 +16,7 @@ public class BucketAutoOpMode extends LinearOpMode {
 
     SampleMecanumDrive drive;
     Constants.AutoState currentTraj = Constants.AutoState.idle;
-    Pose2d startPose = new Pose2d(-35,-60, Math.toRadians(90));
+    Pose2d startPose = new Pose2d(-35,-62, Math.toRadians(90));
 
     void nextTraj(Constants.AutoState state){
         currentTraj = state;
@@ -140,26 +140,34 @@ public class BucketAutoOpMode extends LinearOpMode {
 
         TrajectorySequence depositSecond = drive.trajectorySequenceBuilder(grabSecond.end())
                 .lineToLinearHeading(new Pose2d(-55, -50, Math.toRadians(45)))
-//               .addTemporalMarker(1, () -> {
-//
-//                    robot.oElevMove(Constants.eOElevatorState.Basket);
-//
-//                })
-//
-//                .waitSeconds(2)
-//
-//                .addTemporalMarker(2, () -> {
-//                    robot.oOpenClaw();
-//
-//                })
-//
-//                .waitSeconds(0.5)
-//
-//                .addTemporalMarker(2.5, () -> {
-//                    robot.oElevMove(Constants.eOElevatorState.Ready);
-//                })
-                //.splineToLinearHeading(new Pose2d(-53, -52, Math.toRadians(45)),Math.toRadians(180))
-                .waitSeconds(3)
+                .addTemporalMarker(0, () -> {
+
+                    robot.oElevMove(Constants.eOElevatorState.Grab);
+
+                })
+                .addTemporalMarker(0.5, () -> {
+                    robot.oCloseClaw();
+                })
+                .addTemporalMarker(1, () -> {
+                    robot.oElevMove(Constants.eOElevatorState.Basket);
+
+                })
+                .addTemporalMarker(1.25, () -> {
+                    robot.oArmDump();
+
+                })
+
+                .addTemporalMarker(3, () -> {
+                    robot.oOpenClaw();
+
+                })
+                .waitSeconds(5)
+                .lineToLinearHeading(new Pose2d(-52, -47, Math.toRadians(45)))
+                .addTemporalMarker(5, () -> {
+                    robot.oElevMove(Constants.eOElevatorState.Ready);
+                    robot.oArmTake();
+
+                })
                 .build();
 
 //        TrajectorySequence grabThird = drive.trajectorySequenceBuilder(depositSecond.end())
@@ -171,11 +179,7 @@ public class BucketAutoOpMode extends LinearOpMode {
 //
 //        TrajectorySequence depositThird = drive.trajectorySequenceBuilder(grabThird.end())
 //                .lineToLinearHeading(new Pose2d(-54, -51, Math.toRadians(45)))
-////               .addTemporalMarker(1, () -> {
 //
-//                    robot.oElevMove(Constants.eOElevatorState.Basket);
-//
-//                })
 //
 //                .waitSeconds(2)
 //

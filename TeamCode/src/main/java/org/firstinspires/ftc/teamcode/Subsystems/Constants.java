@@ -17,7 +17,7 @@ public class Constants {
         Start,
         MaxOut,
         ManualUp,
-        ManualDown
+        InIntake, ManualDown
     }
 
     public enum AutoState{

@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.Subsystems.Intake;
 
+import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
@@ -25,6 +26,8 @@ public class IntakeLinearSlides extends Subsystem {
         intakeLinearSlideOne.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
 
         intakeLinearSlideOne.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
+
+        intakeLinearSlideOne.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 
     public void moveElevator(int multiplier){
@@ -33,7 +36,8 @@ public class IntakeLinearSlides extends Subsystem {
 
     public void moveElevator(Constants.eIElevatorState state, int manualMove) {
         switch(state){
-//            case InIntake:
+            case InIntake:
+                move(0);
 //            case InOuttake:
             case ManualUp:
             case ManualDown:
