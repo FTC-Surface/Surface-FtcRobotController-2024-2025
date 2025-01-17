@@ -52,7 +52,7 @@ public class Robot {
         oArm.init(hardwareMap);
         oSlides.init(hardwareMap);
 
-//        iSlides.init((hardwareMap));
+        iSlides.init((hardwareMap));
 
         iClaw.init(hardwareMap);
         iArm.init(hardwareMap);
@@ -93,16 +93,16 @@ public class Robot {
     public void iSlideMoveElevator(int multiplier){iSlides.moveElevator(multiplier);}
 
     public void oSlideLoop(){oSlides.loop();}
-//    public void iSlideLoop(){iSlides.loop();}
+    public void iSlideLoop(){iSlides.loop();}
 
     public double oElevGetHeight(){
         return oSlides.getPos();
     }
-//    public void iElevGetHeight(){iSlides.getPos();}
+    public double iElevGetHeight(){return iSlides.getPos();}
 
     public void oElevMove(Constants.eOElevatorState state){oSlides.moveElevator(state);}
     public void oElevStop(){oSlides.setPowerZero();}
-//    public void iElevMove(Constants.eIElevatorState state, int manualMove){iSlides.moveElevator(state, manualMove);}
+    public void iElevMove(Constants.eIElevatorState state){iSlides.moveElevator(state);}
 
     public boolean oElevIsBusy(){return oElevIsBusy();}
     public double oElevGetPower(){return oElevGetPower();}

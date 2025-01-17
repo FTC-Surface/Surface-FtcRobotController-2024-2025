@@ -17,7 +17,7 @@ public class Constants {
         Start,
         MaxOut,
         ManualUp,
-        InIntake, ManualDown
+        InIntake, ManualBackward, ManualForward, ManualStop, ManualDown
     }
 
     public enum AutoState{
@@ -60,15 +60,15 @@ public class Constants {
     
     public final double OutakeArmTakePos = 0.88;
     public final double OutakeArmHookgrabPos = 0.5;
-    public final double OutakeArmHookstartPos = 0.125;
-    public final double OutakeArmHookupPos = 0.175;
+    public final double OutakeArmHookstartPos = 0.1;
+    public final double OutakeArmHookupPos = 0.16;
 
     public final double OutakeWristStartPos = 0.2;
     public final double OutakeWristDumpPos = 0.7;
-    public final double OutakeWristTakePos = 0.9;
+    public final double OutakeWristTakePos = 0.8;
     public final double OutakeWristHookgrabPos = 0.55;
-    public final double OutakeWristHookstartPos = 0.95;
-    public final double OutakeWristHookupPos = 0.95;
+    public final double OutakeWristHookstartPos = 0.8;
+    public final double OutakeWristHookupPos = 0.8;
 
     public final double IntakeArmStartPos = 1.0;
     public final double IntakeArmGrabPos = 0.55;

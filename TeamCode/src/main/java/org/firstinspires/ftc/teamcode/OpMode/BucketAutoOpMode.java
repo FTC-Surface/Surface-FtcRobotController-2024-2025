@@ -60,7 +60,7 @@ public class BucketAutoOpMode extends LinearOpMode {
                 .build();
 
         TrajectorySequence grabFirst = drive.trajectorySequenceBuilder(depositInit.end())
-                .lineToLinearHeading(new Pose2d(-49,-34, Math.toRadians(90)))
+                .lineToLinearHeading(new Pose2d(-49,-35, Math.toRadians(90)))
                 .addTemporalMarker(0, () -> {
                     robot.oElevMove(Constants.eOElevatorState.Ready);
                     robot.oArmTake();
@@ -81,31 +81,32 @@ public class BucketAutoOpMode extends LinearOpMode {
                     robot.iOpenClaw();
 
                 })
-                .waitSeconds(5)
+                .addTemporalMarker(5, () -> {
+
+                    robot.oElevMove(Constants.eOElevatorState.Grab);
+
+                })
+                .addTemporalMarker(5.5, () -> {
+                    robot.oCloseClaw();
+                })
+                .waitSeconds(6)
 
                 .build();
 
         TrajectorySequence depositFirst = drive.trajectorySequenceBuilder(grabFirst.end())
                 .lineToLinearHeading(new Pose2d(-52, -47, Math.toRadians(45)))
 
-               .addTemporalMarker(0, () -> {
 
-                    robot.oElevMove(Constants.eOElevatorState.Grab);
-
-                })
-                .addTemporalMarker(0.5, () -> {
-                    robot.oCloseClaw();
-                })
-                .addTemporalMarker(1, () -> {
+                .addTemporalMarker(0, () -> {
                     robot.oElevMove(Constants.eOElevatorState.Basket);
 
                 })
-                .addTemporalMarker(1.25, () -> {
+                .addTemporalMarker(0.25, () -> {
                     robot.oArmDump();
 
                 })
                 
-                .addTemporalMarker(3, () -> {
+                .addTemporalMarker(2, () -> {
                     robot.oOpenClaw();
 
                 })
@@ -115,7 +116,7 @@ public class BucketAutoOpMode extends LinearOpMode {
 
         TrajectorySequence grabSecond = drive.trajectorySequenceBuilder(depositFirst.end())
                 .lineToLinearHeading(new Pose2d(-62,-34, Math.toRadians(90)))
-                .addTemporalMarker(0, () -> {
+                .addTemporalMarker(0.25, () -> {
                     robot.oElevMove(Constants.eOElevatorState.Ready);
                     robot.oArmTake();
                 })

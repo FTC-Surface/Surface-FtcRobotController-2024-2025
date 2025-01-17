@@ -46,7 +46,7 @@ public class HookAutoOpMode extends LinearOpMode {
 
                 //Add code for the first sample
 
-                .lineTo(new Vector2d(10,-30))
+                .lineTo(new Vector2d(10,-32))
 //                .addDisplacementMarker(() ->{
 //                    robot.oArmHookup();
 //                })
@@ -111,7 +111,7 @@ public class HookAutoOpMode extends LinearOpMode {
 //                    robot.oArmHookstart();
 //                })
                 .splineToLinearHeading(new Pose2d(7, -35, Math.toRadians(270)), Math.toRadians(90))
-                .lineTo(new Vector2d(7,-30))
+                .lineTo(new Vector2d(7,-32))
 //                .addDisplacementMarker(() ->{
 //                    robot.oArmHookup();
 //                })
@@ -148,7 +148,8 @@ public class HookAutoOpMode extends LinearOpMode {
 //                    robot.oArmHookstart();
 //                })
 
-                .splineToLinearHeading(new Pose2d(4, -30, Math.toRadians(270)), Math.toRadians(90))
+                .splineToLinearHeading(new Pose2d(4, -35, Math.toRadians(270)), Math.toRadians(90))
+                .lineTo(new Vector2d(4,-32))
 //                .addDisplacementMarker(() ->{
 //                    robot.oArmHookup();
 //                })

@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.Subsystems.Intake;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.Subsystems.Constants;
@@ -23,24 +24,32 @@ public class IntakeLinearSlides extends Subsystem {
     public void init(HardwareMap hardwareMap) {
         intakeLinearSlideOne = hardwareMap.get(DcMotorEx.class, "InLinearSlide");
 
-        intakeLinearSlideOne.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
+        intakeLinearSlideOne.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.FLOAT);
 
         intakeLinearSlideOne.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
 
         intakeLinearSlideOne.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+        intakeLinearSlideOne.setDirection(DcMotorSimple.Direction.REVERSE);
     }
 
     public void moveElevator(int multiplier){
         intakeLinearSlideOne.setPower(constants.IntakeElevatorMotorPower * multiplier);
     }
 
-    public void moveElevator(Constants.eIElevatorState state, int manualMove) {
+    public void moveElevator(Constants.eIElevatorState state) {
         switch(state){
             case InIntake:
                 move(0);
 //            case InOuttake:
-            case ManualUp:
-            case ManualDown:
+            case ManualForward:
+                intakeLinearSlideOne.setPower(1);
+
+            case ManualBackward:
+                intakeLinearSlideOne.setPower(-1);
+
+            case ManualStop:
+                intakeLinearSlideOne.setPower(0);
         }
     }
 

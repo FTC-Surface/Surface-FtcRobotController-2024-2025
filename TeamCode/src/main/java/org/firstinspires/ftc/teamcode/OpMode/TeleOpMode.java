@@ -65,7 +65,7 @@ public class TeleOpMode extends LinearOpMode {
 //
 //            telemetry.update();
 //
-//            robot.oSlideLoop();
+            robot.iSlideLoop();
 
 //********** Player One Controls ***************************************************
 
@@ -158,6 +158,13 @@ public class TeleOpMode extends LinearOpMode {
 //********** Intake ***************************************************
 
 //          Intake Version 2
+            if ((gamepad2.right_stick_y <= -0.2) && robot.iElevGetHeight() <= 2000) {
+                robot.iElevMove(Constants.eIElevatorState.ManualUp);
+            } else if (gamepad2.right_stick_y >= 0.2 && robot.iElevGetHeight() >= 0) {
+                robot.iElevMove(Constants.eIElevatorState.ManualDown);
+            } else {
+                robot.iElevMove(Constants.eIElevatorState.ManualStop);
+            }
 
             if(gamepad2.dpad_down)//Arm_Hover
                 robot.iArmHover();
@@ -173,6 +180,7 @@ public class TeleOpMode extends LinearOpMode {
                 yActionStartTime = (long) intakeTimer.milliseconds();
             }
             if (bumperPressed && !yArmstartDone && intakeTimer.milliseconds() - yActionStartTime >= 300) {
+                robot.iElevMove(Constants.eIElevatorState.InIntake);
                 robot.iArmStart();
                 yArmstartDone=true;
             }
