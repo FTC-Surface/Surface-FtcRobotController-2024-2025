@@ -46,17 +46,17 @@ public class IntakeLinearSlidesTest extends LinearOpMode {
 
             telemetry.update();
 
-//            intakeLinearSlide.setTargetPosition(targetPos);
-//
-//            intakeLinearSlide.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
-//
-//            if(currentHeight > targetPos){
-//                intakeLinearSlide.setPower(-motorPower);
-//            }
-//
-//            if(currentHeight < targetPos){
-//                intakeLinearSlide.setPower(motorPower);
-//            }
+            intakeLinearSlide.setTargetPosition(targetPos);
+
+            intakeLinearSlide.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
+
+            if(currentHeight > targetPos){
+                intakeLinearSlide.setPower(-motorPower);
+            }
+
+            if(currentHeight < targetPos){
+                intakeLinearSlide.setPower(motorPower);
+            }
 
 
             currentHeight = intakeLinearSlide.getCurrentPosition();
