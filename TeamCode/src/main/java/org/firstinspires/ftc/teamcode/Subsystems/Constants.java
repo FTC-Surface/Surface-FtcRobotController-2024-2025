@@ -53,7 +53,7 @@ public class Constants {
     public final double OCloseClaw = 0.31;
 
     public final double OuttakeElevatorMotorPower = 0.9;
-    public final double IntakeElevatorMotorPower = 0.3;
+    public final double IntakeElevatorMotorPower = 1;
 
     public final double OutakeArmStartPos = 0;
     public final double OutakeArmDumpPos = 0;

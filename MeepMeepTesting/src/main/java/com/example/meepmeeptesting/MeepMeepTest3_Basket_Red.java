@@ -38,6 +38,9 @@ public class MeepMeepTest3_Basket_Red {
                         .lineToLinearHeading(new Pose2d(-55, -50, Math.toRadians(45)))
                         .waitSeconds(2)
 
+                        .lineToLinearHeading(new Pose2d(-20, -13, Math.toRadians(45)))
+                        .waitSeconds(2)
+
                         .build());
 
 
