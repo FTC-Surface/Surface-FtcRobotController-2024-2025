@@ -38,7 +38,7 @@ public class OuttakeLinearSlides extends Subsystem {
     public void moveElevator(Constants.eOElevatorState state) {
         switch(state){
             case Clip_Grab:
-                move(950);
+                move(1000);
                 break;
             case PrepareClip:
                 break;

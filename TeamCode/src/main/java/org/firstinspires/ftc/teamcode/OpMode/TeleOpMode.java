@@ -30,11 +30,11 @@ public class TeleOpMode extends LinearOpMode {
         long yActionStartTime = 0;
 
         long OuttakeStartTime1=0;
-        long OuttakeStartTime2=0;
+        long IntakeStartTime2=0;
         long OuttakeStartTime3=0;
         long OuttakeStartTime4=0;
         boolean Outtakepressed1 = false;
-        boolean Outtakepressed2 = false;
+        boolean Triggerpressed = false;
         boolean stickmoved1 = false;
         boolean stickmoved2 = false;
         boolean OuttakeclawDone = false;
@@ -65,7 +65,7 @@ public class TeleOpMode extends LinearOpMode {
 //
 //            telemetry.update();
 //
-            robot.iSlideLoop();
+//            robot.oSlideLoop();
 
 //********** Player One Controls ***************************************************
 
@@ -74,7 +74,7 @@ public class TeleOpMode extends LinearOpMode {
             double strafe = gamepad1.left_stick_x;
             double rotate = gamepad1.right_stick_x;
 
-            robot.teleOpDrive(drive * 0.6,strafe * 0.6,rotate * 0.6);
+            robot.teleOpDrive(drive * 0.7,strafe * 0.7,rotate * 0.7);
 
 //          Outtake Linear Slides
             if(gamepad1.dpad_up)
@@ -123,10 +123,6 @@ public class TeleOpMode extends LinearOpMode {
             if(gamepad2.left_bumper)
                 robot.oOpenClaw();
 
-            if(gamepad2.right_trigger >= 0.5)
-                robot.iCloseClaw();
-            if(gamepad2.left_trigger >= 0.5)
-                robot.iOpenClaw();
 
             //Hook
             if(gamepad2.left_stick_y >= 0.5 && !stickmoved1) {
@@ -139,18 +135,22 @@ public class TeleOpMode extends LinearOpMode {
                 stickmoved1 = false;
             }
 
-            if(gamepad2.left_stick_y <=-0.5 && !stickmoved2) {
-                robot.oElevMove(Constants.eOElevatorState.Clip_Hang);
+            if(gamepad2.left_stick_y <=-0.5)
+                robot.oArmHookstart();
+            if(gamepad2.square)
+                robot.oArmHookup();
+            
+            if(gamepad2.left_stick_button && !stickmoved2) {
+                robot.oCloseClaw();
                 OuttakeStartTime4 = (long) outtakeTimer.milliseconds();
                 stickmoved2 = true;
             }
-            if(stickmoved2 && outtakeTimer.milliseconds() - OuttakeStartTime4 >= 500) {
-                robot.oArmHookstart();
+            if(stickmoved2 && outtakeTimer.milliseconds() - OuttakeStartTime4 >= 300) {
+                robot.oElevMove(Constants.eOElevatorState.Clip_Hang);
                 stickmoved2 = false;
             }
 
-            if(gamepad2.square)
-                robot.oArmHookup();
+
 
 
                 
@@ -158,18 +158,33 @@ public class TeleOpMode extends LinearOpMode {
 //********** Intake ***************************************************
 
 //          Intake Version 2
-            if ((gamepad2.right_stick_y <= -0.2) && robot.iElevGetHeight() <= 2000) {
-                robot.iElevMove(Constants.eIElevatorState.ManualUp);
-            } else if (gamepad2.right_stick_y >= 0.2 && robot.iElevGetHeight() >= 0) {
-                robot.iElevMove(Constants.eIElevatorState.ManualDown);
-            } else {
-                robot.iElevMove(Constants.eIElevatorState.ManualStop);
-            }
+//            if ((gamepad2.right_stick_y <= -0.2) && robot.iElevGetHeight() <= 2000) {
+//                robot.iElevMove(Constants.eIElevatorState.ManualUp);
+//            } else if (gamepad2.right_stick_y >= 0.2 && robot.iElevGetHeight() >= 0) {
+//                robot.iElevMove(Constants.eIElevatorState.ManualDown);
+//            } else {
+//                robot.iElevMove(Constants.eIElevatorState.ManualStop);
+//            }
 
             if(gamepad2.dpad_down)//Arm_Hover
                 robot.iArmHover();
             if(gamepad2.dpad_up)//Arm_Grab
                 robot.iArmGrab();
+            
+            if(gamepad2.right_trigger >= 0.5 && !Triggerpressed) {
+                robot.iCloseClaw();
+                IntakeStartTime2 = (long) outtakeTimer.milliseconds();
+                Triggerpressed = true;
+            }
+            if(Triggerpressed && outtakeTimer.milliseconds() - IntakeStartTime2 >= 300)
+            {
+                robot.iArmHover();
+                Triggerpressed = false;
+            }
+
+            if(gamepad2.left_trigger >= 0.5)
+                robot.iOpenClaw();
+
 
 
             if (gamepad2.right_stick_button && !bumperPressed) {
