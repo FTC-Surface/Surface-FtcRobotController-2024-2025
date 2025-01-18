@@ -95,15 +95,15 @@ public class TeleOpMode extends LinearOpMode {
                 LinearSlidereadyDone = false;
                 OuttakeStartTime1 = (long) outtakeTimer.milliseconds();
             }
-            if(Outtakepressed1 && !OuttakeclawDone && !LinearSlidereadyDone && outtakeTimer.milliseconds() - OuttakeStartTime1 >= 400){
+            if(Outtakepressed1 && !OuttakeclawDone && !LinearSlidereadyDone && outtakeTimer.milliseconds() - OuttakeStartTime1 >= 400){//400
                 robot.oCloseClaw();
                 OuttakeclawDone = true;
             }
-            if(Outtakepressed1 &&  !LinearSlidereadyDone && OuttakeclawDone && outtakeTimer.milliseconds() - OuttakeStartTime1 >= 700){
+            if(Outtakepressed1 &&  !LinearSlidereadyDone && OuttakeclawDone && outtakeTimer.milliseconds() - OuttakeStartTime1 >= 700){//700
                 robot.oElevMove(Constants.eOElevatorState.Ready);
                 LinearSlidereadyDone = true;
             }
-            if(Outtakepressed1 && OuttakeclawDone && LinearSlidereadyDone && outtakeTimer.milliseconds() - OuttakeStartTime1 >= 1200){
+            if(Outtakepressed1 && OuttakeclawDone && LinearSlidereadyDone && outtakeTimer.milliseconds() - OuttakeStartTime1 >= 1200){//1200
                 robot.oArmDump();
                 Outtakepressed1 = false;
             }
@@ -127,6 +127,7 @@ public class TeleOpMode extends LinearOpMode {
             //Hook
             if(gamepad2.left_stick_y >= 0.5 && !stickmoved1) {
                 robot.oArmHookgrab();
+                robot.oOpenClaw();
                 OuttakeStartTime3 = (long) outtakeTimer.milliseconds();
                 stickmoved1 = true;
             }
@@ -135,19 +136,13 @@ public class TeleOpMode extends LinearOpMode {
                 stickmoved1 = false;
             }
 
-            if(gamepad2.left_stick_y <=-0.5)
-                robot.oArmHookstart();
-            if(gamepad2.square)
-                robot.oArmHookup();
-            
-            if(gamepad2.left_stick_button && !stickmoved2) {
-                robot.oCloseClaw();
-                OuttakeStartTime4 = (long) outtakeTimer.milliseconds();
-                stickmoved2 = true;
-            }
-            if(stickmoved2 && outtakeTimer.milliseconds() - OuttakeStartTime4 >= 300) {
+            if(gamepad2.left_stick_y <=-0.5) {
                 robot.oElevMove(Constants.eOElevatorState.Clip_Hang);
-                stickmoved2 = false;
+                robot.oArmHookstart();
+            }
+            if(gamepad2.square) {
+                robot.oElevMove(Constants.eOElevatorState.Clip_Hang);
+                robot.oArmHookup();
             }
 
 

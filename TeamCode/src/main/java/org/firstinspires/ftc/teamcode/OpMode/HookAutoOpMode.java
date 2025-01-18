@@ -59,6 +59,20 @@ public class HookAutoOpMode extends LinearOpMode {
                 .waitSeconds(0.5)
 
                 .build();
+        TrajectorySequence reset = drive.trajectorySequenceBuilder(depositInit.end())
+
+                .addTemporalMarker(0.25, () -> {
+                    robot.oArmStart();
+                })
+                .addTemporalMarker(0.75, () -> {
+                    robot.oElevMove(Constants.eOElevatorState.Ground);
+                })
+
+
+                .waitSeconds(3)
+
+                .build();
+
 
         TrajectorySequence readySample = drive.trajectorySequenceBuilder(depositInit.end())
                 .addTemporalMarker(0.25, () -> {
@@ -197,7 +211,12 @@ public class HookAutoOpMode extends LinearOpMode {
                 case depositInit:
                     if(!drive.isBusy()){
                         drive.followTrajectorySequence(depositInit);
-                        nextTraj(Constants.AutoState.readySamples);
+                        nextTraj(Constants.AutoState.reset);
+                    }
+                case reset:
+                    if(!drive.isBusy()){
+                        drive.followTrajectorySequence(reset);
+                        nextTraj(Constants.AutoState.idle);
                     }
                     break;
                 case readySamples:

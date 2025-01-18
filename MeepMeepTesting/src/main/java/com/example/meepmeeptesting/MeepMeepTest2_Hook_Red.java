@@ -16,8 +16,8 @@ public class MeepMeepTest2_Hook_Red {
                 .setConstraints(60, 60, Math.toRadians(470), Math.toRadians(180), 15.25)
                 .followTrajectorySequence(drive -> drive.trajectorySequenceBuilder(new Pose2d(0,-58, Math.toRadians(270)))
 
-                        .lineTo(new Vector2d(0,-33))
-                        .lineTo(new Vector2d(0,-35))
+                        .lineTo(new Vector2d(0,-31))
+                        .lineTo(new Vector2d(0,-48))
 
                         .lineToLinearHeading(new Pose2d(35, -35, Math.toRadians(270)))
                         .lineToLinearHeading(new Pose2d(35, -7, Math.toRadians(270)))

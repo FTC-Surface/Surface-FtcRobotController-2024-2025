@@ -31,7 +31,7 @@ public class Constants {
         grabThird,
         depositThird,
         grabFourth,
-        depositFourth
+        reset, depositFourth
     }
 
     public enum eIntakeState{

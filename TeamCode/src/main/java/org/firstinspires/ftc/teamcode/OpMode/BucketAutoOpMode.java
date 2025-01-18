@@ -58,6 +58,20 @@ public class BucketAutoOpMode extends LinearOpMode {
 
                 .lineToLinearHeading(new Pose2d(-52, -47, Math.toRadians(45)))
                 .build();
+        TrajectorySequence reset = drive.trajectorySequenceBuilder(depositInit.end())
+
+                .addTemporalMarker(0.25, () -> {
+                    robot.oArmStart();
+                })
+                .addTemporalMarker(0.75, () -> {
+                    robot.oElevMove(Constants.eOElevatorState.Ground);
+                })
+
+                .waitSeconds(3)
+
+                .build();
+
+
 
         TrajectorySequence grabFirst = drive.trajectorySequenceBuilder(depositInit.end())
                 .lineToLinearHeading(new Pose2d(-49,-35, Math.toRadians(90)))
@@ -210,6 +224,11 @@ public class BucketAutoOpMode extends LinearOpMode {
                     if(!drive.isBusy()){
                         drive.followTrajectorySequence(grabFirst);
                         nextTraj(Constants.AutoState.depositFirst);
+                    }
+                case reset:
+                    if(!drive.isBusy()){
+                        drive.followTrajectorySequence(reset);
+                        nextTraj(Constants.AutoState.idle);
                     }
                     break;
                 case depositFirst:
