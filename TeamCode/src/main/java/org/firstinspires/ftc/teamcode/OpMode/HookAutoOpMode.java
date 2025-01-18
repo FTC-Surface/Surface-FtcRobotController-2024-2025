@@ -17,7 +17,7 @@ public class HookAutoOpMode extends LinearOpMode {
 
     SampleMecanumDrive drive;
     Constants.AutoState currentTraj = Constants.AutoState.idle;
-    Pose2d startPose = new Pose2d(0,-58, Math.toRadians(270));
+    Pose2d startPose = new Pose2d(0,-60, Math.toRadians(270));
 
     void nextTraj(Constants.AutoState state){
         currentTraj = state;
@@ -52,35 +52,35 @@ public class HookAutoOpMode extends LinearOpMode {
                     robot.oArmHookup();
                 })
                 .waitSeconds(0.5)
-                .lineTo(new Vector2d(0,-48))
+                .lineTo(new Vector2d(0,-45))
                 .addTemporalMarker(4, () -> {
                     robot.oOpenClaw();
                 })
                 .waitSeconds(0.5)
 
                 .build();
-        TrajectorySequence reset = drive.trajectorySequenceBuilder(depositInit.end())
+//        TrajectorySequence reset = drive.trajectorySequenceBuilder(depositInit.end())
+//
+//                .addTemporalMarker(0.25, () -> {
+//                    robot.oArmStart();
+//                })
+//                .addTemporalMarker(0.75, () -> {
+//                    robot.oElevMove(Constants.eOElevatorState.Ground);
+//                })
+//
+//
+//                .waitSeconds(3)
+//
+//                .build();
+//
 
-                .addTemporalMarker(0.25, () -> {
-                    robot.oArmStart();
-                })
-                .addTemporalMarker(0.75, () -> {
-                    robot.oElevMove(Constants.eOElevatorState.Ground);
-                })
-
-
-                .waitSeconds(3)
-
-                .build();
-
-
-        TrajectorySequence readySample = drive.trajectorySequenceBuilder(depositInit.end())
+        TrajectorySequence readySample1 = drive.trajectorySequenceBuilder(depositInit.end())
                 .addTemporalMarker(0.25, () -> {
                     robot.oElevMove(Constants.eOElevatorState.Ready);
                     robot.oArmTake();
                 })
 
-                .lineToLinearHeading(new Pose2d(35, -48, Math.toRadians(270)))
+                .lineToLinearHeading(new Pose2d(35, -45, Math.toRadians(270)))
                 .lineToLinearHeading(new Pose2d(35, -7, Math.toRadians(270)))
 
                 .splineToLinearHeading(new Pose2d(45, -13, Math.toRadians(180)), Math.toRadians(-90))
@@ -99,35 +99,52 @@ public class HookAutoOpMode extends LinearOpMode {
 //                    robot.oArmHookgrab();
 //                })
 
-                .splineToLinearHeading(new Pose2d(37, -55, Math.toRadians(90)), Math.toRadians(-90))
+                .splineToLinearHeading(new Pose2d(42, -55, Math.toRadians(90)), Math.toRadians(-90))
 
                 .waitSeconds(3)
 
                 .build();
 
-        TrajectorySequence grabFirst = drive.trajectorySequenceBuilder(readySample.end())
+        TrajectorySequence readySample2 = drive.trajectorySequenceBuilder(depositInit.end())
+                .addTemporalMarker(0.25, () -> {
 
-                .lineTo((new Vector2d(35, -58)))
-//                .addDisplacementMarker(() ->{
-//                    robot.oCloseClaw();
-//                })
+                    robot.oArmHookgrab();
+                })
+                .addTemporalMarker(0.75, () -> {
 
-                .waitSeconds(3)
+                    robot.oElevMove(Constants.eOElevatorState.Clip_Grab);
+                })
+
+
+                .splineToLinearHeading(new Pose2d(42, -55, Math.toRadians(90)), Math.toRadians(-90))
+
+                .waitSeconds(2)
+
+                .build();
+
+        TrajectorySequence grabFirst = drive.trajectorySequenceBuilder(readySample2.end())
+
+                .lineTo((new Vector2d(42, -58)))
+                .addDisplacementMarker(() ->{
+                    robot.oCloseClaw();
+                })
+
+                .waitSeconds(1)
 
                 .build();
 
         TrajectorySequence depositFirst = drive.trajectorySequenceBuilder(grabFirst.end())
 
-//                .addTemporalMarker(0.5, () -> {
-//                    robot.oElevMove(Constants.eOElevatorState.Clip_Hang);
-//                    robot.oArmHookstart();
-//                })
-                .splineToLinearHeading(new Pose2d(7, -35, Math.toRadians(270)), Math.toRadians(90))
-                .lineTo(new Vector2d(7,-30))
+                .addTemporalMarker(0.5, () -> {
+                    robot.oElevMove(Constants.eOElevatorState.Clip_Hang);
+                    robot.oArmHookstart();
+                })
+                .splineToLinearHeading(new Pose2d(4, -42, Math.toRadians(270)), Math.toRadians(90))
+                .lineTo(new Vector2d(4,-33))
 //                .addDisplacementMarker(() ->{
 //                    robot.oArmHookup();
 //                })
-                .lineTo((new Vector2d(7, -35)))
+                .lineTo((new Vector2d(7, -42)))
 //                .addDisplacementMarker(() ->{
 //                    robot.oOpenClaw();
 //                    robot.oArmHookgrab();
@@ -213,15 +230,15 @@ public class HookAutoOpMode extends LinearOpMode {
                         drive.followTrajectorySequence(depositInit);
                         nextTraj(Constants.AutoState.reset);
                     }
-                case reset:
-                    if(!drive.isBusy()){
-                        drive.followTrajectorySequence(reset);
-                        nextTraj(Constants.AutoState.idle);
-                    }
-                    break;
+//                case reset:
+//                    if(!drive.isBusy()){
+//                        drive.followTrajectorySequence(reset);
+//                        nextTraj(Constants.AutoState.idle);
+//                    }
+//                    break;
                 case readySamples:
                     if(!drive.isBusy()){
-                        drive.followTrajectorySequence(readySample);
+                        drive.followTrajectorySequence(readySample2);
                         nextTraj(Constants.AutoState.grabFirst);
                     }
                     break;
