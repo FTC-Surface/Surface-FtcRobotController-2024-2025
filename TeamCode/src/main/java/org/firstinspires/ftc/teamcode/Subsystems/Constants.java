@@ -49,8 +49,8 @@ public class Constants {
     public final double IOpenClaw = 0.5;
     public final double ICloseClaw = 0.725;
 
-    public final double OOpenClaw = 0.3;
-    public final double OCloseClaw = 0.5;
+    public final double OOpenClaw = 0.1;
+    public final double OCloseClaw = 0.3;
 
     public final double OuttakeElevatorMotorPower = 0.9;
     public final double IntakeElevatorMotorPower = 1;
