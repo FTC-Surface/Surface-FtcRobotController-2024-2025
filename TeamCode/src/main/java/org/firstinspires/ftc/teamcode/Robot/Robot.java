@@ -13,6 +13,7 @@ import org.firstinspires.ftc.teamcode.Subsystems.Intake.IntakeLinearSlides;
 import org.firstinspires.ftc.teamcode.Subsystems.Intake.IntakeClaw;
 import org.firstinspires.ftc.teamcode.Subsystems.Intake.IntakeArm;
 
+import org.firstinspires.ftc.teamcode.Subsystems.Intake.IntakeWheel;
 import org.firstinspires.ftc.teamcode.Subsystems.Outtake.OuttakeArm;
 import org.firstinspires.ftc.teamcode.Subsystems.Outtake.OuttakeClaw;
 import org.firstinspires.ftc.teamcode.Subsystems.Outtake.OuttakeLinearSlides;
@@ -25,6 +26,8 @@ public class Robot {
     OuttakeClaw oClaw = new OuttakeClaw();
     OuttakeArm oArm = new OuttakeArm();
     OuttakeLinearSlides oSlides = new OuttakeLinearSlides();
+
+    IntakeWheel iWheel = new IntakeWheel();
     IntakeArm iArm = new IntakeArm();
     IntakeClaw iClaw = new IntakeClaw();
     IntakeLinearSlides iSlides = new IntakeLinearSlides();
@@ -113,6 +116,9 @@ public class Robot {
     public void iArmGrab(){iArm.downPos();}
     public void iArmStart(){iArm.upPos();}
     public void iArmHover(){iArm.hoverPos();}
+
+    public void iWheelTakeBlock() {iWheel.takeBlock();}
+    public void iWheelNoBlock() {iWheel.noBlock();}
 
     public void oOpenClaw(){oClaw.openClawOut();}
     public void oCloseClaw(){oClaw.closeClawOut();}

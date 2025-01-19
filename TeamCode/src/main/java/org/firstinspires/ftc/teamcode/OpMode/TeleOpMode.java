@@ -109,11 +109,20 @@ public class TeleOpMode extends LinearOpMode {
             }
 
             //Arm_position
-            if(gamepad2.triangle) {
-                robot.oOpenClaw();
-                robot.oElevMove(Constants.eOElevatorState.Ready);
-                robot.oArmTake();
+            //if(gamepad2.triangle) {
+                //robot.oOpenClaw();
+                //robot.oElevMove(Constants.eOElevatorState.Ready);
+                //robot.oArmTake();
+            //}
+
+            while(gamepad2.triangle) {
+                robot.iWheelTakeBlock();
             }
+
+            if(!gamepad2.triangle) {
+                robot.iWheelNoBlock();
+            }
+
             if(gamepad2.cross)
                 robot.oArmDump();
 
