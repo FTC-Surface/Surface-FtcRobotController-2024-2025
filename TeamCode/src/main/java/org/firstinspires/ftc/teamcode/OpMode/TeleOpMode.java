@@ -114,7 +114,7 @@ public class TeleOpMode extends LinearOpMode {
                 //robot.oArmTake();
             //}
 
-            while(gamepad2.triangle) {
+            if(gamepad2.triangle) {
                 robot.iWheelTakeBlock();
             }
 
