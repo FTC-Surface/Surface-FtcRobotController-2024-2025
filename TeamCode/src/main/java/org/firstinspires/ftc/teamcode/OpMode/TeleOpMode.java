@@ -118,6 +118,10 @@ public class TeleOpMode extends LinearOpMode {
                 robot.iWheelTakeBlock();
             }
 
+            else {
+                robot.iWheelNoBlock();
+            }
+
             if(gamepad2.cross)
                 robot.oArmDumpRelease();
 
