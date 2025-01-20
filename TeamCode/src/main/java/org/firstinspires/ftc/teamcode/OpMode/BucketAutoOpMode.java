@@ -48,7 +48,7 @@ public class BucketAutoOpMode extends LinearOpMode {
                .addTemporalMarker(1, () -> {
 
                     robot.oElevMove(Constants.eOElevatorState.Basket);
-                    robot.oArmDump();
+                    robot.oArmDumpReady();
 
                 })
 
@@ -107,7 +107,7 @@ public class BucketAutoOpMode extends LinearOpMode {
 
                 })
                 .addTemporalMarker(0.75, () -> {
-                    robot.oArmDump();
+                    robot.oArmDumpReady();
 
                 })
                 .waitSeconds(0.5)

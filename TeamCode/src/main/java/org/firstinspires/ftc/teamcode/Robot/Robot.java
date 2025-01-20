@@ -52,10 +52,10 @@ public class Robot {
         oArm.init(hardwareMap);
         oSlides.init(hardwareMap);
 
-        iSlides.init((hardwareMap));
-
-        iClaw.init(hardwareMap);
-        iArm.init(hardwareMap);
+//        iSlides.init((hardwareMap));
+//
+//        iClaw.init(hardwareMap);
+//        iArm.init(hardwareMap);
 
         for (LynxModule module : hardwareMap.getAll(LynxModule.class)) {
             module.setBulkCachingMode(LynxModule.BulkCachingMode.AUTO);
@@ -118,11 +118,11 @@ public class Robot {
     public void oCloseClaw(){oClaw.closeClawOut();}
 
     public void oArmStart(){oArm.startPos();}
-    public void oArmDump(){oArm.dumpPos();}
+    public void oArmDumpRelease(){oArm.dumpreleasePos();}
+    public void oArmDumpReady(){oArm.dumpreadyPos();}
     public void oArmTake(){oArm.takePos();}
 
     public void oArmHookgrab(){oArm.hookgrabPos();}
-    public void oArmHookstart(){oArm.hookstartPos();}
     public void oArmHookup(){oArm.hookupPos();}
 
 

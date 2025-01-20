@@ -73,10 +73,11 @@ public class RobotAuto {
     public void oCloseClaw(){oClaw.closeClawOut();}
 
     public void oArmStart(){oArm.startPos();}
-    public void oArmDump(){oArm.dumpPos();}
+    public void oArmDumpRelease(){oArm.dumpreleasePos();}
+    public void oArmDumpReady(){oArm.dumpreadyPos();}
     public void oArmTake(){oArm.takePos();}
+
     public void oArmHookgrab(){oArm.hookgrabPos();}
-    public void oArmHookstart(){oArm.hookstartPos();}
     public void oArmHookup(){oArm.hookupPos();}
 
 
