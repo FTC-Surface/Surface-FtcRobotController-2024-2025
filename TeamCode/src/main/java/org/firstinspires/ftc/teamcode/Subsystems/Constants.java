@@ -10,7 +10,7 @@ public class Constants {
         Ready,
         Grab,
         ManualUp,
-        Clip_Grab, Clip_Hang, ManualDown
+        Clip_Grab, Clip_Hang, Clip_Ready, ManualDown
     }
 
     public enum eIElevatorState{
@@ -50,24 +50,23 @@ public class Constants {
     public final double ICloseClaw = 0.725;
 
     public final double OOpenClaw = 0.1;
-    public final double OCloseClaw = 0.3;
+    public final double OCloseClaw = 0.325;
 
-    public final double OuttakeElevatorMotorPower = 0.9;
+    public final double OuttakeElevatorMotorPower = 1;
     public final double IntakeElevatorMotorPower = 1;
 
-    public final double OutakeArmStartPos = 0;
-    public final double OutakeArmDumpPos = 0;
-    public final double OutakeArmTakePos = 0.88;
-    public final double OutakeArmHookgrabPos = 0.5;
-    public final double OutakeArmHookstartPos = 0.15;
-    public final double OutakeArmHookupPos = 0.18;
+    public final double OutakeArmStartPos = 0.4;
+    public final double OutakeArmDumpReadyPos = 0.3;
+    public final double OutakeArmDumpReleasePos = 0.4;
+    public final double OutakeArmTakePos = 0;
+    public final double OutakeArmHookgrabPos = 0.8;
+    public final double OutakeArmHookupPos = 0.1;
 
-    public final double OutakeWristStartPos = 0.2;
-    public final double OutakeWristDumpPos = 0.7;
-    public final double OutakeWristTakePos = 0.95;
-    public final double OutakeWristHookgrabPos = 0.61;
-    public final double OutakeWristHookstartPos = 0.95;
-    public final double OutakeWristHookupPos = 0.95;
+    public final double OutakeWristStartPos = 0.5;
+    public final double OutakeWristDumpReleasePos = 1;
+    public final double OutakeWristTakePos = 0.4;
+    public final double OutakeWristHookgrabPos = 1.0;
+    public final double OutakeWristHookupPos = 0.4;
 
     public final double IntakeArmStartPos = 1.0;
     public final double IntakeArmGrabPos = 0.55;
