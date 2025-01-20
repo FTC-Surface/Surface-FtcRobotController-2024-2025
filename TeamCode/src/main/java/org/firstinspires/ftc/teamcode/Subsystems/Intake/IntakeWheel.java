@@ -26,9 +26,4 @@ public class IntakeWheel extends Subsystem {
         wheelPartOne.setPosition(positionOfWheelOne);
         wheelPartTwo.setPosition(positionOfWheelTwo);
     }
-
-    public void noBlock() {
-        wheelPartOne.setPosition(0);
-        wheelPartTwo.setPosition(0);
-    }
 }
