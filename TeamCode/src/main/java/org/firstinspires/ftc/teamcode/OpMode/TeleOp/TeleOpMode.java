@@ -108,20 +108,11 @@ public class TeleOpMode extends LinearOpMode {
             }
 
             //Arm_position
-            //if(gamepad2.triangle) {
-                //robot.oOpenClaw();
-                //robot.oElevMove(Constants.eOElevatorState.Ready);
-                //robot.oArmTake();
-            //}
-
             if(gamepad2.triangle) {
-                robot.iWheelTakeBlock();
+                robot.oOpenClaw();
+                robot.oElevMove(Constants.eOElevatorState.Ready);
+                robot.oArmTake();
             }
-
-            else {
-                robot.iWheelNoBlock();
-            }
-
             if(gamepad2.cross)
                 robot.oArmDumpRelease();
 
@@ -165,6 +156,12 @@ public class TeleOpMode extends LinearOpMode {
             }
 
 //********** Intake ***************************************************
+            if(gamepad2.left_trigger >=0.5) {
+                robot.iWheelTakeBlock();
+            }
+            else {
+                robot.iWheelNoBlock();
+            }
 
 //          Intake Version 2
 //            if ((gamepad2.right_stick_y <= -0.2) && robot.iElevGetHeight() <= 2000) {

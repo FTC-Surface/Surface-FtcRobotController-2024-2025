@@ -117,6 +117,7 @@ public class Robot {
 
     public void iWheelTakeBlock() {iWheel.takeBlock();}
     public void iWheelNoBlock() {iWheel.noBlock();}
+    public void iWheelOutBlock() {iWheel.outBlock();}
 
     public void oOpenClaw(){oClaw.openClawOut();}
     public void oCloseClaw(){oClaw.closeClawOut();}
