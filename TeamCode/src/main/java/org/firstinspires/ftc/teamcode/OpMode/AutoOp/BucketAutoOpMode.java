@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.OpMode;
+package org.firstinspires.ftc.teamcode.OpMode.AutoOp;
 
 import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.roadrunner.geometry.Pose2d;
@@ -38,7 +38,7 @@ public class BucketAutoOpMode extends LinearOpMode {
                 .addTemporalMarker(0, () -> {
                     robot.oElevMove(Constants.eOElevatorState.Ready);
                     robot.iArmHover();
-                    robot.iOpenClaw();
+                    //robot.iOpenClaw();
                     robot.oCloseClaw();
                     robot.oArmStart();
                 })
@@ -74,7 +74,7 @@ public class BucketAutoOpMode extends LinearOpMode {
 
                 })
                 .addTemporalMarker(2.5, () -> {
-                    robot.iCloseClaw();
+                    //robot.iCloseClaw();
 
                 })
                 .addTemporalMarker(3, () -> {
@@ -82,7 +82,7 @@ public class BucketAutoOpMode extends LinearOpMode {
 
                 })
                 .addTemporalMarker(3.5, () -> {
-                    robot.iOpenClaw();
+                    //robot.iOpenClaw();
                     robot.oOpenClaw();
 
                 })

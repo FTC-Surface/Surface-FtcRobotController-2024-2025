@@ -10,7 +10,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 //import org.firstinspires.ftc.teamcode.Subsystems.Intake.IntakeActiveIntake;
 import org.firstinspires.ftc.teamcode.Subsystems.Intake.IntakeLinearSlides;
-import org.firstinspires.ftc.teamcode.Subsystems.Intake.IntakeClaw;
+//import org.firstinspires.ftc.teamcode.Subsystems.Intake.IntakeClaw;
 import org.firstinspires.ftc.teamcode.Subsystems.Intake.IntakeArm;
 
 import org.firstinspires.ftc.teamcode.Subsystems.Intake.IntakeWheel;
@@ -29,7 +29,7 @@ public class Robot {
 
     IntakeWheel iWheel = new IntakeWheel();
     IntakeArm iArm = new IntakeArm();
-    IntakeClaw iClaw = new IntakeClaw();
+//    IntakeClaw iClaw = new IntakeClaw();
     IntakeLinearSlides iSlides = new IntakeLinearSlides();
 
     Constants constants = new Constants();
@@ -56,9 +56,9 @@ public class Robot {
         oSlides.init(hardwareMap);
 
 //        iSlides.init((hardwareMap));
-//
 //        iClaw.init(hardwareMap);
-//        iArm.init(hardwareMap);
+
+        iArm.init(hardwareMap);
 
         for (LynxModule module : hardwareMap.getAll(LynxModule.class)) {
             module.setBulkCachingMode(LynxModule.BulkCachingMode.AUTO);
@@ -98,9 +98,7 @@ public class Robot {
     public void oSlideLoop(){oSlides.loop();}
     public void iSlideLoop(){iSlides.loop();}
 
-    public double oElevGetHeight(){
-        return oSlides.getPos();
-    }
+    public double oElevGetHeight(){return oSlides.getPos();}
     public double iElevGetHeight(){return iSlides.getPos();}
 
     public void oElevMove(Constants.eOElevatorState state){oSlides.moveElevator(state);}
@@ -110,8 +108,8 @@ public class Robot {
     public boolean oElevIsBusy(){return oElevIsBusy();}
     public double oElevGetPower(){return oElevGetPower();}
 
-    public void iOpenClaw(){iClaw.openClawIn();}
-    public void iCloseClaw(){iClaw.closeClawIn();}
+//    public void iOpenClaw(){iClaw.openClawIn();}
+//    public void iCloseClaw(){iClaw.closeClawIn();}
 
     public void iArmGrab(){iArm.downPos();}
     public void iArmStart(){iArm.upPos();}
@@ -119,6 +117,7 @@ public class Robot {
 
     public void iWheelTakeBlock() {iWheel.takeBlock();}
     public void iWheelNoBlock() {iWheel.noBlock();}
+
     public void oOpenClaw(){oClaw.openClawOut();}
     public void oCloseClaw(){oClaw.closeClawOut();}
 

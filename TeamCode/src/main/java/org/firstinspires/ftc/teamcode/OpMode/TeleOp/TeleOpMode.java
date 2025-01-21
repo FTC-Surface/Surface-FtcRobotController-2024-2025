@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.OpMode;
+package org.firstinspires.ftc.teamcode.OpMode.TeleOp;
 
 import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.config.Config;
@@ -33,6 +33,7 @@ public class TeleOpMode extends LinearOpMode {
         long IntakeStartTime2=0;
         long OuttakeStartTime3=0;
         long OuttakeStartTime4=0;
+
         boolean Outtakepressed1 = false;
         boolean Triggerpressed = false;
         boolean stickmoved1 = false;
@@ -65,8 +66,6 @@ public class TeleOpMode extends LinearOpMode {
 //            telemetry.addData("Outtake Elev Is Busy", robot.oElevIsBusy());
 //
 //            telemetry.update();
-//
-//            robot.oSlideLoop();
 
 //********** Player One Controls ***************************************************
 
@@ -81,6 +80,7 @@ public class TeleOpMode extends LinearOpMode {
             if(gamepad1.dpad_up)
                 robot.oElevMove(Constants.eOElevatorState.Basket);
 
+            //Jack why has this been commented out?
 //            if(gamepad1.dpad_down)
 //                robot.oElevMove(Constants.eOElevatorState.Ready);
 

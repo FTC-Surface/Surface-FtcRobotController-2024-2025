@@ -1,16 +1,15 @@
 package org.firstinspires.ftc.teamcode.Robot;
 
 import com.qualcomm.hardware.lynx.LynxModule;
-import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorEx;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 //import org.firstinspires.ftc.teamcode.Subsystems.Intake.IntakeActiveIntake;
+
+//import org.firstinspires.ftc.teamcode.ArchivedCode.IntakeClaw;
+
 import org.firstinspires.ftc.teamcode.Subsystems.Intake.IntakeLinearSlides;
-import org.firstinspires.ftc.teamcode.Subsystems.Intake.IntakeClaw;
 import org.firstinspires.ftc.teamcode.Subsystems.Intake.IntakeArm;
 
 import org.firstinspires.ftc.teamcode.Subsystems.Outtake.OuttakeArm;
@@ -20,11 +19,11 @@ import org.firstinspires.ftc.teamcode.Subsystems.Outtake.OuttakeLinearSlides;
 import org.firstinspires.ftc.teamcode.Subsystems.Constants;
 
 public class RobotAuto {
+//    IntakeClaw iClaw = new IntakeClaw();
     OuttakeClaw oClaw = new OuttakeClaw();
     OuttakeArm oArm = new OuttakeArm();
     OuttakeLinearSlides oSlides = new OuttakeLinearSlides();
     IntakeArm iArm = new IntakeArm();
-    IntakeClaw iClaw = new IntakeClaw();
     IntakeLinearSlides iSlides = new IntakeLinearSlides();
 
     Constants constants = new Constants();
@@ -37,7 +36,7 @@ public class RobotAuto {
         oClaw.init(hardwareMap);
 
 //        iSlides.init((hardwareMap));
-        iClaw.init(hardwareMap);
+//        iClaw.init(hardwareMap);
         iArm.init(hardwareMap);
 
         for (LynxModule module : hardwareMap.getAll(LynxModule.class)) {
@@ -62,8 +61,8 @@ public class RobotAuto {
     public boolean oElevIsBusy(){return oElevIsBusy();}
     public double oElevGetPower(){return oElevGetPower();}
 
-    public void iOpenClaw(){iClaw.openClawIn();}
-    public void iCloseClaw(){iClaw.closeClawIn();}
+//    public void iOpenClaw(){iClaw.openClawIn();}
+//    public void iCloseClaw(){iClaw.closeClawIn();}
 
     public void iArmGrab(){iArm.downPos();}
     public void iArmStart(){iArm.upPos();}
@@ -79,8 +78,6 @@ public class RobotAuto {
 
     public void oArmHookgrab(){oArm.hookgrabPos();}
     public void oArmHookup(){oArm.hookupPos();}
-
-
 
 
     public void waitForSeconds(int seconds){

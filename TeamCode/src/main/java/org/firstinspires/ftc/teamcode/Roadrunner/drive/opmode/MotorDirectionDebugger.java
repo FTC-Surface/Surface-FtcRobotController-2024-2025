@@ -9,8 +9,6 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.Roadrunner.drive.SampleMecanumDrive;
-import org.firstinspires.ftc.teamcode.Subsystems.Intake.IntakeArm;
-import org.firstinspires.ftc.teamcode.Subsystems.Intake.IntakeClaw;
 
 /**
  * This is a simple teleop routine for debugging your motor configuration.
@@ -46,9 +44,6 @@ import org.firstinspires.ftc.teamcode.Subsystems.Intake.IntakeClaw;
 public class MotorDirectionDebugger extends LinearOpMode {
     public static double MOTOR_POWER = 0.7;
 
-    IntakeArm iArm = new IntakeArm();
-    IntakeClaw iClaw = new IntakeClaw();
-
     @Override
     public void runOpMode() throws InterruptedException {
         Telemetry telemetry = new MultipleTelemetry(this.telemetry, FtcDashboard.getInstance().getTelemetry());
@@ -58,13 +53,7 @@ public class MotorDirectionDebugger extends LinearOpMode {
         telemetry.addLine("Press play to begin the debugging opmode");
         telemetry.update();
 
-        iArm.init(hardwareMap);
-        iClaw.init(hardwareMap);
-
         waitForStart();
-
-        iArm.upPos();
-        iClaw.closeClawIn();
 
         if (isStopRequested()) return;
 

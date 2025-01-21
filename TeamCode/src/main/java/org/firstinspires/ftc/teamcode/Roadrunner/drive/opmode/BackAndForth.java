@@ -7,8 +7,6 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.Roadrunner.drive.SampleMecanumDrive;
-import org.firstinspires.ftc.teamcode.Subsystems.Intake.IntakeArm;
-import org.firstinspires.ftc.teamcode.Subsystems.Intake.IntakeClaw;
 
 /*
  * Op mode for preliminary tuning of the follower PID coefficients (located in the drive base
@@ -32,9 +30,6 @@ public class BackAndForth extends LinearOpMode {
 
     public static double DISTANCE = 40;
 
-    IntakeArm iArm = new IntakeArm();
-    IntakeClaw iClaw = new IntakeClaw();
-
     @Override
     public void runOpMode() throws InterruptedException {
         SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
@@ -47,13 +42,7 @@ public class BackAndForth extends LinearOpMode {
                 .back(DISTANCE)
                 .build();
 
-//        iArm.init(hardwareMap);
-//        iClaw.init(hardwareMap);
-
         waitForStart();
-
-//        iArm.upPos();
-//        iClaw.closeClawIn();
 
         while (opModeIsActive() && !isStopRequested()) {
             drive.followTrajectory(trajectoryForward);
