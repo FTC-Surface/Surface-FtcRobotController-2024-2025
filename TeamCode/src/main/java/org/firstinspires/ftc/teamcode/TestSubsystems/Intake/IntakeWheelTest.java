@@ -22,6 +22,7 @@ public class IntakeWheelTest extends LinearOpMode{
     public void runOpMode() throws InterruptedException {
 
         wheel = hardwareMap.get(DcMotorEx.class, "IntakeWheel");
+        wheel.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
 
         waitForStart();
 
