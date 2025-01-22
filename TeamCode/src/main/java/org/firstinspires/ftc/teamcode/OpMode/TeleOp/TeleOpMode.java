@@ -216,12 +216,13 @@ public class TeleOpMode extends LinearOpMode {
 
 //********** Intake ***************************************************
 
-            if(gamepad2.left_trigger >=0.5) {
-                robot.iWheelTakeBlock();
-            }
-            else {
-                robot.iWheelNoBlock();
-            }
+            //Will need to change in future
+//            if(gamepad2.left_trigger >= 0.5) {
+//                robot.iWheelTakeBlock();
+//            }
+//            else {
+//                robot.iWheelNoBlock();
+//            }
 
 //          Intake Version 3
 //            if ((gamepad2.right_stick_y <= -0.2) && robot.iElevGetHeight() <= 2000) {

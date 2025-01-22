@@ -5,53 +5,51 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.CRServo;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.Servo;
 
 @TeleOp(name = "Intake Arm Test", group = "Tests")
 @Config
 public class IntakeArmTest extends LinearOpMode{
 
-    private Servo armServo1;
-    private Servo armServo2;
-    private Servo Wrist;
-    private Servo Claw;
+    private Servo armServo;
+    private Servo bucketServo;
+    private DcMotorEx wheel;
 
-    public static double positionOne = 1;
-    public static double positionTwo = 1;
-    public static double positionWrist = 1;
-    public static double positionClaw = 0;
+    public static double armPos = 0;
+    public static double bucketPos = 0;
+    public static double wheelPow = 0;
 
     public static int activateTestMode = 0;
 
     @Override
     public void runOpMode() throws InterruptedException {
-        armServo1 = hardwareMap.get(Servo.class,"iArm");
-//        armServo2 = hardwareMap.get(Servo.class, "iArm2");
-//        Wrist = hardwareMap.get(Servo.class, "Wrist");
-//        Claw = hardwareMap.get(Servo.class, "Claw");
-//        armServo2.setDirection(Servo.Direction.REVERSE);
+        armServo = hardwareMap.get(Servo.class,"iArm");
+        bucketServo = hardwareMap.get(Servo.class, "BucketServo");
+
+        wheel = hardwareMap.get(DcMotorEx.class, "IntakeWheel");
+        wheel.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
 
         waitForStart();
 
         while(opModeIsActive() && !isStopRequested()){
 
             if(activateTestMode == 0){
-                armServo1.setPosition(positionOne);
-//                armServo2.setPosition(positionOne);
-//                Wrist.setPosition(positionWrist);
-//                Claw.setPosition(positionClaw);
+                armServo.setPosition(armPos);
+                bucketServo.setPosition(bucketPos);
+                wheel.setPower(wheelPow);
             }
 
             if(activateTestMode == 1){
                 if(gamepad2.x)//Down
                 {
-                    armServo1.setPosition(0.5);
+                    armServo.setPosition(0.5);
                     //armServo2.setPosition(0.5);
 //                    Wrist.setPosition(0.4);
                 }
                 if(gamepad2.y)//up
                 {
-                    armServo1.setPosition(1);
+                    armServo.setPosition(0);
                     //armServo2.setPosition(1);
 //                    Wrist.setPosition(1);
                 }

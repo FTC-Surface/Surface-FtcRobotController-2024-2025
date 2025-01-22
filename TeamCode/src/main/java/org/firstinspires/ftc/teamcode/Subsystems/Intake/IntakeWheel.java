@@ -13,9 +13,8 @@ public class IntakeWheel extends Subsystem {
 
     Constants constants = new Constants();
 
-    public void init(HardwareMap hardwareMap) {
-        wheel = hardwareMap.get(DcMotorEx.class, "IntakeWheel");
-    }
+    public void init(HardwareMap hardwareMap) {wheel = hardwareMap.get(DcMotorEx.class, "IntakeWheel");}
+
     public void takeBlock() {
         wheel.setPower(constants.IntakeWheelPowIn);
     }
@@ -24,7 +23,5 @@ public class IntakeWheel extends Subsystem {
         wheel.setPower(0);
     }
 
-    public void outBlock() {
-        wheel.setPower(constants.IntakeWheelPowOut);
-    }
+    public void outBlock() {wheel.setPower(constants.IntakeWheelPowOut);}
 }
