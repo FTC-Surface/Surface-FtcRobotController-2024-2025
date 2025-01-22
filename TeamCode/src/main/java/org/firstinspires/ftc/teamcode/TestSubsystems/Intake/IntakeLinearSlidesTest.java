@@ -8,7 +8,6 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 @TeleOp(name = "Intake Linear Slides Test", group = "Tests")
 @Config
@@ -39,8 +38,8 @@ public class IntakeLinearSlidesTest extends LinearOpMode {
         intakeLinearSlideOne.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         intakeLinearSlideTwo.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
-        intakeLinearSlideOne.setDirection(DcMotorSimple.Direction.REVERSE);
-        intakeLinearSlideTwo.setDirection(DcMotorSimple.Direction.REVERSE);
+        intakeLinearSlideOne.setDirection(DcMotorEx.Direction.REVERSE);
+        intakeLinearSlideTwo.setDirection(DcMotorEx.Direction.REVERSE);
         
 
         telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
