@@ -10,7 +10,9 @@ public class Constants {
         Ready,
         Grab,
         ManualUp,
-        Clip_Grab, Clip_Hang, Clip_Ready, ManualDown
+        Clip_Grab,
+        Clip_Hang,
+        Clip_Ready, ManualDown
     }
 
     public enum eIElevatorState{
@@ -42,8 +44,17 @@ public class Constants {
         iResetArm
     }
 
-    public enum eOuttakeState{
+    public enum eOuttakeStateGrabDump{
+        oOuttakeReady,
+        oOuttakeCloseClaw,
+        oOuttakeOuttakeSlides,
+        oOuttakeArmDump
+    }
 
+    public enum eOuttakeStateClipHang{
+        oOuttakeReady,
+        oOuttakeOpenClaw,
+        oOuttakeReset
     }
 
 //    public final double IOpenClaw = 0.5;
