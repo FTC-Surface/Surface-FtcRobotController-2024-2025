@@ -26,8 +26,8 @@ public class IntakeLinearSlides extends Subsystem {
         intakeLinearSlideOne = hardwareMap.get(DcMotorEx.class, "InLinearSlideOne");
         intakeLinearSlideTwo = hardwareMap.get(DcMotorEx.class, "InLinearSlideTwo");
 
-        intakeLinearSlideOne.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.FLOAT);
-        intakeLinearSlideTwo.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.FLOAT);
+        intakeLinearSlideOne.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
+        intakeLinearSlideTwo.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
 
         intakeLinearSlideOne.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);
         intakeLinearSlideTwo.setMode(DcMotorEx.RunMode.STOP_AND_RESET_ENCODER);

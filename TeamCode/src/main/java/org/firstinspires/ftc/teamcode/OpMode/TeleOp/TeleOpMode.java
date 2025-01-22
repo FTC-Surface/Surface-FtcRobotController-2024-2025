@@ -74,7 +74,7 @@ public class TeleOpMode extends LinearOpMode {
             double strafe = gamepad1.left_stick_x;
             double rotate = gamepad1.right_stick_x;
 
-            robot.teleOpDrive(drive * 0.9,strafe * 0.9,rotate * 0.6);
+            robot.teleOpDrive(drive * 0.8,strafe * 0.8,rotate * 0.7);
 
 //          Outtake Linear Slides
             if(gamepad1.dpad_up)
@@ -108,20 +108,11 @@ public class TeleOpMode extends LinearOpMode {
             }
 
             //Arm_position
-            //if(gamepad2.triangle) {
-                //robot.oOpenClaw();
-                //robot.oElevMove(Constants.eOElevatorState.Ready);
-                //robot.oArmTake();
-            //}
-
             if(gamepad2.triangle) {
-                robot.iWheelTakeBlock();
+                robot.oOpenClaw();
+                robot.oElevMove(Constants.eOElevatorState.Ready);
+                robot.oArmTake();
             }
-
-            else {
-                robot.iWheelNoBlock();
-            }
-
             if(gamepad2.cross)
                 robot.oArmDumpRelease();
 
@@ -165,6 +156,12 @@ public class TeleOpMode extends LinearOpMode {
             }
 
 //********** Intake ***************************************************
+            if(gamepad2.left_trigger >=0.5) {
+                robot.iWheelTakeBlock();
+            }
+            else {
+                robot.iWheelNoBlock();
+            }
 
 //          Intake Version 2
 //            if ((gamepad2.right_stick_y <= -0.2) && robot.iElevGetHeight() <= 2000) {
