@@ -14,9 +14,11 @@ public class IntakeWheelTest extends LinearOpMode{
 
     private DcMotorEx wheel;
 
-    public static double motorPow;
+    public static double motorPow = 0;
 
     public static int activateTestMode = 0;
+
+    public static int multiplier = 1;
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -27,7 +29,7 @@ public class IntakeWheelTest extends LinearOpMode{
 
         while(opModeIsActive() && !isStopRequested()){
             if(activateTestMode == 0){
-                wheel.setPower(motorPow);
+                wheel.setPower(motorPow * multiplier);
 
                 if(gamepad1.circle){
                     wheel.setPower(0);

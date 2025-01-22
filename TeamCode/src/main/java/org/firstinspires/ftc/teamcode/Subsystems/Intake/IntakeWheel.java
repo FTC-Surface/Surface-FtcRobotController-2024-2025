@@ -8,14 +8,15 @@ import org.firstinspires.ftc.teamcode.Subsystems.Constants;
 import org.firstinspires.ftc.teamcode.Subsystems.Subsystem;
 
 public class IntakeWheel extends Subsystem {
-    DcMotorEx wheel;
+    private DcMotorEx wheel;
+
+    Constants constants = new Constants();
 
     public void init(HardwareMap hardwareMap) {
         wheel = hardwareMap.get(DcMotorEx.class, "IntakeWheel");
     }
-
     public void takeBlock() {
-        wheel.setPower(0.5);
+        wheel.setPower(constants.IntakeWheelPow);
     }
 
     public void noBlock() {
