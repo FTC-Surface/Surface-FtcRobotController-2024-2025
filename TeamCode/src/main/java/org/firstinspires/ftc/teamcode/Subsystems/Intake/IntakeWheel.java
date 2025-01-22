@@ -17,7 +17,7 @@ public class IntakeWheel extends Subsystem {
         wheel = hardwareMap.get(DcMotorEx.class, "IntakeWheel");
     }
     public void takeBlock() {
-        wheel.setPower(constants.IntakeWheelPow);
+        wheel.setPower(constants.IntakeWheelPowIn);
     }
 
     public void noBlock() {
@@ -25,7 +25,6 @@ public class IntakeWheel extends Subsystem {
     }
 
     public void outBlock() {
-        wheel.setDirection(DcMotorSimple.Direction.REVERSE);
-        wheel.setPower(0.5);
+        wheel.setPower(constants.IntakeWheelPowOut);
     }
 }

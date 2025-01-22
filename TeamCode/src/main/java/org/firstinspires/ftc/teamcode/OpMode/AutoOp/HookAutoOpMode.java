@@ -48,6 +48,7 @@ public class HookAutoOpMode extends LinearOpMode {
                 //Add code for the first sample
 
                 .lineTo(new Vector2d(9,-34))
+
 //                .addTemporalMarker(2.4, () -> {
 //                    robot.oElevMove(Constants.eOElevatorState.Clip_Hang);
 //                })
@@ -55,11 +56,10 @@ public class HookAutoOpMode extends LinearOpMode {
 //                    robot.oOpenClaw();
 //                    robot.oArmHookgrab();
 //                })
+
                 .waitSeconds(5)
 
                 .build();
-
-
 
         TrajectorySequence readySample1 = drive.trajectorySequenceBuilder(depositInit.end())
                 .addTemporalMarker(0, () -> {
@@ -85,9 +85,6 @@ public class HookAutoOpMode extends LinearOpMode {
                 .waitSeconds(0.125)
 
                 .build();
-
-
-
 
         TrajectorySequence grabFirst = drive.trajectorySequenceBuilder(readySample1.end())
 
@@ -246,7 +243,7 @@ public class HookAutoOpMode extends LinearOpMode {
                 case depositInit:
                     if(!drive.isBusy()){
                         drive.followTrajectorySequence(depositInit);
-                        nextTraj(Constants.AutoState.readySamples);
+                        nextTraj(Constants.AutoState.idle);
                     }
 
                 case readySamples:
