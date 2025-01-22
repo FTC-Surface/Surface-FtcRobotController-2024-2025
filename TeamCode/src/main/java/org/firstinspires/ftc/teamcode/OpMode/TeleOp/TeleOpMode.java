@@ -84,6 +84,8 @@ public class TeleOpMode extends LinearOpMode {
 
 //********** Outtake ***************************************************
 
+            //Jack you can remove and revert this part if u want. Did it before we assigned roles
+
             //Grab + Claw_close + Up/Arm_dump
 //            if(gamepad2.circle && !Outtakepressed1){
 //                Outtakepressed1 = true;
@@ -165,6 +167,8 @@ public class TeleOpMode extends LinearOpMode {
                 robot.oOpenClaw();
                 robot.oElevMove(Constants.eOElevatorState.Clip_Grab);
             }
+
+            //Jack you can remove and revert this part if u want. Did it before we assigned roles
 
 //            if(gamepad2.square && !stickmoved1) {
 //                robot.oElevMove(Constants.eOElevatorState.Clip_Hang);
