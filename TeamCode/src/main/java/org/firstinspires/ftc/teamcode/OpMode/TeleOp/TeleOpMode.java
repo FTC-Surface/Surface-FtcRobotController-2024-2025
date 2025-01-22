@@ -74,7 +74,7 @@ public class TeleOpMode extends LinearOpMode {
             double strafe = gamepad1.left_stick_x;
             double rotate = gamepad1.right_stick_x;
 
-            robot.teleOpDrive(drive * 0.9,strafe * 0.9,rotate * 0.6);
+            robot.teleOpDrive(drive * 0.8,strafe * 0.8,rotate * 0.7);
 
 //          Outtake Linear Slides
             if(gamepad1.dpad_up)
