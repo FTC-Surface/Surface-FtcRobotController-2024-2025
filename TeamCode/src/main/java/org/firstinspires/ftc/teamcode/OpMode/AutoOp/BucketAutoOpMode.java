@@ -42,29 +42,30 @@ public class BucketAutoOpMode extends LinearOpMode {
                     robot.oCloseClaw();
                     robot.oArmStart();
                 })
+
                 .lineToLinearHeading(new Pose2d(-52, -47, Math.toRadians(45)))
                 .waitSeconds(0.25)
                 .lineToLinearHeading(new Pose2d(-58, -53, Math.toRadians(45)))
-               .addTemporalMarker(1, () -> {
 
+               .addTemporalMarker(1, () -> {
                     robot.oElevMove(Constants.eOElevatorState.Basket);
                     robot.oArmDumpReady();
 
                 })
 
                 .waitSeconds(0.75)
+
                 .addTemporalMarker(2.75, () -> {
                     robot.oOpenClaw();
                 })
-                .lineToLinearHeading(new Pose2d(-54, -40, Math.toRadians(45)))
+
+                .lineToLinearHeading(new Pose2d(-52, -47, Math.toRadians(45)))
 
                 .build();
 
-
-
-
         TrajectorySequence grabFirst = drive.trajectorySequenceBuilder(depositInit.end())
                 .lineToLinearHeading(new Pose2d(-48.25,-35.5, Math.toRadians(90)))
+
                 .addTemporalMarker(0, () -> {
                     robot.oElevMove(Constants.eOElevatorState.Ready);
                     robot.oArmTake();
@@ -75,8 +76,8 @@ public class BucketAutoOpMode extends LinearOpMode {
                 })
                 .addTemporalMarker(2.5, () -> {
                     //robot.iCloseClaw();
-
                 })
+
                 .addTemporalMarker(3, () -> {
                     robot.iArmStart();
 
@@ -89,11 +90,12 @@ public class BucketAutoOpMode extends LinearOpMode {
                 .addTemporalMarker(3.8, () -> {
                     robot.iArmHover();
                     robot.oElevMove(Constants.eOElevatorState.Grab);
-
                 })
+
                 .addTemporalMarker(4.3, () -> {
                     robot.oCloseClaw();
                 })
+
                 .waitSeconds(4.5)
 
                 .build();
@@ -123,8 +125,6 @@ public class BucketAutoOpMode extends LinearOpMode {
                 .waitSeconds(0.5)
 
                 .build();
-
-
 
 //        TrajectorySequence grabSecond = drive.trajectorySequenceBuilder(depositFirst.end())
 //                .lineToLinearHeading(new Pose2d(-63,-35, Math.toRadians(90)))
@@ -186,20 +186,6 @@ public class BucketAutoOpMode extends LinearOpMode {
 //
 //                .build();
 
-        TrajectorySequence reset = drive.trajectorySequenceBuilder(depositFirst.end())
-
-                .addTemporalMarker(0.25, () -> {
-                    robot.oArmStart();
-                })
-                .addTemporalMarker(0.75, () -> {
-                    robot.oElevMove(Constants.eOElevatorState.Ground);
-                })
-
-                .waitSeconds(3)
-
-                .build();
-
-
 //        TrajectorySequence grabThird = drive.trajectorySequenceBuilder(depositSecond.end())
 //                .lineToLinearHeading(new Pose2d(-62,-33, Math.toRadians(120)))
 ////                .waitSeconds(2)
@@ -227,6 +213,19 @@ public class BucketAutoOpMode extends LinearOpMode {
 //                .waitSeconds(5)
 //                .build();
 
+        TrajectorySequence reset = drive.trajectorySequenceBuilder(depositFirst.end())
+
+                .addTemporalMarker(0.25, () -> {
+                    robot.oArmStart();
+                })
+                .addTemporalMarker(0.75, () -> {
+                    robot.oElevMove(Constants.eOElevatorState.Ground);
+                })
+
+                .waitSeconds(3)
+
+                .build();
+
         while(opModeIsActive()){
             switch(currentTraj){
                 case depositInit:
@@ -247,8 +246,6 @@ public class BucketAutoOpMode extends LinearOpMode {
                         nextTraj(Constants.AutoState.grabSecond);
                     }
                     break;
-
-
 //                case grabSecond:
 //                    if(!drive.isBusy()){
 //                        drive.followTrajectorySequence(grabSecond);
@@ -262,12 +259,6 @@ public class BucketAutoOpMode extends LinearOpMode {
 //                        nextTraj(Constants.AutoState.reset);
 //                    }
 //                    break;
-                case reset:
-                    if(!drive.isBusy()){
-                        drive.followTrajectorySequence(reset);
-                        nextTraj(Constants.AutoState.idle);
-                    }
-                    break;
 //                case grabThird:
 //                    if(!drive.isBusy()){
 //                        drive.followTrajectorySequence(grabThird);
@@ -280,6 +271,12 @@ public class BucketAutoOpMode extends LinearOpMode {
 //                        nextTraj(Constants.AutoState.idle);
 //                    }
 //                    break;
+                case reset:
+                    if(!drive.isBusy()){
+                        drive.followTrajectorySequence(reset);
+                        nextTraj(Constants.AutoState.idle);
+                    }
+                    break;
                 case idle:
                     break;
             }

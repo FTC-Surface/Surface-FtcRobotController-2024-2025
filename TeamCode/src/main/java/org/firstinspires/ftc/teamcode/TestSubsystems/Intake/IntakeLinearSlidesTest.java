@@ -13,7 +13,6 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 @Config
 public class IntakeLinearSlidesTest extends LinearOpMode {
 
-
     private DcMotorEx intakeLinearSlideOne;
     private DcMotorEx intakeLinearSlideTwo;
 
