@@ -17,6 +17,6 @@ public class IntakeClawArchived extends Subsystem {
         Iclaw = hardwareMap.get(Servo.class, "Claw");
     }
 
-    public void openClawIn(){Iclaw.setPosition(constants.IOpenClaw); }
-    public void closeClawIn(){Iclaw.setPosition(constants.ICloseClaw); }
+//    public void openClawIn(){Iclaw.setPosition(constants.IOpenClaw); }
+//    public void closeClawIn(){Iclaw.setPosition(constants.ICloseClaw); }
 }
