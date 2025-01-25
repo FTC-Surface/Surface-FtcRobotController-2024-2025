@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.Robot;
 
+import com.qualcomm.hardware.limelightvision.LLResult;
 import com.qualcomm.hardware.lynx.LynxModule;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
@@ -8,7 +9,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-//import org.firstinspires.ftc.teamcode.Subsystems.Intake.IntakeActiveIntake;
+import org.firstinspires.ftc.robotcore.external.navigation.Pose3D;
 import org.firstinspires.ftc.teamcode.Subsystems.Intake.IntakeLinearSlides;
 //import org.firstinspires.ftc.teamcode.Subsystems.Intake.IntakeClaw;
 import org.firstinspires.ftc.teamcode.Subsystems.Intake.IntakeArm;
@@ -17,6 +18,8 @@ import org.firstinspires.ftc.teamcode.Subsystems.Intake.IntakeWheel;
 import org.firstinspires.ftc.teamcode.Subsystems.Outtake.OuttakeArm;
 import org.firstinspires.ftc.teamcode.Subsystems.Outtake.OuttakeClaw;
 import org.firstinspires.ftc.teamcode.Subsystems.Outtake.OuttakeLinearSlides;
+
+import org.firstinspires.ftc.teamcode.Subsystems.Sensing.LimelightCamera;
 
 import org.firstinspires.ftc.teamcode.Subsystems.Constants;
 
@@ -31,6 +34,7 @@ public class Robot {
     IntakeArm iArm = new IntakeArm();
 //    IntakeClaw iClaw = new IntakeClaw();
     IntakeLinearSlides iSlides = new IntakeLinearSlides();
+    LimelightCamera limelightCamera = new LimelightCamera();
 
     Constants constants = new Constants();
 
@@ -59,6 +63,8 @@ public class Robot {
 //        iClaw.init(hardwareMap);
 
         iArm.init(hardwareMap);
+
+        limelightCamera.init(hardwareMap);
 
         for (LynxModule module : hardwareMap.getAll(LynxModule.class)) {
             module.setBulkCachingMode(LynxModule.BulkCachingMode.AUTO);
@@ -103,7 +109,7 @@ public class Robot {
 
     public void oElevMove(Constants.eOElevatorState state){oSlides.moveElevator(state);}
     public void oElevStop(){oSlides.setPowerZero();}
-    public void iElevMove(Constants.eIElevatorState state){iSlides.moveElevator(state);}
+    public void iElevMove(Constants.eIElevatorState state, int pos){iSlides.moveElevator(state, pos);}
 
     public boolean oElevIsBusy(){return oElevIsBusy();}
     public double oElevGetPower(){return oElevGetPower();}
@@ -130,8 +136,8 @@ public class Robot {
     public void oArmHookgrab(){oArm.hookgrabPos();}
     public void oArmHookup(){oArm.hookupPos();}
 
-
-
+    public LLResult limeLightGetResult(){return limelightCamera.returnResult();}
+    public void limelightStart(int index){limelightCamera.limelightStart(index);}
 
     public void waitForSeconds(int seconds){
         ElapsedTime timer = new ElapsedTime(ElapsedTime.Resolution.SECONDS);

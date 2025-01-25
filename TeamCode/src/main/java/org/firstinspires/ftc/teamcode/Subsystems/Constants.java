@@ -16,10 +16,11 @@ public class Constants {
     }
 
     public enum eIElevatorState{
-        Start,
-        MaxOut,
-        ManualUp,
-        InIntake, ManualBackward, ManualForward, ManualStop, ManualDown
+        InIntake,
+        ManualBackward,
+        ManualForward,
+        ManualStop,
+        MoveTo
     }
 
     public enum AutoState{
@@ -33,15 +34,8 @@ public class Constants {
         grabThird,
         depositThird,
         grabFourth,
-        reset, depositFourth
-    }
-
-    public enum eIntakeState{
-        iIntakeReady,
-        iCloseClaw,
-        iStartArm,
-        iOpenClaw,
-        iResetArm
+        reset,
+        depositFourth
     }
 
     public enum eOuttakeStateGrabDump{

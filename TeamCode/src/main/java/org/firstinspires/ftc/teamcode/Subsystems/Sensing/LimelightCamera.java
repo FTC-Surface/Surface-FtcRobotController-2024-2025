@@ -14,18 +14,18 @@ import org.openftc.easyopencv.OpenCvWebcam;
 
 public class LimelightCamera extends Subsystem {
 
-    Limelight3A limelight;
+    private Limelight3A limelight;
 
     @Override
     public void init(HardwareMap hardwareMap) {
         limelight = hardwareMap.get(Limelight3A.class, "limelight");
+    }
 
+    public void limelightStart(int index){
         limelight.pipelineSwitch(0);
 
         limelight.start();
     }
 
     public LLResult returnResult(){return limelight.getLatestResult();}
-
-    public Pose3D botPos(){return returnResult().getBotpose();}
 }

@@ -44,11 +44,11 @@ public class IntakeLinearSlides extends Subsystem {
         intakeLinearSlideTwo.setPower(constants.IntakeElevatorMotorPower * multiplier);
     }
 
-    public void moveElevator(Constants.eIElevatorState state) {
+    public void moveElevator(Constants.eIElevatorState state, int pos) {
         switch(state){
             case InIntake:
                 move(0);
-//            case InOuttake:
+
             case ManualForward:
                 intakeLinearSlideOne.setPower(constants.IntakeElevatorMotorPower);
                 intakeLinearSlideTwo.setPower(constants.IntakeElevatorMotorPower);
@@ -60,6 +60,9 @@ public class IntakeLinearSlides extends Subsystem {
             case ManualStop:
                 intakeLinearSlideOne.setPower(0);
                 intakeLinearSlideTwo.setPower(0);
+
+            case MoveTo:
+                setPos(pos);
         }
     }
 
