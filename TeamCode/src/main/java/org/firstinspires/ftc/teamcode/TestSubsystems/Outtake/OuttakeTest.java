@@ -15,6 +15,7 @@ public class OuttakeTest extends LinearOpMode {
     Servo Arm;
     Servo Wrist;
     Servo claw;
+    private DcMotorEx wheel;
 
     public static double ArmTarget = 0.9;
     public static double WristTarget = 1;
@@ -37,19 +38,22 @@ public class OuttakeTest extends LinearOpMode {
         Arm = hardwareMap.get(Servo.class, "Outtake Wrist Left");
         Wrist = hardwareMap.get(Servo.class, "Outtake Arm Right");
 
+        wheel = hardwareMap.get(DcMotorEx.class, "IntakeWheel");
+        wheel.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
+
         leftOuttakeMotor = hardwareMap.get(DcMotorEx.class, "outtakeLinearSlideOne");
-        rightOuttakeMotor = hardwareMap.get(DcMotorEx.class, "outtakeLinearSlideTwo");
+        //rightOuttakeMotor = hardwareMap.get(DcMotorEx.class, "outtakeLinearSlideTwo");
         claw = hardwareMap.get(Servo.class, "OClaw");
 
         leftOuttakeMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        rightOuttakeMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        //rightOuttakeMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         leftOuttakeMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        rightOuttakeMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        //rightOuttakeMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
 
         leftOuttakeMotor.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
-        rightOuttakeMotor.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
+        //rightOuttakeMotor.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
 
         telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
 
@@ -57,45 +61,74 @@ public class OuttakeTest extends LinearOpMode {
 
         while (opModeIsActive() && !isStopRequested()) {
 
-            telemetry.addData("Left Motor Position", leftOuttakeMotor.getCurrentPosition());
-            telemetry.addData("Right Motor Position", rightOuttakeMotor.getCurrentPosition());
-            telemetry.addData("Height", currentHeight);
-            telemetry.addData("Is Busy", isBusy());
+//            telemetry.addData("Left Motor Position", leftOuttakeMotor.getCurrentPosition());
+//            //telemetry.addData("Right Motor Position", rightOuttakeMotor.getCurrentPosition());
+//            telemetry.addData("Height", currentHeight);
+//            telemetry.addData("Is Busy", isBusy());
 
-            telemetry.update();
+//            telemetry.update();
+            if(gamepad2.triangle)
+            {
+                Arm.setPosition(0.01);
+                Wrist.setPosition(0.2);
+                claw.setPosition(0.5);
+            }
+            if(gamepad2.right_bumper)
+            {
+                claw.setPosition(0.2);
+            }
+            if(gamepad2.left_bumper)
+            {
+                claw.setPosition(0.5);
+            }
+            if(gamepad2.cross)
+            {
+                Arm.setPosition(0.2);
+                Wrist.setPosition(0.2);
 
-            Arm.setPosition(ArmTarget);
-            Wrist.setPosition(WristTarget);
-            claw.setPosition(ClawTarget);
-
-            leftOuttakeMotor.setTargetPosition(targetPos);
-            rightOuttakeMotor.setTargetPosition(targetPos);
-
-            leftOuttakeMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            rightOuttakeMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
-            if(currentHeight > targetPos){
-                leftOuttakeMotor.setPower(-motorPower);
-                rightOuttakeMotor.setPower(-motorPower);
+            }
+            if(gamepad2.circle){
+                wheel.setPower(0.7);
+            }
+            else if (gamepad2.square) {
+                wheel.setPower(-0.7);
+            }
+            else{
+                wheel.setPower(0);
             }
 
-            if(currentHeight < targetPos){
-                leftOuttakeMotor.setPower(motorPower);
-                rightOuttakeMotor.setPower(motorPower);
-            }
+//            Arm.setPosition(ArmTarget);
+//            Wrist.setPosition(WristTarget);
+//            claw.setPosition(ClawTarget);
 
-            if(currentHeight == targetPos - 10){
-                setPowerZero();
-            }
+//            leftOuttakeMotor.setTargetPosition(targetPos);
+//            //rightOuttakeMotor.setTargetPosition(targetPos);
+//
+//            leftOuttakeMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+//            //rightOuttakeMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+//
+//            if(currentHeight > targetPos){
+//                leftOuttakeMotor.setPower(-motorPower);
+//                //rightOuttakeMotor.setPower(-motorPower);
+//            }
+//
+//            if(currentHeight < targetPos){
+//                leftOuttakeMotor.setPower(motorPower);
+//                //rightOuttakeMotor.setPower(motorPower);
+//            }
+//
+//            if(currentHeight == targetPos - 10){
+//                setPowerZero();
+//            }
 
-            currentHeight = (rightOuttakeMotor.getCurrentPosition() + leftOuttakeMotor.getCurrentPosition())/2;
+            //currentHeight = (rightOuttakeMotor.getCurrentPosition() + leftOuttakeMotor.getCurrentPosition())/2;
         }
     }
 
-    public boolean isBusy(){return Math.abs(currentHeight-targetPos) > 10;}
-
-    public void setPowerZero(){
-        leftOuttakeMotor.setPower(0);
-        rightOuttakeMotor.setPower(0);
-    }
+//    public boolean isBusy(){return Math.abs(currentHeight-targetPos) > 10;}
+//
+//    public void setPowerZero(){
+//        leftOuttakeMotor.setPower(0);
+//        //rightOuttakeMotor.setPower(0);
+//    }
 }

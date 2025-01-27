@@ -57,8 +57,8 @@ public class Constants {
     public final double IntakeWheelPowIn = -0.75;
     public final double IntakeWheelPowOut = 0.75;
 
-    public final double OOpenClaw = 0.6;
-    public final double OCloseClaw = 0.3;
+    public final double OOpenClaw = 0.5;
+    public final double OCloseClaw = 0.2;
 
     public final double OuttakeElevatorMotorPower = 1;
     public final double IntakeElevatorMotorPower = 1;
