@@ -51,6 +51,13 @@ public class Constants {
         oOuttakeReset
     }
 
+    public enum eColorSensed{
+        blue,
+        yellow,
+        red,
+        unknown
+    }
+
 //    public final double IOpenClaw = 0.5;
 //    public final double ICloseClaw = 0.725;
 
