@@ -26,8 +26,8 @@ def runPipeline(image, llrobot):
     img_red_threshold_one = cv2.inRange(img_hsv_blurred, red_lower_limit_one, red_upper_limit_one)
     img_red_threshold_two = cv2.inRange(img_hsv_blurred, red_lower_limit_two, red_upper_limit_two)
 
-    yellow_lower_limit = (20, 90, 90)
-    yellow_upper_limit = (40, 255, 255)
+    yellow_lower_limit = (20, 50, 90)
+    yellow_upper_limit = (60, 255, 255)
 
     blue_lower_limit = (110, 50, 50)
     blue_upper_limit = (130, 255, 255)
@@ -41,12 +41,35 @@ def runPipeline(image, llrobot):
     largestContour = np.array([[]])
     llpython = [0,0,0,0,0,0,0,0]
 
+    distance = 0
+    center_x, center_y = 0, 0
+
+    height, width = image.shape[:2]
+    crosshair_x, crosshair_y = width // 2, height // 2
+
+    centroid_x, centroid_y = 0, 0
+
+    closestDistance = 100;
+
     if len(contours) > 0:
         cv2.drawContours(image, contours, -1, (0, 255, 0), 2)
-        cv2.drawContours(image, contours, -1, (0, 255, 0), 2)
-        largestContour = max(contours, key=cv2.contourArea)
+        closestContour = max(contours, key=cv2.contourArea)
 
-        x,y,w,h = cv2.boundingRect(largestContour)
+        for contour in contours:
+
+            M = cv2.moments(contour)
+
+            if M["m00"] != 0:
+                center_x = int(M["m10"] / M["m00"])
+                center_y = int(M["m01"] / M["m00"])
+
+            distance = np.sqrt((crosshair_y-center_y) ** 2 + (crosshair_x-center_x) ** 2)
+
+            if distance < closestDistance:
+                closestContour = contour
+                closestDistance = distance
+
+        x,y,w,h = cv2.boundingRect(closestContour)
 
         cv2.rectangle(image,(x,y),(x+w,y+h),(0,255,255),2)
         llpython = [1,x,y,w,h,9,8,7]
