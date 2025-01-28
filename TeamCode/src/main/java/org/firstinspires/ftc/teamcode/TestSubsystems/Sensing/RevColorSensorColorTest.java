@@ -17,6 +17,7 @@ public class RevColorSensorColorTest extends LinearOpMode {
 
         telemetry.addData("Status", "Initialized");
         telemetry.update();
+
         waitForStart();
 
         while (opModeIsActive()) {

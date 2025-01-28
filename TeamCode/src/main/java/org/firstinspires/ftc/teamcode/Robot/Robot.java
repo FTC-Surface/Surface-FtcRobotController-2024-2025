@@ -22,6 +22,7 @@ import org.firstinspires.ftc.teamcode.Subsystems.Outtake.OuttakeLinearSlides;
 import org.firstinspires.ftc.teamcode.Subsystems.Sensing.LimelightCamera;
 
 import org.firstinspires.ftc.teamcode.Subsystems.Constants;
+import org.firstinspires.ftc.teamcode.Subsystems.Sensing.RevColorSensorColor;
 
 public class Robot {
     DcMotorEx topLeftMotor, topRightMotor, bottomLeftMotor, bottomRightMotor;
@@ -34,7 +35,9 @@ public class Robot {
     IntakeArm iArm = new IntakeArm();
 //    IntakeClaw iClaw = new IntakeClaw();
     IntakeLinearSlides iSlides = new IntakeLinearSlides();
+
     LimelightCamera limelightCamera = new LimelightCamera();
+    RevColorSensorColor colorSensor = new RevColorSensorColor();
 
     Constants constants = new Constants();
 
@@ -61,10 +64,10 @@ public class Robot {
 
 //        iSlides.init((hardwareMap));
 //        iClaw.init(hardwareMap);
-
         iArm.init(hardwareMap);
 
         limelightCamera.init(hardwareMap);
+        colorSensor.init(hardwareMap);
 
         for (LynxModule module : hardwareMap.getAll(LynxModule.class)) {
             module.setBulkCachingMode(LynxModule.BulkCachingMode.AUTO);
@@ -138,6 +141,11 @@ public class Robot {
 
     public LLResult limeLightGetResult(){return limelightCamera.returnResult();}
     public void limelightStart(int index){limelightCamera.limelightStart(index);}
+
+    public int colorsenseRed(){return colorSensor.colorRed();}
+    public int colorsenseGreen(){return colorSensor.colorGreen();}
+    public int colorsenseBlue(){return colorSensor.colorBlue();}
+    public Constants.eColorSensed getColorResult(){return colorSensor.getColor();}
 
     public void waitForSeconds(int seconds){
         ElapsedTime timer = new ElapsedTime(ElapsedTime.Resolution.SECONDS);
