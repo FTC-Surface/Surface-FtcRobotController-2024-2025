@@ -27,13 +27,13 @@ public class RevColorSensorColorTest extends LinearOpMode {
 
             String detectedColor;
             if (red > green && red > blue) {
-                detectedColor = "Red";
-            } else if (green > red && green > blue) {
-                detectedColor = "Green";
+                detectedColor = "Red_Block";
+            } else if (green > red && green > blue && green >= 300) {
+                detectedColor = "Yellow_Block";
             } else if (blue > red && blue > green) {
-                detectedColor = "Blue";
+                detectedColor = "Blue_Block";
             } else {
-                detectedColor = "Unknown";
+                detectedColor = "No_Block";
             }
 
             // Send telemetry data to the driver station and FTC Dashboard
