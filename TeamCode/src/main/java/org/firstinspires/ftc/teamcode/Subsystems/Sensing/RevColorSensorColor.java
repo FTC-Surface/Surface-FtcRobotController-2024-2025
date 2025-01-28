@@ -24,8 +24,8 @@ public class RevColorSensorColor extends Subsystem {
     public Constants.eColorSensed getColor(){
         if (colorRed() > colorGreen() && colorRed() > colorBlue()) {
             return Constants.eColorSensed.red;
-        } else if (colorGreen() > colorRed() && colorGreen() > colorBlue()) {
-            return Constants.eColorSensed.green;
+        } else if (colorGreen() > colorRed() && colorGreen() > colorBlue() && colorGreen()>=200) {
+            return Constants.eColorSensed.yellow;
         } else if (colorBlue() > colorRed() && colorBlue() > colorGreen()) {
             return Constants.eColorSensed.blue;
         } else {

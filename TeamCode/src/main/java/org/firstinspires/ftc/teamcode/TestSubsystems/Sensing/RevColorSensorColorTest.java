@@ -29,7 +29,7 @@ public class RevColorSensorColorTest extends LinearOpMode {
             String detectedColor;
             if (red > green && red > blue) {
                 detectedColor = "Red_Block";
-            } else if (green > red && green > blue && green >= 300) {
+            } else if (green > red && green > blue && green >= 200) {
                 detectedColor = "Yellow_Block";
             } else if (blue > red && blue > green) {
                 detectedColor = "Blue_Block";
@@ -46,7 +46,7 @@ public class RevColorSensorColorTest extends LinearOpMode {
             telemetry.update();
 
             // Optional: Add a short delay to prevent telemetry from updating too rapidly
-            sleep(100);
+            sleep(50);
         }
     }
 }

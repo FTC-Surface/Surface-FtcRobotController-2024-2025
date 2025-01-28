@@ -53,7 +53,7 @@ public class Constants {
 
     public enum eColorSensed{
         blue,
-        green,
+        yellow,
         red,
         unknown
     }
