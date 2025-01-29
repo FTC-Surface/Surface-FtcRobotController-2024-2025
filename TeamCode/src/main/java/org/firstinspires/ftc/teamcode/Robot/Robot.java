@@ -122,7 +122,6 @@ public class Robot {
 
     public void iArmGrab(){iArm.downPos();}
     public void iArmStart(){iArm.upPos();}
-    public void iArmHover(){iArm.hoverPos();}
 
     public void iWheelTakeBlock() {iWheel.takeBlock();}
     public void iWheelNoBlock() {iWheel.noBlock();}
@@ -142,9 +141,6 @@ public class Robot {
     public LLResult limeLightGetResult(){return limelightCamera.returnResult();}
     public void limelightStart(int index){limelightCamera.limelightStart(index);}
 
-    public int colorsenseRed(){return colorSensor.colorRed();}
-    public int colorsenseGreen(){return colorSensor.colorGreen();}
-    public int colorsenseBlue(){return colorSensor.colorBlue();}
     public Constants.eColorSensed getColorResult(){return colorSensor.getColor();}
 
     public void waitForSeconds(int seconds){

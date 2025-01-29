@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.Servo;
 
-@TeleOp(name = "Intake Arm Test", group = "Tests")
+@TeleOp(name = "Intake Test", group = "Tests")
 @Config
 public class IntakeArmTest extends LinearOpMode{
 
@@ -25,7 +25,6 @@ public class IntakeArmTest extends LinearOpMode{
     @Override
     public void runOpMode() throws InterruptedException {
         armServo = hardwareMap.get(Servo.class,"iArm");
-        bucketServo = hardwareMap.get(Servo.class, "BucketServo");
 
         wheel = hardwareMap.get(DcMotorEx.class, "IntakeWheel");
         wheel.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
@@ -36,31 +35,33 @@ public class IntakeArmTest extends LinearOpMode{
 
             if(activateTestMode == 0){
                 armServo.setPosition(armPos);
-                bucketServo.setPosition(bucketPos);
                 wheel.setPower(wheelPow);
             }
 
             if(activateTestMode == 1){
-                if(gamepad2.x)//Down
+                if(gamepad2.cross)//Down
                 {
                     armServo.setPosition(0.5);
                     //armServo2.setPosition(0.5);
 //                    Wrist.setPosition(0.4);
                 }
-                if(gamepad2.y)//up
+                if(gamepad2.triangle)//up
                 {
                     armServo.setPosition(0);
                     //armServo2.setPosition(1);
 //                    Wrist.setPosition(1);
                 }
-//                if(gamepad2.left_bumper)//Open
-//                {
-//                    Claw.setPosition(0.6);
-//                }
-//                if(gamepad2.right_bumper)//Close
-//                {
-//                    Claw.setPosition(0);
-//                }
+
+                if(gamepad2.right_trigger >=0.5){
+                    wheel.setPower(0.75);
+                }
+                else if (gamepad2.left_trigger >=0.5)
+                {
+                    wheel.setPower(-0.75);
+                }
+                else{
+                    wheel.setPower(0);
+                }
             }
         }
     }
