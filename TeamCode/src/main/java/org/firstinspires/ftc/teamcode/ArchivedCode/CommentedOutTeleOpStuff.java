@@ -184,5 +184,87 @@ public class CommentedOutTeleOpStuff {
 //                Outtakepressed2 = false;
 //            }
 
+//********** Limelight Camera ***************************************************
 
+//            LLResult result = robot.limeLightGetResult();
+
+//            if(result != null){
+//                if(result.isValid()){
+//                    if(gamepad2.square){
+//                        blockYAngle = result.getTy();
+//                        blockXAngle = result.getTx();
+//                    }
+//                }
+//            } else {
+//                blockYAngle = 0;
+//                blockXAngle = 0;
+//            }
+//
+//            theta = 45 + blockYAngle;
+//
+//            distanceToMove = (int) (Math.tan(theta) * cameraHeight);
+
+//commented out code that was put here has been moved to CommentedOutTeleOpStuff in ArchivedCode
+
+//            switch (outtakeStateGrabbing){
+//                case oOuttakeReady:
+//                    if(gamepad2.circle){
+//                        //Insert Code Here
+//
+//                        OuttakeStartTime1 = (long) outtakeTimer.milliseconds();
+//
+//                        outtakeStateGrabbing = Constants.eOuttakeStateGrabDump.oOuttakeCloseClaw;
+//                    }
+//                case oOuttakeCloseClaw:
+//                    if(outtakeTimer.milliseconds() - OuttakeStartTime1 >= 0){
+//                        outtakeStateGrabbing = Constants.eOuttakeStateGrabDump.oOuttakeOuttakeSlides;
+//                    }
+//                case oOuttakeOuttakeSlides:
+//                    if(outtakeTimer.milliseconds() - OuttakeStartTime1 >= 0){
+//                        robot.oCloseClaw();
+//
+//                        outtakeStateGrabbing = Constants.eOuttakeStateGrabDump.oOuttakeArmDump;
+//                    }
+//                case oOuttakeArmDump:
+//                    if(outtakeTimer.milliseconds() - OuttakeStartTime1 >= 400){
+//                        robot.oArmDumpReady();
+//
+//                        outtakeStateGrabbing = Constants.eOuttakeStateGrabDump.oOuttakeReady;
+//                    }
+//            }
+
+//            switch (outtakeStateClipping){
+//                case oOuttakeReady:
+//                    if(gamepad2.square){
+//                        robot.oElevMove(Constants.eOElevatorState.Clip_Hang);
+//
+//                        OuttakeStartTime3 = (long) outtakeTimer.milliseconds();
+//
+//                        stickmoved1 = true;
+//
+//                        outtakeStateClipping = Constants.eOuttakeStateClipHang.oOuttakeOpenClaw;
+//                    }
+//                case oOuttakeOpenClaw:
+//                    if(outtakeTimer.milliseconds() - OuttakeStartTime3 >= 700){
+//                        robot.oOpenClaw();
+//
+//                        outtakeStateClipping = Constants.eOuttakeStateClipHang.oOuttakeReset;
+//                    }
+//                case oOuttakeReset:
+//                    if(outtakeTimer.milliseconds() - OuttakeStartTime3 >= 1000){
+//                        robot.oArmHookgrab();
+//                        robot.oElevMove(Constants.eOElevatorState.Clip_Grab);
+//
+//                        stickmoved1 = false;
+//
+//                        outtakeStateClipping = Constants.eOuttakeStateClipHang.oOuttakeReady;
+//                    }
+//            }
+
+//Remove this if robot starts crashing
+
+//            telemetry.addData("Block Y Angle: ", blockYAngle);
+//            telemetry.addData("Block X Angle: ", blockXAngle);
+//            telemetry.addData("Theta: ", theta);
+//            telemetry.addData("DistanceToMove: ", distanceToMove);
 }

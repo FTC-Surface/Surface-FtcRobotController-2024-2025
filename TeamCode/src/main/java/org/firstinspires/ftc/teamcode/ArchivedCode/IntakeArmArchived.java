@@ -24,18 +24,18 @@ public class IntakeArmArchived extends Subsystem {
     public void upPos(){
         armServo1.setPosition(constants.IntakeArmStartPos);
         armServo2.setPosition(constants.IntakeArmStartPos);
-        Wrist.setPosition(constants.IntakeWristStart);
+        //Wrist.setPosition(constants.IntakeWristStart);
     }
 
     public void downPos(){
         armServo1.setPosition(constants.IntakeArmGrabPos);
         armServo2.setPosition(constants.IntakeArmGrabPos);
-        Wrist.setPosition(constants.IntakeWristGrab);
+        //Wrist.setPosition(constants.IntakeWristGrab);
     }
 
     public void hoverPos(){
-        armServo1.setPosition(constants.IntakeArmHoverPos);
-        armServo2.setPosition(constants.IntakeArmHoverPos);
-        Wrist.setPosition(constants.IntakeWristHoverPos);
+//        armServo1.setPosition(constants.IntakeArmHoverPos);
+//        armServo2.setPosition(constants.IntakeArmHoverPos);
+//        Wrist.setPosition(constants.IntakeWristHoverPos);
     }
 }
