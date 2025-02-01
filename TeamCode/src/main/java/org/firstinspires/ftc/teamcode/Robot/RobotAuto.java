@@ -66,7 +66,6 @@ public class RobotAuto {
 
     public void iArmGrab(){iArm.downPos();}
     public void iArmStart(){iArm.upPos();}
-    public void iArmHover(){iArm.hoverPos();}
 
     public void oOpenClaw(){oClaw.openClawOut();}
     public void oCloseClaw(){oClaw.closeClawOut();}

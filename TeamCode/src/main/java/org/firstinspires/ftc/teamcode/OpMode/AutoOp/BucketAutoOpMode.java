@@ -37,7 +37,6 @@ public class BucketAutoOpMode extends LinearOpMode {
         TrajectorySequence depositInit = drive.trajectorySequenceBuilder(startPose)
                 .addTemporalMarker(0, () -> {
                     robot.oElevMove(Constants.eOElevatorState.Ready);
-                    robot.iArmHover();
                     //robot.iOpenClaw();
                     robot.oCloseClaw();
                     robot.oArmStart();
@@ -88,7 +87,6 @@ public class BucketAutoOpMode extends LinearOpMode {
 
                 })
                 .addTemporalMarker(3.8, () -> {
-                    robot.iArmHover();
                     robot.oElevMove(Constants.eOElevatorState.Grab);
                 })
 
