@@ -20,9 +20,11 @@ public class DriveTest extends LinearOpMode {
 
     private int mode = 0;
 
-    private int dMultiplier = 1;
-    private int sMultiplier = 1;
-    private int rMultiplier = 1;
+    private static int dMultiplier = 1;
+    private static int sMultiplier = 1;
+    private static int rMultiplier = 1;
+
+    private static int speedMultipler = 1;
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -91,10 +93,10 @@ public class DriveTest extends LinearOpMode {
                 }
             }
 
-            topLeftMotor.setPower(motorPower[0]);
-            bottomLeftMotor.setPower(motorPower[1]);
-            topRightMotor.setPower(motorPower[2]);
-            bottomRightMotor.setPower(motorPower[3]);
+            topLeftMotor.setPower(motorPower[0] * speedMultipler);
+            bottomLeftMotor.setPower(motorPower[1] * speedMultipler);
+            topRightMotor.setPower(motorPower[2] * speedMultipler);
+            bottomRightMotor.setPower(motorPower[3] * speedMultipler);
         }
     }
 }
