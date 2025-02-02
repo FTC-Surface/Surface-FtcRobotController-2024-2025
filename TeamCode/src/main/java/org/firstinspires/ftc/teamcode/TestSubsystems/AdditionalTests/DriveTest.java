@@ -38,40 +38,40 @@ public class DriveTest extends LinearOpMode {
         bottomLeftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         bottomRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-        topRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
-        bottomRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        topLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        bottomLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
         waitForStart();
 
         while(opModeIsActive() &&!isStopRequested()){
 
-            if(gamepad1.square){
-                dMultiplier = 1;
-                sMultiplier = 1;
-                rMultiplier = 1;
-            }
+//            if(gamepad1.square){
+//                dMultiplier = 1;
+//                sMultiplier = 1;
+//                rMultiplier = 1;
+//            }
+//
+//            if(gamepad1.triangle){
+//                dMultiplier = 1;
+//                sMultiplier = 0;
+//                rMultiplier = 1;
+//            }
+//
+//            if(gamepad1.circle){
+//                dMultiplier = 0;
+//                sMultiplier = 1;
+//                rMultiplier = 1;
+//            }
+//
+//            if(gamepad1.cross){
+//                dMultiplier = 0;
+//                sMultiplier = 0;
+//                rMultiplier = 0;
+//            }
 
-            if(gamepad1.triangle){
-                dMultiplier = 1;
-                sMultiplier = 0;
-                rMultiplier = 1;
-            }
-
-            if(gamepad1.circle){
-                dMultiplier = 0;
-                sMultiplier = 1;
-                rMultiplier = 1;
-            }
-
-            if(gamepad1.cross){
-                dMultiplier = 0;
-                sMultiplier = 0;
-                rMultiplier = 0;
-            }
-
-            double drive = gamepad1.left_stick_y * dMultiplier;
-            double strafe = gamepad1.left_stick_x * sMultiplier;
-            double rotate = gamepad1.right_stick_x * rMultiplier;
+            double drive = -gamepad1.left_stick_y * dMultiplier;
+            double strafe = -gamepad1.left_stick_x * sMultiplier;
+            double rotate = -gamepad1.right_stick_x * rMultiplier;
 
             double[] motorPower = {
                     drive-strafe-rotate,

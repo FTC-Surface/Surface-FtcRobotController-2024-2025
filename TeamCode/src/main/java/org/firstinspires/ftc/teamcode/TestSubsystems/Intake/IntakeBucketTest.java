@@ -11,11 +11,11 @@ import com.qualcomm.robotcore.hardware.Servo;
 public class IntakeBucketTest extends LinearOpMode {
     private Servo bucketServo;
 
-    private static double pos = 0;
+    public static double pos = 0;
 
     @Override
     public void runOpMode() throws InterruptedException {
-        bucketServo = hardwareMap.get(Servo.class, "BucketServo");
+        bucketServo = hardwareMap.get(Servo.class, "Intake Arm");
 
         waitForStart();
 
