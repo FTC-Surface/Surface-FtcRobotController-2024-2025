@@ -18,6 +18,12 @@ public class DriveTest extends LinearOpMode {
     DcMotorEx topLeftMotor, topRightMotor, bottomLeftMotor, bottomRightMotor;
     double maxSpeed;
 
+    private int mode = 0;
+
+    private int dMultiplier = 1;
+    private int sMultiplier = 1;
+    private int rMultiplier = 1;
+
     @Override
     public void runOpMode() throws InterruptedException {
         topLeftMotor = hardwareMap.get(DcMotorEx.class, "topLeft");
@@ -36,9 +42,34 @@ public class DriveTest extends LinearOpMode {
         waitForStart();
 
         while(opModeIsActive() &&!isStopRequested()){
-            double drive = gamepad1.left_stick_y;
-            double strafe = gamepad1.left_stick_x;
-            double rotate = gamepad1.right_stick_x;
+
+            if(gamepad1.square){
+                dMultiplier = 1;
+                sMultiplier = 1;
+                rMultiplier = 1;
+            }
+
+            if(gamepad1.triangle){
+                dMultiplier = 1;
+                sMultiplier = 0;
+                rMultiplier = 1;
+            }
+
+            if(gamepad1.circle){
+                dMultiplier = 0;
+                sMultiplier = 1;
+                rMultiplier = 1;
+            }
+
+            if(gamepad1.cross){
+                dMultiplier = 0;
+                sMultiplier = 0;
+                rMultiplier = 0;
+            }
+
+            double drive = gamepad1.left_stick_y * dMultiplier;
+            double strafe = gamepad1.left_stick_x * sMultiplier;
+            double rotate = gamepad1.right_stick_x * rMultiplier;
 
             double[] motorPower = {
                     drive-strafe-rotate,
