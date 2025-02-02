@@ -55,18 +55,17 @@ public class Robot {
         bottomLeftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         bottomRightMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-        topRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
-        bottomRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        topLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        bottomLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
         oClaw.init(hardwareMap);
         oArm.init(hardwareMap);
         oSlides.init(hardwareMap);
 
 //        iSlides.init((hardwareMap));
-//        iClaw.init(hardwareMap);
         iArm.init(hardwareMap);
 
-        limelightCamera.init(hardwareMap);
+//        limelightCamera.init(hardwareMap);
         colorSensor.init(hardwareMap);
 
         for (LynxModule module : hardwareMap.getAll(LynxModule.class)) {

@@ -10,7 +10,6 @@ import org.firstinspires.ftc.teamcode.Subsystems.Subsystem;
 public class OuttakeLinearSlides extends Subsystem {
 
     private DcMotorEx outtakeLinearSlideOne;
-    private DcMotorEx outtakeLinearSlideTwo;
 
     private double currentPos;
 
@@ -23,16 +22,12 @@ public class OuttakeLinearSlides extends Subsystem {
     @Override
     public void init(HardwareMap hardwareMap) {
         outtakeLinearSlideOne = hardwareMap.get(DcMotorEx.class, "outtakeLinearSlideOne");
-        outtakeLinearSlideTwo = hardwareMap.get(DcMotorEx.class, "outtakeLinearSlideTwo");
 
         outtakeLinearSlideOne.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        outtakeLinearSlideTwo.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         outtakeLinearSlideOne.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        outtakeLinearSlideTwo.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         outtakeLinearSlideOne.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
-        outtakeLinearSlideTwo.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
     }
 
     public void moveElevator(Constants.eOElevatorState state) {
@@ -68,7 +63,6 @@ public class OuttakeLinearSlides extends Subsystem {
 
     public void setPowerZero(){
         outtakeLinearSlideOne.setPower(0);
-        outtakeLinearSlideTwo.setPower(0);
     }
 
     private void move(int height){
@@ -87,21 +81,18 @@ public class OuttakeLinearSlides extends Subsystem {
             outtakeElevMotPow = constants.OuttakeElevatorMotorPower;
         }
 
-        outtakeLinearSlideTwo.setPower(outtakeElevMotPow);
         outtakeLinearSlideOne.setPower(outtakeElevMotPow);
 
         outtakeLinearSlideOne.setTargetPosition(targetPos);
-        outtakeLinearSlideTwo.setTargetPosition(targetPos);
 
         outtakeLinearSlideOne.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
-        outtakeLinearSlideTwo.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
     }
 
     public double getPos(){
-        return (double) (outtakeLinearSlideOne.getCurrentPosition() + outtakeLinearSlideTwo.getCurrentPosition()) /2;
+        return (double) outtakeLinearSlideOne.getCurrentPosition();
     }
 
     public boolean isBusy(){ return Math.abs(getPos()-targetPos) < 10;}
 
-    public double getPower(){return outtakeLinearSlideTwo.getPower();}
+    public double getPower(){return outtakeLinearSlideOne.getPower();}
 }
