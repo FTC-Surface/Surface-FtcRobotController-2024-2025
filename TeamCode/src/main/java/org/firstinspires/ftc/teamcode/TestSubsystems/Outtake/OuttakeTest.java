@@ -14,7 +14,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 public class OuttakeTest extends LinearOpMode {
     Servo Arm;
     Servo Wrist;
-    Servo claw;
+    Servo Claw;
 
     public static double ArmTarget = 0;
     public static double WristTarget = 0;
@@ -34,14 +34,13 @@ public class OuttakeTest extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
         Arm = hardwareMap.get(Servo.class, "Outtake Wrist Left");
         Wrist = hardwareMap.get(Servo.class, "Outtake Arm Right");
+        Claw = hardwareMap.get(Servo.class, "OClaw");
 
         leftOuttakeMotor = hardwareMap.get(DcMotorEx.class, "outtakeLinearSlideOne");
-        claw = hardwareMap.get(Servo.class, "OClaw");
 
         leftOuttakeMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         leftOuttakeMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-
 
         leftOuttakeMotor.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
 
@@ -59,7 +58,7 @@ public class OuttakeTest extends LinearOpMode {
 
             Arm.setPosition(ArmTarget);
             Wrist.setPosition(WristTarget);
-            claw.setPosition(ClawTarget);
+            Claw.setPosition(ClawTarget);
 
             leftOuttakeMotor.setTargetPosition(targetPos);
 
@@ -77,7 +76,7 @@ public class OuttakeTest extends LinearOpMode {
                 setPowerZero();
             }
 
-            currentHeight =leftOuttakeMotor.getCurrentPosition();
+            currentHeight = leftOuttakeMotor.getCurrentPosition();
         }
     }
 

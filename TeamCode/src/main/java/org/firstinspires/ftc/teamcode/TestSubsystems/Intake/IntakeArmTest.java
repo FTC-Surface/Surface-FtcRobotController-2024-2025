@@ -25,7 +25,6 @@ public class IntakeArmTest extends LinearOpMode{
     @Override
     public void runOpMode() throws InterruptedException {
         armServo = hardwareMap.get(Servo.class,"iArm");
-        armServo.resetDeviceConfigurationForOpMode();
 
         wheel = hardwareMap.get(DcMotorEx.class, "IntakeWheel");
         wheel.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
