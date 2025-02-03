@@ -78,8 +78,6 @@ public class IntakeLinearSlidesTest extends LinearOpMode {
             telemetry.update();
 
 
-
-
             if (gamepad2.right_stick_y < -0.5 && currentHeight <= maxHeight) {
                 intakeLinearSlideOne.setPower(1);
                 intakeLinearSlideTwo.setPower(1);

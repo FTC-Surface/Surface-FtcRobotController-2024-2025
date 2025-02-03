@@ -42,20 +42,18 @@ public class IntakeArmTest extends LinearOpMode{
                 if(gamepad2.cross)//Down
                 {
                     armServo.setPosition(0.5);
-                    //armServo2.setPosition(0.5);
 //                    Wrist.setPosition(0.4);
                 }
                 if(gamepad2.triangle)//up
                 {
                     armServo.setPosition(0);
-                    //armServo2.setPosition(1);
 //                    Wrist.setPosition(1);
                 }
 
-                if(gamepad2.right_trigger >=0.5){
+                if(gamepad2.right_trigger >= 0.5){
                     wheel.setPower(0.75);
                 }
-                else if (gamepad2.left_trigger >=0.5)
+                else if (gamepad2.left_trigger >= 0.5)
                 {
                     wheel.setPower(-0.75);
                 }

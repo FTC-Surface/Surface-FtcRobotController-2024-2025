@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode.OpMode.TeleOp;
 
+import android.graphics.Color;
+
 import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
@@ -20,66 +22,45 @@ public class TeleOpMode extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
         Robot robot = new Robot(hardwareMap);
 
-        boolean xOpenClawDone = false;
-        boolean yOpenClawDone = false;
-        boolean yArmstartDone = false;
-        boolean yPressed = false;
-        boolean bumperPressed = false;
+        ElapsedTime intakeTimer, outtakeTimer = new ElapsedTime(ElapsedTime.Resolution.MILLISECONDS);
+
+        boolean xOpenClawDone, yOpenClawDone, yArmstartDone, yPressed, bumperPressed;
+        xOpenClawDone = yOpenClawDone = yArmstartDone = yPressed = bumperPressed = false;
+
         long yActionStartTime = 0;
 
         long IntakeStartTime2=0;
         long OuttakeStartTime4=0;
 
-        boolean Outtakepressed1 = false;
-        boolean Triggerpressed = false;
-        boolean stickmoved2 = false;
-        boolean OuttakeclawDone = false;
-        boolean ArmTakeDone = false;
-        boolean OpenClawDone = false;
-        boolean LinearSlidereadyDone = false;
-        boolean OpenClawDone2 = false;
+        boolean Outtakepressed1, Triggerpressed, stickmoved2, OuttakeclawDone, ArmTakeDone,
+                OpenClawDone, LinearSlidereadyDone, OpenClawDone2;
 
-        ElapsedTime intakeTimer = new ElapsedTime(ElapsedTime.Resolution.MILLISECONDS);
-        ElapsedTime outtakeTimer = new ElapsedTime(ElapsedTime.Resolution.MILLISECONDS);
+        Outtakepressed1 = Triggerpressed = stickmoved2 = OuttakeclawDone = ArmTakeDone =
+        OpenClawDone = LinearSlidereadyDone = OpenClawDone2 = false;
 
         long OuttakeStartTime1=0;
         long OuttakeStartTime3=0;
 
         boolean stickmoved1 = false;
 
-//        Constants.eOuttakeStateClipHang outtakeStateClipping = Constants.eOuttakeStateClipHang.oOuttakeReady;
-//        Constants.eOuttakeStateGrabDump outtakeStateGrabbing = Constants.eOuttakeStateGrabDump.oOuttakeReady;
-
-        int cameraIndex = 0;
-
-        double blockXAngle = 0;
-        double blockYAngle = 0;
-
-        double cameraHeight = 0 - 1.5; //Need to input value. This is in inches.
-        double theta = 45 + blockYAngle;
-        int distanceToMove = 0;
-
-        robot.limelightStart(cameraIndex);
+        //Change depending on alliance color
+        double r, g, b;
 
         telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
 
         waitForStart();
-        //robot.oElevMove(Constants.eOElevatorState.Ready);
+
+//        robot.oElevMove(Constants.eOElevatorState.Ready);
 
 //        robot.iArmHover();
 //        robot.iOpenClaw();
 
         robot.oOpenClaw();
         robot.oArmStart();
-//        intakeTimer.reset();
-        
 
+//        intakeTimer.reset();
 
         while (opModeIsActive() && !isStopRequested()) {
-
-            gamepad1.setLedColor(0,0,250,1000);
-            gamepad2.setLedColor(250,0,0,1000);
-
 //********** Telemetry **********************************************************
 
 //            telemetry.addData("Intake Slide Pos: ", robot.iElevGetHeight());
@@ -104,7 +85,7 @@ public class TeleOpMode extends LinearOpMode {
 
 //********** Player Two Controls ***************************************************
 
-    //Outtake
+            //Outtake
 
             //Grab + Claw_close + Up/Arm_dump
             if(gamepad2.circle && !Outtakepressed1){
@@ -181,6 +162,7 @@ public class TeleOpMode extends LinearOpMode {
 
 
 //********** Intake ***************************************************
+
 //            if(gamepad2.dpad_down)//Down
 //            {
 //                robot.iArmGrab();
@@ -205,6 +187,31 @@ public class TeleOpMode extends LinearOpMode {
 //                robot.iWheelNoBlock();
 //            }
 
+
+//********** Controller Color ***************************************************
+
+//            if(robot.getColorResult() == Constants.eColorSensed.red){
+//                r = 255;
+//                g = b = 0;
+//            } else if(robot.getColorResult() == Constants.eColorSensed.blue){
+//                b = 255;
+//                r = g = 0;
+//            } else if(robot.getColorResult() == Constants.eColorSensed.yellow){
+//                r = g = 255;
+//                b = 0;
+//            } else {
+//                //Change depending on team alliance
+//                r = 255;
+//                g = 0;
+//                b = 0;
+//            }
+
+            r = 255;
+            g = 0;
+            b = 0;
+
+            gamepad1.setLedColor(r,g,b,1000);
+            gamepad2.setLedColor(r,g,b,1000);
         }
     }
 

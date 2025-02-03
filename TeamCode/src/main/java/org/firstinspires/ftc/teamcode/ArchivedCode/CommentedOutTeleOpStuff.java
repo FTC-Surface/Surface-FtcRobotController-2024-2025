@@ -268,3 +268,19 @@ public class CommentedOutTeleOpStuff {
 //            telemetry.addData("Theta: ", theta);
 //            telemetry.addData("DistanceToMove: ", distanceToMove);
 }
+
+//        Constants.eOuttakeStateClipHang outtakeStateClipping = Constants.eOuttakeStateClipHang.oOuttakeReady;
+//        Constants.eOuttakeStateGrabDump outtakeStateGrabbing = Constants.eOuttakeStateGrabDump.oOuttakeReady;
+
+//robot.limelightStart(cameraIndex);
+
+//int cameraIndex = 0;
+
+//double blockXAngle = 0;
+//        double blockYAngle = 0;
+//
+//        double cameraHeight = 0 - 1.5; //Need to input value. This is in inches.
+//        double theta = 45 + blockYAngle;
+//        int distanceToMove = 0;
+
+
