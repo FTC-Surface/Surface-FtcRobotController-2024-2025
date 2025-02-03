@@ -16,6 +16,9 @@ public class IntakeLinearSlides extends Subsystem {
     private double currentPos;
 
     private int targetPos;
+    private int max_pos=2000;
+    private int min_pos=0;
+
 
     private double intakeElevPower;
 
@@ -50,12 +53,16 @@ public class IntakeLinearSlides extends Subsystem {
                 move(0);
 
             case ManualForward:
-                intakeLinearSlideOne.setPower(constants.IntakeElevatorMotorPower);
-                intakeLinearSlideTwo.setPower(constants.IntakeElevatorMotorPower);
+                if (getPos() < max_pos) {
+                    intakeLinearSlideOne.setPower(constants.IntakeElevatorMotorPower);
+                    intakeLinearSlideTwo.setPower(constants.IntakeElevatorMotorPower);
+                }
 
             case ManualBackward:
-                intakeLinearSlideOne.setPower(-constants.IntakeElevatorMotorPower);
-                intakeLinearSlideTwo.setPower(-constants.IntakeElevatorMotorPower);
+                if (getPos() > min_pos) {
+                    intakeLinearSlideOne.setPower(-constants.IntakeElevatorMotorPower);
+                    intakeLinearSlideTwo.setPower(-constants.IntakeElevatorMotorPower);
+                }
 
             case ManualStop:
                 intakeLinearSlideOne.setPower(0);

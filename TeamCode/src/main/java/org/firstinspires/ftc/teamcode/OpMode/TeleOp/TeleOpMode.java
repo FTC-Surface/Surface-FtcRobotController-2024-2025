@@ -171,6 +171,19 @@ public class TeleOpMode extends LinearOpMode {
 //            {
 //                robot.iArmStart();
 //            }
+            if (gamepad2.right_stick_y <=0.5)
+            {
+                robot.iElevMove(Constants.eIElevatorState.ManualForward,0);
+            }
+            else if (gamepad2.right_stick_y <=0.5)
+            {
+                robot.iElevMove(Constants.eIElevatorState.ManualBackward,0);
+            }
+            else
+            {
+                robot.iElevMove(Constants.eIElevatorState.ManualStop,0);
+            }
+
 
 //            if(gamepad2.right_trigger >=0.5 && robot.getColorResult()!=Constants.eColorSensed.red){//specifically for red
 //                robot.iWheelTakeBlock();
