@@ -14,7 +14,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 public class OuttakeTest extends LinearOpMode {
     Servo Arm;
     Servo Wrist;
-    Servo claw;
+    Servo Claw;
 
     public static double ArmTarget = 0;
     public static double WristTarget = 0;
@@ -37,7 +37,8 @@ public class OuttakeTest extends LinearOpMode {
         Wrist.setDirection(Servo.Direction.REVERSE);
 
         //leftOuttakeMotor = hardwareMap.get(DcMotorEx.class, "outtakeLinearSlideOne");
-        claw = hardwareMap.get(Servo.class, "OClaw");
+        Claw = hardwareMap.get(Servo.class, "OClaw");
+
 
         //leftOuttakeMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
@@ -60,8 +61,7 @@ public class OuttakeTest extends LinearOpMode {
 
             Arm.setPosition(ArmTarget);
             Wrist.setPosition(WristTarget);
-            claw.setPosition(ClawTarget);
-
+            Claw.setPosition(ClawTarget);
 //            leftOuttakeMotor.setTargetPosition(targetPos);
 //
 //            leftOuttakeMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
