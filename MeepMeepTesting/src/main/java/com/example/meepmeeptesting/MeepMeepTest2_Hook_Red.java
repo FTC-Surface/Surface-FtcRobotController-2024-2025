@@ -81,11 +81,11 @@ public class MeepMeepTest2_Hook_Red {
                         .lineToLinearHeading(new Pose2d(40, -46, Math.toRadians(-30)))
                         .waitSeconds(0.5)
 
-                        .lineToLinearHeading(new Pose2d(53, -45, Math.toRadians(80)))
+                        .lineToLinearHeading(new Pose2d(45, -45, Math.toRadians(60)))
                         .lineToLinearHeading(new Pose2d(40, -46, Math.toRadians(-30)))
                         .waitSeconds(0.5)
 
-                        .lineToLinearHeading(new Pose2d(60, -45, Math.toRadians(77)))
+                        .lineToLinearHeading(new Pose2d(50, -45, Math.toRadians(50)))
                         .lineToLinearHeading(new Pose2d(40, -46, Math.toRadians(-30)))
                         .waitSeconds(0.5)
 
