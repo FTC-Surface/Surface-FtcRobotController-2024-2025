@@ -21,7 +21,7 @@ public class IntakeLinearSlidesTest extends LinearOpMode {
     public static int minHeight = 0;
 
     public int currentHeight = 0;
-    public int mode=0;
+    public static int mode=0;
 
     public static double motorPower = 0.3;
 
