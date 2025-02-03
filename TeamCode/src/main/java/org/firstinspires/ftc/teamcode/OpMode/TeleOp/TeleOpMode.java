@@ -72,8 +72,13 @@ public class TeleOpMode extends LinearOpMode {
         robot.oOpenClaw();
         robot.oArmStart();
 //        intakeTimer.reset();
+        
+
 
         while (opModeIsActive() && !isStopRequested()) {
+
+            gamepad1.setLedColor(0,0,250,1000);
+            gamepad2.setLedColor(250,0,0,1000);
 
 //********** Telemetry **********************************************************
 
