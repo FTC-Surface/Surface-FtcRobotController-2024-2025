@@ -60,9 +60,9 @@ public class Robot {
 
         oClaw.init(hardwareMap);
         oArm.init(hardwareMap);
-//        oSlides.init(hardwareMap);
+        oSlides.init(hardwareMap);
 
-//        iSlides.init((hardwareMap));
+        iSlides.init((hardwareMap));
 //        iArm.init(hardwareMap);
 
 //        limelightCamera.init(hardwareMap);
