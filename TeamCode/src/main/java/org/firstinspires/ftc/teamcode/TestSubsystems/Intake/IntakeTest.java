@@ -8,20 +8,26 @@ import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.Servo;
 
-@TeleOp(name = "Intake Arm Test", group = "Tests")
+@TeleOp(name = "Intake Test", group = "Tests")
 @Config
-public class IntakeArmTest extends LinearOpMode{
+public class IntakeTest extends LinearOpMode{
 
     private Servo armServo, bucketServo;
 
     public static double armPos = 0;
+    public static double bucketPos = 0;
+
+    private DcMotorEx wheel;
+    public static double wheelPow = 0;
 
     public static int activateTestMode = 0;
-    public static int bucketPos = 0;
 
     @Override
     public void runOpMode() throws InterruptedException {
         armServo = hardwareMap.get(Servo.class,"iArm");
+
+        wheel = hardwareMap.get(DcMotorEx.class, "IntakeWheel");
+        wheel.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
 
         waitForStart();
 
@@ -30,18 +36,30 @@ public class IntakeArmTest extends LinearOpMode{
             if(activateTestMode == 0){
                 armServo.setPosition(armPos);
                 bucketServo.setPosition(bucketPos);
+                wheel.setPower(wheelPow);
             }
 
             if(activateTestMode == 1){
                 if(gamepad2.cross)//Down
                 {
                     armServo.setPosition(0.5);
-                    bucketServo.setPosition(0);
+//                    Wrist.setPosition(0.4);
                 }
                 if(gamepad2.triangle)//up
                 {
                     armServo.setPosition(0);
-                    bucketServo.setPosition(0);
+//                    Wrist.setPosition(1);
+                }
+
+                if(gamepad2.right_trigger >= 0.5){
+                    wheel.setPower(0.75);
+                }
+                else if (gamepad2.left_trigger >= 0.5)
+                {
+                    wheel.setPower(-0.75);
+                }
+                else{
+                    wheel.setPower(0);
                 }
             }
         }
