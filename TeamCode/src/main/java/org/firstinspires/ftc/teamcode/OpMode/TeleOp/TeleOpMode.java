@@ -200,14 +200,14 @@ public class TeleOpMode extends LinearOpMode {
 //                r = g = 255;
 //                b = 0;
 //            } else {
-//                //Change depending on team alliance
-//                r = 255;
-//                g = 0;
+//                //set the color to green if there is no block
+//                r = 0;
+//                g = 255;
 //                b = 0;
 //            }
 
-            r = 255;
-            g = 0;
+            r = 0;
+            g = 255;
             b = 0;
 
             gamepad1.setLedColor(r,g,b,1000);
