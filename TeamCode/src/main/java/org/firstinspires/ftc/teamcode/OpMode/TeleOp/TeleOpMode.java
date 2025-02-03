@@ -64,25 +64,23 @@ public class TeleOpMode extends LinearOpMode {
         telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
 
         waitForStart();
-
-        robot.oElevMove(Constants.eOElevatorState.Ready);
+        //robot.oElevMove(Constants.eOElevatorState.Ready);
 
 //        robot.iArmHover();
 //        robot.iOpenClaw();
 
         robot.oOpenClaw();
         robot.oArmStart();
-
 //        intakeTimer.reset();
 
         while (opModeIsActive() && !isStopRequested()) {
 
 //********** Telemetry **********************************************************
 
-            telemetry.addData("Intake Slide Pos: ", robot.iElevGetHeight());
-            telemetry.addData("Outtake Slide Pos: ", robot.oElevGetHeight());
-
-            telemetry.update();
+//            telemetry.addData("Intake Slide Pos: ", robot.iElevGetHeight());
+//            telemetry.addData("Outtake Slide Pos: ", robot.oElevGetHeight());
+//
+//            telemetry.update();
 
 //********** Player One Controls ***************************************************
 
@@ -94,9 +92,9 @@ public class TeleOpMode extends LinearOpMode {
             robot.teleOpDrive(drive * 0.8,strafe * 0.8,rotate * 0.7);
 
 //          Outtake Linear Slides
-            if(gamepad1.dpad_up){
-                robot.oElevMove(Constants.eOElevatorState.Basket);
-            }
+//            if(gamepad1.dpad_up){
+//                robot.oElevMove(Constants.eOElevatorState.Basket);
+//            }
 //            if(gamepad1.dpad_down) robot.oElevMove(Constants.eOElevatorState.Ready);
 
 //********** Player Two Controls ***************************************************
@@ -125,7 +123,7 @@ public class TeleOpMode extends LinearOpMode {
             //Arm_position
             if(gamepad2.triangle) {
                 robot.oOpenClaw();
-                robot.oElevMove(Constants.eOElevatorState.Ready);
+                //robot.oElevMove(Constants.eOElevatorState.Ready);
                 robot.oArmTake();
             }
 
@@ -145,9 +143,9 @@ public class TeleOpMode extends LinearOpMode {
 
                 waitForSeconds(0.3);
 
-                robot.oElevMove(Constants.eOElevatorState.Clip_Ready);
+                //robot.oElevMove(Constants.eOElevatorState.Clip_Ready);
 
-                waitForSeconds(0.25);
+                //waitForSeconds(0.25);
 
                 robot.oArmHookup();
             }
@@ -155,52 +153,52 @@ public class TeleOpMode extends LinearOpMode {
             if(gamepad2.left_stick_y >= 0.5) {
                 robot.oArmHookgrab();
                 robot.oOpenClaw();
-                robot.oElevMove(Constants.eOElevatorState.Clip_Grab);
+                //robot.oElevMove(Constants.eOElevatorState.Clip_Grab);
             }
 
 
-            if(gamepad2.square && !stickmoved1) {
-                robot.oElevMove(Constants.eOElevatorState.Clip_Hang);
-                OuttakeStartTime3 = (long) outtakeTimer.milliseconds();
-                stickmoved1 = true;
-                OpenClawDone2 = false;
-            }
-            if(stickmoved1 && !OpenClawDone2 && outtakeTimer.milliseconds() - OuttakeStartTime3 >= 700) {
-                robot.oOpenClaw();
-                OpenClawDone2 = true;
-            }
-            if(stickmoved1 && OpenClawDone2 && outtakeTimer.milliseconds() - OuttakeStartTime3 >= 1000) {
-                robot.oArmHookgrab();
-                robot.oElevMove(Constants.eOElevatorState.Clip_Grab);
-                stickmoved1 = false;
-            }
+//            if(gamepad2.square && !stickmoved1) {
+//                robot.oElevMove(Constants.eOElevatorState.Clip_Hang);
+//                OuttakeStartTime3 = (long) outtakeTimer.milliseconds();
+//                stickmoved1 = true;
+//                OpenClawDone2 = false;
+//            }
+//            if(stickmoved1 && !OpenClawDone2 && outtakeTimer.milliseconds() - OuttakeStartTime3 >= 700) {
+//                robot.oOpenClaw();
+//                OpenClawDone2 = true;
+//            }
+//            if(stickmoved1 && OpenClawDone2 && outtakeTimer.milliseconds() - OuttakeStartTime3 >= 1000) {
+//                robot.oArmHookgrab();
+//                robot.oElevMove(Constants.eOElevatorState.Clip_Grab);
+//                stickmoved1 = false;
+//            }
 
 
 
 //********** Intake ***************************************************
-            if(gamepad2.dpad_down)//Down
-            {
-                robot.iArmGrab();
-            }
-            if(gamepad2.dpad_up)//up
-            {
-                robot.iArmStart();
-            }
+//            if(gamepad2.dpad_down)//Down
+//            {
+//                robot.iArmGrab();
+//            }
+//            if(gamepad2.dpad_up)//up
+//            {
+//                robot.iArmStart();
+//            }
 
-            if(gamepad2.right_trigger >=0.5 && robot.getColorResult()!=Constants.eColorSensed.red){//specifically for red
-                robot.iWheelTakeBlock();
-            }
-            else if (gamepad2.dpad_left)
-            {
-                robot.iWheelTakeBlock();
-            }
-            else if (gamepad2.left_trigger >=0.5)
-            {
-                robot.iWheelTakeBlock();
-            }
-            else{
-                robot.iWheelNoBlock();
-            }
+//            if(gamepad2.right_trigger >=0.5 && robot.getColorResult()!=Constants.eColorSensed.red){//specifically for red
+//                robot.iWheelTakeBlock();
+//            }
+//            else if (gamepad2.dpad_left)
+//            {
+//                robot.iWheelTakeBlock();
+//            }
+//            else if (gamepad2.left_trigger >=0.5)
+//            {
+//                robot.iWheelTakeBlock();
+//            }
+//            else{
+//                robot.iWheelNoBlock();
+//            }
 
         }
     }

@@ -60,13 +60,13 @@ public class Robot {
 
         oClaw.init(hardwareMap);
         oArm.init(hardwareMap);
-        oSlides.init(hardwareMap);
+//        oSlides.init(hardwareMap);
 
 //        iSlides.init((hardwareMap));
-        iArm.init(hardwareMap);
+//        iArm.init(hardwareMap);
 
 //        limelightCamera.init(hardwareMap);
-        colorSensor.init(hardwareMap);
+//        colorSensor.init(hardwareMap);
 
         for (LynxModule module : hardwareMap.getAll(LynxModule.class)) {
             module.setBulkCachingMode(LynxModule.BulkCachingMode.AUTO);
@@ -116,8 +116,6 @@ public class Robot {
     public boolean oElevIsBusy(){return oElevIsBusy();}
     public double oElevGetPower(){return oElevGetPower();}
 
-//    public void iOpenClaw(){iClaw.openClawIn();}
-//    public void iCloseClaw(){iClaw.closeClawIn();}
 
     public void iArmGrab(){iArm.downPos();}
     public void iArmStart(){iArm.upPos();}

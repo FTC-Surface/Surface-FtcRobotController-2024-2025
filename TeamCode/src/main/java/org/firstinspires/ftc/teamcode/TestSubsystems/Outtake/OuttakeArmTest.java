@@ -19,8 +19,9 @@ public class OuttakeArmTest extends LinearOpMode {
 
     @Override
     public void runOpMode() throws InterruptedException {
-        arm = hardwareMap.get(Servo.class, "Outtake Arm Right");
-        wrist = hardwareMap.get(Servo.class, "Outtake Wrist Left");
+        wrist = hardwareMap.get(Servo.class, "Outtake Wrist Right");
+        arm = hardwareMap.get(Servo.class, "Outtake Arm Left");
+        wrist.setDirection(Servo.Direction.REVERSE);
 
         waitForStart();
 

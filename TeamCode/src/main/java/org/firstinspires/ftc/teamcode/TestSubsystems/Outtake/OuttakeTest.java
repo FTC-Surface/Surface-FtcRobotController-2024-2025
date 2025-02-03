@@ -32,20 +32,21 @@ public class OuttakeTest extends LinearOpMode {
 
     @Override
     public void runOpMode() throws InterruptedException {
-        Arm = hardwareMap.get(Servo.class, "Outtake Wrist Left");
-        Wrist = hardwareMap.get(Servo.class, "Outtake Arm Right");
+        Arm = hardwareMap.get(Servo.class, "Outtake Arm Left");
+        Wrist = hardwareMap.get(Servo.class, "Outtake Wrist Right");
+        Wrist.setDirection(Servo.Direction.REVERSE);
 
-        leftOuttakeMotor = hardwareMap.get(DcMotorEx.class, "outtakeLinearSlideOne");
+        //leftOuttakeMotor = hardwareMap.get(DcMotorEx.class, "outtakeLinearSlideOne");
         claw = hardwareMap.get(Servo.class, "OClaw");
 
-        leftOuttakeMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        //leftOuttakeMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
-        leftOuttakeMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        //leftOuttakeMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
 
-        leftOuttakeMotor.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
+        //leftOuttakeMotor.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
 
-        telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
+        //telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
 
         waitForStart();
 
@@ -61,23 +62,23 @@ public class OuttakeTest extends LinearOpMode {
             Wrist.setPosition(WristTarget);
             claw.setPosition(ClawTarget);
 
-            leftOuttakeMotor.setTargetPosition(targetPos);
-
-            leftOuttakeMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
-            if(currentHeight > targetPos){
-                leftOuttakeMotor.setPower(-motorPower);
-            }
-
-            if(currentHeight < targetPos){
-                leftOuttakeMotor.setPower(motorPower);
-            }
-
-            if(currentHeight == targetPos - 10){
-                setPowerZero();
-            }
-
-            currentHeight =leftOuttakeMotor.getCurrentPosition();
+//            leftOuttakeMotor.setTargetPosition(targetPos);
+//
+//            leftOuttakeMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+//
+//            if(currentHeight > targetPos){
+//                leftOuttakeMotor.setPower(-motorPower);
+//            }
+//
+//            if(currentHeight < targetPos){
+//                leftOuttakeMotor.setPower(motorPower);
+//            }
+//
+//            if(currentHeight == targetPos - 10){
+//                setPowerZero();
+//            }
+//
+//            currentHeight =leftOuttakeMotor.getCurrentPosition();
         }
     }
 

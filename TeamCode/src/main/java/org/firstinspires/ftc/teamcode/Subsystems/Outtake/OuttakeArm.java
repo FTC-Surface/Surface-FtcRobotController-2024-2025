@@ -15,8 +15,9 @@ public class OuttakeArm extends Subsystem {
 
     @Override
     public void init(HardwareMap hardwareMap) {
-        arm = hardwareMap.get(Servo.class, "Outtake Wrist Left");
-        wrist = hardwareMap.get(Servo.class, "Outtake Arm Right");
+        arm = hardwareMap.get(Servo.class, "Outtake Arm Left");
+        wrist = hardwareMap.get(Servo.class, "Outtake Wrist Right");
+        wrist.setDirection(Servo.Direction.REVERSE);
     }
 
     public void startPos(){//when it faces up during the beginning
