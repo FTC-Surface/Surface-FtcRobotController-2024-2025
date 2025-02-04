@@ -41,7 +41,7 @@ public class OuttakeLinearSlides extends Subsystem {
                 move(0);
                 break;
             case Clip_Hang:
-                move(1200);
+                move(1000);
                 break;
             case Ground:
                 move(0);
@@ -50,7 +50,7 @@ public class OuttakeLinearSlides extends Subsystem {
                 move(2000);
                 break;
             case Ready:
-                move(400);
+                move(200);
                 break;
 
         }

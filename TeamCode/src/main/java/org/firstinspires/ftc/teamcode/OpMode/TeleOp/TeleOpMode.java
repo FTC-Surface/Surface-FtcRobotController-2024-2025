@@ -88,7 +88,7 @@ public class TeleOpMode extends LinearOpMode {
             //Outtake
 
             //Slide_down + Claw_close + Up/Arm_dump
-            if(gamepad2.circle && !Outtakepressed1){
+            if(gamepad2.cross && !Outtakepressed1){
                 Outtakepressed1 = true;
                 OuttakeclawDone = false;
                 LinearSlidereadyDone = false;
@@ -109,6 +109,7 @@ public class TeleOpMode extends LinearOpMode {
             
             //Arm_position
             if(gamepad2.triangle) {
+                robot.oElevMove(Constants.eOElevatorState.Ready);
                 robot.oOpenClaw();
                 robot.oArmTake();
             }
@@ -228,9 +229,9 @@ public class TeleOpMode extends LinearOpMode {
 //                b = 0;
 //            }
 
-            r = 0;
-            g = 255;
-            b = 0;
+            r = 255;
+            g = 0;
+            b = 255;
 
             gamepad1.setLedColor(r,g,b,1000);
             gamepad2.setLedColor(r,g,b,1000);
