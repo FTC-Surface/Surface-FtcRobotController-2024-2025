@@ -16,64 +16,55 @@ public class MeepMeepTest2_Hook_Red {
                 .setConstraints(60, 60, Math.toRadians(470), Math.toRadians(180), 15.25)
                 .followTrajectorySequence(drive -> drive.trajectorySequenceBuilder(new Pose2d(9,-60.5, Math.toRadians(90)))
 
-                        //push
-                        .lineTo((new Vector2d(9, -34)))
+                        //PUSH
+                        .lineTo((new Vector2d(9, -31)))
+                        .lineToLinearHeading(new Pose2d(25, -36, Math.toRadians(90)))
 
-                        .lineToLinearHeading(new Pose2d(38, -35, Math.toRadians(180)))
-                        .lineToLinearHeading(new Pose2d(38, -7, Math.toRadians(180)))
+                        //push first
+                        .splineToLinearHeading(new Pose2d(45, -7, Math.toRadians(90)),Math.toRadians(0))
+                        .lineTo(new Vector2d(45, -48))
 
-                        .lineTo(new Vector2d(52, -7))
+                        //push second
+                        .splineToLinearHeading(new Pose2d(53, -7, Math.toRadians(90)), Math.toRadians(0))
+                        .lineTo(new Vector2d(55, -48))
 
-                        .lineTo(new Vector2d(52, -56))
+                        //push third
+                        .splineToLinearHeading(new Pose2d(61, -7, Math.toRadians(90)), Math.toRadians(0))
+                        .lineTo(new Vector2d(61, -48))
+                        
 
-                        .splineToLinearHeading(new Pose2d(61, -7, Math.toRadians(180)), Math.toRadians(0))
-                        .lineTo(new Vector2d(61, -56))
+                        //Second Hang
+                        .splineToLinearHeading(new Pose2d(40, -58, Math.toRadians(90)),Math.toRadians(0))
+                        .waitSeconds(0.5)
+                        .lineTo(new Vector2d(40,-60.5))
+                        .waitSeconds(0.3)
+                        .splineToLinearHeading(new Pose2d(11,-31, Math.toRadians(90)), Math.toRadians(90))
 
-                        .splineToLinearHeading(new Pose2d(42, -55, Math.toRadians(90)), Math.toRadians(-90))
+                        //Third Hang
+                        .lineTo(new Vector2d(40, -58))
+                        .waitSeconds(0.5)
+                        .lineTo(new Vector2d(40,-60.5))
+                        .waitSeconds(0.3)
+                        .splineToLinearHeading(new Pose2d(7,-31, Math.toRadians(90)), Math.toRadians(90))
 
-                        .lineTo(new Vector2d(42,-60.5))
+                        //Fourth Hang
+                        .lineTo(new Vector2d(40, -58))
+                        .waitSeconds(0.5)
+                        .lineTo(new Vector2d(40,-60.5))
+                        .waitSeconds(0.3)
+                        .splineToLinearHeading(new Pose2d(5,-31, Math.toRadians(90)), Math.toRadians(90))
 
-                        .waitSeconds(1)
+                        //Fifth Hang
+                        .lineTo(new Vector2d(40, -58))
+                        .waitSeconds(0.5)
+                        .lineTo(new Vector2d(40,-60.5))
+                        .waitSeconds(0.3)
+                        .splineToLinearHeading(new Pose2d(3,-31, Math.toRadians(90)), Math.toRadians(90))
 
-                        .splineToLinearHeading(new Pose2d(4, -35, Math.toRadians(90)), Math.toRadians(180))
-                        .lineTo(new Vector2d(4, -33))
+                        //Park
+                        .lineTo(new Vector2d(40, -55))
 
-                        .lineTo(new Vector2d(42,-55))
-                        .lineTo(new Vector2d(42,-60.5))
-
-                        .waitSeconds(1)
-
-                        .splineToLinearHeading(new Pose2d(6, -35, Math.toRadians(90)), Math.toRadians(180))
-                        .lineTo(new Vector2d(6, -33))
-
-                        .lineTo(new Vector2d(42,-55))
-                        .lineTo(new Vector2d(42,-60.5))
-
-                        .waitSeconds(1)
-
-                        .splineToLinearHeading(new Pose2d(8, -35, Math.toRadians(90)), Math.toRadians(180))
-                        .lineTo(new Vector2d(8, -33))
-
-                        .lineTo(new Vector2d(42,-55))
-                        .lineTo(new Vector2d(42,-60.5))
-
-                        .waitSeconds(1)
-
-                        .splineToLinearHeading(new Pose2d(10, -35, Math.toRadians(90)), Math.toRadians(180))
-                        .lineTo(new Vector2d(10, -33))
-
-                        .lineTo(new Vector2d(42,-55))
-                        .lineTo(new Vector2d(42,-60.5))
-
-                        .waitSeconds(1)
-
-                        .splineToLinearHeading(new Pose2d(12, -35, Math.toRadians(90)), Math.toRadians(180))
-                        .lineTo(new Vector2d(12, -33))
-
-                        .lineTo(new Vector2d(42,-55))
-                        .lineTo(new Vector2d(42,-60.5))
-
-//                        //Linear Slides
+//                        //ACTIVE INTAKE
 //                        //Hang first
 //                        .lineTo(new Vector2d(9,-31))
 //
