@@ -7,6 +7,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 @TeleOp(name = "Outtake Slides Test Op", group = "Tests")
 @Config
@@ -15,7 +16,7 @@ public class OuttakeLinearSlidesTest extends LinearOpMode {
     private DcMotorEx leftOuttakeMotor;
 
     public static int targetPos = 0;
-    public static int maxHeight = 3200;
+    public static int maxHeight = 2100;
     public static int minHeight = 0;
 
     public int currentHeight = 0;
@@ -28,6 +29,8 @@ public class OuttakeLinearSlidesTest extends LinearOpMode {
         leftOuttakeMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         leftOuttakeMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        
+        leftOuttakeMotor.setDirection(DcMotorEx.Direction.REVERSE);
 
         leftOuttakeMotor.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
 

@@ -36,49 +36,49 @@ public class OuttakeTest extends LinearOpMode {
         Wrist = hardwareMap.get(Servo.class, "Outtake Wrist Right");
         Wrist.setDirection(Servo.Direction.REVERSE);
 
-        //leftOuttakeMotor = hardwareMap.get(DcMotorEx.class, "outtakeLinearSlideOne");
+        leftOuttakeMotor = hardwareMap.get(DcMotorEx.class, "outtakeLinearSlideOne");
         Claw = hardwareMap.get(Servo.class, "OClaw");
 
 
-        //leftOuttakeMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        leftOuttakeMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
-        //leftOuttakeMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        leftOuttakeMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
 
-        //leftOuttakeMotor.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
+        leftOuttakeMotor.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
 
-        //telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
+        telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
 
         waitForStart();
 
         while (opModeIsActive() && !isStopRequested()) {
 
-//            telemetry.addData("Left Motor Position", leftOuttakeMotor.getCurrentPosition());
-//            //telemetry.addData("Right Motor Position", rightOuttakeMotor.getCurrentPosition());
-//            telemetry.addData("Height", currentHeight);
-//            telemetry.addData("Is Busy", isBusy());
+            telemetry.addData("Left Motor Position", leftOuttakeMotor.getCurrentPosition());
+            //telemetry.addData("Right Motor Position", rightOuttakeMotor.getCurrentPosition());
+            telemetry.addData("Height", currentHeight);
+            telemetry.addData("Is Busy", isBusy());
 
 
             Arm.setPosition(ArmTarget);
             Wrist.setPosition(WristTarget);
             Claw.setPosition(ClawTarget);
-//            leftOuttakeMotor.setTargetPosition(targetPos);
-//
-//            leftOuttakeMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-//
-//            if(currentHeight > targetPos){
-//                leftOuttakeMotor.setPower(-motorPower);
-//            }
-//
-//            if(currentHeight < targetPos){
-//                leftOuttakeMotor.setPower(motorPower);
-//            }
-//
-//            if(currentHeight == targetPos - 10){
-//                setPowerZero();
-//            }
-//
-//            currentHeight =leftOuttakeMotor.getCurrentPosition();
+            leftOuttakeMotor.setTargetPosition(targetPos);
+
+            leftOuttakeMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+            if(currentHeight > targetPos){
+                leftOuttakeMotor.setPower(-motorPower);
+            }
+
+            if(currentHeight < targetPos){
+                leftOuttakeMotor.setPower(motorPower);
+            }
+
+            if(currentHeight == targetPos - 10){
+                setPowerZero();
+            }
+
+            currentHeight =leftOuttakeMotor.getCurrentPosition();
         }
     }
 
