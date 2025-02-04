@@ -73,8 +73,8 @@ public class Constants {
     public final double IntakeArmGrabPos = 0.55;
 
     //Outake
-    public final double OOpenClaw = 0.4;
-    public final double OCloseClaw = 0.1;
+    public final double OOpenClaw = 0.7;
+    public final double OCloseClaw = 0.5;
 
     public final double OutakeArmStartPos = 1;
     public final double OutakeArmDumpReadyPos = 0.3;

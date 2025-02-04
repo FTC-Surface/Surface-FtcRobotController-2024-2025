@@ -50,7 +50,7 @@ public class TeleOpMode extends LinearOpMode {
 
         waitForStart();
 
-//        robot.oElevMove(Constants.eOElevatorState.Ready);
+        robot.oElevMove(Constants.eOElevatorState.Ready);
 
 //        robot.iArmHover();
 //        robot.iOpenClaw();
@@ -78,30 +78,31 @@ public class TeleOpMode extends LinearOpMode {
             robot.teleOpDrive(drive * 0.8,strafe * 0.8,rotate * 0.7);
 
 //          Outtake Linear Slides
-//            if(gamepad1.dpad_up){
-//                robot.oElevMove(Constants.eOElevatorState.Basket);
-//            }
-//            if(gamepad1.dpad_down) robot.oElevMove(Constants.eOElevatorState.Ready);
+            if(gamepad1.dpad_up){
+                robot.oElevMove(Constants.eOElevatorState.Basket);
+            }
+            if(gamepad1.dpad_down) robot.oElevMove(Constants.eOElevatorState.Ready);
 
 //********** Player Two Controls ***************************************************
 
             //Outtake
 
-            //Grab + Claw_close + Up/Arm_dump
+            //Slide_down + Claw_close + Up/Arm_dump
             if(gamepad2.circle && !Outtakepressed1){
                 Outtakepressed1 = true;
                 OuttakeclawDone = false;
                 LinearSlidereadyDone = false;
                 OuttakeStartTime1 = (long) outtakeTimer.milliseconds();
+                robot.oElevMove(Constants.eOElevatorState.Ground);
             }
             if(Outtakepressed1 && !OuttakeclawDone && !LinearSlidereadyDone && outtakeTimer.milliseconds() - OuttakeStartTime1 >= 0){//400
                 OuttakeclawDone = true;
             }
-            if(Outtakepressed1 &&  !LinearSlidereadyDone && OuttakeclawDone && outtakeTimer.milliseconds() - OuttakeStartTime1 >= 0){//700
+            if(Outtakepressed1 &&  !LinearSlidereadyDone && OuttakeclawDone && outtakeTimer.milliseconds() - OuttakeStartTime1 >= 200){//700
                 robot.oCloseClaw();
                 LinearSlidereadyDone = true;
             }
-            if(Outtakepressed1 && OuttakeclawDone && LinearSlidereadyDone && outtakeTimer.milliseconds() - OuttakeStartTime1 >= 400){//1200
+            if(Outtakepressed1 && OuttakeclawDone && LinearSlidereadyDone && outtakeTimer.milliseconds() - OuttakeStartTime1 >= 500){//1200
                 robot.oArmDumpReady();
                 Outtakepressed1 = false;
             }
@@ -109,12 +110,17 @@ public class TeleOpMode extends LinearOpMode {
             //Arm_position
             if(gamepad2.triangle) {
                 robot.oOpenClaw();
-                //robot.oElevMove(Constants.eOElevatorState.Ready);
                 robot.oArmTake();
             }
 
-            if(gamepad2.cross)
+            //Drop Sample
+            if(gamepad2.circle) {
                 robot.oArmDumpRelease();
+                waitForSeconds(0.3);
+                robot.oOpenClaw();
+                waitForSeconds(0.3);
+                robot.oArmTake();
+            }
 
             //Outtake_claw
             if(gamepad2.right_bumper) {
@@ -129,17 +135,20 @@ public class TeleOpMode extends LinearOpMode {
 
                 waitForSeconds(0.3);
 
-                //robot.oElevMove(Constants.eOElevatorState.Clip_Ready);
-
-                //waitForSeconds(0.25);
-
                 robot.oArmHookup();
+
+                robot.oElevMove(Constants.eOElevatorState.Clip_Hang);
+
+
+
             }
 
             if(gamepad2.left_stick_y >= 0.5) {
                 robot.oArmHookgrab();
+
                 robot.oOpenClaw();
-                //robot.oElevMove(Constants.eOElevatorState.Clip_Grab);
+
+                robot.oElevMove(Constants.eOElevatorState.Ground);
             }
 
 
@@ -171,11 +180,11 @@ public class TeleOpMode extends LinearOpMode {
 //            {
 //                robot.iArmStart();
 //            }
-            if (gamepad2.right_stick_y <=0.5)
+            if (gamepad2.right_stick_y <=-0.5)
             {
                 robot.iElevMove(Constants.eIElevatorState.ManualForward,0);
             }
-            else if (gamepad2.right_stick_y <=0.5)
+            else if (gamepad2.right_stick_y >=0.5)
             {
                 robot.iElevMove(Constants.eIElevatorState.ManualBackward,0);
             }

@@ -44,6 +44,7 @@ public class OuttakeTest extends LinearOpMode {
 
         leftOuttakeMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
+        leftOuttakeMotor.setDirection(DcMotorEx.Direction.REVERSE);
 
         leftOuttakeMotor.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
 

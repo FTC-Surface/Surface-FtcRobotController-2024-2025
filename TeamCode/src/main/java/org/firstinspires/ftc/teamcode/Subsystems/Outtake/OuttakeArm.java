@@ -20,7 +20,7 @@ public class OuttakeArm extends Subsystem {
         wrist.setDirection(Servo.Direction.REVERSE);
     }
 
-    public void startPos(){//when it faces up during the beginning
+    public void startPos(){//when it faces down during the beginning
         arm.setPosition(constants.OutakeArmStartPos);
         wrist.setPosition(constants.OutakeWristStartPos);
     }
@@ -28,15 +28,15 @@ public class OuttakeArm extends Subsystem {
         arm.setPosition(constants.OutakeArmTakePos);
         wrist.setPosition(constants.OutakeWristTakePos);
     }
-    public void dumpreadyPos(){//when it dumps the sample to the basket
+    public void dumpreadyPos(){//when it gets ready to dump the sample to the basket
         arm.setPosition(constants.OutakeArmDumpReadyPos);
         wrist.setPosition(constants.OutakeWristDumpReleasePos);
     }
-    public void dumpreleasePos(){//when it dumps the sample to the basket
+    public void dumpreleasePos(){//when it releases the dump of the sample to the basket
         arm.setPosition(constants.OutakeArmDumpReleasePos);
         wrist.setPosition(constants.OutakeWristDumpReleasePos);
     }
-    public void hookgrabPos(){//when it goes below the hook bar
+    public void hookgrabPos(){//when it is ready to take specimen from the wall
         arm.setPosition(constants.OutakeArmHookgrabPos);
         wrist.setPosition(constants.OutakeWristHookgrabPos);
     }

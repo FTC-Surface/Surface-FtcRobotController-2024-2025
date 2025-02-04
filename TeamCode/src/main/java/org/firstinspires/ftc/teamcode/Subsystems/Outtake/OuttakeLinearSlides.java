@@ -27,6 +27,8 @@ public class OuttakeLinearSlides extends Subsystem {
 
         outtakeLinearSlideOne.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
+        outtakeLinearSlideOne.setDirection(DcMotorEx.Direction.REVERSE);
+
         outtakeLinearSlideOne.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
     }
 
@@ -48,7 +50,7 @@ public class OuttakeLinearSlides extends Subsystem {
                 move(2000);
                 break;
             case Ready:
-                move(200);
+                move(400);
                 break;
 
         }
