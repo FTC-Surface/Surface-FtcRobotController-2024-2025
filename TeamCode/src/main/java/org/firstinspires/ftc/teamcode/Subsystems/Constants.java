@@ -34,7 +34,7 @@ public class Constants {
         grabThird,
         depositThird,
         grabFourth,
-        reset,
+        park,
         depositFourth
     }
 

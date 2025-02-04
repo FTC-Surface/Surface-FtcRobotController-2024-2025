@@ -77,44 +77,50 @@ public class MeepMeepTest2_Hook_Red {
                         //Hang first
                         .lineTo(new Vector2d(9,-31))
 
+                        //Grab first
                         .lineToLinearHeading(new Pose2d(40, -45, Math.toRadians(75)))
                         .lineToLinearHeading(new Pose2d(40, -46, Math.toRadians(-30)))
                         .waitSeconds(0.5)
 
+                        //Grab Second
                         .lineToLinearHeading(new Pose2d(45, -45, Math.toRadians(60)))
                         .lineToLinearHeading(new Pose2d(40, -46, Math.toRadians(-30)))
                         .waitSeconds(0.5)
 
+                        //Grab Third
                         .lineToLinearHeading(new Pose2d(50, -45, Math.toRadians(50)))
                         .lineToLinearHeading(new Pose2d(40, -46, Math.toRadians(-30)))
                         .waitSeconds(0.5)
 
+                        //Second Hang
                         .lineToLinearHeading(new Pose2d(40, -58, Math.toRadians(90)))
+                        .waitSeconds(1)
                         .lineTo(new Vector2d(40,-60.5))
-                        .waitSeconds(0.5)
-                        //Hang second
+                        .waitSeconds(0.1)
                         .splineToLinearHeading(new Pose2d(11,-31, Math.toRadians(90)), Math.toRadians(90))
+
+                        //Third Hang
                         .lineTo(new Vector2d(40, -58))
-                        .lineTo(new Vector2d(40,-60.5))
-
                         .waitSeconds(1)
-
-                        //Hang Third
+                        .lineTo(new Vector2d(40,-60.5))
+                        .waitSeconds(0.1)
                         .splineToLinearHeading(new Pose2d(7,-31, Math.toRadians(90)), Math.toRadians(90))
+
+                        //Fourth Hang
                         .lineTo(new Vector2d(40, -58))
-                        .lineTo(new Vector2d(40,-60.5))
-
                         .waitSeconds(1)
-
-                        //Hang Fourth
+                        .lineTo(new Vector2d(40,-60.5))
+                        .waitSeconds(0.1)
                         .splineToLinearHeading(new Pose2d(5,-31, Math.toRadians(90)), Math.toRadians(90))
-                        .lineTo(new Vector2d(40, -58))
-                        .lineTo(new Vector2d(40,-60.5))
 
+                        //Fifth Hang
+                        .lineTo(new Vector2d(40, -58))
                         .waitSeconds(1)
-                        
-                        //Hang Fifth
+                        .lineTo(new Vector2d(40,-60.5))
+                        .waitSeconds(0.1)
                         .splineToLinearHeading(new Pose2d(3,-31, Math.toRadians(90)), Math.toRadians(90))
+
+                        //Park
                         .lineTo(new Vector2d(40, -58))
                         .lineTo(new Vector2d(40,-60.5))
 

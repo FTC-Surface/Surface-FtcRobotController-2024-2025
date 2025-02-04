@@ -10,7 +10,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 public class OuttakeWristTest extends LinearOpMode {
     Servo armTwo;
 
-    public static double armTwoTarget = 0;
+    public static double armWrist = 0;
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -26,7 +26,7 @@ public class OuttakeWristTest extends LinearOpMode {
         waitForStart();
 
         while (opModeIsActive() && !isStopRequested()) {
-            armTwo.setPosition(armTwoTarget);
+            armTwo.setPosition(armWrist);
         }
     }
 }
