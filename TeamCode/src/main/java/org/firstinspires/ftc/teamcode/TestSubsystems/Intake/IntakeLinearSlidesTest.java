@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 
-@TeleOp(name = "Intake Linear Slides Test", group = "Tests")
+@TeleOp(name = "Intake Linear Slides Test", group = "Tests Intake")
 @Config
 public class IntakeLinearSlidesTest extends LinearOpMode {
 
@@ -74,7 +74,6 @@ public class IntakeLinearSlidesTest extends LinearOpMode {
                     intakeLinearSlideTwo.setPower(0);
                 }
             }
-
 
             currentHeight = (intakeLinearSlideOne.getCurrentPosition()+intakeLinearSlideTwo.getCurrentPosition())/2;
 

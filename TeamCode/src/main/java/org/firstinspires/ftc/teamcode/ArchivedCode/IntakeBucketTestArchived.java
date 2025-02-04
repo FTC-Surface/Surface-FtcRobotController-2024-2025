@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.TestSubsystems.Intake;
+package org.firstinspires.ftc.teamcode.ArchivedCode;
 
 import com.acmerobotics.dashboard.config.Config;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -6,9 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import com.qualcomm.robotcore.hardware.Servo;
 
-@TeleOp(name = "Intake Bucket Test", group = "Tests")
-@Config
-public class IntakeBucketTest extends LinearOpMode {
+public class IntakeBucketTestArchived extends LinearOpMode {
     private Servo bucketServo;
 
     public static double pos = 0;

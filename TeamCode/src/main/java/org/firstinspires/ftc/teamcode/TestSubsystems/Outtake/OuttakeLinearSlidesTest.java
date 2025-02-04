@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
-@TeleOp(name = "Outtake Slides Test Op", group = "Tests")
+@TeleOp(name = "Outtake Slides Test Op", group = "Tests Outtake")
 @Config
 public class OuttakeLinearSlidesTest extends LinearOpMode {
 

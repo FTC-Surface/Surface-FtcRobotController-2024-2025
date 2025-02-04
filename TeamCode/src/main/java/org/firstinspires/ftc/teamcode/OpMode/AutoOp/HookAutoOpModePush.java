@@ -11,9 +11,9 @@ import org.firstinspires.ftc.teamcode.Roadrunner.trajectorysequence.TrajectorySe
 import org.firstinspires.ftc.teamcode.Robot.RobotAuto;
 import org.firstinspires.ftc.teamcode.Subsystems.Constants;
 
-@Autonomous(name = "Hook Auto Mode", group = "Auto Test")
+@Autonomous(name = "Hook Auto Mode Push", group = "Auto Test")
 @Config
-public class HookAutoOpMode extends LinearOpMode {
+public class HookAutoOpModePush extends LinearOpMode {
 
     SampleMecanumDrive drive;
     Constants.AutoState currentTraj = Constants.AutoState.idle;
@@ -36,39 +36,40 @@ public class HookAutoOpMode extends LinearOpMode {
         waitForStart();
 
         TrajectorySequence depositInit = drive.trajectorySequenceBuilder(startPose)
-                .lineTo(new Vector2d(9,-31))
+
+                .lineTo((new Vector2d(9, -31)))
+                .waitSeconds(0.5)
+                .lineToLinearHeading(new Pose2d(25, -36, Math.toRadians(90)))
+
                 .build();
 
         TrajectorySequence grabFirst = drive.trajectorySequenceBuilder(depositInit.end())
 
-                .lineToLinearHeading(new Pose2d(40, -45, Math.toRadians(75)))
-                .lineToLinearHeading(new Pose2d(40, -46, Math.toRadians(-30)))
-                .waitSeconds(0.5)
+                .splineToLinearHeading(new Pose2d(45, -7, Math.toRadians(90)),Math.toRadians(0))
+                .lineTo(new Vector2d(45, -48))
 
                 .build();
 
         TrajectorySequence grabSecond = drive.trajectorySequenceBuilder(grabFirst.end())
 
-                .lineToLinearHeading(new Pose2d(45, -45, Math.toRadians(60)))
-                .lineToLinearHeading(new Pose2d(40, -46, Math.toRadians(-30)))
-                .waitSeconds(0.5)
+                .splineToLinearHeading(new Pose2d(53, -7, Math.toRadians(90)), Math.toRadians(0))
+                .lineTo(new Vector2d(55, -48))
 
                 .build();
 
         TrajectorySequence grabThird = drive.trajectorySequenceBuilder(grabSecond.end())
 
-                .lineToLinearHeading(new Pose2d(50, -45, Math.toRadians(50)))
-                .lineToLinearHeading(new Pose2d(40, -46, Math.toRadians(-30)))
-                .waitSeconds(0.5)
+                .splineToLinearHeading(new Pose2d(61, -7, Math.toRadians(90)), Math.toRadians(0))
+                .lineTo(new Vector2d(61, -48))
 
                 .build();
 
         TrajectorySequence depositFirst = drive.trajectorySequenceBuilder(grabThird.end())
 
-                .lineToLinearHeading(new Pose2d(40, -58, Math.toRadians(90)))
-                .waitSeconds(1)
+                .splineToLinearHeading(new Pose2d(40, -58, Math.toRadians(90)),Math.toRadians(0))
+                .waitSeconds(0.5)
                 .lineTo(new Vector2d(40,-60.5))
-                .waitSeconds(0.1)
+                .waitSeconds(0.3)
                 .splineToLinearHeading(new Pose2d(11,-31, Math.toRadians(90)), Math.toRadians(90))
 
                 .build();
@@ -76,9 +77,9 @@ public class HookAutoOpMode extends LinearOpMode {
         TrajectorySequence depositSecond = drive.trajectorySequenceBuilder(depositFirst.end())
 
                 .lineTo(new Vector2d(40, -58))
-                .waitSeconds(1)
+                .waitSeconds(0.5)
                 .lineTo(new Vector2d(40,-60.5))
-                .waitSeconds(0.1)
+                .waitSeconds(0.3)
                 .splineToLinearHeading(new Pose2d(7,-31, Math.toRadians(90)), Math.toRadians(90))
 
                 .build();
@@ -86,9 +87,9 @@ public class HookAutoOpMode extends LinearOpMode {
         TrajectorySequence depositThird = drive.trajectorySequenceBuilder(depositSecond.end())
 
                 .lineTo(new Vector2d(40, -58))
-                .waitSeconds(1)
+                .waitSeconds(0.5)
                 .lineTo(new Vector2d(40,-60.5))
-                .waitSeconds(0.1)
+                .waitSeconds(0.3)
                 .splineToLinearHeading(new Pose2d(5,-31, Math.toRadians(90)), Math.toRadians(90))
 
                 .build();
@@ -96,9 +97,9 @@ public class HookAutoOpMode extends LinearOpMode {
         TrajectorySequence depositFourth = drive.trajectorySequenceBuilder(depositThird.end())
 
                 .lineTo(new Vector2d(40, -58))
-                .waitSeconds(1)
+                .waitSeconds(0.5)
                 .lineTo(new Vector2d(40,-60.5))
-                .waitSeconds(0.1)
+                .waitSeconds(0.3)
                 .splineToLinearHeading(new Pose2d(3,-31, Math.toRadians(90)), Math.toRadians(90))
 
                 .build();
@@ -157,6 +158,17 @@ public class HookAutoOpMode extends LinearOpMode {
                         nextTraj(Constants.AutoState.idle);
                     }
                     break;
+                case depositFourth:
+                    if(!drive.isBusy()){
+                        drive.followTrajectorySequence(depositFourth);
+                        nextTraj(Constants.AutoState.park);
+                    }
+                    break;
+                case park:
+                    if(!drive.isBusy()){
+                        drive.followTrajectorySequence(park);
+                        nextTraj(Constants.AutoState.idle);
+                    }
                 case idle:
                     break;
             }

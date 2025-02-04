@@ -10,7 +10,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.teamcode.Subsystems.Constants;
 
-@TeleOp(name = "Intake Wheel Test", group = "Tests")
+@TeleOp(name = "Intake Wheel Test", group = "Tests Intake")
 @Config
 public class IntakeWheelTest extends LinearOpMode{
 

@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.Servo;
 
-@TeleOp(name = "Outtake Wrist", group = "Tests")
+@TeleOp(name = "Outtake Wrist", group = "Tests Outtake")
 @Config
 public class OuttakeWristTest extends LinearOpMode {
     Servo armTwo;

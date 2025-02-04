@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.Servo;
 
-@TeleOp(name = "Outtake", group = "Tests")
+@TeleOp(name = "Outtake", group = "Tests Outtake")
 @Config
 public class OuttakeTest extends LinearOpMode {
     Servo Arm;
