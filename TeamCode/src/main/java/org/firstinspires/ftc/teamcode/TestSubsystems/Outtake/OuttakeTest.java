@@ -18,12 +18,12 @@ public class OuttakeTest extends LinearOpMode {
 
     public static double ArmTarget = 0;
     public static double WristTarget = 0;
+    public static double ClawTarget = 0.3;
 
     private DcMotorEx leftOuttakeMotor;
 
     public static int targetPos = 0;
-    public static double ClawTarget= 0.3;
-    public static int maxHeight = 3000;
+    public static int maxHeight = 2100;
     public static int minHeight = 0;
 
     public int currentHeight = 0;
