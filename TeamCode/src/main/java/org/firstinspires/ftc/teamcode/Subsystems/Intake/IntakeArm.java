@@ -13,7 +13,7 @@ public class IntakeArm extends Subsystem {
 
     @Override
     public void init(HardwareMap hardwareMap) {
-        armServo1 = hardwareMap.get(Servo.class,"iArm1");
+        armServo1 = hardwareMap.get(Servo.class,"iArm");
     }
 
     //Constants will need to be changed.
