@@ -54,18 +54,24 @@ public class IntakeLinearSlides extends Subsystem {
                 break;
 
             case ManualForward:
+                intakeLinearSlideOne.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+                intakeLinearSlideTwo.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
                 if (currentPos < max_pos) {
                     intakeLinearSlideOne.setPower(constants.IntakeElevatorMotorPower);
                     intakeLinearSlideTwo.setPower(constants.IntakeElevatorMotorPower);
                 }
                 break;
             case ManualBackward:
+                intakeLinearSlideOne.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+                intakeLinearSlideTwo.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
                 if (currentPos > min_pos) {
                     intakeLinearSlideOne.setPower(-constants.IntakeElevatorMotorPower);
                     intakeLinearSlideTwo.setPower(-constants.IntakeElevatorMotorPower);
                 }
                 break;
             case ManualStop:
+                intakeLinearSlideOne.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+                intakeLinearSlideTwo.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
                 intakeLinearSlideOne.setPower(0);
                 intakeLinearSlideTwo.setPower(0);
                 break;
@@ -73,7 +79,7 @@ public class IntakeLinearSlides extends Subsystem {
     }
 
     public void loop(){
-        if(currentPos == targetPos){
+        if(Math.abs(currentPos - targetPos) < 10){
             setPowerZero();
         }
         currentPos = getPos();

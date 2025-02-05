@@ -63,7 +63,7 @@ public class Robot {
         oSlides.init(hardwareMap);
 
         iSlides.init((hardwareMap));
-//        iArm.init(hardwareMap);
+        iArm.init(hardwareMap);
 
 //        limelightCamera.init(hardwareMap);
 //        colorSensor.init(hardwareMap);
