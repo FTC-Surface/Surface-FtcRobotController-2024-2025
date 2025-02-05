@@ -16,8 +16,6 @@ public class IntakeWheelTest extends LinearOpMode{
 
     private DcMotorEx wheel;
 
-    private Constants constants = new Constants();
-
     public static double motorPow = 0;
 
     public static int activateTestMode = 0;

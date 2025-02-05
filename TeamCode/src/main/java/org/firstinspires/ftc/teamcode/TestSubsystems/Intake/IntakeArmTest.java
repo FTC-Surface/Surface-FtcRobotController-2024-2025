@@ -13,17 +13,23 @@ import com.qualcomm.robotcore.hardware.Servo;
 public class IntakeArmTest extends LinearOpMode{
 
     private Servo armServo;
-
     public static double armPos = 0;
+
+    private DcMotorEx wheel;
+    public static double motorPow = 0;
 
     @Override
     public void runOpMode() throws InterruptedException {
         armServo = hardwareMap.get(Servo.class,"iArm");
 
+        wheel = hardwareMap.get(DcMotorEx.class, "IntakeWheel");
+        wheel.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
+
         waitForStart();
 
         while(opModeIsActive() && !isStopRequested()){
                 armServo.setPosition(armPos);
+                wheel.setPower(motorPow);
             }
         }
     }

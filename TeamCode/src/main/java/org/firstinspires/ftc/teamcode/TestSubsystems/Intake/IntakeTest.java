@@ -13,10 +13,9 @@ import com.qualcomm.robotcore.hardware.Servo;
 @Config
 public class IntakeTest extends LinearOpMode{
 
-    private Servo armServo, bucketServo;
+    private Servo armServo;
 
     public static double armPos = 0;
-    public static double bucketPos = 0;
 
     private DcMotorEx wheel;
     public static double wheelPow = 0;
@@ -64,7 +63,6 @@ public class IntakeTest extends LinearOpMode{
                 //Without Slides
 
                 armServo.setPosition(armPos);
-                bucketServo.setPosition(bucketPos);
                 wheel.setPower(wheelPow);
             }
 
@@ -72,7 +70,6 @@ public class IntakeTest extends LinearOpMode{
                 //With Slides (Manual)
 
                 armServo.setPosition(armPos);
-                bucketServo.setPosition(bucketPos);
                 wheel.setPower(wheelPow);
 
                 if (gamepad2.right_stick_y < -0.5 && currentHeight <= maxHeight) {
@@ -89,6 +86,9 @@ public class IntakeTest extends LinearOpMode{
 
             if(activateTestMode == 2){
                 //With Slides (Automatic)
+
+                intakeLinearSlideOne.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+                intakeLinearSlideTwo.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
                 armServo.setPosition(armPos);
                 wheel.setPower(wheelPow);

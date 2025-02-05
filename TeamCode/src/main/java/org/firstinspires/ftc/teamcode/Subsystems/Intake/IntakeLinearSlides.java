@@ -56,18 +56,22 @@ public class IntakeLinearSlides extends Subsystem {
             case ManualForward:
                 intakeLinearSlideOne.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
                 intakeLinearSlideTwo.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
                 if (currentPos < max_pos) {
                     intakeLinearSlideOne.setPower(constants.IntakeElevatorMotorPower);
                     intakeLinearSlideTwo.setPower(constants.IntakeElevatorMotorPower);
                 }
+
                 break;
             case ManualBackward:
                 intakeLinearSlideOne.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
                 intakeLinearSlideTwo.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
                 if (currentPos > min_pos) {
                     intakeLinearSlideOne.setPower(-constants.IntakeElevatorMotorPower);
                     intakeLinearSlideTwo.setPower(-constants.IntakeElevatorMotorPower);
                 }
+
                 break;
             case ManualStop:
                 intakeLinearSlideOne.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
