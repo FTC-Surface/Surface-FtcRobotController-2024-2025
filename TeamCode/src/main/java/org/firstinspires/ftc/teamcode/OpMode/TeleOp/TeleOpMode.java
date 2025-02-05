@@ -52,8 +52,7 @@ public class TeleOpMode extends LinearOpMode {
 
         robot.oElevMove(Constants.eOElevatorState.Ready);
 
-//        robot.iArmHover();
-//        robot.iOpenClaw();
+        robot.iArmStart();
 
         robot.oOpenClaw();
         robot.oArmStart();
@@ -146,9 +145,7 @@ public class TeleOpMode extends LinearOpMode {
 
             if(gamepad2.left_stick_y >= 0.5) {
                 robot.oArmHookgrab();
-
                 robot.oOpenClaw();
-
                 robot.oElevMove(Constants.eOElevatorState.Ground);
             }
 
@@ -183,32 +180,36 @@ public class TeleOpMode extends LinearOpMode {
 //            }
             if (gamepad2.right_stick_y <=-0.5)
             {
-                robot.iElevMove(Constants.eIElevatorState.ManualForward,0);
+                robot.iElevMove(Constants.eIElevatorState.ManualForward);
             }
             else if (gamepad2.right_stick_y >=0.5)
             {
-                robot.iElevMove(Constants.eIElevatorState.ManualBackward,0);
+                robot.iElevMove(Constants.eIElevatorState.ManualBackward);
             }
             else
             {
-                robot.iElevMove(Constants.eIElevatorState.ManualStop,0);
+                robot.iElevMove(Constants.eIElevatorState.ManualStop);
             }
-
-
-//            if(gamepad2.right_trigger >=0.5 && robot.getColorResult()!=Constants.eColorSensed.red){//specifically for red
-//                robot.iWheelTakeBlock();
-//            }
-//            else if (gamepad2.dpad_left)
-//            {
-//                robot.iWheelTakeBlock();
-//            }
-//            else if (gamepad2.left_trigger >=0.5)
-//            {
-//                robot.iWheelTakeBlock();
-//            }
-//            else{
-//                robot.iWheelNoBlock();
-//            }
+            if(gamepad2.square)
+            {
+                robot.iArmStart();
+                waitForSeconds(0.2);
+                robot.iElevMove(Constants.eIElevatorState.InIntake);
+            }
+            if(gamepad2.right_trigger >=0.5 && robot.getColorResult()!=Constants.eColorSensed.red){//specifically for red
+                robot.iWheelTakeBlock();
+            }
+            else if (gamepad2.dpad_left)
+            {
+                robot.iWheelTakeBlock();
+            }
+            else if (gamepad2.left_trigger >=0.5)
+            {
+                robot.iWheelOutBlock();
+            }
+            else{
+                robot.iWheelNoBlock();
+            }
 
 
 //********** Controller Color ***************************************************
