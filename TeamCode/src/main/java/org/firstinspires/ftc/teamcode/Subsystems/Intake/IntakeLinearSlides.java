@@ -47,27 +47,28 @@ public class IntakeLinearSlides extends Subsystem {
         intakeLinearSlideTwo.setPower(constants.IntakeElevatorMotorPower);
     }
 
-    public void moveElevator(Constants.eIElevatorState state, int pos) {
+    public void moveElevator(Constants.eIElevatorState state) {
         switch(state){
             case InIntake:
                 move(0);
+                break;
 
             case ManualForward:
                 if (currentPos < max_pos) {
                     intakeLinearSlideOne.setPower(constants.IntakeElevatorMotorPower);
                     intakeLinearSlideTwo.setPower(constants.IntakeElevatorMotorPower);
                 }
+                break;
             case ManualBackward:
                 if (currentPos > min_pos) {
                     intakeLinearSlideOne.setPower(-constants.IntakeElevatorMotorPower);
                     intakeLinearSlideTwo.setPower(-constants.IntakeElevatorMotorPower);
                 }
+                break;
             case ManualStop:
                 intakeLinearSlideOne.setPower(0);
                 intakeLinearSlideTwo.setPower(0);
-
-            case MoveTo:
-                setPos(pos);
+                break;
         }
     }
 
@@ -75,7 +76,6 @@ public class IntakeLinearSlides extends Subsystem {
         if(currentPos == targetPos){
             setPowerZero();
         }
-
         currentPos = getPos();
     }
 

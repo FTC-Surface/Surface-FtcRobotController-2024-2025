@@ -111,7 +111,7 @@ public class Robot {
 
     public void oElevMove(Constants.eOElevatorState state){oSlides.moveElevator(state);}
     public void oElevStop(){oSlides.setPowerZero();}
-    public void iElevMove(Constants.eIElevatorState state, int pos){iSlides.moveElevator(state, pos);}
+    public void iElevMove(Constants.eIElevatorState state){iSlides.moveElevator(state);}
 
     public boolean oElevIsBusy(){return oElevIsBusy();}
     public double oElevGetPower(){return oElevGetPower();}
