@@ -22,7 +22,5 @@ public class IntakeArm extends Subsystem {
         armServo1.setPosition(constants.IntakeArmStartPos);
     }
 
-    public void downPos(){
-        armServo1.setPosition(constants.IntakeArmGrabPos);
-    }
+    public void downPos(){armServo1.setPosition(constants.IntakeArmGrabPos);}
 }

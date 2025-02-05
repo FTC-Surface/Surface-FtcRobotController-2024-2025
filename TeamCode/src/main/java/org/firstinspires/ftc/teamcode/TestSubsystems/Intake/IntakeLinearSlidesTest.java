@@ -17,7 +17,7 @@ public class IntakeLinearSlidesTest extends LinearOpMode {
     private DcMotorEx intakeLinearSlideTwo;
 
     public static int targetPos = 0;
-    public static int maxHeight = 3000;
+    public static int maxHeight = 1100;
     public static int minHeight = 0;
 
     public int currentHeight = 0;
