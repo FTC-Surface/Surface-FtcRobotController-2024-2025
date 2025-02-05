@@ -70,7 +70,7 @@ public class Constants {
     public final double IntakeWheelPowOut = 0.75;
 
     public final double IntakeArmStartPos = 0;
-    public final double IntakeArmGrabPos = 0.375;
+    public final double IntakeArmGrabPos = 0.45;
 
     //Outake
     public final double OOpenClaw = 0.35;
