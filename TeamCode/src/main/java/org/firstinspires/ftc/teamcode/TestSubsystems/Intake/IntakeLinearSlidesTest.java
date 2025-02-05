@@ -70,18 +70,21 @@ public class IntakeLinearSlidesTest extends LinearOpMode {
                     intakeLinearSlideOne.setPower(motorPower);
                     intakeLinearSlideTwo.setPower(motorPower);
                 }
+
                 if (currentHeight == targetPos - 10) {
                     intakeLinearSlideTwo.setPower(0);
                 }
             }
 
-            currentHeight = (intakeLinearSlideOne.getCurrentPosition()+intakeLinearSlideTwo.getCurrentPosition())/2;
+            currentHeight = Math.abs(intakeLinearSlideOne.getCurrentPosition()+intakeLinearSlideTwo.getCurrentPosition())/2;
 
             if(mode == 1) {
-                if (gamepad2.right_stick_y < -0.5 && currentHeight <= maxHeight) {
+                intakeLinearSlideOne.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+                intakeLinearSlideTwo.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+                if (gamepad2.right_stick_y < -0.3 && currentHeight <= maxHeight) {
                     intakeLinearSlideOne.setPower(1);
                     intakeLinearSlideTwo.setPower(1);
-                } else if (gamepad2.right_stick_y > 0.5 && currentHeight >= minHeight) {
+                } else if (gamepad2.right_stick_y > 0.3 && currentHeight >= minHeight) {
                     intakeLinearSlideOne.setPower(-1);
                     intakeLinearSlideTwo.setPower(-1);
                 } else {
