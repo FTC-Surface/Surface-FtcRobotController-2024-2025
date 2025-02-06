@@ -32,4 +32,16 @@ public class RevColorSensorColor extends Subsystem {
             return Constants.eColorSensed.unknown;
         }
     }
+
+    public String TelemetryColor(){
+        if (colorRed() > colorGreen() && colorRed() > colorBlue()) {
+            return "Red";
+        } else if (colorGreen() > colorRed() && colorGreen() > colorBlue() && colorGreen()>=200) {
+            return "Yellow";
+        } else if (colorBlue() > colorRed() && colorBlue() > colorGreen()) {
+            return "Blue";
+        } else {
+            return "Unknown";
+        }
+    }
 }

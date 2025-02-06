@@ -57,9 +57,6 @@ public class OuttakeLinearSlides extends Subsystem {
     }
 
     public void loop(){
-        if(currentPos == targetPos){
-            setPowerZero();
-        }
         currentPos = getPos();
     }
 

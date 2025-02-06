@@ -139,6 +139,7 @@ public class Robot {
     public void limelightStart(int index){limelightCamera.limelightStart(index);}
 
     public Constants.eColorSensed getColorResult(){return colorSensor.getColor();}
+    public String getColorBlock(){return colorSensor.TelemetryColor();}
 
     public void waitForSeconds(int seconds){
         ElapsedTime timer = new ElapsedTime(ElapsedTime.Resolution.SECONDS);

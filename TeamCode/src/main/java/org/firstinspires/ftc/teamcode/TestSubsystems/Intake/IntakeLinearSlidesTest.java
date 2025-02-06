@@ -55,6 +55,9 @@ public class IntakeLinearSlidesTest extends LinearOpMode {
 
             telemetry.update();
             if (mode ==0) {
+                intakeLinearSlideOne.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+                intakeLinearSlideTwo.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
                 intakeLinearSlideOne.setTargetPosition(-targetPos);
                 intakeLinearSlideTwo.setTargetPosition(-targetPos);
 
@@ -81,6 +84,7 @@ public class IntakeLinearSlidesTest extends LinearOpMode {
             if(mode == 1) {
                 intakeLinearSlideOne.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
                 intakeLinearSlideTwo.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
                 if (gamepad2.right_stick_y < -0.3 && currentHeight <= maxHeight) {
                     intakeLinearSlideOne.setPower(1);
                     intakeLinearSlideTwo.setPower(1);
@@ -96,5 +100,5 @@ public class IntakeLinearSlidesTest extends LinearOpMode {
         }
     }
 
-    public boolean isBusy(){return Math.abs(currentHeight-targetPos) > 10;}
+    public boolean isBusy(){return Math.abs(currentHeight-targetPos) > 15;}
 }

@@ -42,9 +42,13 @@ public class TeleOpMode extends LinearOpMode {
         long OuttakeStartTime3=0;
 
         boolean stickmoved1 = false;
+        boolean hasBlock = false;
 
         //Change depending on alliance color
         double r, g, b;
+
+        //Change depending on alliance color
+        Constants.eColorSensed eliminatedColor = Constants.eColorSensed.red;
 
         telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
 
@@ -65,8 +69,13 @@ public class TeleOpMode extends LinearOpMode {
             telemetry.addData("Intake Slide Pos: ", robot.iElevGetHeight());
             telemetry.addData("Outtake Slide Pos: ", robot.oElevGetHeight());
 
+            telemetry.addData("Block Color: ", robot.getColorBlock());
+            telemetry.addData("Has Block: ", hasBlock);
+
             telemetry.update();
+
             robot.iSlideLoop();
+            robot.oSlideLoop();
 
 //********** Player One Controls ***************************************************
 
@@ -78,9 +87,7 @@ public class TeleOpMode extends LinearOpMode {
             robot.teleOpDrive(drive * 0.8,strafe * 0.8,rotate * 0.7);
 
 //          Outtake Linear Slides
-            if(gamepad1.dpad_up){
-                robot.oElevMove(Constants.eOElevatorState.Basket);
-            }
+            if(gamepad1.dpad_up) {robot.oElevMove(Constants.eOElevatorState.Basket);}
             if(gamepad1.dpad_down) robot.oElevMove(Constants.eOElevatorState.Ready);
 
 //********** Player Two Controls ***************************************************
@@ -139,9 +146,6 @@ public class TeleOpMode extends LinearOpMode {
                 robot.oArmHookup();
 
                 robot.oElevMove(Constants.eOElevatorState.Clip_Hang);
-
-
-
             }
 
             if(gamepad2.left_stick_y >= 0.5) {
@@ -149,13 +153,13 @@ public class TeleOpMode extends LinearOpMode {
                 robot.oOpenClaw();
                 robot.oElevMove(Constants.eOElevatorState.Ground);
             }
+
             if(gamepad2.left_stick_button)
             {
                 robot.oOpenClaw();
                 waitForSeconds(0.2);
                 robot.oElevMove(Constants.eOElevatorState.Ground);
                 robot.oArmHookgrab();
-
             }
 
 
@@ -187,32 +191,31 @@ public class TeleOpMode extends LinearOpMode {
 //            {
 //                robot.iArmStart();
 //            }
-            if (gamepad2.right_stick_y <=-0.2)
-            {
+            if (gamepad2.right_stick_y <= -0.2) {
                 robot.iElevMove(Constants.eIElevatorState.ManualForward);
             }
-            else if (gamepad2.right_stick_y >=0.2)
-            {
+            else if (gamepad2.right_stick_y >= 0.2) {
                 robot.iElevMove(Constants.eIElevatorState.ManualBackward);
             }
-            else
-            {
+            else {
                 robot.iElevMove(Constants.eIElevatorState.ManualStop);
             }
+
             if(gamepad2.square)
             {
                 robot.iArmStart();
                 waitForSeconds(0.2);
                 robot.iElevMove(Constants.eIElevatorState.InIntake);
             }
-            if(gamepad2.right_trigger >=0.5 && robot.getColorResult()!=Constants.eColorSensed.red){//specifically for red
+
+            if(gamepad2.right_trigger >= 0.5 && robot.getColorResult() != eliminatedColor){//specifically for red
                 robot.iWheelTakeBlock();
             }
             else if (gamepad2.dpad_left)
             {
                 robot.iWheelTakeBlock();
             }
-            else if (gamepad2.left_trigger >=0.5)
+            else if (gamepad2.left_trigger >= 0.5)
             {
                 robot.iWheelOutBlock();
             }
@@ -220,28 +223,29 @@ public class TeleOpMode extends LinearOpMode {
                 robot.iWheelNoBlock();
             }
 
+            if(robot.getColorResult() != Constants.eColorSensed.unknown){
+                hasBlock = true;
+            } else{
+                hasBlock = false;
+            }
 
 //********** Controller Color ***************************************************
 
-//            if(robot.getColorResult() == Constants.eColorSensed.red){
-//                r = 255;
-//                g = b = 0;
-//            } else if(robot.getColorResult() == Constants.eColorSensed.blue){
-//                b = 255;
-//                r = g = 0;
-//            } else if(robot.getColorResult() == Constants.eColorSensed.yellow){
-//                r = g = 255;
-//                b = 0;
-//            } else {
-//                //set the color to green if there is no block
-//                r = 0;
-//                g = 255;
-//                b = 0;
-//            }
-
-            r = 255;
-            g = 0;
-            b = 255;
+            if(robot.getColorResult() == Constants.eColorSensed.red){
+                r = 255;
+                g = b = 0;
+            } else if(robot.getColorResult() == Constants.eColorSensed.blue){
+                b = 255;
+                r = g = 0;
+            } else if(robot.getColorResult() == Constants.eColorSensed.yellow){
+                r = g = 255;
+                b = 0;
+            } else {
+                //set the color to green if there is no block
+                r = 0;
+                g = 255;
+                b = 0;
+            }
 
             gamepad1.setLedColor(r,g,b,1000);
             gamepad2.setLedColor(r,g,b,1000);

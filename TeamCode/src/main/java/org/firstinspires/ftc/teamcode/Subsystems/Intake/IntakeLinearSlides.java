@@ -63,6 +63,7 @@ public class IntakeLinearSlides extends Subsystem {
                 }
 
                 break;
+
             case ManualBackward:
                 intakeLinearSlideOne.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
                 intakeLinearSlideTwo.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -73,19 +74,19 @@ public class IntakeLinearSlides extends Subsystem {
                 }
 
                 break;
+
             case ManualStop:
                 intakeLinearSlideOne.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
                 intakeLinearSlideTwo.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
                 intakeLinearSlideOne.setPower(0);
                 intakeLinearSlideTwo.setPower(0);
+
                 break;
         }
     }
 
     public void loop(){
-        if(Math.abs(currentPos - targetPos) < 10){
-            setPowerZero();
-        }
         currentPos = getPos();
     }
 
@@ -124,5 +125,5 @@ public class IntakeLinearSlides extends Subsystem {
         return (double) ((intakeLinearSlideOne.getCurrentPosition()+intakeLinearSlideTwo.getCurrentPosition())/2);
     }
 
-    public boolean isBusy(){ return Math.abs(getPos()-targetPos) < 10;}
+    public boolean isBusy(){ return Math.abs(getPos()-targetPos) < 15;}
 }
