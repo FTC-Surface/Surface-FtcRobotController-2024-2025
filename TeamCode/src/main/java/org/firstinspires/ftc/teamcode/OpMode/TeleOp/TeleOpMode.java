@@ -104,6 +104,7 @@ public class TeleOpMode extends LinearOpMode {
                 OuttakeStartTime1 = (long) outtakeTimer.milliseconds();
                 robot.oElevMove(Constants.eOElevatorState.Ground);
             }
+            //Whats the point of this one?
             if(Outtakepressed1 && !OuttakeclawDone && !LinearSlidereadyDone && outtakeTimer.milliseconds() - OuttakeStartTime1 >= 0){//400
                 OuttakeclawDone = true;
             }
@@ -116,7 +117,7 @@ public class TeleOpMode extends LinearOpMode {
                 Outtakepressed1 = false;
             }
             
-            //Arm_position
+            //Arm Positiong to grab readied sample
             if(gamepad2.triangle) {
                 robot.oElevMove(Constants.eOElevatorState.Ready);
                 robot.oOpenClaw();
@@ -140,6 +141,7 @@ public class TeleOpMode extends LinearOpMode {
                 robot.oOpenClaw();
 
             //Hook
+            //Prepare for robot to score by clipping
             if(gamepad2.left_stick_y <= -0.5 && !stickmoved1) {
                 robot.oCloseClaw();
 
@@ -150,12 +152,14 @@ public class TeleOpMode extends LinearOpMode {
                 robot.oElevMove(Constants.eOElevatorState.Clip_Hang);
             }
 
+            //Prepare to grab speciment for scoring
             if(gamepad2.left_stick_y >= 0.5) {
                 robot.oArmHookgrab();
                 robot.oOpenClaw();
                 robot.oElevMove(Constants.eOElevatorState.Ground);
             }
 
+            //Return robot to original state after scoring
             if(gamepad2.left_stick_button)
             {
                 robot.oOpenClaw();
@@ -203,6 +207,7 @@ public class TeleOpMode extends LinearOpMode {
                 robot.iElevMove(Constants.eIElevatorState.ManualStop);
             }
 
+            //Ready to outtake block to bucket
             if(gamepad2.square)
             {
                 robot.iArmStart();
@@ -233,6 +238,7 @@ public class TeleOpMode extends LinearOpMode {
 
 //********** Controller Color ***************************************************
 
+            //Change color on controller depending on the block we have
             if(robot.getColorResult() == Constants.eColorSensed.red){
                 r = 255;
                 g = b = 0;
