@@ -20,7 +20,7 @@ public class Constants {
         ManualBackward,
         ManualForward,
         ManualStop,
-        MoveTo
+        OutIntake, MoveTo
     }
 
     public enum AutoState{

@@ -53,6 +53,10 @@ public class IntakeLinearSlides extends Subsystem {
                 move(0);
                 break;
 
+            case OutIntake:
+                move(1000);
+                break;
+
             case ManualForward:
                 intakeLinearSlideOne.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
                 intakeLinearSlideTwo.setMode(DcMotor.RunMode.RUN_USING_ENCODER);

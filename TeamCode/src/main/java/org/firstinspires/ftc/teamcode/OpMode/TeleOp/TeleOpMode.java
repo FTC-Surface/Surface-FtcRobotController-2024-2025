@@ -29,7 +29,7 @@ public class TeleOpMode extends LinearOpMode {
                 xOpenClawDone = yOpenClawDone = yArmstartDone = yPressed = bumperPressed = false;
 
         boolean Outtakepressed1, Triggerpressed, stickmoved2, OuttakeclawDone, ArmTakeDone,
-                OpenClawDone, LinearSlidereadyDone, OpenClawDone2;
+                OpenClawDone, LinearSlidereadyDone, OpenClawDone2, Arm_Start_position, IslidesIn;
 
         Outtakepressed1 = Triggerpressed = stickmoved2 = OuttakeclawDone = ArmTakeDone =
         OpenClawDone = LinearSlidereadyDone = OpenClawDone2 = false;
@@ -61,6 +61,8 @@ public class TeleOpMode extends LinearOpMode {
 
         robot.oOpenClaw();
         robot.oArmStart();
+        Arm_Start_position = true;
+        IslidesIn = true;
 
         outtakeTimer.reset();
 //        intakeTimer.reset();
@@ -183,51 +185,52 @@ public class TeleOpMode extends LinearOpMode {
             if(gamepad2.dpad_down)//Down
             {
                 robot.iArmGrab();
+                Arm_Start_position=false;
             }
             if(gamepad2.dpad_up)//up
             {
                 robot.iArmStart();
+                Arm_Start_position=true;
             }
 
             if (gamepad2.right_stick_y <=-0.3)
             {
                 robot.iElevMove(Constants.eIElevatorState.ManualForward);
+                IslidesIn=false;
             }
             else if (gamepad2.right_stick_y >= 0.3) {
                 robot.iElevMove(Constants.eIElevatorState.ManualBackward);
+                IslidesIn=false;
             }
             else {
                 robot.iElevMove(Constants.eIElevatorState.ManualStop);
+                IslidesIn=false;
             }
 
-            //Ready to outtake block to bucket
-            if(gamepad2.square)
-            {
-                robot.iArmGrab();
-                robot.iElevMove(Constants.eIElevatorState.InIntake);
-            }
 
-            if(gamepad2.right_trigger >= 0.5 && robot.getColorResult() != allianceColor){//specifically for red
+            if(gamepad2.right_trigger >= 0.5 && robot.getColorResult() != allianceColor && robot.getColorResult() != Constants.eColorSensed.yellow){//specifically for red
                 robot.iArmGrab();
-                robot.iWheelTakeBlock();
-            }
-            else if (gamepad2.dpad_left)
-            {
-                robot.iArmGrab();
+                Arm_Start_position=false;
                 robot.iWheelTakeBlock();
             }
             else if (gamepad2.left_trigger >= 0.5)
             {
-                robot.iArmGrab();
                 robot.iWheelOutBlock();
             }
             else{
                 robot.iWheelNoBlock();
             }
-            if(robot.getColorResult() == allianceColor)
+            if(robot.getColorResult() == allianceColor || robot.getColorResult() == Constants.eColorSensed.yellow)
             {
                 robot.iArmStart();
+                Arm_Start_position=true;
                 robot.iElevMove(Constants.eIElevatorState.InIntake);
+                IslidesIn=true;
+            }
+
+            if(Arm_Start_position && robot.getColorResult() == Constants.eColorSensed.yellow && IslidesIn)
+            {
+                robot.iWheelTakeBlock();
             }
 
 //********** Controller Color ***************************************************
