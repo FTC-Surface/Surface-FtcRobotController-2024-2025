@@ -54,7 +54,7 @@ public class IntakeLinearSlides extends Subsystem {
                 break;
 
             case OutIntake:
-                move(1000);
+                move(900);
                 break;
 
             case ManualForward:

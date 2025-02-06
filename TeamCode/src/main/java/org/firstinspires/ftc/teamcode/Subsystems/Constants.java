@@ -5,14 +5,12 @@ public class Constants {
         Ground,
         Basket,
         Clip,
-        PrepareClip,
         Hang,
         Ready,
         Grab,
-        ManualUp,
         Clip_Grab,
         Clip_Hang,
-        Clip_Ready, ManualDown
+        Clip_Ready,
     }
 
     public enum eIElevatorState{
@@ -20,7 +18,7 @@ public class Constants {
         ManualBackward,
         ManualForward,
         ManualStop,
-        OutIntake, MoveTo
+        OutIntake,
     }
 
     public enum AutoState{
