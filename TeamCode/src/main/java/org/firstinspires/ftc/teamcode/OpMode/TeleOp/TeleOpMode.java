@@ -49,7 +49,7 @@ public class TeleOpMode extends LinearOpMode {
         double r, g, b;
 
         //Change depending on alliance color
-        Constants.eColorSensed eliminatedColor = Constants.eColorSensed.red;
+        Constants.eColorSensed allianceColor = Constants.eColorSensed.red;
 
         telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
 
@@ -207,7 +207,7 @@ public class TeleOpMode extends LinearOpMode {
                 robot.iElevMove(Constants.eIElevatorState.InIntake);
             }
 
-            if(gamepad2.right_trigger >= 0.5 && robot.getColorResult() != eliminatedColor){//specifically for red
+            if(gamepad2.right_trigger >= 0.5 && robot.getColorResult() != allianceColor){//specifically for red
                 robot.iWheelTakeBlock();
             }
             else if (gamepad2.dpad_left)
@@ -221,11 +221,10 @@ public class TeleOpMode extends LinearOpMode {
             else{
                 robot.iWheelNoBlock();
             }
-
-            if(robot.getColorResult() != Constants.eColorSensed.unknown){
-                hasBlock = true;
-            } else{
-                hasBlock = false;
+            if(robot.getColorResult() == allianceColor)
+            {
+                robot.iArmStart();
+                robot.iElevMove(Constants.eIElevatorState.InIntake);
             }
 
 //********** Controller Color ***************************************************

@@ -50,7 +50,7 @@ public class OuttakeLinearSlides extends Subsystem {
                 move(2000);
                 break;
             case Ready:
-                move(200);
+                move(300);
                 break;
 
         }
