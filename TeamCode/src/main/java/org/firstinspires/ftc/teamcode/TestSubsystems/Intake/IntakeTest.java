@@ -69,6 +69,9 @@ public class IntakeTest extends LinearOpMode{
             if(activateTestMode == 1){
                 //With Slides (Manual)
 
+                intakeLinearSlideOne.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+                intakeLinearSlideTwo.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
                 armServo.setPosition(armPos);
                 wheel.setPower(wheelPow);
 
