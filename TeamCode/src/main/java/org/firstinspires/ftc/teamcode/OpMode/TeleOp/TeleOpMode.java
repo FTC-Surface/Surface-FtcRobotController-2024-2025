@@ -203,19 +203,22 @@ public class TeleOpMode extends LinearOpMode {
             //Ready to outtake block to bucket
             if(gamepad2.square)
             {
-                robot.iArmStart();
+                robot.iArmGrab();
                 robot.iElevMove(Constants.eIElevatorState.InIntake);
             }
 
             if(gamepad2.right_trigger >= 0.5 && robot.getColorResult() != allianceColor){//specifically for red
+                robot.iArmGrab();
                 robot.iWheelTakeBlock();
             }
             else if (gamepad2.dpad_left)
             {
+                robot.iArmGrab();
                 robot.iWheelTakeBlock();
             }
             else if (gamepad2.left_trigger >= 0.5)
             {
+                robot.iArmGrab();
                 robot.iWheelOutBlock();
             }
             else{
