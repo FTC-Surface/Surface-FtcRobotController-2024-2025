@@ -22,15 +22,11 @@ public class TeleOpMode extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
         Robot robot = new Robot(hardwareMap);
 
-        ElapsedTime intakeTimer, outtakeTimer = new ElapsedTime(ElapsedTime.Resolution.MILLISECONDS);
+        ElapsedTime intakeTimer, outtakeTimer;
+        intakeTimer = outtakeTimer = new ElapsedTime(ElapsedTime.Resolution.MILLISECONDS);
 
         boolean xOpenClawDone, yOpenClawDone, yArmstartDone, yPressed, bumperPressed;
-        xOpenClawDone = yOpenClawDone = yArmstartDone = yPressed = bumperPressed = false;
-
-        long yActionStartTime = 0;
-
-        long IntakeStartTime2=0;
-        long OuttakeStartTime4=0;
+                xOpenClawDone = yOpenClawDone = yArmstartDone = yPressed = bumperPressed = false;
 
         boolean Outtakepressed1, Triggerpressed, stickmoved2, OuttakeclawDone, ArmTakeDone,
                 OpenClawDone, LinearSlidereadyDone, OpenClawDone2;
@@ -39,7 +35,12 @@ public class TeleOpMode extends LinearOpMode {
         OpenClawDone = LinearSlidereadyDone = OpenClawDone2 = false;
 
         long OuttakeStartTime1=0;
+        long OuttakeStartTime2=0;
         long OuttakeStartTime3=0;
+
+        long IntakeStartTime1=0;
+
+        long yActionStartTime = 0;
 
         boolean stickmoved1 = false;
         boolean hasBlock = false;
@@ -61,6 +62,7 @@ public class TeleOpMode extends LinearOpMode {
         robot.oOpenClaw();
         robot.oArmStart();
 
+        outtakeTimer.reset();
 //        intakeTimer.reset();
 
         while (opModeIsActive() && !isStopRequested()) {

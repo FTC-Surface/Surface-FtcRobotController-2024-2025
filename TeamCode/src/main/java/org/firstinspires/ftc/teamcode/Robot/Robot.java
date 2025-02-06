@@ -33,13 +33,10 @@ public class Robot {
 
     IntakeWheel iWheel = new IntakeWheel();
     IntakeArm iArm = new IntakeArm();
-//    IntakeClaw iClaw = new IntakeClaw();
     IntakeLinearSlides iSlides = new IntakeLinearSlides();
 
     LimelightCamera limelightCamera = new LimelightCamera();
     RevColorSensorColor colorSensor = new RevColorSensorColor();
-
-    Constants constants = new Constants();
 
     double maxSpeed;
 
@@ -111,11 +108,12 @@ public class Robot {
 
     public void oElevMove(Constants.eOElevatorState state){oSlides.moveElevator(state);}
     public void oElevStop(){oSlides.setPowerZero();}
+
     public void iElevMove(Constants.eIElevatorState state){iSlides.moveElevator(state);}
+    public void iElevStop(){iSlides.setPowerZero();}
 
-    public boolean oElevIsBusy(){return oElevIsBusy();}
-    public double oElevGetPower(){return oElevGetPower();}
-
+    public boolean oElevIsBusy(){return oSlides.isBusy();}
+    public boolean iElevIsBusy(){return iSlides.isBusy();}
 
     public void iArmGrab(){iArm.downPos();}
     public void iArmStart(){iArm.upPos();}
