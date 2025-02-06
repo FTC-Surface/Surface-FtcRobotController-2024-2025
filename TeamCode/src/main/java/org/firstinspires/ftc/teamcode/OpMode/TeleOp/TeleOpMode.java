@@ -68,11 +68,11 @@ public class TeleOpMode extends LinearOpMode {
         while (opModeIsActive() && !isStopRequested()) {
 //********** Telemetry **********************************************************
 
-            telemetry.addData("Intake Slide Pos: ", robot.iElevGetHeight());
-            telemetry.addData("Outtake Slide Pos: ", robot.oElevGetHeight());
-
-            telemetry.addData("Block Color: ", robot.getColorBlock());
-            telemetry.addData("Has Block: ", hasBlock);
+//            telemetry.addData("Intake Slide Pos: ", robot.iElevGetHeight());
+//            telemetry.addData("Outtake Slide Pos: ", robot.oElevGetHeight());
+//
+//            telemetry.addData("Block Color: ", robot.getColorBlock());
+//            telemetry.addData("Has Block: ", hasBlock);
 
             telemetry.update();
 
@@ -88,15 +88,11 @@ public class TeleOpMode extends LinearOpMode {
 
             robot.teleOpDrive(drive * 0.8,strafe * 0.8,rotate * 0.7);
 
-//          Outtake Linear Slides
-            if(gamepad1.dpad_up) {robot.oElevMove(Constants.eOElevatorState.Basket);}
-            if(gamepad1.dpad_down) robot.oElevMove(Constants.eOElevatorState.Ready);
-
 //********** Player Two Controls ***************************************************
 
             //Outtake
 
-            //Slide_down + Claw_close + Up/Arm_dump
+            //Slide_down + Claw_close + Arm_dump + Slide_up (4 If statement together)
             if(gamepad2.cross && !Outtakepressed1){
                 Outtakepressed1 = true;
                 OuttakeclawDone = false;
@@ -104,7 +100,6 @@ public class TeleOpMode extends LinearOpMode {
                 OuttakeStartTime1 = (long) outtakeTimer.milliseconds();
                 robot.oElevMove(Constants.eOElevatorState.Ground);
             }
-            //Whats the point of this one?
             if(Outtakepressed1 && !OuttakeclawDone && !LinearSlidereadyDone && outtakeTimer.milliseconds() - OuttakeStartTime1 >= 0){//400
                 OuttakeclawDone = true;
             }
@@ -114,6 +109,7 @@ public class TeleOpMode extends LinearOpMode {
             }
             if(Outtakepressed1 && OuttakeclawDone && LinearSlidereadyDone && outtakeTimer.milliseconds() - OuttakeStartTime1 >= 500){//1200
                 robot.oArmDumpReady();
+                robot.oElevMove(Constants.eOElevatorState.Basket);
                 Outtakepressed1 = false;
             }
             
@@ -124,13 +120,15 @@ public class TeleOpMode extends LinearOpMode {
                 robot.oArmTake();
             }
 
-            //Drop Sample
+            //Drop Sample + Slides go down
             if(gamepad2.circle) {
                 robot.oArmDumpRelease();
                 waitForSeconds(0.3);
                 robot.oOpenClaw();
                 waitForSeconds(0.3);
                 robot.oArmTake();
+                waitForSeconds(0.3);
+                robot.oElevMove(Constants.eOElevatorState.Ready);
             }
 
             //Outtake_claw
@@ -152,21 +150,14 @@ public class TeleOpMode extends LinearOpMode {
                 robot.oElevMove(Constants.eOElevatorState.Clip_Hang);
             }
 
-            //Prepare to grab speciment for scoring
+            //Prepare to grab specimen for scoring
             if(gamepad2.left_stick_y >= 0.5) {
-                robot.oArmHookgrab();
                 robot.oOpenClaw();
+                waitForSeconds(0.2);
+                robot.oArmHookgrab();
                 robot.oElevMove(Constants.eOElevatorState.Ground);
             }
 
-            //Return robot to original state after scoring
-            if(gamepad2.left_stick_button)
-            {
-                robot.oOpenClaw();
-                waitForSeconds(0.2);
-                robot.oElevMove(Constants.eOElevatorState.Ground);
-                robot.oArmHookgrab();
-            }
 
 
 //            if(gamepad2.square && !stickmoved1) {
@@ -197,11 +188,12 @@ public class TeleOpMode extends LinearOpMode {
             {
                 robot.iArmStart();
             }
-            if (gamepad2.right_stick_y <=-0.2)
+
+            if (gamepad2.right_stick_y <=-0.3)
             {
                 robot.iElevMove(Constants.eIElevatorState.ManualForward);
             }
-            else if (gamepad2.right_stick_y >= 0.2) {
+            else if (gamepad2.right_stick_y >= 0.3) {
                 robot.iElevMove(Constants.eIElevatorState.ManualBackward);
             }
             else {
@@ -212,7 +204,6 @@ public class TeleOpMode extends LinearOpMode {
             if(gamepad2.square)
             {
                 robot.iArmStart();
-                waitForSeconds(0.2);
                 robot.iElevMove(Constants.eIElevatorState.InIntake);
             }
 
@@ -251,13 +242,13 @@ public class TeleOpMode extends LinearOpMode {
                 b = 0;
             } else {
                 //set the color to green if there is no block
-                r = 0;
-                g = 255;
-                b = 0;
+                r = 255;
+                g = 0;
+                b = 255;
             }
 
-            gamepad1.setLedColor(r,g,b,1000);
-            gamepad2.setLedColor(r,g,b,1000);
+            gamepad1.setLedColor(r,g,b,100);
+            gamepad2.setLedColor(r,g,b,100);
         }
     }
 
