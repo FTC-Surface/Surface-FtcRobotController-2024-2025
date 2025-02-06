@@ -66,7 +66,7 @@ public class Robot {
         iArm.init(hardwareMap);
 
 //        limelightCamera.init(hardwareMap);
-//        colorSensor.init(hardwareMap);
+        colorSensor.init(hardwareMap);
 
         for (LynxModule module : hardwareMap.getAll(LynxModule.class)) {
             module.setBulkCachingMode(LynxModule.BulkCachingMode.AUTO);

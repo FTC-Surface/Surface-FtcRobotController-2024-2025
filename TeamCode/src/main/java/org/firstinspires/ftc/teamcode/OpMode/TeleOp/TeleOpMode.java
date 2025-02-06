@@ -179,14 +179,14 @@ public class TeleOpMode extends LinearOpMode {
 
 //********** Intake ***************************************************
 
-//            if(gamepad2.dpad_down)//Down
-//            {
-//                robot.iArmGrab();
-//            }
-//            if(gamepad2.dpad_up)//up
-//            {
-//                robot.iArmStart();
-//            }
+            if(gamepad2.dpad_down)//Down
+            {
+                robot.iArmGrab();
+            }
+            if(gamepad2.dpad_up)//up
+            {
+                robot.iArmStart();
+            }
             if (gamepad2.right_stick_y <=-0.2)
             {
                 robot.iElevMove(Constants.eIElevatorState.ManualForward);
