@@ -8,6 +8,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 @TeleOp(name = "Intake Linear Slides Test", group = "Tests Intake")
 @Config
@@ -40,7 +41,6 @@ public class IntakeLinearSlidesTest extends LinearOpMode {
 
         intakeLinearSlideOne.setDirection(DcMotorEx.Direction.REVERSE);
         intakeLinearSlideTwo.setDirection(DcMotorEx.Direction.REVERSE);
-        
 
         telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
 
@@ -50,6 +50,7 @@ public class IntakeLinearSlidesTest extends LinearOpMode {
 
         while(opModeIsActive()){
             telemetry.addData("Left Motor Position", intakeLinearSlideTwo.getCurrentPosition());
+            telemetry.addData("Right Motor Position", intakeLinearSlideOne.getCurrentPosition());
             telemetry.addData("Height", currentHeight);
             telemetry.addData("Is Busy", isBusy());
 
@@ -64,6 +65,9 @@ public class IntakeLinearSlidesTest extends LinearOpMode {
                 intakeLinearSlideOne.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
                 intakeLinearSlideTwo.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
 
+                intakeLinearSlideOne.setDirection(DcMotorSimple.Direction.REVERSE);
+                intakeLinearSlideTwo.setDirection(DcMotorSimple.Direction.REVERSE);
+
                 if (currentHeight > targetPos) {
                     intakeLinearSlideOne.setPower(-motorPower);
                     intakeLinearSlideTwo.setPower(-motorPower);
@@ -74,12 +78,13 @@ public class IntakeLinearSlidesTest extends LinearOpMode {
                     intakeLinearSlideTwo.setPower(motorPower);
                 }
 
-                if (currentHeight == targetPos - 10) {
+                if (currentHeight == Math.abs(targetPos - 10)) {
+                    intakeLinearSlideOne.setPower(0);
                     intakeLinearSlideTwo.setPower(0);
                 }
             }
 
-            currentHeight = Math.abs(intakeLinearSlideOne.getCurrentPosition()+intakeLinearSlideTwo.getCurrentPosition())/2;
+            currentHeight = (intakeLinearSlideOne.getCurrentPosition()+intakeLinearSlideTwo.getCurrentPosition())/2;
 
             if(mode == 1) {
                 intakeLinearSlideOne.setMode(DcMotor.RunMode.RUN_USING_ENCODER);

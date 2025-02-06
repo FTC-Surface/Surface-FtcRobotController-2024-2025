@@ -21,7 +21,7 @@ public class OuttakeLinearSlidesTest extends LinearOpMode {
 
     public int currentHeight = 0;
 
-    public double motorPower = 1;
+    public static double motorPower = 1;
 
     public void runOpMode() {
         leftOuttakeMotor = hardwareMap.get(DcMotorEx.class, "outtakeLinearSlideOne");
