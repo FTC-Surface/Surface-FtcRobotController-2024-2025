@@ -58,19 +58,15 @@ public class IntakeLinearSlides extends Subsystem {
                 break;
 
             case ManualForward:
-                intakeLinearSlideOne.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-                intakeLinearSlideTwo.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
                 if (currentPos < max_pos) {
-                    intakeLinearSlideOne.setPower(constants.IntakeElevatorMotorPower);
-                    intakeLinearSlideTwo.setPower(constants.IntakeElevatorMotorPower);
+                    intakeLinearSlideOne.setPower(-constants.IntakeElevatorMotorPower);
+                    intakeLinearSlideTwo.setPower(-constants.IntakeElevatorMotorPower);
                 }
 
                 break;
 
             case ManualBackward:
-                intakeLinearSlideOne.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-                intakeLinearSlideTwo.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
                 if (currentPos > min_pos) {
                     intakeLinearSlideOne.setPower(-constants.IntakeElevatorMotorPower);
@@ -80,8 +76,6 @@ public class IntakeLinearSlides extends Subsystem {
                 break;
 
             case ManualStop:
-                intakeLinearSlideOne.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-                intakeLinearSlideTwo.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
                 intakeLinearSlideOne.setPower(0);
                 intakeLinearSlideTwo.setPower(0);
@@ -95,9 +89,10 @@ public class IntakeLinearSlides extends Subsystem {
     }
 
     private void move(int height){
+        intakeLinearSlideOne.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
+        intakeLinearSlideTwo.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
         setPos(height);
     }
-
     public void setPowerZero(){
         intakeLinearSlideOne.setPower(0);
         intakeLinearSlideTwo.setPower(0);
@@ -107,26 +102,22 @@ public class IntakeLinearSlides extends Subsystem {
         currentPos = getPos();
         targetPos = height;
 
-        if(currentPos > height){
+        if(currentPos < height){
             intakeElevPower = -constants.IntakeElevatorMotorPower;
         }
-
-        if(currentPos < height){
+        if(currentPos > height){
             intakeElevPower = constants.IntakeElevatorMotorPower;
         }
 
-        intakeLinearSlideOne.setTargetPosition(height);
-        intakeLinearSlideTwo.setTargetPosition(height);
-
-        intakeLinearSlideOne.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
-        intakeLinearSlideTwo.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
+        intakeLinearSlideOne.setTargetPosition(-height);
+        intakeLinearSlideTwo.setTargetPosition(-height);
 
         intakeLinearSlideOne.setPower(intakeElevPower);
         intakeLinearSlideTwo.setPower(intakeElevPower);
     }
 
     public double getPos(){
-        return (double) ((intakeLinearSlideOne.getCurrentPosition()+intakeLinearSlideTwo.getCurrentPosition())/2);
+        return -((double) (intakeLinearSlideOne.getCurrentPosition() + intakeLinearSlideTwo.getCurrentPosition()) /2);
     }
 
     public boolean isBusy(){ return Math.abs(getPos()-targetPos) < 15;}
