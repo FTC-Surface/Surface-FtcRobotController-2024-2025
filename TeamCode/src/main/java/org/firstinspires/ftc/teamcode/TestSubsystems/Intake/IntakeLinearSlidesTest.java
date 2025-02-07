@@ -18,7 +18,7 @@ public class IntakeLinearSlidesTest extends LinearOpMode {
     private DcMotorEx intakeLinearSlideTwo;
 
     public static int targetPos = 0;
-    public static int maxHeight = 1100;
+    public static int maxHeight = 1000;
     public static int minHeight = 0;
 
     public int currentHeight = 0;
@@ -48,6 +48,12 @@ public class IntakeLinearSlidesTest extends LinearOpMode {
 
         telemetry.addData("Height", currentHeight);
 
+        if (mode==1)
+        {
+            intakeLinearSlideOne.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            intakeLinearSlideTwo.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        }
+
         while(opModeIsActive()){
             telemetry.addData("Left Motor Position", intakeLinearSlideTwo.getCurrentPosition());
             telemetry.addData("Right Motor Position", intakeLinearSlideOne.getCurrentPosition());
@@ -56,8 +62,6 @@ public class IntakeLinearSlidesTest extends LinearOpMode {
 
             telemetry.update();
             if (mode ==0) {
-                intakeLinearSlideOne.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-                intakeLinearSlideTwo.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
                 intakeLinearSlideOne.setTargetPosition(-targetPos);
                 intakeLinearSlideTwo.setTargetPosition(-targetPos);
@@ -65,37 +69,32 @@ public class IntakeLinearSlidesTest extends LinearOpMode {
                 intakeLinearSlideOne.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
                 intakeLinearSlideTwo.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
 
-                intakeLinearSlideOne.setDirection(DcMotorSimple.Direction.REVERSE);
-                intakeLinearSlideTwo.setDirection(DcMotorSimple.Direction.REVERSE);
 
-                if (currentHeight > targetPos) {
+                if (currentHeight < -targetPos) {//forward
                     intakeLinearSlideOne.setPower(-motorPower);
                     intakeLinearSlideTwo.setPower(-motorPower);
                 }
 
-                if (currentHeight < targetPos) {
+                if (currentHeight > -targetPos) {//backward
                     intakeLinearSlideOne.setPower(motorPower);
                     intakeLinearSlideTwo.setPower(motorPower);
                 }
 
-                if (currentHeight == Math.abs(targetPos - 10)) {
+                if (currentHeight == targetPos) {
                     intakeLinearSlideOne.setPower(0);
                     intakeLinearSlideTwo.setPower(0);
                 }
             }
 
-            currentHeight = (intakeLinearSlideOne.getCurrentPosition()+intakeLinearSlideTwo.getCurrentPosition())/2;
+            currentHeight = Math.abs(intakeLinearSlideOne.getCurrentPosition()+intakeLinearSlideTwo.getCurrentPosition())/2;
 
             if(mode == 1) {
-                intakeLinearSlideOne.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-                intakeLinearSlideTwo.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-
-                if (gamepad2.right_stick_y < -0.3 && currentHeight <= maxHeight) {
-                    intakeLinearSlideOne.setPower(1);
-                    intakeLinearSlideTwo.setPower(1);
-                } else if (gamepad2.right_stick_y > 0.3 && currentHeight >= minHeight) {
+                if (gamepad2.right_stick_y < -0.3 && currentHeight < maxHeight) {//forward
                     intakeLinearSlideOne.setPower(-1);
                     intakeLinearSlideTwo.setPower(-1);
+                } else if (gamepad2.right_stick_y > 0.3 && currentHeight > minHeight) {//backward
+                    intakeLinearSlideOne.setPower(1);
+                    intakeLinearSlideTwo.setPower(1);
                 } else {
                     intakeLinearSlideOne.setPower(0);
                     intakeLinearSlideTwo.setPower(0);
