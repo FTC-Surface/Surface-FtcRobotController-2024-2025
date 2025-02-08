@@ -4,21 +4,19 @@ public class Constants {
     public enum eOElevatorState{
         Ground,
         Basket,
-        Clip,
-        Hang,
         Ready,
-        Grab,
         Clip_Grab,
         Clip_Hang,
         Clip_Ready,
     }
 
     public enum eIElevatorState{
-        InIntake,
         ManualBackward,
         ManualForward,
         ManualStop,
         OutIntake,
+        InIntake,
+        AutoIntakePos,
     }
 
     public enum AutoState{

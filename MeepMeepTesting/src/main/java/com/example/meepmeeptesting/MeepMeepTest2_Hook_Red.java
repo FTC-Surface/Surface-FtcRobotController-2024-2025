@@ -18,6 +18,7 @@ public class MeepMeepTest2_Hook_Red {
 
                         //PUSH
                         .lineTo((new Vector2d(9, -31)))
+                        .waitSeconds(0.5)
                         .lineToLinearHeading(new Pose2d(25, -36, Math.toRadians(90)))
 
                         //push first
@@ -25,12 +26,13 @@ public class MeepMeepTest2_Hook_Red {
                         .lineTo(new Vector2d(45, -48))
 
                         //push second
-                        .splineToLinearHeading(new Pose2d(53, -7, Math.toRadians(90)), Math.toRadians(0))
-                        .lineTo(new Vector2d(55, -48))
+                        .splineToLinearHeading(new Pose2d(54, -7, Math.toRadians(90)), Math.toRadians(0))
+                        .lineTo(new Vector2d(54, -48))
 
                         //push third
                         .splineToLinearHeading(new Pose2d(61, -7, Math.toRadians(90)), Math.toRadians(0))
                         .lineTo(new Vector2d(61, -48))
+                        .waitSeconds(0.3)
                         
 
                         //Second Hang

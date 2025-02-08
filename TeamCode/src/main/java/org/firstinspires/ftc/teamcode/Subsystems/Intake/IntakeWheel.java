@@ -18,13 +18,9 @@ public class IntakeWheel extends Subsystem {
         wheel.setZeroPowerBehavior(DcMotorEx.ZeroPowerBehavior.BRAKE);
     }
 
-    public void takeBlock() {
-        wheel.setPower(constants.IntakeWheelPowIn);
-    }
+    public void takeBlock() {wheel.setPower(constants.IntakeWheelPowIn);}
 
-    public void noBlock() {
-        wheel.setPower(0);
-    }
+    public void noBlock() {wheel.setPower(0);}
 
     public void outBlock() {wheel.setPower(constants.IntakeWheelPowOut);}
 }
