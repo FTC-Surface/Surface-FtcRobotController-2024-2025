@@ -213,8 +213,9 @@ public class TeleOpMode extends LinearOpMode {
             } else if (gamepad2.left_trigger >= 0.3) {
                 robot.iWheelOutBlock();
             } else {
-                robot.iWheelNoBlock();
+                robot.iWheelStopBlock();
             }
+
             if (robot.getColorResult() == allianceColor || robot.getColorResult() == Constants.eColorSensed.yellow) {
                 robot.iArmStart();
                 robot.iElevMove(Constants.eIElevatorState.InIntake);

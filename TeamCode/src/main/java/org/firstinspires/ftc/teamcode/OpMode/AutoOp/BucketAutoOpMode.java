@@ -36,52 +36,205 @@ public class BucketAutoOpMode extends LinearOpMode {
 
         TrajectorySequence depositInit = drive.trajectorySequenceBuilder(startPose)
 
+//                .addTemporalMarker(0, () -> {
+//                    robot.iArmStart();
+//                    robot.oCloseClaw();
+//                    robot.oArmTake();
+//                })
+
                 .lineToLinearHeading(new Pose2d(-55, -53, Math.toRadians(45)))
-                .waitSeconds(2)
+
+//                .addTemporalMarker(1, () -> {
+//                    robot.oElevMove(Constants.eOElevatorState.Basket);
+//                    robot.oArmDumpReady();
+//                })
+//
+//                .addTemporalMarker(2, () -> {
+//                   robot.oArmDumpRelease()
+//                })
+
+//                .addTemporalMarker(2.25, () -> {
+//                    robot.oOpenClaw();
+//                })
+
+                .waitSeconds(3)
 
                 .build();
 
         TrajectorySequence grabFirst = drive.trajectorySequenceBuilder(depositInit.end())
+
+//                .addTemporalMarker(0, () -> {
+//                    robot.oElevMove(Constants.eOElevatorState.Ready);
+//                    robot.oArmTake();
+//                })
+
                 .lineToLinearHeading(new Pose2d(-48.25,-45, Math.toRadians(90)))
-                .waitSeconds(1)
+
+//                .addTemporalMarker(1.1, () -> {
+//                    robot.iElevMove(Constants.eIElevatorState.AutoIntakePos);
+//                    robot.iArmGrab();
+//                })
+//
+//                .addTemporalMarker(2, robot::iWheelTakeBlock)
+//                .addTemporalMarker(2.1, robot::iWheelNoBlock)
+
+//                .addTemporalMarker(2.15, () -> {
+//                    robot.iElevMove(Constants.eIElevatorState.InIntake);
+//                    robot.iArmStart();
+//                })
+
+//                .addTemporalMarker(3, robot::iWheelOutBlock)
+//                .addTemporalMarker(3.1, robot::iWheelNoBlock)
+//
+//                .addTemporalMarker(3.5, () -> {
+//                    robot.oElevMove(Constants.eOElevatorState.Ground);
+//                })
+
+                .waitSeconds(4)
+
                 .build();
 
         TrajectorySequence depositFirst = drive.trajectorySequenceBuilder(grabFirst.end())
 
+//                .addTemporalMarker(0, robot::oCloseClaw)
+
                 .lineToLinearHeading(new Pose2d(-55, -53, Math.toRadians(45)))
-                .waitSeconds(2)
+
+//                .addTemporalMarker(0.7, () -> {
+//                    robot.oElevMove(Constants.eOElevatorState.Basket);
+//                    robot.oArmDumpReady();
+//                })
+
+//                .addTemporalMarker(1.7, () -> {
+//                   robot.oArmDumpRelease()
+//                })
+
+//                .addTemporalMarker(1.75, () -> {
+//                    robot.oOpenClaw();
+//                })
+
+                .waitSeconds(5)
 
                 .build();
 
         TrajectorySequence grabSecond = drive.trajectorySequenceBuilder(depositFirst.end())
 
+//                .addTemporalMarker(0, () -> {
+//                    robot.oElevMove(Constants.eOElevatorState.Ready);
+//                    robot.oArmTake();
+//                })
+
                 .lineToLinearHeading(new Pose2d(-58.5,-45, Math.toRadians(90)))
-                .waitSeconds(1)
+
+//                .addTemporalMarker(1.1, () -> {
+//                    robot.iElevMove(Constants.eIElevatorState.AutoIntakePos);
+//                    robot.iArmGrab();
+//                })
+//
+//                .addTemporalMarker(2, robot::iWheelTakeBlock)
+//                .addTemporalMarker(2.1, robot::iWheelNoBlock)
+
+//                .addTemporalMarker(2.15, () -> {
+//                    robot.iElevMove(Constants.eIElevatorState.InIntake);
+//                    robot.iArmStart();
+//                })
+
+//                .addTemporalMarker(3, robot::iWheelOutBlock)
+//                .addTemporalMarker(3.1, robot::iWheelNoBlock)
+
+//                .addTemporalMarker(3.5, () -> {
+//                    robot.oElevMove(Constants.eOElevatorState.Ground);
+//                })
+
+                .waitSeconds(5)
 
                 .build();
 
         TrajectorySequence depositSecond = drive.trajectorySequenceBuilder(grabSecond.end())
 
+//                .addTemporalMarker(0, robot::oCloseClaw)
+
                 .lineToLinearHeading(new Pose2d(-55, -53, Math.toRadians(45)))
-                .waitSeconds(2)
+
+//                .addTemporalMarker(0.7, () -> {
+//                    robot.oElevMove(Constants.eOElevatorState.Basket);
+//                    robot.oArmDumpReady();
+//                })
+
+//                .addTemporalMarker(1.7, () -> {
+//                   robot.oArmDumpRelease()
+//                })
+
+//                .addTemporalMarker(1.75, () -> {
+//                    robot.oOpenClaw();
+//                })
+
+                .waitSeconds(5)
 
                 .build();
 
         TrajectorySequence grabThird = drive.trajectorySequenceBuilder(depositSecond.end())
 
+//                .addTemporalMarker(0, () -> {
+//                    robot.oElevMove(Constants.eOElevatorState.Ready);
+//                    robot.oArmTake();
+//                })
+
                 .lineToLinearHeading(new Pose2d(-60,-50, Math.toRadians(100)))
-                .waitSeconds(1)
+
+//                .addTemporalMarker(1.1, () -> {
+//                    robot.iElevMove(Constants.eIElevatorState.AutoIntakePos);
+//                    robot.iArmGrab();
+//                })
+//
+//                .addTemporalMarker(2, robot::iWheelTakeBlock)
+//                .addTemporalMarker(2.05, robot::iWheelNoBlock)
+
+//                .addTemporalMarker(2.1, () -> {
+//                    robot.iElevMove(Constants.eIElevatorState.InIntake);
+//                    robot.iArmStart();
+//                })
+
+//                .addTemporalMarker(3, robot::iWheelOutBlock)
+//                .addTemporalMarker(3.1, robot::iWheelNoBlock)
+//
+//                .addTemporalMarker(3.5, () -> {
+//                    robot.oElevMove(Constants.eOElevatorState.Ground);
+//                })
+
+                .waitSeconds(5)
 
                 .build();
 
         TrajectorySequence depositThird = drive.trajectorySequenceBuilder(grabThird.end())
 
+//                .addTemporalMarker(0, robot::oCloseClaw)
+
                 .lineToLinearHeading(new Pose2d(-55, -53, Math.toRadians(45)))
+
+//                .addTemporalMarker(0.7, () -> {
+//                    robot.oElevMove(Constants.eOElevatorState.Basket);
+//                    robot.oArmDumpReady();
+//                })
+
+//                .addTemporalMarker(1.7, () -> {
+//                   robot.oArmDumpRelease()
+//                })
+
+//                .addTemporalMarker(1.75, () -> {
+//                    robot.oOpenClaw();
+//                })
+
                 .waitSeconds(2)
 
                 .build();
 
         TrajectorySequence reset = drive.trajectorySequenceBuilder(depositFirst.end())
+
+//                .addTemporalMarker(0, () -> {
+//                    robot.oElevMove(Constants.eOElevatorState.Ready);
+//                    robot.oArmTake();
+//                })
 
                 .splineToLinearHeading(new Pose2d(-25, 0, Math.toRadians(0)), Math.toRadians(0))
                 .waitSeconds(2)

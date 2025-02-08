@@ -120,7 +120,7 @@ public class Robot {
     public void iArmStart(){iArm.upPos();}
 
     public void iWheelTakeBlock() {iWheel.takeBlock();}
-    public void iWheelNoBlock() {iWheel.noBlock();}
+    public void iWheelStopBlock() {iWheel.noBlock();}
     public void iWheelOutBlock() {iWheel.outBlock();}
 
     public void oOpenClaw(){oClaw.openClawOut();}
