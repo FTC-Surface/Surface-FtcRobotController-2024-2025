@@ -36,13 +36,21 @@ public class HookAutoOpModeActiveIntake extends LinearOpMode {
         waitForStart();
 
         TrajectorySequence depositInit = drive.trajectorySequenceBuilder(startPose)
-                .lineTo(new Vector2d(9,-31))
+                .lineTo(new Vector2d(9,-33))
+                .lineTo(new Vector2d(9,-40))
+                .addTemporalMarker(0, () -> {
+//                    robot.oCloseClaw();
+//                    robot.oElevMove(Constants.eOElevatorState.Clip_Hang);
+//                    robot.oArmHookup();
+//
+                    robot.iArmStart();
+                })
                 .build();
 
         TrajectorySequence grabFirst = drive.trajectorySequenceBuilder(depositInit.end())
 
                 .lineToLinearHeading(new Pose2d(40, -45, Math.toRadians(75)))
-                .lineToLinearHeading(new Pose2d(40, -46, Math.toRadians(-30)))
+                .turn(Math.toRadians(-105))
                 .waitSeconds(0.5)
 
                 .build();
@@ -50,7 +58,7 @@ public class HookAutoOpModeActiveIntake extends LinearOpMode {
         TrajectorySequence grabSecond = drive.trajectorySequenceBuilder(grabFirst.end())
 
                 .lineToLinearHeading(new Pose2d(45, -45, Math.toRadians(60)))
-                .lineToLinearHeading(new Pose2d(40, -46, Math.toRadians(-30)))
+                .turn(Math.toRadians(-90))
                 .waitSeconds(0.5)
 
                 .build();
@@ -58,7 +66,7 @@ public class HookAutoOpModeActiveIntake extends LinearOpMode {
         TrajectorySequence grabThird = drive.trajectorySequenceBuilder(grabSecond.end())
 
                 .lineToLinearHeading(new Pose2d(50, -45, Math.toRadians(50)))
-                .lineToLinearHeading(new Pose2d(40, -46, Math.toRadians(-30)))
+                .turn(Math.toRadians(-80))
                 .waitSeconds(0.5)
 
                 .build();
@@ -69,7 +77,7 @@ public class HookAutoOpModeActiveIntake extends LinearOpMode {
                 .waitSeconds(1)
                 .lineTo(new Vector2d(40,-60.5))
                 .waitSeconds(0.1)
-                .splineToLinearHeading(new Pose2d(11,-31, Math.toRadians(90)), Math.toRadians(90))
+                .splineToLinearHeading(new Pose2d(11,-33, Math.toRadians(90)), Math.toRadians(90))
 
                 .build();
 
@@ -79,7 +87,7 @@ public class HookAutoOpModeActiveIntake extends LinearOpMode {
                 .waitSeconds(1)
                 .lineTo(new Vector2d(40,-60.5))
                 .waitSeconds(0.1)
-                .splineToLinearHeading(new Pose2d(7,-31, Math.toRadians(90)), Math.toRadians(90))
+                .splineToLinearHeading(new Pose2d(7,-33, Math.toRadians(90)), Math.toRadians(90))
 
                 .build();
 
@@ -89,7 +97,7 @@ public class HookAutoOpModeActiveIntake extends LinearOpMode {
                 .waitSeconds(1)
                 .lineTo(new Vector2d(40,-60.5))
                 .waitSeconds(0.1)
-                .splineToLinearHeading(new Pose2d(5,-31, Math.toRadians(90)), Math.toRadians(90))
+                .splineToLinearHeading(new Pose2d(5,-33, Math.toRadians(90)), Math.toRadians(90))
 
                 .build();
 
@@ -99,7 +107,7 @@ public class HookAutoOpModeActiveIntake extends LinearOpMode {
                 .waitSeconds(1)
                 .lineTo(new Vector2d(40,-60.5))
                 .waitSeconds(0.1)
-                .splineToLinearHeading(new Pose2d(3,-31, Math.toRadians(90)), Math.toRadians(90))
+                .splineToLinearHeading(new Pose2d(3,-33, Math.toRadians(90)), Math.toRadians(90))
 
                 .build();
 
@@ -114,7 +122,7 @@ public class HookAutoOpModeActiveIntake extends LinearOpMode {
                 case depositInit:
                     if(!drive.isBusy()){
                         drive.followTrajectorySequence(depositInit);
-                        nextTraj(Constants.AutoState.idle);
+                        nextTraj(Constants.AutoState.grabFirst);
                     }
 
                 case grabFirst:

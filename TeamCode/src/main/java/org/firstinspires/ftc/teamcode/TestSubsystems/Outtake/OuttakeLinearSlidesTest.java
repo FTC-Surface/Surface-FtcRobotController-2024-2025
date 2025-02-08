@@ -64,10 +64,6 @@ public class OuttakeLinearSlidesTest extends LinearOpMode {
                 leftOuttakeMotor.setPower(motorPower);
             }
 
-            if (currentHeight == targetPos - 10) {
-                setPowerZero();
-            }
-
             currentHeight = leftOuttakeMotor.getCurrentPosition();
         }
     }
