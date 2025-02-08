@@ -37,7 +37,6 @@ public class BucketAutoOpMode extends LinearOpMode {
         TrajectorySequence depositInit = drive.trajectorySequenceBuilder(startPose)
 
 //                .addTemporalMarker(0, () -> {
-//                    robot.oElevMove(Constants.eOElevatorState.Ready);
 //                    robot.iArmStart();
 //                    robot.oCloseClaw();
 //                    robot.oArmTake();
@@ -77,17 +76,17 @@ public class BucketAutoOpMode extends LinearOpMode {
 //                })
 //
 //                .addTemporalMarker(2, robot::iWheelTakeBlock)
-//
-//                .addTemporalMarker(2.05, robot::iWheelNoBlock)
+//                .addTemporalMarker(2.1, robot::iWheelNoBlock)
 
-//                .addTemporalMarker(2.1, () -> {
-//                    robot.iElevMove(Constants.eIElevatorState.ResetIntake);
+//                .addTemporalMarker(2.15, () -> {
+//                    robot.iElevMove(Constants.eIElevatorState.InIntake);
 //                    robot.iArmStart();
 //                })
 
 //                .addTemporalMarker(3, robot::iWheelOutBlock)
+//                .addTemporalMarker(3.1, robot::iWheelNoBlock)
 //
-//                .addTemporalMarker(3.2, () -> {
+//                .addTemporalMarker(3.5, () -> {
 //                    robot.oElevMove(Constants.eOElevatorState.Ground);
 //                })
 
@@ -133,17 +132,17 @@ public class BucketAutoOpMode extends LinearOpMode {
 //                })
 //
 //                .addTemporalMarker(2, robot::iWheelTakeBlock)
-//
-//                .addTemporalMarker(2.05, robot::iWheelNoBlock)
+//                .addTemporalMarker(2.1, robot::iWheelNoBlock)
 
-//                .addTemporalMarker(2.1, () -> {
-//                    robot.iElevMove(Constants.eIElevatorState.ResetIntake);
+//                .addTemporalMarker(2.15, () -> {
+//                    robot.iElevMove(Constants.eIElevatorState.InIntake);
 //                    robot.iArmStart();
 //                })
 
 //                .addTemporalMarker(3, robot::iWheelOutBlock)
-//
-//                .addTemporalMarker(3.2, () -> {
+//                .addTemporalMarker(3.1, robot::iWheelNoBlock)
+
+//                .addTemporalMarker(3.5, () -> {
 //                    robot.oElevMove(Constants.eOElevatorState.Ground);
 //                })
 
@@ -189,17 +188,17 @@ public class BucketAutoOpMode extends LinearOpMode {
 //                })
 //
 //                .addTemporalMarker(2, robot::iWheelTakeBlock)
-//
 //                .addTemporalMarker(2.05, robot::iWheelNoBlock)
 
 //                .addTemporalMarker(2.1, () -> {
-//                    robot.iElevMove(Constants.eIElevatorState.ResetIntake);
+//                    robot.iElevMove(Constants.eIElevatorState.InIntake);
 //                    robot.iArmStart();
 //                })
 
 //                .addTemporalMarker(3, robot::iWheelOutBlock)
+//                .addTemporalMarker(3.1, robot::iWheelNoBlock)
 //
-//                .addTemporalMarker(3.2, () -> {
+//                .addTemporalMarker(3.5, () -> {
 //                    robot.oElevMove(Constants.eOElevatorState.Ground);
 //                })
 
@@ -231,6 +230,11 @@ public class BucketAutoOpMode extends LinearOpMode {
                 .build();
 
         TrajectorySequence reset = drive.trajectorySequenceBuilder(depositFirst.end())
+
+//                .addTemporalMarker(0, () -> {
+//                    robot.oElevMove(Constants.eOElevatorState.Ready);
+//                    robot.oArmTake();
+//                })
 
                 .splineToLinearHeading(new Pose2d(-25, 0, Math.toRadians(0)), Math.toRadians(0))
                 .waitSeconds(2)

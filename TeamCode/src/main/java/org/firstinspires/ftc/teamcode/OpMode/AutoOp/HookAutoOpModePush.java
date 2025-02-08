@@ -40,8 +40,8 @@ public class HookAutoOpModePush extends LinearOpMode {
         TrajectorySequence depositInit = drive.trajectorySequenceBuilder(startPose)
 
 //                .addTemporalMarker(0, () -> {
-//                    robot.oElevMove(Constants.eOElevatorState.Clip_Hang);
 //                    robot.oCloseClaw();
+//                    robot.oElevMove(Constants.eOElevatorState.Clip_Hang);
 //                    robot.oArmHookup();
 //
 //                    robot.iArmStart();
@@ -53,12 +53,12 @@ public class HookAutoOpModePush extends LinearOpMode {
 
                 .waitSeconds(0.5)
 
-                .lineToLinearHeading(new Pose2d(25, -36, Math.toRadians(90)))
-
-//                .addTemporalMarker(2.2, () -> {
+//                .addTemporalMarker(2.1, () -> {
 //                    robot.oElevMove(Constants.eOElevatorState.Clip_Grab);
 //                    robot.oArmHookgrab();
 //                })
+
+                .lineToLinearHeading(new Pose2d(25, -36, Math.toRadians(90)))
 
                 .build();
 
@@ -92,56 +92,70 @@ public class HookAutoOpModePush extends LinearOpMode {
 
 //                .addTemporalMarker(1.7, robot::oCloseClaw)
 
-                .waitSeconds(0.5)
+                .waitSeconds(0.3)
 
-//                .addTemporalMarker(2.2, () ->{
+//                .addTemporalMarker(2, () ->{
 //                    robot.oElevMove(Constants.eOElevatorState.Clip_Hang);
 //                    robot.oArmHookup();
 //                })
 
                 .splineToLinearHeading(new Pose2d(11,-31, Math.toRadians(90)), Math.toRadians(90))
+
+//                .addTemporalMarker(4.3, robot::oOpenClaw)
+
                 .waitSeconds(0.3)
 //
-//                .addTemporalMarker(4.6, robot::oOpenClaw)
 
                 .build();
 
         TrajectorySequence depositSecond = drive.trajectorySequenceBuilder(depositFirst.end())
 
-                .lineTo(new Vector2d(40, -58))
+//                .addTemporalMarker(0.2, () -> {
+//                    robot.oElevMove(Constants.eOElevatorState.Clip_Grab);
+//                    robot.oArmHookgrab();
+//                })
 
-//                .addTemporalMarker(3.3, robot::oCloseClaw)
+                .lineTo(new Vector2d(40, -58))
 
                 .waitSeconds(0.5)
 
-//                .addTemporalMarker(3.8, () ->{
+                .lineTo(new Vector2d(40,-60.5))
+
+//                .addTemporalMarker(3.3, robot::oCloseClaw)
+
+//                .addTemporalMarker(3.5, () ->{
 //                    robot.oElevMove(Constants.eOElevatorState.Clip_Hang);
 //                    robot.oArmHookup();
 //                })
 
-                .lineTo(new Vector2d(40,-60.5))
                 .waitSeconds(0.3)
                 .splineToLinearHeading(new Pose2d(7,-31, Math.toRadians(90)), Math.toRadians(90))
                 .waitSeconds(0.3)
-//
+
 //                 .addTemporalMarker(6.1, robot::oOpenClaw)
 
                 .build();
 
         TrajectorySequence depositThird = drive.trajectorySequenceBuilder(depositSecond.end())
 
-                .lineTo(new Vector2d(40, -58))
+//                .addTemporalMarker(0.2, () -> {
+//                    robot.oElevMove(Constants.eOElevatorState.Clip_Grab);
+//                    robot.oArmHookgrab();
+//                })
 
-//                .addTemporalMarker(3.3, robot::oCloseClaw)
+                .lineTo(new Vector2d(40, -58))
 
                 .waitSeconds(0.5)
 
-//                .addTemporalMarker(3.8, () ->{
+                .lineTo(new Vector2d(40,-60.5))
+
+//                .addTemporalMarker(3.3, robot::oCloseClaw)
+
+//                .addTemporalMarker(3.5, () ->{
 //                    robot.oElevMove(Constants.eOElevatorState.Clip_Hang);
 //                    robot.oArmHookup();
 //                })
 
-                .lineTo(new Vector2d(40,-60.5))
                 .waitSeconds(0.3)
                 .splineToLinearHeading(new Pose2d(5,-31, Math.toRadians(90)), Math.toRadians(90))
                 .waitSeconds(0.3)
@@ -152,18 +166,24 @@ public class HookAutoOpModePush extends LinearOpMode {
 
         TrajectorySequence depositFourth = drive.trajectorySequenceBuilder(depositThird.end())
 
+//                .addTemporalMarker(0.2, () -> {
+//                    robot.oElevMove(Constants.eOElevatorState.Clip_Grab);
+//                    robot.oArmHookgrab();
+//                })
+
                 .lineTo(new Vector2d(40, -58))
 
-//                .addTemporalMarker(3.3, robot::oCloseClaw)
-
                 .waitSeconds(0.5)
+
+                .lineTo(new Vector2d(40,-60.5))
+
+//                .addTemporalMarker(3.3, robot::oCloseClaw)
 
 //                .addTemporalMarker(3.8, () ->{
 //                    robot.oElevMove(Constants.eOElevatorState.Clip_Hang);
 //                    robot.oArmHookup();
 //                })
 
-                .lineTo(new Vector2d(40,-60.5))
                 .waitSeconds(0.3)
                 .splineToLinearHeading(new Pose2d(3,-31, Math.toRadians(90)), Math.toRadians(90))
                 .waitSeconds(0.3)
@@ -173,6 +193,11 @@ public class HookAutoOpModePush extends LinearOpMode {
                 .build();
 
         TrajectorySequence park = drive.trajectorySequenceBuilder(depositFourth.end())
+
+//                .addTemporalMarker(0.2, () -> {
+//                    robot.oElevMove(Constants.eOElevatorState.Clip_Grab);
+//                    robot.oArmHookgrab();
+//                })
 
                 .lineTo(new Vector2d(40, -58))
                 .lineTo(new Vector2d(40,-60.5))
