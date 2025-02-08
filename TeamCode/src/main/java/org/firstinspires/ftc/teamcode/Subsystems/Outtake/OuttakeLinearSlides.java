@@ -44,7 +44,7 @@ public class OuttakeLinearSlides extends Subsystem {
                 move(1000);
                 break;
             case Ground:
-                move(0);
+                move(-10);
                 break;
             case Basket:
                 move(2000);
@@ -91,7 +91,7 @@ public class OuttakeLinearSlides extends Subsystem {
         return (double) outtakeLinearSlideOne.getCurrentPosition();
     }
 
-    public boolean isBusy(){ return Math.abs(getPos()-targetPos) < 10;}
+    public boolean isBusy(){ return Math.abs(getPos()-targetPos) < 5;}
 
     public double getPower(){return outtakeLinearSlideOne.getPower();}
 }

@@ -72,7 +72,7 @@ public class TeleOpMode extends LinearOpMode {
 
 //            telemetry.addData("Intake Slide Pos: ", robot.iElevGetHeight());
 //            telemetry.addData("Outtake Slide Pos: ", robot.oElevGetHeight());
-//
+
 //            telemetry.addData("Block Color: ", robot.getColorBlock());
 //            telemetry.addData("Has Block: ", hasBlock);
 
@@ -105,32 +105,21 @@ public class TeleOpMode extends LinearOpMode {
             if (Outtakepressed1 && !OuttakeclawDone && !LinearSlidereadyDone && outtakeTimer.milliseconds() - OuttakeStartTime1 >= 0) {//400
                 OuttakeclawDone = true;
             }
-            if (Outtakepressed1 && !LinearSlidereadyDone && OuttakeclawDone && outtakeTimer.milliseconds() - OuttakeStartTime1 >= 200) {//700
+            if (Outtakepressed1 && !LinearSlidereadyDone && OuttakeclawDone && outtakeTimer.milliseconds() - OuttakeStartTime1 >= 300) {//700
                 robot.oCloseClaw();
                 LinearSlidereadyDone = true;
             }
-            if (Outtakepressed1 && OuttakeclawDone && LinearSlidereadyDone && outtakeTimer.milliseconds() - OuttakeStartTime1 >= 500) {//1200
-                robot.oArmDumpReady();
+            if (Outtakepressed1 && OuttakeclawDone && LinearSlidereadyDone && outtakeTimer.milliseconds() - OuttakeStartTime1 >= 600) {//1200
+                robot.oArmDumpRelease();
                 robot.oElevMove(Constants.eOElevatorState.Basket);
                 Outtakepressed1 = false;
             }
 
-            //Arm Positiong to grab readied sample
+            //Arm Positiong to grab readied sample including Dropping sample motion
             if (gamepad2.triangle) {
                 robot.oElevMove(Constants.eOElevatorState.Ready);
                 robot.oOpenClaw();
                 robot.oArmTake();
-            }
-
-            //Drop Sample + Slides go down
-            if (gamepad2.circle) {
-                robot.oArmDumpRelease();
-                waitForSeconds(0.3);
-                robot.oOpenClaw();
-                waitForSeconds(0.3);
-                robot.oArmTake();
-                waitForSeconds(0.3);
-                robot.oElevMove(Constants.eOElevatorState.Ready);
             }
 
             //Outtake_claw
@@ -142,7 +131,7 @@ public class TeleOpMode extends LinearOpMode {
 
             //Hook
             //Prepare for robot to score by clipping
-            if (gamepad2.left_stick_y <= -0.5 && !stickmoved1) {
+            if (gamepad2.left_stick_y <= -0.3 && !stickmoved1) {
                 robot.oCloseClaw();
 
                 waitForSeconds(0.3);
@@ -153,7 +142,7 @@ public class TeleOpMode extends LinearOpMode {
             }
 
             //Prepare to grab specimen for scoring
-            if (gamepad2.left_stick_y >= 0.5) {
+            if (gamepad2.left_stick_y >= 0.3) {
                 robot.oOpenClaw();
                 waitForSeconds(0.2);
                 robot.oArmHookgrab();
@@ -193,6 +182,17 @@ public class TeleOpMode extends LinearOpMode {
                 robot.iElevMove(Constants.eIElevatorState.InIntake);
                 IslidesIn = true;
             }
+            if(robot.iElevGetHeight()<=10)
+            {
+                IslidesIn = true;
+            }
+            else {
+                IslidesIn = false;
+            }
+//            if(robot.iElevGetHeight()<=10)
+//            {
+//                IslidesIn= true;
+//            }
 
 //            if (gamepad2.right_stick_y <= -0.3) {
 //                robot.iElevMove(Constants.eIElevatorState.ManualForward);
@@ -206,20 +206,19 @@ public class TeleOpMode extends LinearOpMode {
 //            }
 
 
-            if (gamepad2.right_trigger >= 0.5 && robot.getColorResult() != allianceColor && robot.getColorResult() != Constants.eColorSensed.yellow) {//specifically for red
+            if (gamepad2.right_trigger >= 0.3 && robot.getColorResult() != allianceColor && robot.getColorResult() != Constants.eColorSensed.yellow) {//specifically for red
                 robot.iArmGrab();
                 Arm_Start_position = false;
                 robot.iWheelTakeBlock();
-            } else if (gamepad2.left_trigger >= 0.5) {
+            } else if (gamepad2.left_trigger >= 0.3) {
                 robot.iWheelOutBlock();
             } else {
                 robot.iWheelNoBlock();
             }
             if (robot.getColorResult() == allianceColor || robot.getColorResult() == Constants.eColorSensed.yellow) {
                 robot.iArmStart();
-                Arm_Start_position = true;
                 robot.iElevMove(Constants.eIElevatorState.InIntake);
-                IslidesIn = true;
+                Arm_Start_position=true;
             }
 
             if (Arm_Start_position && robot.getColorResult() == Constants.eColorSensed.yellow && IslidesIn) {
@@ -245,8 +244,8 @@ public class TeleOpMode extends LinearOpMode {
                 b = 255;
             }
 
-            gamepad1.setLedColor(r, g, b, 100);
-            gamepad2.setLedColor(r, g, b, 100);
+            gamepad1.setLedColor(r, g, b, 500);
+            gamepad2.setLedColor(r, g, b, 500);
         }
     }
 

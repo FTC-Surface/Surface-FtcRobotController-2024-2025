@@ -16,8 +16,6 @@ public class IntakeArm extends Subsystem {
         armServo1 = hardwareMap.get(Servo.class,"iArm");
     }
 
-    //Constants will need to be changed.
-
     public void upPos(){
         armServo1.setPosition(constants.IntakeArmStartPos);
     }

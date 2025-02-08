@@ -64,27 +64,27 @@ public class Constants {
     public final double IntakeElevatorMotorPower = 1;
 
     //Intake
-    public final double IntakeWheelPowIn = 0.75;
-    public final double IntakeWheelPowOut =-0.5;
+    public final double IntakeWheelPowIn = 0.9;
+    public final double IntakeWheelPowOut =-0.75;
 
     public final double IntakeArmStartPos = 0;
-    public final double IntakeArmGrabPos = 0.45;
+    public final double IntakeArmGrabPos = 0.35;
 
     //Outake
     public final double OOpenClaw = 0.35;
     public final double OCloseClaw = 0.51;
 
     public final double OutakeArmStartPos = 0.95;
-    public final double OutakeArmDumpReadyPos = 0.3;
-    public final double OutakeArmDumpReleasePos = 0.45;
+    public final double OutakeArmDumpReadyPos = 0.45;
+    public final double OutakeArmDumpReleasePos = 0.35;
     public final double OutakeArmTakePos = 0.95;
-    public final double OutakeArmHookgrabPos = 0.02;
+    public final double OutakeArmHookgrabPos = 0.04;
     public final double OutakeArmHookupPos = 0.65;
 
-    public final double OutakeWristStartPos = 0.9;
+    public final double OutakeWristStartPos = 1;
     public final double OutakeWristDumpReleasePos = 0.2;
-    public final double OutakeWristTakePos = 0.9;
-    public final double OutakeWristHookgrabPos = 0.06;
-    public final double OutakeWristHookupPos = 0.85;
+    public final double OutakeWristTakePos = 1;
+    public final double OutakeWristHookgrabPos = 0.2;
+    public final double OutakeWristHookupPos = 0.9;
 
 }

@@ -16,7 +16,7 @@ public class IntakeLinearSlides extends Subsystem {
     private double currentPos;
 
     private int targetPos;
-    private int max_pos=2100;
+    private int max_pos=1000;
     private int min_pos=0;
 
 
@@ -89,8 +89,6 @@ public class IntakeLinearSlides extends Subsystem {
     }
 
     private void move(int height){
-        intakeLinearSlideOne.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
-        intakeLinearSlideTwo.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
         setPos(height);
     }
     public void setPowerZero(){
@@ -114,6 +112,9 @@ public class IntakeLinearSlides extends Subsystem {
 
         intakeLinearSlideOne.setPower(intakeElevPower);
         intakeLinearSlideTwo.setPower(intakeElevPower);
+
+        intakeLinearSlideOne.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
+        intakeLinearSlideTwo.setMode(DcMotorEx.RunMode.RUN_TO_POSITION);
     }
 
     public double getPos(){
