@@ -65,7 +65,7 @@ public class TeleOpMode extends LinearOpMode {
         IslidesIn = true;
 
         outtakeTimer.reset();
-//        intakeTimer.reset();
+        intakeTimer.reset();
 
         while (opModeIsActive() && !isStopRequested()) {
 //********** Telemetry **********************************************************
@@ -172,23 +172,24 @@ public class TeleOpMode extends LinearOpMode {
 
             if (gamepad2.dpad_up) {
                 robot.iArmStart();
-                Arm_Start_position = true;
+                IntakeStartTime1 = (long) intakeTimer.milliseconds();
                 robot.iElevMove(Constants.eIElevatorState.OutIntake);
                 IslidesIn = false;
             }
             if (gamepad2.dpad_down) {
                 robot.iArmStart();
-                Arm_Start_position = true;
+                ArmTakeDone=false;
                 robot.iElevMove(Constants.eIElevatorState.InIntake);
                 IslidesIn = true;
             }
-            if(robot.iElevGetHeight()<=10)
+
+            IslidesIn = robot.iElevGetHeight() <= 10;
+            if(!ArmTakeDone && intakeTimer.milliseconds()-IntakeStartTime1>=200)
             {
-                IslidesIn = true;
+                Arm_Start_position = true;
+                ArmTakeDone=true;
             }
-            else {
-                IslidesIn = false;
-            }
+
 //            if(robot.iElevGetHeight()<=10)
 //            {
 //                IslidesIn= true;
@@ -218,8 +219,9 @@ public class TeleOpMode extends LinearOpMode {
 
             if (robot.getColorResult() == allianceColor || robot.getColorResult() == Constants.eColorSensed.yellow) {
                 robot.iArmStart();
+                IntakeStartTime1 = (long) intakeTimer.milliseconds();
+                ArmTakeDone=false;
                 robot.iElevMove(Constants.eIElevatorState.InIntake);
-                Arm_Start_position=true;
             }
 
             if (Arm_Start_position && robot.getColorResult() == Constants.eColorSensed.yellow && IslidesIn) {
@@ -245,8 +247,8 @@ public class TeleOpMode extends LinearOpMode {
                 b = 255;
             }
 
-            gamepad1.setLedColor(r, g, b, 500);
-            gamepad2.setLedColor(r, g, b, 500);
+            gamepad1.setLedColor(r, g, b, 300);
+            gamepad2.setLedColor(r, g, b, 300);
         }
     }
 
