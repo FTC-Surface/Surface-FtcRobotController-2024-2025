@@ -235,18 +235,18 @@ public class TeleOpMode extends LinearOpMode {
 
             //Change color on controller depending on the block we have
             if (robot.getColorResult() == Constants.eColorSensed.red) {
-                r = 255;
+                r = 250;
                 g = b = 0;
             } else if (robot.getColorResult() == Constants.eColorSensed.blue) {
-                b = 255;
+                b = 250;
                 r = g = 0;
             } else if (robot.getColorResult() == Constants.eColorSensed.yellow) {
-                r = g = 255;
+                r = g = 250;
                 b = 0;
             } else {
                 //set the color to green if there is no block
                 r = 255;
-                g = 0;
+                g = 255;
                 b = 255;
             }
 
