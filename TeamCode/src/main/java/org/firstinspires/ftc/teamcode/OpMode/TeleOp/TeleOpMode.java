@@ -70,11 +70,13 @@ public class TeleOpMode extends LinearOpMode {
         while (opModeIsActive() && !isStopRequested()) {
 //********** Telemetry **********************************************************
 
-//            telemetry.addData("Intake Slide Pos: ", robot.iElevGetHeight());
+            telemetry.addData("Intake Slide Pos: ", robot.iElevGetHeight());
 //            telemetry.addData("Outtake Slide Pos: ", robot.oElevGetHeight());
 
 //            telemetry.addData("Block Color: ", robot.getColorBlock());
-//            telemetry.addData("Has Block: ", hasBlock);
+            telemetry.addData("Intake Slides In: ", IslidesIn);
+            telemetry.addData("Intake Arm at Start: ", Arm_Start_position);
+
 
             telemetry.update();
 
@@ -88,7 +90,7 @@ public class TeleOpMode extends LinearOpMode {
             double strafe = -gamepad1.left_stick_x;
             double rotate = -gamepad1.right_stick_x;
 
-            robot.teleOpDrive(drive * 0.8, strafe * 0.8, rotate * 0.7);
+            robot.teleOpDrive(drive * 0.8, strafe * 0.8, rotate * 0.6);
 
 //********** Player Two Controls ***************************************************
 
@@ -102,15 +104,15 @@ public class TeleOpMode extends LinearOpMode {
                 OuttakeStartTime1 = (long) outtakeTimer.milliseconds();
                 robot.oElevMove(Constants.eOElevatorState.Ground);
             }
-            if (Outtakepressed1 && !OuttakeclawDone && !LinearSlidereadyDone && outtakeTimer.milliseconds() - OuttakeStartTime1 >= 0) {//400
+            if (Outtakepressed1 && !OuttakeclawDone && !LinearSlidereadyDone && outtakeTimer.milliseconds() - OuttakeStartTime1 >= 300) {//400
+                robot.oCloseClaw();
                 OuttakeclawDone = true;
             }
-            if (Outtakepressed1 && !LinearSlidereadyDone && OuttakeclawDone && outtakeTimer.milliseconds() - OuttakeStartTime1 >= 300) {//700
-                robot.oCloseClaw();
+            if (Outtakepressed1 && !LinearSlidereadyDone && OuttakeclawDone && outtakeTimer.milliseconds() - OuttakeStartTime1 >= 600) {//700
+                robot.oArmDumpRelease();
                 LinearSlidereadyDone = true;
             }
-            if (Outtakepressed1 && OuttakeclawDone && LinearSlidereadyDone && outtakeTimer.milliseconds() - OuttakeStartTime1 >= 600) {//1200
-                robot.oArmDumpRelease();
+            if (Outtakepressed1 && OuttakeclawDone && LinearSlidereadyDone && outtakeTimer.milliseconds() - OuttakeStartTime1 >= 900) {//1200
                 robot.oElevMove(Constants.eOElevatorState.Basket);
                 Outtakepressed1 = false;
             }
@@ -183,8 +185,9 @@ public class TeleOpMode extends LinearOpMode {
                 IslidesIn = true;
             }
 
-            IslidesIn = robot.iElevGetHeight() <= 10;
-            if(!ArmTakeDone && intakeTimer.milliseconds()-IntakeStartTime1>=200)
+            IslidesIn = (robot.iElevGetHeight() <=5);
+
+            if(!ArmTakeDone && intakeTimer.milliseconds()-IntakeStartTime1>=100)
             {
                 Arm_Start_position = true;
                 ArmTakeDone=true;
@@ -209,8 +212,8 @@ public class TeleOpMode extends LinearOpMode {
 
             if (gamepad2.right_trigger >= 0.3 && robot.getColorResult() != allianceColor && robot.getColorResult() != Constants.eColorSensed.yellow) {//specifically for red
                 robot.iArmGrab();
-                Arm_Start_position = false;
                 robot.iWheelTakeBlock();
+                Arm_Start_position = false;
             } else if (gamepad2.left_trigger >= 0.3) {
                 robot.iWheelOutBlock();
             } else {
@@ -247,8 +250,8 @@ public class TeleOpMode extends LinearOpMode {
                 b = 255;
             }
 
-            gamepad1.setLedColor(r, g, b, 300);
-            gamepad2.setLedColor(r, g, b, 300);
+            gamepad1.setLedColor(r, g, b, 500);
+            gamepad2.setLedColor(r, g, b, 500);
         }
     }
 
