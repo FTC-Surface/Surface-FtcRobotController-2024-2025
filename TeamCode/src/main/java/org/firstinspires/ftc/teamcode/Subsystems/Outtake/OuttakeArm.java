@@ -40,6 +40,15 @@ public class OuttakeArm extends Subsystem {
         arm.setPosition(constants.OutakeArmHookgrabPos);
         wrist.setPosition(constants.OutakeWristHookgrabPos);
     }
+    public void hookdownPos(){// when it is ready to hook the specimen on
+        arm.setPosition(constants.OutakeArmHookdownPos);
+        wrist.setPosition(constants.OutakeWristHookreadyPos);
+    }
+    public void hookreadyPos(){// when it is ready to hook the specimen on
+        arm.setPosition(constants.OutakeArmHookreadyPos);
+        wrist.setPosition(constants.OutakeWristHookreadyPos);
+    }
+
     public void hookupPos(){// when it is ready to hook the specimen on
         arm.setPosition(constants.OutakeArmHookupPos);
         wrist.setPosition(constants.OutakeWristHookupPos);
