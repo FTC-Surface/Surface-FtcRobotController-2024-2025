@@ -11,7 +11,7 @@ import org.firstinspires.ftc.teamcode.Roadrunner.trajectorysequence.TrajectorySe
 import org.firstinspires.ftc.teamcode.Robot.RobotAuto;
 import org.firstinspires.ftc.teamcode.Subsystems.Constants;
 
-@Autonomous(name = "Hook Auto Mode Active Intake", group = "Auto Test")
+@Autonomous(name = "Hook Auto Mode Active Intake 1", group = "Auto Test")
 @Config
 public class HookAutoOpModeActiveIntake extends LinearOpMode {
 
@@ -19,10 +19,6 @@ public class HookAutoOpModeActiveIntake extends LinearOpMode {
     Constants.AutoState currentTraj = Constants.AutoState.idle;
     Pose2d startPose = new Pose2d(9,-60.5, Math.toRadians(90));
     Pose2d afterdepositInit = new Pose2d(9,-26, Math.toRadians(90));
-    Pose2d afterdeposit2 = new Pose2d(6,-26, Math.toRadians(90));
-    Pose2d afterdeposit3 = new Pose2d(3,-26, Math.toRadians(90));
-    Pose2d afterdeposit4 = new Pose2d(0,-26, Math.toRadians(90));
-    Pose2d afterdeposit5 = new Pose2d(-3,-26, Math.toRadians(90));
 
     void nextTraj(Constants.AutoState state){
         currentTraj = state;

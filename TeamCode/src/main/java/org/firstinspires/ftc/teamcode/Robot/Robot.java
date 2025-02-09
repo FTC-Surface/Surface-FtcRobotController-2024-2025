@@ -133,6 +133,8 @@ public class Robot {
 
     public void oArmHookgrab(){oArm.hookgrabPos();}
     public void oArmHookup(){oArm.hookupPos();}
+    public void oArmHookdown(){oArm.hookdownPos();}
+    public void oArmHookready(){oArm.hookreadyPos();}
 
     public LLResult limeLightGetResult(){return limelightCamera.returnResult();}
     public void limelightStart(int index){limelightCamera.limelightStart(index);}

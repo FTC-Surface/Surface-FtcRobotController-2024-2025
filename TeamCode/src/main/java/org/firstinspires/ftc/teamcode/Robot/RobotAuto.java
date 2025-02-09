@@ -85,6 +85,8 @@ public class RobotAuto {
     public void oArmDumpRelease(){oArm.dumpreleasePos();}
     public void oArmDumpReady(){oArm.dumpreadyPos();}
     public void oArmTake(){oArm.takePos();}
+    public void oArmHookdown(){oArm.hookdownPos();}
+    public void oArmHookready(){oArm.hookreadyPos();}
 
     public void oArmHookgrab(){oArm.hookgrabPos();}
     public void oArmHookup(){oArm.hookupPos();}

@@ -78,11 +78,14 @@ public class Constants {
     public final double OutakeArmTakePos = 0.925;
     public final double OutakeArmHookgrabPos = 0.04;
     public final double OutakeArmHookupPos = 0.65;
+    public final double OutakeArmHookreadyPos = 0.7;
+    public final double OutakeArmHookdownPos = 0.65;
 
     public final double OutakeWristStartPos = 1;
     public final double OutakeWristDumpReleasePos = 0.25;
     public final double OutakeWristTakePos = 1;
     public final double OutakeWristHookgrabPos = 0.2;
     public final double OutakeWristHookupPos = 0.85;
+    public final double OutakeWristHookreadyPos = 0.45;
 
 }
