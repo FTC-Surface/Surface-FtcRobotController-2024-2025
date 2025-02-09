@@ -23,6 +23,7 @@ public class LocalizationTest extends LinearOpMode {
 
         drive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
+        drive.setPoseEstimate(new Pose2d(9,-60.5));
         waitForStart();
 
         while (!isStopRequested()) {
