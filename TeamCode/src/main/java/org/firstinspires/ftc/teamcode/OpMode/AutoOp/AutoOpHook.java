@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.OpMode.AutoOp;
 import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.roadrunner.Action;
 import com.acmerobotics.roadrunner.Pose2d;
+import com.acmerobotics.roadrunner.ParallelAction;
 import com.acmerobotics.roadrunner.SequentialAction;
 import com.acmerobotics.roadrunner.TrajectoryActionBuilder;
 import com.acmerobotics.roadrunner.Vector2d;
@@ -11,8 +12,8 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.Newroadrunner.MecanumDrive;
-import org.firstinspires.ftc.teamcode.Robot.Robot;
 import org.firstinspires.ftc.teamcode.Robot.RobotAuto;
+import org.firstinspires.ftc.teamcode.Subsystems.Constants;
 
 @Config
 @Autonomous(name = "Active Intake Hook", group = "Autonomous")
@@ -28,10 +29,10 @@ public class AutoOpHook extends LinearOpMode {
 
         TrajectoryActionBuilder depositInit = drive.actionBuilder(initPos)
                 .lineToY(-26)
-                .waitSeconds(5)
-                .lineToY(-40);
+                .waitSeconds(5);
 
         TrajectoryActionBuilder grabFirst = depositInit.endTrajectory().fresh()
+                .lineToY(-40)
                 .setReversed(true)
                 .splineToLinearHeading(new Pose2d(40, -43, Math.toRadians(65)), Math.toRadians(0))
 
@@ -85,33 +86,32 @@ public class AutoOpHook extends LinearOpMode {
 
         waitForStart();
 
-        while(opModeIsActive() && !isStopRequested()){
-            Action depositInitAction, grabFirstAction, depositFirstAction, grabSecondAction, depositSecondAction, grabThirdAction, depositThirdAction, depositFourthAction, parkAction;
+        while(opModeIsActive() && !isStopRequested()){}
+        Action depositInitAction, grabFirstAction, depositFirstAction, grabSecondAction, depositSecondAction, grabThirdAction, depositThirdAction, depositFourthAction, parkAction;
 
-            depositInitAction = depositInit.build();
-            grabFirstAction = grabFirst.build();
-            depositFirstAction = depositFirst.build();
-            grabSecondAction = grabSecond.build();
-            depositSecondAction = depositSecond.build();
-            grabThirdAction = grabThird.build();
-            depositThirdAction = depositThird.build();
-            depositFourthAction = depositFourth.build();
-            parkAction = park.build();
+        depositInitAction = depositInit.build();
+        grabFirstAction = grabFirst.build();
+        depositFirstAction = depositFirst.build();
+        grabSecondAction = grabSecond.build();
+        depositSecondAction = depositSecond.build();
+        grabThirdAction = grabThird.build();
+        depositThirdAction = depositThird.build();
+        depositFourthAction = depositFourth.build();
+        parkAction = park.build();
 
-            Actions.runBlocking(
-                    new SequentialAction(
-                            depositInitAction,
-                            grabFirstAction,
-                            grabSecondAction,
-                            grabThirdAction,
-                            depositFirstAction,
-                            depositSecondAction,
-                            depositThirdAction,
-                            depositFourthAction,
-                            parkAction
-                    )
-            );
+        Actions.runBlocking(
+                new SequentialAction(
+                        depositInitAction,
+                        grabFirstAction,
+                        grabSecondAction,
+                        grabThirdAction,
+                        depositFirstAction,
+                        depositSecondAction,
+                        depositThirdAction,
+                        depositFourthAction,
+                        parkAction
+                )
+        );
 
-        }
     }
 }
