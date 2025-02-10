@@ -22,19 +22,18 @@ public class MeepMeepHook {
 
                 //Grab first
                 .setReversed(true)
-                .splineToLinearHeading(new Pose2d(40, -43, Math.toRadians(65)), Math.toRadians(0))
-
+                .strafeToLinearHeading(new Vector2d(40, -43), Math.toRadians(65))
                 .turn(Math.toRadians(-100))
                 .waitSeconds(0.5)
 
 //                //Grab Second
-                .strafeToLinearHeading(new Vector2d(45,-43), Math.toRadians(55))
-                .turn(Math.toRadians(-90))
+                .turn(Math.toRadians(70))
+                .turn(Math.toRadians(-80))
                 .waitSeconds(0.5)
 //
 //                //Grab Third
-                .strafeToLinearHeading(new Vector2d(50,-43), Math.toRadians(40))
-                .turn(Math.toRadians(-85))
+                .turn(Math.toRadians(80))
+                .turn(Math.toRadians(-60))
                 .waitSeconds(0.5)
 //
 //                //Second Hang

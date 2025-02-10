@@ -14,7 +14,7 @@ import org.firstinspires.ftc.teamcode.Newroadrunner.MecanumDrive;
 import org.firstinspires.ftc.teamcode.Robot.RobotAuto;
 
 @Config
-@Autonomous(name = "Active Intake Hook", group = "Autonomous")
+@Autonomous(name = "Bucket", group = "Autonomous")
 public class AutoOpBucket extends LinearOpMode {
 
     RobotAuto robot = new RobotAuto(hardwareMap);
