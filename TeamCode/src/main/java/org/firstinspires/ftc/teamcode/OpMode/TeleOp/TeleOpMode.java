@@ -13,7 +13,7 @@ import org.firstinspires.ftc.teamcode.Subsystems.Constants;
 
 @TeleOp(name = "Mecanum Drive", group = "OpModes")
 @Config
-public class TeleOpMode extends LinearOpMode {
+public class TeleOpMode extends LinearOpMode{
 
     @Override
     public void runOpMode() throws InterruptedException {

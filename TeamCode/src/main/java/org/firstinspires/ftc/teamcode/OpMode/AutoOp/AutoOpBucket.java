@@ -9,6 +9,7 @@ import com.acmerobotics.roadrunner.Vector2d;
 import com.acmerobotics.roadrunner.ftc.Actions;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.Newroadrunner.MecanumDrive;
 import org.firstinspires.ftc.teamcode.Robot.RobotAuto;
@@ -17,13 +18,14 @@ import org.firstinspires.ftc.teamcode.Robot.RobotAuto;
 @Autonomous(name = "Bucket", group = "Autonomous")
 public class AutoOpBucket extends LinearOpMode {
 
-    RobotAuto robot = new RobotAuto(hardwareMap);
-
     @Override
     public void runOpMode() throws InterruptedException {
 
         Pose2d initPos = new Pose2d(9,-60.5, Math.toRadians(90));
         MecanumDrive drive = new MecanumDrive(hardwareMap, initPos);
+        RobotAuto robot = new RobotAuto(hardwareMap);
+
+//***** Trajectories ************************************************************************
 
         TrajectoryActionBuilder depositInit = drive.actionBuilder(initPos)
                 .strafeToLinearHeading(new Vector2d(-55,-53), Math.toRadians(45))
@@ -57,6 +59,8 @@ public class AutoOpBucket extends LinearOpMode {
                 .splineToLinearHeading(new Pose2d(-25, 0, Math.toRadians(0)), Math.toRadians(0))
                 .waitSeconds(2);
 
+//***** Actions ************************************************************************
+
         waitForStart();
 
         while(opModeIsActive() && !isStopRequested()){
@@ -84,6 +88,14 @@ public class AutoOpBucket extends LinearOpMode {
                             parkAction
                     )
             );
+        }
+    }
+
+    public void waitForSeconds(double seconds) {
+        ElapsedTime timer = new ElapsedTime(ElapsedTime.Resolution.SECONDS);
+        timer.reset();
+
+        while (timer.time() < seconds) {
         }
     }
 }
