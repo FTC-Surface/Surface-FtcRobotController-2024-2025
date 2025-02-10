@@ -5,6 +5,7 @@ import androidx.annotation.NonNull;
 import com.acmerobotics.dashboard.telemetry.TelemetryPacket;
 import com.acmerobotics.roadrunner.Action;
 import com.acmerobotics.roadrunner.InstantAction;
+import com.acmerobotics.roadrunner.SleepAction;
 import com.qualcomm.hardware.limelightvision.LLResult;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -295,8 +296,13 @@ public class RobotAuto {
         }
     }
 
-    public Action oClawClosewAction(){return new InstantAction(() -> oCloseClaw());}
-    public Action oClawOpenAction(){return new InstantAction(() -> oOpenClaw());}
+    public Action oClawClosewAction(){
+
+        return new InstantAction(() -> oCloseClaw());}
+    public Action oClawOpenAction(){
+        waitForSeconds(30);
+        return new InstantAction(() -> oOpenClaw());
+    }
 
     public Action oArmStartAction(){return new InstantAction(() -> oArmStart());}
     public Action oArmDumpReleaseAction(){return new InstantAction(() -> oArmDumpRelease());}
@@ -316,7 +322,7 @@ public class RobotAuto {
 
 //***************************** timer ********************************
 
-    public void waitForSeconds(int seconds) {
+    public void waitForSeconds(double seconds) {
         ElapsedTime timer = new ElapsedTime(ElapsedTime.Resolution.SECONDS);
         timer.reset();
 
