@@ -118,6 +118,7 @@ public class Robot {
 
     public void iArmGrab(){iArm.downPos();}
     public void iArmStart(){iArm.upPos();}
+    public void iArmMiddle(){iArm.middlePos();}
 
     public void iWheelTakeBlock() {iWheel.takeBlock();}
     public void iWheelStopBlock() {iWheel.noBlock();}

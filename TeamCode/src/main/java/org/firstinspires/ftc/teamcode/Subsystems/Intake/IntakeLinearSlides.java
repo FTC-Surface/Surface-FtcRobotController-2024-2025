@@ -53,8 +53,16 @@ public class IntakeLinearSlides extends Subsystem {
                 move(0);
                 break;
 
-            case OutIntake:
-                move(900);
+            case ShortRange:
+                move(300);
+                break;
+
+            case MidRange:
+                move(700);
+                break;
+
+            case LongRange:
+                move(1100);
                 break;
 
             case ManualForward:

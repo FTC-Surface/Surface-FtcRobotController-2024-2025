@@ -47,6 +47,7 @@ public class TeleOpMode extends LinearOpMode{
 
         //Change depending on alliance color
         Constants.eColorSensed allianceColor = Constants.eColorSensed.red;
+        Constants.eColorSensed enemyColor = Constants.eColorSensed.blue;
 
         telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
 
@@ -132,11 +133,8 @@ public class TeleOpMode extends LinearOpMode{
             //Prepare for robot to score by clipping
             if (gamepad2.left_stick_y <= -0.3 && !stickmoved1) {
                 robot.oCloseClaw();
-
                 waitForSeconds(0.3);
-
                 robot.oArmHookup();
-
                 robot.oElevMove(Constants.eOElevatorState.Clip_Hang);
             }
 
@@ -144,8 +142,8 @@ public class TeleOpMode extends LinearOpMode{
             if (gamepad2.left_stick_y >= 0.3) {
                 robot.oOpenClaw();
                 waitForSeconds(0.2);
-                robot.oArmHookgrab();
                 robot.oElevMove(Constants.eOElevatorState.Ground);
+                robot.oArmHookgrab();
             }
 
 
@@ -169,17 +167,34 @@ public class TeleOpMode extends LinearOpMode{
 //********** Intake ***************************************************
 
 
-            if (gamepad2.dpad_up) {
-                robot.iArmStart();
-                IntakeStartTime1 = (long) intakeTimer.milliseconds();
-                robot.iElevMove(Constants.eIElevatorState.OutIntake);
-                IslidesIn = false;
-            }
+
+
             if (gamepad2.dpad_down) {
                 robot.iArmStart();
                 ArmTakeDone=false;
                 robot.iElevMove(Constants.eIElevatorState.InIntake);
                 IslidesIn = true;
+            }
+            if (gamepad2.dpad_left) {
+                robot.iArmStart();
+                ArmTakeDone=false;
+                IntakeStartTime1 = (long) intakeTimer.milliseconds();
+                robot.iElevMove(Constants.eIElevatorState.ShortRange);
+                IslidesIn = false;
+            }
+            if (gamepad2.dpad_up) {
+                robot.iArmStart();
+                ArmTakeDone=false;
+                IntakeStartTime1 = (long) intakeTimer.milliseconds();
+                robot.iElevMove(Constants.eIElevatorState.MidRange);
+                IslidesIn = false;
+            }
+            if (gamepad2.dpad_right) {
+                robot.iArmStart();
+                ArmTakeDone=false;
+                IntakeStartTime1 = (long) intakeTimer.milliseconds();
+                robot.iElevMove(Constants.eIElevatorState.LongRange);
+                IslidesIn = false;
             }
 
             IslidesIn = (robot.iElevGetHeight() <=5);
@@ -208,7 +223,7 @@ public class TeleOpMode extends LinearOpMode{
 
 
             if (gamepad2.right_trigger >= 0.3 && robot.getColorResult() != allianceColor && robot.getColorResult() != Constants.eColorSensed.yellow) {//specifically for red
-                robot.iArmGrab();
+                if(robot.getColorResult() == enemyColor) robot.iArmStart(); else robot.iArmGrab();
                 robot.iWheelTakeBlock();
                 Arm_Start_position = false;
             } else if (gamepad2.left_trigger >= 0.3) {
@@ -216,6 +231,8 @@ public class TeleOpMode extends LinearOpMode{
             } else {
                 robot.iWheelStopBlock();
             }
+
+
 
             if (robot.getColorResult() == allianceColor || robot.getColorResult() == Constants.eColorSensed.yellow) {
                 robot.iArmStart();

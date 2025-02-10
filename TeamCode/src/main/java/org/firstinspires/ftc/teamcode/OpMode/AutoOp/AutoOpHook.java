@@ -29,7 +29,6 @@ public class AutoOpHook extends LinearOpMode {
 
         TrajectoryActionBuilder depositInit = drive.actionBuilder(initPos)
                 .lineToY(-29)
-                .waitSeconds(0.25);
 
 //        TrajectoryActionBuilder depositback = depositInit.endTrajectory().fresh()
 //                .lineToY(-45);
@@ -108,7 +107,8 @@ public class AutoOpHook extends LinearOpMode {
                         robot.oArmHookReadyAction(),
                         new ParallelAction(robot.oClawOpenAction(),
                                 depositFirstAction,
-                                new SequentialAction(SleepAction(100),robot.oArmHookGrab())),
+                                new SequentialAction(new SleepAction(1),robot.oClawOpenAction(),new SleepAction(0.25),robot.oArmHookGrab())),
+
                         depositFirstAction,
                         depositSecondAction,
                         depositThirdAction,

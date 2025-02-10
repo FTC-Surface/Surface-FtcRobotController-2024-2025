@@ -16,7 +16,7 @@ public class Constants {
         ManualStop,
         OutIntake,
         InIntake,
-        AutoIntakePos,
+        AutoIntakePos, MidRange, ShortRange, LongRange,
     }
 
     public enum AutoState{
@@ -67,6 +67,7 @@ public class Constants {
 
     public final double IntakeArmStartPos = 0;
     public final double IntakeArmGrabPos = 0.35;
+    public final double IntakeArmmiddlePos = 0.2;
 
     //Outake
     public final double OOpenClaw = 0.35;

@@ -300,7 +300,6 @@ public class RobotAuto {
 
         return new InstantAction(() -> oCloseClaw());}
     public Action oClawOpenAction(){
-        waitForSeconds(30);
         return new InstantAction(() -> oOpenClaw());
     }
 
