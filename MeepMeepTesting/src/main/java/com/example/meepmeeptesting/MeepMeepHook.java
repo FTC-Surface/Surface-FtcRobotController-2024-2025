@@ -17,55 +17,69 @@ public class MeepMeepHook {
                 .build();
 
         myBot.runAction(myBot.getDrive().actionBuilder(new Pose2d(9,-60.5, Math.toRadians(90)))
-                .lineToY(-26)
+                .lineToY(-30)
                 .lineToY(-40)
-
-                //Grab first
-                .setReversed(true)
-                .strafeToLinearHeading(new Vector2d(40, -43), Math.toRadians(65))
-                .turn(Math.toRadians(-100))
-                .waitSeconds(0.5)
-
-//                //Grab Second
-                .turn(Math.toRadians(70))
-                .turn(Math.toRadians(-80))
-                .waitSeconds(0.5)
+                //Intake bot
+//                //Grab first
+//                .setReversed(true)
+//                .strafeToLinearHeading(new Vector2d(40, -43), Math.toRadians(65))
+//                .turn(Math.toRadians(-100))
+//                .waitSeconds(0.5)
 //
-//                //Grab Third
-                .turn(Math.toRadians(80))
-                .turn(Math.toRadians(-60))
-                .waitSeconds(0.5)
+////                //Grab Second
+//                .turn(Math.toRadians(70))
+//                .turn(Math.toRadians(-80))
+//                .waitSeconds(0.5)
+////
+////                //Grab Third
+//                .turn(Math.toRadians(80))
+//                .turn(Math.toRadians(-60))
+//                .waitSeconds(0.5)
+
+                //push bot
+                .strafeToLinearHeading(new Vector2d(25, -36), Math.toRadians(90))
+
+                //push first
+                .splineToLinearHeading(new Pose2d(48, -7, Math.toRadians(90)),Math.toRadians(0))
+                .strafeToLinearHeading(new Vector2d(48, -48), Math.toRadians(90))
+
+
+                //push second
+                .splineToLinearHeading(new Pose2d(58, -7, Math.toRadians(90)), Math.toRadians(0))
+                .strafeToLinearHeading(new Vector2d(58, -48), Math.toRadians(90))
+
+                //push third
+                .splineToLinearHeading(new Pose2d(64, -7, Math.toRadians(90)), Math.toRadians(0))
+                .strafeToLinearHeading(new Vector2d(64, -48), Math.toRadians(90))
+
+
 //
 //                //Second Hang
                 .strafeToLinearHeading(new Vector2d(40, -58), Math.toRadians(90))
-                .waitSeconds(0.5)
                 .lineToY(-60.5)
                 .setReversed(false)
-                .splineToLinearHeading(new Pose2d(6,-26, Math.toRadians(90)), Math.toRadians(90))
+                .splineToLinearHeading(new Pose2d(6,-30, Math.toRadians(90)), Math.toRadians(90))
 //
 //                //Third Hang
                 .setReversed(true)
                 .splineToLinearHeading(new Pose2d(40,-58, Math.toRadians(90)), Math.toRadians(-90))
-                .waitSeconds(0.5)
                 .lineToY(-60.5)
                 .setReversed(false)
-                .splineToLinearHeading(new Pose2d(3,-26, Math.toRadians(90)), Math.toRadians(90))
+                .splineToLinearHeading(new Pose2d(3,-30, Math.toRadians(90)), Math.toRadians(90))
 //
 //                //Fourth Hang
                 .setReversed(true)
                 .splineToLinearHeading(new Pose2d(40,-58, Math.toRadians(90)), Math.toRadians(-90))
-                .waitSeconds(0.5)
                 .lineToY(-60.5)
                 .setReversed(false)
-                .splineToLinearHeading(new Pose2d(0,-26, Math.toRadians(90)), Math.toRadians(90))
+                .splineToLinearHeading(new Pose2d(0,-30, Math.toRadians(90)), Math.toRadians(90))
 //
 //                //Fifth Hang
                 .setReversed(true)
                 .splineToLinearHeading(new Pose2d(40,-58, Math.toRadians(90)), Math.toRadians(-90))
-                .waitSeconds(0.5)
                 .lineToY(-60.5)
                 .setReversed(false)
-                .splineToLinearHeading(new Pose2d(0,-26, Math.toRadians(90)), Math.toRadians(90))
+                .splineToLinearHeading(new Pose2d(0,-30, Math.toRadians(90)), Math.toRadians(90))
 //
                 .setReversed(true)
                 .splineToLinearHeading(new Pose2d(40,-58, Math.toRadians(90)), Math.toRadians(-90))

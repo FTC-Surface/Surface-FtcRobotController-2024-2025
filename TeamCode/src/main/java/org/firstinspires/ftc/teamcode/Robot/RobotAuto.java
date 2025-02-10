@@ -296,12 +296,8 @@ public class RobotAuto {
         }
     }
 
-    public Action oClawClosewAction(){
-
-        return new InstantAction(() -> oCloseClaw());}
-    public Action oClawOpenAction(){
-        return new InstantAction(() -> oOpenClaw());
-    }
+    public Action oClawClosewAction(){return new InstantAction(() -> oCloseClaw());}
+    public Action oClawOpenAction(){return new InstantAction(() -> oOpenClaw());}
 
     public Action oArmStartAction(){return new InstantAction(() -> oArmStart());}
     public Action oArmDumpReleaseAction(){return new InstantAction(() -> oArmDumpRelease());}

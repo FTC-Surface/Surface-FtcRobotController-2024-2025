@@ -28,10 +28,24 @@ public class AutoOpHook extends LinearOpMode {
         MecanumDrive drive = new MecanumDrive(hardwareMap, initPos);
 
         TrajectoryActionBuilder depositInit = drive.actionBuilder(initPos)
-                .lineToY(-29)
+                .lineToY(-29);
 
-//        TrajectoryActionBuilder depositback = depositInit.endTrajectory().fresh()
-//                .lineToY(-45);
+        TrajectoryActionBuilder depositback = depositInit.endTrajectory().fresh()
+                .strafeToLinearHeading(new Vector2d(25, -36), Math.toRadians(90));
+
+        TrajectoryActionBuilder push = depositback.endTrajectory().fresh()
+                //push first
+                .splineToLinearHeading(new Pose2d(48, -7, Math.toRadians(90)),Math.toRadians(0))
+                .strafeToLinearHeading(new Vector2d(48, -48), Math.toRadians(90))
+
+
+                //push second
+                .splineToLinearHeading(new Pose2d(58, -7, Math.toRadians(90)), Math.toRadians(0))
+                .strafeToLinearHeading(new Vector2d(58, -48), Math.toRadians(90))
+
+                //push third
+                .splineToLinearHeading(new Pose2d(64, -7, Math.toRadians(90)), Math.toRadians(0))
+                .strafeToLinearHeading(new Vector2d(64, -48), Math.toRadians(90));
 
 //        TrajectoryActionBuilder grabFirst = depositback.endTrajectory().fresh()
 //
@@ -50,7 +64,7 @@ public class AutoOpHook extends LinearOpMode {
 //                .turn(Math.toRadians(-60))
 //                .waitSeconds(0.5);
 
-        TrajectoryActionBuilder depositFirst = depositInit.endTrajectory().fresh()
+        TrajectoryActionBuilder depositFirst = push.endTrajectory().fresh()
                 .splineToLinearHeading(new Pose2d(40,-58.5, Math.toRadians(90)), Math.toRadians(-90))
                 .waitSeconds(0.5)
                 .lineToY(-60.5)
@@ -88,10 +102,11 @@ public class AutoOpHook extends LinearOpMode {
 
         waitForStart();
 
-        Action depositInitAction, depositbackAction, grabFirstAction, depositFirstAction, grabSecondAction, depositSecondAction, grabThirdAction, depositThirdAction, depositFourthAction, parkAction;
+        Action depositInitAction, depositbackAction, pushAction, grabFirstAction, depositFirstAction, grabSecondAction, depositSecondAction, grabThirdAction, depositThirdAction, depositFourthAction, parkAction;
 
         depositInitAction = depositInit.build();
-        //depositbackAction = depositback.build();
+        pushAction = push.build();
+        depositbackAction = depositback.build();
         //grabFirstAction = grabFirst.build();
         depositFirstAction = depositFirst.build();
         //grabSecondAction = grabSecond.build();
@@ -105,16 +120,53 @@ public class AutoOpHook extends LinearOpMode {
                 new SequentialAction(
                         new ParallelAction(depositInitAction,robot.oArmHookDownAction(),robot.oClawClosewAction()),
                         robot.oArmHookReadyAction(),
-                        new ParallelAction(robot.oClawOpenAction(),
-                                depositFirstAction,
-                                new SequentialAction(new SleepAction(1),robot.oClawOpenAction(),new SleepAction(0.25),robot.oArmHookGrab())),
 
-                        depositFirstAction,
-                        depositSecondAction,
-                        depositThirdAction,
-                        depositFourthAction,
-                        parkAction
+                        depositbackAction,
+                        new ParallelAction(new SequentialAction(robot.oClawOpenAction(),robot.oArmHookGrab()), pushAction),
+
+                        new ParallelAction(new SequentialAction(
+                                new SleepAction(2),
+                                robot.oClawClosewAction(),
+                                robot.oArmHookDownAction()),
+                                depositFirstAction),
+                        robot.oArmHookReadyAction(),
+
+                        new ParallelAction(
+                                new SequentialAction(
+                                    new SleepAction(1), robot.oClawOpenAction(),
+                                    robot.oArmHookGrab(),
+                                    new SleepAction(1),
+                                    robot.oClawClosewAction(),
+                                    robot.oArmHookDownAction()),
+                                depositSecondAction),
+                        robot.oArmHookReadyAction(),
+
+                        new ParallelAction(
+                                new SequentialAction(
+                                        new SleepAction(1), robot.oClawOpenAction(),
+                                        robot.oArmHookGrab(),
+                                        new SleepAction(1),
+                                        robot.oClawClosewAction(),
+                                        robot.oArmHookDownAction()),
+                                depositThirdAction),
+                        robot.oArmHookReadyAction(),
+
+                        new ParallelAction(
+                                new SequentialAction(
+                                        new SleepAction(1), robot.oClawOpenAction(),
+                                        robot.oArmHookGrab(),
+                                        new SleepAction(1),
+                                        robot.oClawClosewAction(),
+                                        robot.oArmHookDownAction()),
+                                depositFourthAction),
+                        robot.oArmHookReadyAction(),
+                        new ParallelAction(
+                                new SequentialAction(
+                                        new SleepAction(1), robot.oClawOpenAction(),
+                                        robot.oArmHookGrab(),
+                                parkAction)
                 )
+        )
         );
 
     }
