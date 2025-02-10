@@ -82,7 +82,7 @@ public class AutoOpHook extends LinearOpMode {
 
         TrajectoryActionBuilder park = depositFourth.endTrajectory().fresh()
                 .setReversed(true)
-                .splineToLinearHeading(new Pose2d(40,-58, Math.toRadians(90)), Math.toRadians(-90))
+                .splineToLinearHeading(new Pose2d(40,-58, Math.toRadians(90)), Math.toRadians(-90));
 
         waitForStart();
 
