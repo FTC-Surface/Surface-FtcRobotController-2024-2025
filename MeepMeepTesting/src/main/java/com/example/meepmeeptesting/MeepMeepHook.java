@@ -46,18 +46,15 @@ public class MeepMeepHook {
 
                 //push second
                 .setReversed(true)
-                .splineToLinearHeading(new Pose2d(58, -12, Math.toRadians(90)), Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(48, -12, Math.toRadians(90)), Math.toRadians(0))
+                .lineToX(58)
                 .strafeToLinearHeading(new Vector2d(58, -48), Math.toRadians(90))
-
                 //push third
-                .splineToLinearHeading(new Pose2d(64, -12, Math.toRadians(90)), Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(58, -12, Math.toRadians(90)), Math.toRadians(0))
+                .lineToX(64)
                 .strafeToLinearHeading(new Vector2d(64, -48), Math.toRadians(90))
 
-
-//
-//                //Second Hang
-                .setReversed(false)
-                .splineToLinearHeading(new Pose2d(40, -62, Math.toRadians(90)), Math.toRadians(-90))
+////
 
                 .strafeToLinearHeading(new Vector2d(6, -30), Math.toRadians(90))
 //                //Third Hang

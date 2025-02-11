@@ -39,16 +39,18 @@ public class AutoOpHook extends LinearOpMode {
         TrajectoryActionBuilder push = depositback.endTrajectory().fresh()
                 .strafeToLinearHeading(new Vector2d(25, -36), Math.toRadians(90))
                 //push first
-                .splineToLinearHeading(new Pose2d(50, -10, Math.toRadians(90)),Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(50, -7, Math.toRadians(90)),Math.toRadians(0))
                 .strafeToLinearHeading(new Vector2d(50, -45), Math.toRadians(90))
 
                 //push second
-                .splineToLinearHeading(new Pose2d(59, -10, Math.toRadians(90)), Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(50, -7, Math.toRadians(90)), Math.toRadians(0))
+                .lineToX(59)
                 .strafeToLinearHeading(new Vector2d(59, -45), Math.toRadians(90))
                 //.strafeToLinearHeading(new Vector2d(59, -45), Math.toRadians(90))
 
                 //push third
-                .splineToLinearHeading(new Pose2d(68, -10, Math.toRadians(90)), Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(60, -7, Math.toRadians(90)), Math.toRadians(0))
+                .lineToX(68)
                 .strafeToLinearHeading(new Vector2d(68, -52), Math.toRadians(90))
                 .strafeToLinearHeading(new Vector2d(50, -62), Math.toRadians(90));
 
