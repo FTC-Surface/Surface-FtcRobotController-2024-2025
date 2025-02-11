@@ -53,12 +53,12 @@ public class TeleOpMode_Blue extends LinearOpMode{
 
         waitForStart();
 
-        robot.oElevMove(Constants.eOElevatorState.Ready);
+        //robot.oElevMove(Constants.eOElevatorState.Ready);
 
         robot.iArmStart();
 
         robot.oOpenClaw();
-        robot.oArmStart();
+        robot.oArmHookgrab();
         Arm_Start_position = true;
         IslidesIn = true;
 
@@ -88,7 +88,7 @@ public class TeleOpMode_Blue extends LinearOpMode{
             double strafe = -gamepad1.left_stick_x;
             double rotate = -gamepad1.right_stick_x;
             
-            robot.teleOpDrive(drive * 0.8, strafe * 0.8, rotate * 0.6);
+            robot.teleOpDrive(drive * 0.8, strafe * 1, rotate * 0.6);
 
 //********** Player Two Controls ***************************************************
 
@@ -115,13 +115,13 @@ public class TeleOpMode_Blue extends LinearOpMode{
                 Outtakepressed1 = false;
             }
 
-            //Arm Positiong to grab readied sample including Dropping sample motion
-            if (gamepad2.triangle) {
-                robot.oOpenClaw();
-                waitForSeconds(0.1);
-                robot.oElevMove(Constants.eOElevatorState.Ready);
-                robot.oArmTake();
-            }
+//            //Arm Positiong to grab readied sample including Dropping sample motion
+//            if (gamepad2.triangle) {
+//                robot.oOpenClaw();
+//                waitForSeconds(0.1);
+//                robot.oElevMove(Constants.eOElevatorState.Ready);
+//                robot.oArmTake();
+//            }
 
 //            //Outtake_claw
 //            if (gamepad2.right_bumper) {
@@ -132,19 +132,26 @@ public class TeleOpMode_Blue extends LinearOpMode{
 //
 //            //Hook
             //Prepare for robot to score by clipping
-            if (gamepad2.left_stick_y <= -0.3 && !stickmoved1) {
-                robot.oCloseClaw();
-                waitForSeconds(0.3);
-                robot.oArmHookup();
-                robot.oElevMove(Constants.eOElevatorState.Clip_Hang);
-            }
-//
-//            //Prepare to grab specimen for scoring
-            if (gamepad2.left_stick_y >= 0.3) {
-                robot.oOpenClaw();
-                waitForSeconds(0.2);
-                robot.oElevMove(Constants.eOElevatorState.Ground);
-                robot.oArmHookgrab();
+
+//            if (gamepad2.left_stick_y <= -0.3 && !stickmoved1) {
+//                robot.oCloseClaw();
+//                waitForSeconds(0.5);
+//                robot.oArmHookdown();
+//                //robot.oArmHookup();
+//                //robot.oElevMove(Constants.eOElevatorState.Clip_Hang);
+//            }
+////
+////            //Prepare to grab specimen for scoring
+//            if (gamepad2.left_stick_y >= 0.3) {
+//                robot.oOpenClaw();
+//                waitForSeconds(0.2);
+//                robot.oElevMove(Constants.eOElevatorState.Ground);
+//                robot.oArmHookgrab();
+//            }
+
+            if(gamepad2.left_stick_button)
+            {
+                robot.oArmHookready();
             }
 //
 //
@@ -266,11 +273,11 @@ public class TeleOpMode_Blue extends LinearOpMode{
         }
     }
 
-    public void waitForSeconds(double seconds) {
-        ElapsedTime timer = new ElapsedTime(ElapsedTime.Resolution.SECONDS);
-        timer.reset();
-
-        while (timer.time() < seconds) {
-        }
-    }
+//    public void waitForSeconds(double seconds) {
+//        ElapsedTime timer = new ElapsedTime(ElapsedTime.Resolution.SECONDS);
+//        timer.reset();
+//
+//        while (timer.time() < seconds) {
+//        }
+//    }
 }

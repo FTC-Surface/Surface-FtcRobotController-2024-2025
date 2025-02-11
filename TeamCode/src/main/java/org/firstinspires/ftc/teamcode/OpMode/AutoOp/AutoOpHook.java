@@ -39,20 +39,20 @@ public class AutoOpHook extends LinearOpMode {
         TrajectoryActionBuilder push = depositback.endTrajectory().fresh()
                 .strafeToLinearHeading(new Vector2d(25, -36), Math.toRadians(90))
                 //push first
-                .splineToLinearHeading(new Pose2d(50, -7, Math.toRadians(90)),Math.toRadians(0))
-                .strafeToLinearHeading(new Vector2d(50, -45), Math.toRadians(90))
+                .splineToLinearHeading(new Pose2d(50, -10, Math.toRadians(90)),Math.toRadians(0))
+                .strafeToLinearHeading(new Vector2d(50, -42), Math.toRadians(90))
 
                 //push second
-                .splineToLinearHeading(new Pose2d(50, -7, Math.toRadians(90)), Math.toRadians(0))
-                .lineToX(59)
-                .strafeToLinearHeading(new Vector2d(59, -45), Math.toRadians(90))
+                .splineToLinearHeading(new Pose2d(50, -10, Math.toRadians(90)), Math.toRadians(0))
+                .lineToXConstantHeading(59)
+                .strafeToLinearHeading(new Vector2d(59, -42), Math.toRadians(90))
                 //.strafeToLinearHeading(new Vector2d(59, -45), Math.toRadians(90))
 
                 //push third
-                .splineToLinearHeading(new Pose2d(60, -7, Math.toRadians(90)), Math.toRadians(0))
-                .lineToX(68)
-                .strafeToLinearHeading(new Vector2d(68, -52), Math.toRadians(90))
-                .strafeToLinearHeading(new Vector2d(50, -62), Math.toRadians(90));
+                .splineToLinearHeading(new Pose2d(60, -10, Math.toRadians(90)), Math.toRadians(0))
+                .lineToXConstantHeading(65.75)
+                .strafeToLinearHeading(new Vector2d(65.75, -52), Math.toRadians(90))
+                .strafeToLinearHeading(new Vector2d(45, -61.5), Math.toRadians(90));
 
 //        TrajectoryActionBuilder grabFirst = depositback.endTrajectory().fresh()
 //
@@ -79,7 +79,7 @@ public class AutoOpHook extends LinearOpMode {
                 .strafeToLinearHeading(new Vector2d(5,-27), Math.toRadians(90));
 
         TrajectoryActionBuilder depositThird = depositSecond.endTrajectory().fresh()
-                .strafeToLinearHeading(new Vector2d(40,-62), Math.toRadians(90))
+                .strafeToLinearHeading(new Vector2d(40,-61.5), Math.toRadians(90))
                 .strafeToLinearHeading(new Vector2d(4,-27), Math.toRadians(90));
 
         TrajectoryActionBuilder depositFourth = depositThird.endTrajectory().fresh()
@@ -87,7 +87,7 @@ public class AutoOpHook extends LinearOpMode {
                 .strafeToLinearHeading(new Vector2d(3,-27), Math.toRadians(90));
 
         TrajectoryActionBuilder park = depositFourth.endTrajectory().fresh()
-                .lineToY(-55);
+                .lineToY(-60);
 
 
 
@@ -113,7 +113,7 @@ public class AutoOpHook extends LinearOpMode {
                         new ParallelAction(depositInitAction,robot.oArmHookDownAction(),robot.oClawClosewAction()),
                         robot.oArmHookReadyAction(),
 
-                        new ParallelAction(depositbackAction, new SequentialAction(new SleepAction(0.35),robot.oClawOpenAction())),
+                        new ParallelAction(depositbackAction, new SequentialAction(new SleepAction(0.25),robot.oClawOpenAction())),
                         new ParallelAction(pushAction, new SequentialAction(new SleepAction(0.5),robot.oArmHookGrab())),
 
                         new ParallelAction(new SequentialAction(
@@ -126,7 +126,7 @@ public class AutoOpHook extends LinearOpMode {
 
                         new ParallelAction(
                                 new SequentialAction(
-                                    new SleepAction(0.6), robot.oClawOpenAction(),
+                                    new SleepAction(0.5), robot.oClawOpenAction(),
                                     robot.oArmHookGrab(),
                                     new SleepAction(1.275),
                                     robot.oClawClosewAction(),
@@ -137,7 +137,7 @@ public class AutoOpHook extends LinearOpMode {
 
                         new ParallelAction(
                                 new SequentialAction(
-                                        new SleepAction(0.6), robot.oClawOpenAction(),
+                                        new SleepAction(0.5), robot.oClawOpenAction(),
                                         robot.oArmHookGrab(),
                                         new SleepAction(1.275),
                                         robot.oClawClosewAction(),
@@ -148,7 +148,7 @@ public class AutoOpHook extends LinearOpMode {
 
                         new ParallelAction(
                                 new SequentialAction(
-                                        new SleepAction(0.6), robot.oClawOpenAction(),
+                                        new SleepAction(0.5), robot.oClawOpenAction(),
                                         robot.oArmHookGrab(),
                                         new SleepAction(1.275),
                                         robot.oClawClosewAction(),
