@@ -146,7 +146,6 @@ public class Robot {
     public void waitForSeconds(int seconds){
         ElapsedTime timer = new ElapsedTime(ElapsedTime.Resolution.SECONDS);
         timer.reset();
-
         while(timer.time() < seconds){
         }
     }

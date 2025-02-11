@@ -40,24 +40,25 @@ public class MeepMeepHook {
                 .strafeToLinearHeading(new Vector2d(25, -36), Math.toRadians(90))
 
                 //push first
-                .splineToLinearHeading(new Pose2d(48, -7, Math.toRadians(90)),Math.toRadians(0))
-                .splineToLinearHeading(new Pose2d(48, -48, Math.toRadians(90)),Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(48, -12, Math.toRadians(90)),Math.toRadians(0))
+                .strafeToLinearHeading(new Vector2d(48, -48), Math.toRadians(90))
 
 
                 //push second
-                .splineToLinearHeading(new Pose2d(58, -7, Math.toRadians(90)), Math.toRadians(0))
+                .setReversed(true)
+                .splineToLinearHeading(new Pose2d(58, -12, Math.toRadians(90)), Math.toRadians(0))
                 .strafeToLinearHeading(new Vector2d(58, -48), Math.toRadians(90))
 
                 //push third
-                .splineToLinearHeading(new Pose2d(64, -7, Math.toRadians(90)), Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(64, -12, Math.toRadians(90)), Math.toRadians(0))
                 .strafeToLinearHeading(new Vector2d(64, -48), Math.toRadians(90))
 
 
 //
 //                //Second Hang
-                .strafeToLinearHeading(new Vector2d(40, -58), Math.toRadians(90))
-                .lineToY(-60.5)
                 .setReversed(false)
+                .splineToLinearHeading(new Pose2d(40, -62, Math.toRadians(90)), Math.toRadians(-90))
+
                 .strafeToLinearHeading(new Vector2d(6, -30), Math.toRadians(90))
 //                //Third Hang
                 .setReversed(true)

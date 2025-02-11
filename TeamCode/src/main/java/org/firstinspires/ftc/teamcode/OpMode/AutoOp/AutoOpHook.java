@@ -3,6 +3,8 @@ package org.firstinspires.ftc.teamcode.OpMode.AutoOp;
 import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.roadrunner.Action;
 import com.acmerobotics.roadrunner.Pose2d;
+import com.acmerobotics.roadrunner.VelConstraint;
+import com.acmerobotics.roadrunner.AccelConstraint;
 import com.acmerobotics.roadrunner.ParallelAction;
 import com.acmerobotics.roadrunner.SequentialAction;
 import com.acmerobotics.roadrunner.SleepAction;
@@ -26,6 +28,7 @@ public class AutoOpHook extends LinearOpMode {
         Pose2d initPos = new Pose2d(9,-60.5, Math.toRadians(90));
         RobotAuto robot = new RobotAuto(hardwareMap);
         MecanumDrive drive = new MecanumDrive(hardwareMap, initPos);
+        int t = 65;
 
         TrajectoryActionBuilder depositInit = drive.actionBuilder(initPos)
                 .lineToY(-29);
@@ -36,16 +39,16 @@ public class AutoOpHook extends LinearOpMode {
         TrajectoryActionBuilder push = depositback.endTrajectory().fresh()
                 .strafeToLinearHeading(new Vector2d(25, -36), Math.toRadians(90))
                 //push first
-                .splineToLinearHeading(new Pose2d(50, -12, Math.toRadians(90)),Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(50, -10, Math.toRadians(90)),Math.toRadians(0))
                 .strafeToLinearHeading(new Vector2d(50, -45), Math.toRadians(90))
 
                 //push second
-                .splineToLinearHeading(new Pose2d(59, -12, Math.toRadians(90)), Math.toRadians(0))
-                .strafeToLinearHeading(new Vector2d(59, -52), Math.toRadians(90))
+                .splineToLinearHeading(new Pose2d(59, -10, Math.toRadians(90)), Math.toRadians(0))
+                .strafeToLinearHeading(new Vector2d(59, -45), Math.toRadians(90))
                 //.strafeToLinearHeading(new Vector2d(59, -45), Math.toRadians(90))
 
                 //push third
-                .splineToLinearHeading(new Pose2d(68, -12, Math.toRadians(90)), Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(68, -10, Math.toRadians(90)), Math.toRadians(0))
                 .strafeToLinearHeading(new Vector2d(68, -52), Math.toRadians(90))
                 .strafeToLinearHeading(new Vector2d(50, -62), Math.toRadians(90));
 
@@ -82,7 +85,8 @@ public class AutoOpHook extends LinearOpMode {
                 .strafeToLinearHeading(new Vector2d(3,-27), Math.toRadians(90));
 
         TrajectoryActionBuilder park = depositFourth.endTrajectory().fresh()
-                .lineToY(-40);
+                .lineToY(-55);
+
 
 
         waitForStart();
@@ -103,6 +107,7 @@ public class AutoOpHook extends LinearOpMode {
 
         Actions.runBlocking(
                 new SequentialAction(
+                        
                         new ParallelAction(depositInitAction,robot.oArmHookDownAction(),robot.oClawClosewAction()),
                         robot.oArmHookReadyAction(),
 

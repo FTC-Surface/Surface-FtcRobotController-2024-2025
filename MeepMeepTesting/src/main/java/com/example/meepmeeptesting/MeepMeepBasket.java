@@ -17,14 +17,14 @@ public class MeepMeepBasket {
                 .build();
 
         myBot.runAction(myBot.getDrive().actionBuilder(new Pose2d(-35,-62, Math.toRadians(90)))
-                .strafeToLinearHeading(new Vector2d(-55,-53), Math.toRadians(45))
+                .strafeToLinearHeading(new Vector2d(-53,-53), Math.toRadians(45))
                 .waitSeconds(2)
 
                 .strafeToLinearHeading(new Vector2d(-48.25,-45), Math.toRadians(90))
                 .waitSeconds(1)
 
                 //Deposit First
-                .strafeToLinearHeading(new Vector2d(-55,-53), Math.toRadians(45))
+                .strafeToLinearHeading(new Vector2d(-53,-53), Math.toRadians(45))
                 .waitSeconds(2)
 
                 //Grab Second
@@ -32,7 +32,7 @@ public class MeepMeepBasket {
                 .waitSeconds(1)
 
                 //Deposit Second
-                .strafeToLinearHeading(new Vector2d(-55,-53), Math.toRadians(45))
+                .strafeToLinearHeading(new Vector2d(-53,-53), Math.toRadians(45))
                 .waitSeconds(2)
 
                 //Grab Third
@@ -40,7 +40,7 @@ public class MeepMeepBasket {
                 .waitSeconds(1)
 
                 //Deposit Third
-                .strafeToLinearHeading(new Vector2d(-55,-53), Math.toRadians(45))
+                .strafeToLinearHeading(new Vector2d(-53,-53), Math.toRadians(45))
                 .waitSeconds(2)
 
                 //Park
