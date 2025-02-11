@@ -118,6 +118,7 @@ public class Robot {
 
     public void iArmGrab(){iArm.downPos();}
     public void iArmStart(){iArm.upPos();}
+    public void iArmMiddle(){iArm.middlePos();}
 
     public void iWheelTakeBlock() {iWheel.takeBlock();}
     public void iWheelStopBlock() {iWheel.noBlock();}
@@ -145,7 +146,6 @@ public class Robot {
     public void waitForSeconds(int seconds){
         ElapsedTime timer = new ElapsedTime(ElapsedTime.Resolution.SECONDS);
         timer.reset();
-
         while(timer.time() < seconds){
         }
     }

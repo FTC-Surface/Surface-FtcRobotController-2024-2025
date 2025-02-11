@@ -72,11 +72,14 @@ public class OuttakeLinearSlides extends Subsystem {
         currentPos = getPos();
         targetPos = height;
 
-        if(currentPos > height){
+        if (Math.abs(currentPos-height)<=5)
+        {
+            outtakeElevMotPow = 0;
+        }
+        else if(currentPos > height){
             outtakeElevMotPow = -constants.OuttakeElevatorMotorPower;
         }
-
-        if(currentPos < height){
+        else if(currentPos < height){
             outtakeElevMotPow = constants.OuttakeElevatorMotorPower;
         }
 

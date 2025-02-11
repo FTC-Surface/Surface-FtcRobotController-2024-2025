@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.ArchivedCode;
+package org.firstinspires.ftc.teamcode.ArchivedCode.TeleOpArchived;
 
 public class CommentedOutTeleOpStuff {
 

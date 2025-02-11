@@ -53,8 +53,16 @@ public class IntakeLinearSlides extends Subsystem {
                 move(0);
                 break;
 
-            case OutIntake:
-                move(900);
+            case ShortRange:
+                move(300);
+                break;
+
+            case MidRange:
+                move(700);
+                break;
+
+            case LongRange:
+                move(1100);
                 break;
 
             case ManualForward:
@@ -100,12 +108,17 @@ public class IntakeLinearSlides extends Subsystem {
         currentPos = getPos();
         targetPos = height;
 
-        if(currentPos < height){
+        if (Math.abs(currentPos-height)<=5)
+        {
+            intakeElevPower = 0;
+        }
+        else if(currentPos < height){
             intakeElevPower = -constants.IntakeElevatorMotorPower;
         }
-        if(currentPos > height){
+        else if(currentPos > height){
             intakeElevPower = constants.IntakeElevatorMotorPower;
         }
+
 
         intakeLinearSlideOne.setTargetPosition(-height);
         intakeLinearSlideTwo.setTargetPosition(-height);
