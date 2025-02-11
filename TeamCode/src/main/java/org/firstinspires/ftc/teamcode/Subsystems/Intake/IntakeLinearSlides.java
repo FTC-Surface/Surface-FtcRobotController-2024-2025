@@ -108,12 +108,17 @@ public class IntakeLinearSlides extends Subsystem {
         currentPos = getPos();
         targetPos = height;
 
-        if(currentPos < height){
+        if (Math.abs(currentPos-height)<=5)
+        {
+            intakeElevPower = 0;
+        }
+        else if(currentPos < height){
             intakeElevPower = -constants.IntakeElevatorMotorPower;
         }
-        if(currentPos > height){
+        else if(currentPos > height){
             intakeElevPower = constants.IntakeElevatorMotorPower;
         }
+
 
         intakeLinearSlideOne.setTargetPosition(-height);
         intakeLinearSlideTwo.setTargetPosition(-height);

@@ -13,7 +13,7 @@ public class MeepMeepHook {
 
         RoadRunnerBotEntity myBot = new DefaultBotBuilder(meepMeep)
                 // Set bot constraints: maxVel, maxAccel, maxAngVel, maxAngAccel, track width
-                .setConstraints(60, 60, Math.toRadians(180), Math.toRadians(180), 18)
+                .setConstraints(65, 65, Math.toRadians(180), Math.toRadians(180), 18)
                 .build();
 
         myBot.runAction(myBot.getDrive().actionBuilder(new Pose2d(9,-60.5, Math.toRadians(90)))
@@ -41,7 +41,7 @@ public class MeepMeepHook {
 
                 //push first
                 .splineToLinearHeading(new Pose2d(48, -7, Math.toRadians(90)),Math.toRadians(0))
-                .strafeToLinearHeading(new Vector2d(48, -48), Math.toRadians(90))
+                .splineToLinearHeading(new Pose2d(48, -48, Math.toRadians(90)),Math.toRadians(0))
 
 
                 //push second
@@ -58,31 +58,30 @@ public class MeepMeepHook {
                 .strafeToLinearHeading(new Vector2d(40, -58), Math.toRadians(90))
                 .lineToY(-60.5)
                 .setReversed(false)
-                .splineToLinearHeading(new Pose2d(6,-30, Math.toRadians(90)), Math.toRadians(90))
-//
+                .strafeToLinearHeading(new Vector2d(6, -30), Math.toRadians(90))
 //                //Third Hang
                 .setReversed(true)
-                .splineToLinearHeading(new Pose2d(40,-58, Math.toRadians(90)), Math.toRadians(-90))
+                .strafeToLinearHeading(new Vector2d(40, -58), Math.toRadians(90))
                 .lineToY(-60.5)
                 .setReversed(false)
-                .splineToLinearHeading(new Pose2d(3,-30, Math.toRadians(90)), Math.toRadians(90))
+                .strafeToLinearHeading(new Vector2d(3, -30), Math.toRadians(90))
 //
 //                //Fourth Hang
                 .setReversed(true)
-                .splineToLinearHeading(new Pose2d(40,-58, Math.toRadians(90)), Math.toRadians(-90))
+                .strafeToLinearHeading(new Vector2d(40, -58), Math.toRadians(90))
                 .lineToY(-60.5)
                 .setReversed(false)
-                .splineToLinearHeading(new Pose2d(0,-30, Math.toRadians(90)), Math.toRadians(90))
+                .strafeToLinearHeading(new Vector2d(0, -30), Math.toRadians(90))
 //
 //                //Fifth Hang
                 .setReversed(true)
-                .splineToLinearHeading(new Pose2d(40,-58, Math.toRadians(90)), Math.toRadians(-90))
+                .strafeToLinearHeading(new Vector2d(40, -58), Math.toRadians(90))
                 .lineToY(-60.5)
                 .setReversed(false)
-                .splineToLinearHeading(new Pose2d(0,-30, Math.toRadians(90)), Math.toRadians(90))
+                .strafeToLinearHeading(new Vector2d(-3, -30), Math.toRadians(90))
 //
                 .setReversed(true)
-                .splineToLinearHeading(new Pose2d(40,-58, Math.toRadians(90)), Math.toRadians(-90))
+                .splineToLinearHeading(new Pose2d(40,-58, Math.toRadians(90)), Math.toRadians(-120))
 
                 .build());
 

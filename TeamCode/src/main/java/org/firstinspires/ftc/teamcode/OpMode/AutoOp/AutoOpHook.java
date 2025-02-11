@@ -31,21 +31,23 @@ public class AutoOpHook extends LinearOpMode {
                 .lineToY(-29);
 
         TrajectoryActionBuilder depositback = depositInit.endTrajectory().fresh()
-                .strafeToLinearHeading(new Vector2d(25, -36), Math.toRadians(90));
+                .lineToY(-36);
 
         TrajectoryActionBuilder push = depositback.endTrajectory().fresh()
+                .strafeToLinearHeading(new Vector2d(25, -36), Math.toRadians(90))
                 //push first
-                .splineToLinearHeading(new Pose2d(48, -7, Math.toRadians(90)),Math.toRadians(0))
-                .strafeToLinearHeading(new Vector2d(48, -48), Math.toRadians(90))
-
+                .splineToLinearHeading(new Pose2d(50, -12, Math.toRadians(90)),Math.toRadians(0))
+                .strafeToLinearHeading(new Vector2d(50, -45), Math.toRadians(90))
 
                 //push second
-                .splineToLinearHeading(new Pose2d(58, -7, Math.toRadians(90)), Math.toRadians(0))
-                .strafeToLinearHeading(new Vector2d(58, -48), Math.toRadians(90))
+                .splineToLinearHeading(new Pose2d(59, -12, Math.toRadians(90)), Math.toRadians(0))
+                .strafeToLinearHeading(new Vector2d(59, -52), Math.toRadians(90))
+                //.strafeToLinearHeading(new Vector2d(59, -45), Math.toRadians(90))
 
                 //push third
-                .splineToLinearHeading(new Pose2d(64, -7, Math.toRadians(90)), Math.toRadians(0))
-                .strafeToLinearHeading(new Vector2d(64, -48), Math.toRadians(90));
+                .splineToLinearHeading(new Pose2d(68, -12, Math.toRadians(90)), Math.toRadians(0))
+                .strafeToLinearHeading(new Vector2d(68, -52), Math.toRadians(90))
+                .strafeToLinearHeading(new Vector2d(50, -62), Math.toRadians(90));
 
 //        TrajectoryActionBuilder grabFirst = depositback.endTrajectory().fresh()
 //
@@ -65,39 +67,22 @@ public class AutoOpHook extends LinearOpMode {
 //                .waitSeconds(0.5);
 
         TrajectoryActionBuilder depositFirst = push.endTrajectory().fresh()
-                .splineToLinearHeading(new Pose2d(40,-58.5, Math.toRadians(90)), Math.toRadians(-90))
-                .waitSeconds(0.5)
-                .lineToY(-60.5)
-                .setReversed(false)
-                .splineToLinearHeading(new Pose2d(6,-29, Math.toRadians(90)), Math.toRadians(90));
+                .strafeToLinearHeading(new Vector2d(6,-27), Math.toRadians(90));
 
         TrajectoryActionBuilder depositSecond = depositFirst.endTrajectory().fresh()
-                .setReversed(true)
-                .splineToLinearHeading(new Pose2d(40,-56, Math.toRadians(90)), Math.toRadians(-90))
-                .waitSeconds(0.5)
-                .lineToY(-58.5)
-                .setReversed(false)
-                .splineToLinearHeading(new Pose2d(3,-29, Math.toRadians(90)), Math.toRadians(90));
+                .strafeToLinearHeading(new Vector2d(40,-62), Math.toRadians(90))
+                .strafeToLinearHeading(new Vector2d(5,-27), Math.toRadians(90));
 
         TrajectoryActionBuilder depositThird = depositSecond.endTrajectory().fresh()
-                .setReversed(true)
-                .splineToLinearHeading(new Pose2d(40,-58, Math.toRadians(90)), Math.toRadians(-90))
-                .waitSeconds(0.5)
-                .lineToY(-60.5)
-                .setReversed(false)
-                .splineToLinearHeading(new Pose2d(0,-29, Math.toRadians(90)), Math.toRadians(90));
+                .strafeToLinearHeading(new Vector2d(40,-62), Math.toRadians(90))
+                .strafeToLinearHeading(new Vector2d(4,-27), Math.toRadians(90));
 
         TrajectoryActionBuilder depositFourth = depositThird.endTrajectory().fresh()
-                .setReversed(true)
-                .splineToLinearHeading(new Pose2d(40,-58, Math.toRadians(90)), Math.toRadians(-90))
-                .waitSeconds(0.5)
-                .lineToY(-60.5)
-                .setReversed(false)
-                .splineToLinearHeading(new Pose2d(0,-29, Math.toRadians(90)), Math.toRadians(90));
+                .strafeToLinearHeading(new Vector2d(40,-62), Math.toRadians(90))
+                .strafeToLinearHeading(new Vector2d(3,-27), Math.toRadians(90));
 
         TrajectoryActionBuilder park = depositFourth.endTrajectory().fresh()
-                .setReversed(true)
-                .splineToLinearHeading(new Pose2d(40,-58, Math.toRadians(90)), Math.toRadians(-90));
+                .lineToY(-40);
 
 
         waitForStart();
@@ -121,52 +106,57 @@ public class AutoOpHook extends LinearOpMode {
                         new ParallelAction(depositInitAction,robot.oArmHookDownAction(),robot.oClawClosewAction()),
                         robot.oArmHookReadyAction(),
 
-                        depositbackAction,
-                        new ParallelAction(new SequentialAction(robot.oClawOpenAction(),robot.oArmHookGrab()), pushAction),
+                        new ParallelAction(depositbackAction, new SequentialAction(new SleepAction(0.35),robot.oClawOpenAction())),
+                        new ParallelAction(pushAction, new SequentialAction(new SleepAction(0.5),robot.oArmHookGrab())),
 
                         new ParallelAction(new SequentialAction(
-                                new SleepAction(2),
+                                new SleepAction(0),
                                 robot.oClawClosewAction(),
+                                new SleepAction(0.25),
                                 robot.oArmHookDownAction()),
                                 depositFirstAction),
                         robot.oArmHookReadyAction(),
 
                         new ParallelAction(
                                 new SequentialAction(
-                                    new SleepAction(1), robot.oClawOpenAction(),
+                                    new SleepAction(0.6), robot.oClawOpenAction(),
                                     robot.oArmHookGrab(),
-                                    new SleepAction(1),
+                                    new SleepAction(1.275),
                                     robot.oClawClosewAction(),
+                                        new SleepAction(0.5),
                                     robot.oArmHookDownAction()),
                                 depositSecondAction),
                         robot.oArmHookReadyAction(),
 
                         new ParallelAction(
                                 new SequentialAction(
-                                        new SleepAction(1), robot.oClawOpenAction(),
+                                        new SleepAction(0.6), robot.oClawOpenAction(),
                                         robot.oArmHookGrab(),
-                                        new SleepAction(1),
+                                        new SleepAction(1.275),
                                         robot.oClawClosewAction(),
+                                        new SleepAction(0.5),
                                         robot.oArmHookDownAction()),
                                 depositThirdAction),
                         robot.oArmHookReadyAction(),
 
                         new ParallelAction(
                                 new SequentialAction(
-                                        new SleepAction(1), robot.oClawOpenAction(),
+                                        new SleepAction(0.6), robot.oClawOpenAction(),
                                         robot.oArmHookGrab(),
-                                        new SleepAction(1),
+                                        new SleepAction(1.275),
                                         robot.oClawClosewAction(),
+                                        new SleepAction(0.5),
                                         robot.oArmHookDownAction()),
                                 depositFourthAction),
                         robot.oArmHookReadyAction(),
+
                         new ParallelAction(
+                                parkAction,
                                 new SequentialAction(
-                                        new SleepAction(1), robot.oClawOpenAction(),
-                                        robot.oArmHookGrab(),
-                                parkAction)
+                                        new SleepAction(0.4), robot.oClawOpenAction(),
+                                        robot.oArmHookGrab())
+                        )
                 )
-        )
         );
 
     }
