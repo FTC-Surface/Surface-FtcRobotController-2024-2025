@@ -44,6 +44,8 @@ public class TeleOpMode_Blue extends LinearOpMode{
         //Change depending on alliance color
         double r, g, b;
 
+        double drive_multiplier=0.8, strafe_multiplier=1, rotate_multiplier=0.8;
+
         //Change depending on alliance color
         Constants.eColorSensed allianceColor = Constants.eColorSensed.blue;
         Constants.eColorSensed enemyColor = Constants.eColorSensed.red;
@@ -89,7 +91,21 @@ public class TeleOpMode_Blue extends LinearOpMode{
             double strafe = -gamepad1.left_stick_x;
             double rotate = -gamepad1.right_stick_x;
             
-            robot.teleOpDrive(drive * 0.8, strafe * 1, rotate * 0.6);
+            robot.teleOpDrive(drive * drive_multiplier, strafe * strafe_multiplier, rotate * rotate_multiplier);
+            if(gamepad1.right_trigger>=0.5)//speed up
+            {
+                drive_multiplier=1;
+            }
+            else if(gamepad1.left_trigger>=0.5){//speed down
+                drive_multiplier=0.2;
+                strafe_multiplier=0.2;
+                rotate_multiplier=0.2;
+            }
+            else {
+                drive_multiplier=0.8;
+                strafe_multiplier=1;
+                rotate_multiplier=0.8;
+            }
 
 //********** Player Two Controls ***************************************************
 
