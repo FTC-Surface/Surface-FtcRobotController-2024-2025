@@ -36,7 +36,7 @@ def runPipeline(image, llrobot):
     img_blue_threshold = cv2.inRange(img_hsv, blue_lower_limit, blue_upper_limit)
     img_red_threshold = cv2.bitwise_or(img_red_threshold_one, img_red_threshold_two)
 
-    contours, _ = cv2.findContours(img_yellow_threshold, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    contours, _ = cv2.findContours(img_blue_threshold, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
     largestContour = np.array([[]])
     llpython = [0,0,0,0,0,0,0,0]
@@ -50,22 +50,6 @@ def runPipeline(image, llrobot):
         largestContour = max(contours, key=cv2.contourArea)
         epsilon = 0.02 * cv2.arcLength(largestContour, True)
         approx = cv2.approxPolyDP(largestContour, epsilon, True)
-
-
-        for contour in contours:
-
-            M = cv2.moments(contour)
-
-            if M["m00"] != 0:
-                center_x = int(M["m10"] / M["m00"])
-                center_y = int(M["m01"] / M["m00"])
-
-            distance = np.sqrt((crosshair_y-center_y) ** 2 + (crosshair_x-center_x) ** 2)
-
-            if distance < closestDistance:
-                largestContour = contour
-                closestDistance = distance
-
 
 
         if len(approx) == 4:
@@ -93,7 +77,7 @@ def runPipeline(image, llrobot):
         x,y,w,h = cv2.boundingRect(largestContour)
 
         cv2.rectangle(image,(x,y),(x+w,y+h),(0,255,255),2)
-        llpython = [degrees]
+        llpython = [1,x,y,w,h,9,8,7]
 
 
     # make sure to return a contour,
@@ -101,4 +85,4 @@ def runPipeline(image, llrobot):
     # and optionally an array of up to 8 values for the "llpython"
     # networktables array
 
-    return largestContour, image, llpython
+    return largestContour, image, llpython, degrees

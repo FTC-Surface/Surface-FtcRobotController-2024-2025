@@ -11,7 +11,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.teamcode.Robot.Robot;
 import org.firstinspires.ftc.teamcode.Subsystems.Constants;
 
-@TeleOp(name = "Mecanum Drive", group = "OpModes")
+@TeleOp(name = "Mecanum Drive Blue Alliance", group = "Tele Op Modes")
 @Config
 public class TeleOpMode_Blue extends LinearOpMode{
 
