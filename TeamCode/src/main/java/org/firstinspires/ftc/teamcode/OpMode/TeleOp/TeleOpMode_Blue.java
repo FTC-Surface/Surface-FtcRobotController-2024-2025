@@ -19,25 +19,24 @@ public class TeleOpMode_Blue extends LinearOpMode{
     public void runOpMode() throws InterruptedException {
         Robot robot = new Robot(hardwareMap);
 
-        ElapsedTime intakeTimer, outtakeTimer;
-        intakeTimer = outtakeTimer = new ElapsedTime(ElapsedTime.Resolution.MILLISECONDS);
+        ElapsedTime intakeTimer, outtakeTimer, blockinTimer;
+        intakeTimer = outtakeTimer = blockinTimer= new ElapsedTime(ElapsedTime.Resolution.MILLISECONDS);
 
         boolean xOpenClawDone, yOpenClawDone, yArmstartDone, yPressed, bumperPressed;
         xOpenClawDone = yOpenClawDone = yArmstartDone = yPressed = bumperPressed = false;
 
         boolean Outtakepressed1, Triggerpressed, stickmoved2, OuttakeclawDone, ArmTakeDone, IntakeDone,
-                OpenClawDone, LinearSlidereadyDone, OpenClawDone2, Arm_Start_position, IslidesIn;
+                OpenClawDone, LinearSlidereadyDone, OpenClawDone2, Arm_Start_position, IslidesIn, BlockIn;
 
         Outtakepressed1 = Triggerpressed = stickmoved2 = OuttakeclawDone = IntakeDone = ArmTakeDone =
-                OpenClawDone = LinearSlidereadyDone = OpenClawDone2 = false;
+                OpenClawDone = LinearSlidereadyDone = OpenClawDone2 = BlockIn = false;
 
         long OuttakeStartTime1 = 0;
         long OuttakeStartTime2 = 0;
         long OuttakeStartTime3 = 0;
-
         long IntakeStartTime1 = 0;
-
         long yActionStartTime = 0;
+        long blockinTimer1 = 0;
 
         boolean stickmoved1 = false;
         boolean hasBlock = false;
@@ -65,7 +64,7 @@ public class TeleOpMode_Blue extends LinearOpMode{
 
         outtakeTimer.reset();
         intakeTimer.reset();
-
+        blockinTimer.reset();
         while (opModeIsActive() && !isStopRequested()) {
 //********** Telemetry **********************************************************
 
@@ -245,7 +244,7 @@ public class TeleOpMode_Blue extends LinearOpMode{
 //
 //
 //Lagggggg
-            if (currentColor == allianceColor || currentColor == Constants.eColorSensed.yellow && !IntakeDone) {
+            if ((currentColor == allianceColor || currentColor == Constants.eColorSensed.yellow) && !IntakeDone) {
                 IntakeDone=true;
                 robot.iArmStart();
                 IntakeStartTime1 = (long) intakeTimer.milliseconds();
@@ -256,6 +255,14 @@ public class TeleOpMode_Blue extends LinearOpMode{
                     gamepad1.rumble(200);
                     gamepad2.rumble(200);
                 }
+                blockinTimer1 = (long) blockinTimer.milliseconds();
+                BlockIn=false;
+            }
+            //outtake block a bit to avoid double control
+            if(!BlockIn && blockinTimer.milliseconds()-blockinTimer1 <= 100)
+            {
+                robot.iWheelOutBlock();
+                BlockIn=true;
             }
 //
             if (Arm_Start_position && currentColor == Constants.eColorSensed.yellow && IslidesIn) {
@@ -280,7 +287,6 @@ public class TeleOpMode_Blue extends LinearOpMode{
                 g = 255;
                 b = 255;
             }
-
             gamepad1.setLedColor(r, g, b, 500);
             gamepad2.setLedColor(r, g, b, 500);
         }
