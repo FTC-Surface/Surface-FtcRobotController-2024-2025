@@ -138,7 +138,7 @@ public class Robot {
     public void oArmHookready(){oArm.hookreadyPos();}
 
     public LLResult limeLightGetResult(){return limelightCamera.returnResult();}
-    public double getAngle(){return limelightCamera.getAngle();}
+    public double limeLightgetAngle(){return limelightCamera.getAngle();}
     public void limelightStart(int index){limelightCamera.limelightStart(index);}
 
     public Constants.eColorSensed getColorResult(){return colorSensor.getColor();}
