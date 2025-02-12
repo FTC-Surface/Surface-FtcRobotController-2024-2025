@@ -51,9 +51,23 @@ def runPipeline(image, llrobot):
         epsilon = 0.02 * cv2.arcLength(largestContour, True)
         approx = cv2.approxPolyDP(largestContour, epsilon, True)
 
+        for contour in contours:
+
+              M = cv2.moments(contour)
+
+              if M["m00"] != 0:
+                  center_x = int(M["m10"] / M["m00"])
+                  center_y = int(M["m01"] / M["m00"])
+
+              distance = np.sqrt((crosshair_y-center_y) ** 2 + (crosshair_x-center_x) ** 2)
+
+               if distance < closestDistance:
+                   largestContour = contour
+                   closestDistance = distance
+
+
 
         if len(approx) == 4:
-
             for point in approx:
                 x1, y1 = point[0]
                 cv2.circle(image, (x1, y1), 5, (0, 0, 255), -1)
