@@ -36,7 +36,7 @@ def runPipeline(image, llrobot):
     img_blue_threshold = cv2.inRange(img_hsv, blue_lower_limit, blue_upper_limit)
     img_red_threshold = cv2.bitwise_or(img_red_threshold_one, img_red_threshold_two)
 
-    contours, _ = cv2.findContours(img_yellow_threshold, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    contours, _ = cv2.findContours(img_red_threshold, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
 
     largestContour = np.array([[]])
     llpython = [0,0,0,0,0,0,0,0]
