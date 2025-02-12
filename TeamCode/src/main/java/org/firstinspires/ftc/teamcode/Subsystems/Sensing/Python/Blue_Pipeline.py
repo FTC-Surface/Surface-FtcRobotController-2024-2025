@@ -4,6 +4,8 @@ import math
 
 # global variables go here:
 
+# Blue Balance: 1614
+# Red Balance: 500
 
 
 def drawDecorations(image):

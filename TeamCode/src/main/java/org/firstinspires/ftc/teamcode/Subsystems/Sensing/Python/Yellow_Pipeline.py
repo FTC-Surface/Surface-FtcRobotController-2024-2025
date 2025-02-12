@@ -4,7 +4,8 @@ import math
 
 # global variables go here:
 
-
+# Blue Balance: 665
+# Red Balance: 957
 
 def drawDecorations(image):
     cv2.putText(image,
