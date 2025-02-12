@@ -52,22 +52,6 @@ def runPipeline(image, llrobot):
         approx = cv2.approxPolyDP(largestContour, epsilon, True)
 
 
-        for contour in contours:
-
-            M = cv2.moments(contour)
-
-            if M["m00"] != 0:
-                center_x = int(M["m10"] / M["m00"])
-                center_y = int(M["m01"] / M["m00"])
-
-            distance = np.sqrt((crosshair_y-center_y) ** 2 + (crosshair_x-center_x) ** 2)
-
-            if distance < closestDistance:
-                largestContour = contour
-                closestDistance = distance
-
-
-
         if len(approx) == 4:
 
             for point in approx:
@@ -93,7 +77,7 @@ def runPipeline(image, llrobot):
         x,y,w,h = cv2.boundingRect(largestContour)
 
         cv2.rectangle(image,(x,y),(x+w,y+h),(0,255,255),2)
-        llpython = [degrees]
+        llpython = [1,x,y,w,h,9,8,7]
 
 
     # make sure to return a contour,
@@ -101,4 +85,4 @@ def runPipeline(image, llrobot):
     # and optionally an array of up to 8 values for the "llpython"
     # networktables array
 
-    return largestContour, image, llpython
+    return largestContour, image, llpython, degrees

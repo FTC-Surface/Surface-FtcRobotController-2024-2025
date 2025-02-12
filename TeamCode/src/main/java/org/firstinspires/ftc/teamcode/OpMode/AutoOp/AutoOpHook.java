@@ -109,20 +109,51 @@ public class AutoOpHook extends LinearOpMode {
 
         Actions.runBlocking(
                 new SequentialAction(
-                        
-                        new ParallelAction(depositInitAction,robot.oArmHookDownAction(),robot.oClawClosewAction()),
+
+                        //First Hang
+
+                        new ParallelAction(
+                                depositInitAction,
+                                robot.oArmHookDownAction(),
+                                robot.oClawClosewAction()
+                        ),
+
                         robot.oArmHookReadyAction(),
 
-                        new ParallelAction(depositbackAction, new SequentialAction(new SleepAction(0.25),robot.oClawOpenAction())),
-                        new ParallelAction(pushAction, new SequentialAction(new SleepAction(0.5),robot.oArmHookGrab())),
+                        new ParallelAction(
+                                depositbackAction,
+                                new SequentialAction(
+                                        new SleepAction(0.25),
+                                        robot.oClawOpenAction()
+                                )
+                        ),
 
-                        new ParallelAction(new SequentialAction(
-                                new SleepAction(0),
-                                robot.oClawClosewAction(),
-                                new SleepAction(0.25),
-                                robot.oArmHookDownAction()),
-                                depositFirstAction),
+                        //First, Second, Third Push
+
+                        new ParallelAction(
+                                pushAction,
+                                new SequentialAction(
+                                        new SleepAction(0.5),
+                                        robot.oArmHookGrab()
+                                )
+                        ),
+
+                        //Hang First
+
+                        new ParallelAction(
+                                new SequentialAction(
+                                        new SleepAction(0),
+                                        robot.oClawClosewAction(),
+                                        new SleepAction(0.25),
+                                        robot.oArmHookDownAction()
+                                ),
+
+                                depositFirstAction
+                        ),
+
                         robot.oArmHookReadyAction(),
+
+                        //Hang Second
 
                         new ParallelAction(
                                 new SequentialAction(
@@ -130,10 +161,16 @@ public class AutoOpHook extends LinearOpMode {
                                     robot.oArmHookGrab(),
                                     new SleepAction(1.275),
                                     robot.oClawClosewAction(),
-                                        new SleepAction(0.5),
-                                    robot.oArmHookDownAction()),
-                                depositSecondAction),
+                                    new SleepAction(0.5),
+                                    robot.oArmHookDownAction()
+                                ),
+
+                                depositSecondAction
+                        ),
+
                         robot.oArmHookReadyAction(),
+
+                        //Hang Third
 
                         new ParallelAction(
                                 new SequentialAction(
@@ -143,8 +180,12 @@ public class AutoOpHook extends LinearOpMode {
                                         robot.oClawClosewAction(),
                                         new SleepAction(0.5),
                                         robot.oArmHookDownAction()),
-                                depositThirdAction),
+                                depositThirdAction
+                        ),
+
                         robot.oArmHookReadyAction(),
+
+                        //Hang Fourth
 
                         new ParallelAction(
                                 new SequentialAction(
@@ -154,14 +195,20 @@ public class AutoOpHook extends LinearOpMode {
                                         robot.oClawClosewAction(),
                                         new SleepAction(0.5),
                                         robot.oArmHookDownAction()),
-                                depositFourthAction),
+                                depositFourthAction
+                        ),
+
                         robot.oArmHookReadyAction(),
+
+                        //Park
 
                         new ParallelAction(
                                 parkAction,
                                 new SequentialAction(
-                                        new SleepAction(0.4), robot.oClawOpenAction(),
-                                        robot.oArmHookGrab())
+                                        new SleepAction(0.4),
+                                        robot.oClawOpenAction(),
+                                        robot.oArmHookGrab()
+                                )
                         )
                 )
         );

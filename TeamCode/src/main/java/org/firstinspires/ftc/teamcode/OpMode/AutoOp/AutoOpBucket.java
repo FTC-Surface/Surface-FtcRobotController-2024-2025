@@ -2,8 +2,10 @@ package org.firstinspires.ftc.teamcode.OpMode.AutoOp;
 
 import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.roadrunner.Action;
+import com.acmerobotics.roadrunner.ParallelAction;
 import com.acmerobotics.roadrunner.Pose2d;
 import com.acmerobotics.roadrunner.SequentialAction;
+import com.acmerobotics.roadrunner.SleepAction;
 import com.acmerobotics.roadrunner.TrajectoryActionBuilder;
 import com.acmerobotics.roadrunner.Vector2d;
 import com.acmerobotics.roadrunner.ftc.Actions;
@@ -12,6 +14,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.Newroadrunner.MecanumDrive;
+import org.firstinspires.ftc.teamcode.Robot.Robot;
 import org.firstinspires.ftc.teamcode.Robot.RobotAuto;
 
 @Config
@@ -78,14 +81,184 @@ public class AutoOpBucket extends LinearOpMode {
 
             Actions.runBlocking(
                     new SequentialAction(
-                            depositInitAction,
-                            grabFirstAction,
-                            depositFirstAction,
-                            grabSecondAction,
-                            depositSecondAction,
-                            grabThirdAction,
-                            depositThirdAction,
-                            parkAction
+                            //Time should probably be changed for every action......
+                            //First Basket
+
+                            new ParallelAction(
+                                robot.oClawClosewAction(),
+                                robot.oArmDumpReadyAction(),
+                                robot.oSlidesBucketAction(),
+                                depositInitAction
+                            ),
+
+                            new SequentialAction(
+                                robot.oArmDumpReleaseAction(),
+                                new SleepAction(0.5),
+                                robot.oClawOpenAction(),
+                                new SleepAction(0.2)
+                            ),
+
+                            //Grab First
+
+                            new ParallelAction(
+                                grabFirstAction,
+
+                                new SequentialAction(
+                                    new SleepAction(0.1),
+                                    robot.oSlideReadyAction(),
+                                    robot.oArmTakeAction(),
+                                    robot.iArmGrabAction()
+                                )
+                            ),
+
+                            new SequentialAction(
+                                //Change this to match location of block
+                                robot.iSlideLowAction(),
+                                new SleepAction(1),
+                                robot.iWheelTakeBlockAction(),
+                                new SleepAction(0.2),
+                                robot.iWheelNoBlockAction()
+                            ),
+
+                            //Deposit First
+
+                            new ParallelAction(
+                                depositFirstAction,
+                                robot.iArmStartAction(),
+                                robot.iSlideInIntakeAction(),
+
+                                new SequentialAction(
+                                    new SleepAction(1),
+                                    robot.iWheelOutBlockAction(),
+                                    new SleepAction(0.2),
+                                    robot.iWheelNoBlockAction(),
+                                    robot.oSlideGroundAction(),
+                                    new SleepAction(0.5),
+                                    robot.oClawClosewAction()
+                                )
+                            ),
+
+                            new SequentialAction(
+                                robot.oArmDumpReadyAction(),
+                                robot.oSlidesBucketAction(),
+                                new SleepAction(4),
+                                robot.oArmDumpReleaseAction(),
+                                new SleepAction(0.5),
+                                robot.oClawOpenAction(),
+                                new SleepAction(0.2)
+                            ),
+
+                            //Grab Second
+
+                            new ParallelAction(
+                                    grabSecondAction,
+
+                                    new SequentialAction(
+                                            new SleepAction(0.1),
+                                            robot.oSlideReadyAction(),
+                                            robot.oArmTakeAction(),
+                                            robot.iArmGrabAction()
+                                    )
+                            ),
+
+                            new SequentialAction(
+                                    //Change this to match location of block
+                                    robot.iSlideLowAction(),
+                                    new SleepAction(1),
+                                    robot.iWheelTakeBlockAction(),
+                                    new SleepAction(0.2),
+                                    robot.iWheelNoBlockAction()
+                            ),
+
+                            //Deposit Second
+
+                            new ParallelAction(
+                                    depositSecondAction,
+                                    robot.iArmStartAction(),
+                                    robot.iSlideInIntakeAction(),
+
+                                    new SequentialAction(
+                                            new SleepAction(1),
+                                            robot.iWheelOutBlockAction(),
+                                            new SleepAction(0.2),
+                                            robot.iWheelNoBlockAction(),
+                                            robot.oSlideGroundAction(),
+                                            new SleepAction(0.5),
+                                            robot.oClawClosewAction()
+                                    )
+                            ),
+
+                            new SequentialAction(
+                                    robot.oArmDumpReadyAction(),
+                                    robot.oSlidesBucketAction(),
+                                    new SleepAction(4),
+                                    robot.oArmDumpReleaseAction(),
+                                    new SleepAction(0.5),
+                                    robot.oClawOpenAction(),
+                                    new SleepAction(0.2)
+                            ),
+
+                            //Grab Third
+
+                            new ParallelAction(
+                                    grabThirdAction,
+
+                                    new SequentialAction(
+                                            new SleepAction(0.1),
+                                            robot.oSlideReadyAction(),
+                                            robot.oArmTakeAction(),
+                                            robot.iArmGrabAction()
+                                    )
+                            ),
+
+                            new SequentialAction(
+                                    //Change this to match location of block
+                                    robot.iSlideMediumAction(),
+                                    new SleepAction(2),
+                                    robot.iWheelTakeBlockAction(),
+                                    new SleepAction(0.2),
+                                    robot.iWheelNoBlockAction()
+                            ),
+
+                            //Deposit Third
+
+                            new ParallelAction(
+                                    depositThirdAction,
+                                    robot.iArmStartAction(),
+                                    robot.iSlideInIntakeAction(),
+
+                                    new SequentialAction(
+                                            new SleepAction(2),
+                                            robot.iWheelOutBlockAction(),
+                                            new SleepAction(0.2),
+                                            robot.iWheelNoBlockAction(),
+                                            robot.oSlideGroundAction(),
+                                            new SleepAction(0.5),
+                                            robot.oClawClosewAction()
+                                    )
+                            ),
+
+                            new SequentialAction(
+                                    robot.oArmDumpReadyAction(),
+                                    robot.oSlidesBucketAction(),
+                                    new SleepAction(4),
+                                    robot.oArmDumpReleaseAction(),
+                                    new SleepAction(0.5),
+                                    robot.oClawOpenAction(),
+                                    new SleepAction(0.2)
+                            ),
+
+                            //Park
+
+                            new ParallelAction(
+                                    parkAction,
+                                    new SequentialAction(
+                                            new SleepAction(0.2),
+                                            robot.oArmTakeAction(),
+                                            robot.oSlideReadyAction(),
+                                            robot.iArmGrabAction()
+                                    )
+                            )
                     )
             );
         }
