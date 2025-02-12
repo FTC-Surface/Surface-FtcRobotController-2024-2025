@@ -49,7 +49,7 @@ def runPipeline(image, llrobot):
 
     centroid_x, centroid_y = 0, 0
 
-    closestDistance = 100;
+    closestDistance = 100
 
     if len(contours) > 0:
         cv2.drawContours(image, contours, -1, (0, 255, 0), 2)

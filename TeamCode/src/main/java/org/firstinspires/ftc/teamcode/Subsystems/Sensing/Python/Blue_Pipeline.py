@@ -45,6 +45,16 @@ def runPipeline(image, llrobot):
     verticies = [0, 0, 0, 0]
     angle = 0
 
+    distance = 0
+    center_x, center_y = 0, 0
+
+    height, width = image.shape[:2]
+    crosshair_x, crosshair_y = width // 2, height // 2
+
+    centroid_x, centroid_y = 0, 0
+
+    closestDistance = 100
+
     if len(contours) > 0:
         cv2.drawContours(image, contours, -1, (0, 255, 0), 2)
         largestContour = max(contours, key=cv2.contourArea)
@@ -61,7 +71,7 @@ def runPipeline(image, llrobot):
 
               distance = np.sqrt((crosshair_y-center_y) ** 2 + (crosshair_x-center_x) ** 2)
 
-               if distance < closestDistance:
+              if distance < closestDistance:
                    largestContour = contour
                    closestDistance = distance
 
@@ -91,12 +101,17 @@ def runPipeline(image, llrobot):
         x,y,w,h = cv2.boundingRect(largestContour)
 
         cv2.rectangle(image,(x,y),(x+w,y+h),(0,255,255),2)
-        llpython = [degrees]
 
+
+        try:
+            llpython = [degrees]
+
+        except UnboundLocalError:
+            llpython = [-3]
 
     # make sure to return a contour,
     # an image to stream,
     # and optionally an array of up to 8 values for the "llpython"
     # networktables array
 
-    return largestContour, image, llpython, degrees
+    return largestContour, image, llpython
