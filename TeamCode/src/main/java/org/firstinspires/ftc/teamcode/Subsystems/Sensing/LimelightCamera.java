@@ -22,10 +22,11 @@ public class LimelightCamera extends Subsystem {
     }
 
     public void limelightStart(int index){
-        limelight.pipelineSwitch(0);
+        limelight.pipelineSwitch(index);
 
         limelight.start();
     }
 
     public LLResult returnResult(){return limelight.getLatestResult();}
+    public double getAngle(){return returnResult().getPythonOutput()[0];}
 }

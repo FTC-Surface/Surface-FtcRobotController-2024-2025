@@ -93,7 +93,7 @@ def runPipeline(image, llrobot):
         x,y,w,h = cv2.boundingRect(largestContour)
 
         cv2.rectangle(image,(x,y),(x+w,y+h),(0,255,255),2)
-        llpython = [1,x,y,w,h,9,8,7]
+        llpython = [degrees]
 
 
     # make sure to return a contour,
@@ -101,4 +101,4 @@ def runPipeline(image, llrobot):
     # and optionally an array of up to 8 values for the "llpython"
     # networktables array
 
-    return largestContour, image, llpython, degrees
+    return largestContour, image, llpython
