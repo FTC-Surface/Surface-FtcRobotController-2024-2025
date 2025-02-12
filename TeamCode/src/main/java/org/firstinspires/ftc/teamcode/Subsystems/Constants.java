@@ -62,8 +62,8 @@ public class Constants {
     public final double IntakeElevatorMotorPower = 1;
 
     //Intake
-    public final double IntakeWheelPowIn = 0.9;
-    public final double IntakeWheelPowOut =-0.75;
+    public final double IntakeWheelPowIn = 1;
+    public final double IntakeWheelPowOut =-0.5;
 
     public final double IntakeArmStartPos = 0.1;
     public final double IntakeArmGrabPos = 0.53;

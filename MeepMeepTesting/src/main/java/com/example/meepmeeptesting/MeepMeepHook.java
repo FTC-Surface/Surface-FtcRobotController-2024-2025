@@ -36,48 +36,48 @@ public class MeepMeepHook {
 //                .turn(Math.toRadians(-60))
 //                .waitSeconds(0.5)
 
-                //push bot
+                //First Hang
                 .strafeToLinearHeading(new Vector2d(25, -36), Math.toRadians(90))
 
                 //push first
                 .splineToLinearHeading(new Pose2d(48, -12, Math.toRadians(90)),Math.toRadians(0))
                 .strafeToLinearHeading(new Vector2d(48, -48), Math.toRadians(90))
 
-
                 //push second
                 .setReversed(true)
                 .splineToLinearHeading(new Pose2d(48, -12, Math.toRadians(90)), Math.toRadians(0))
                 .lineToX(58)
                 .strafeToLinearHeading(new Vector2d(58, -48), Math.toRadians(90))
+
                 //push third
                 .splineToLinearHeading(new Pose2d(58, -12, Math.toRadians(90)), Math.toRadians(0))
                 .lineToX(64)
                 .strafeToLinearHeading(new Vector2d(64, -48), Math.toRadians(90))
 
-////
-
+                //Second Hang
                 .strafeToLinearHeading(new Vector2d(6, -30), Math.toRadians(90))
-//                //Third Hang
+
+                //Third Hang
                 .setReversed(true)
                 .strafeToLinearHeading(new Vector2d(40, -58), Math.toRadians(90))
                 .lineToY(-60.5)
                 .setReversed(false)
                 .strafeToLinearHeading(new Vector2d(3, -30), Math.toRadians(90))
-//
-//                //Fourth Hang
+
+                //Fourth Hang
                 .setReversed(true)
                 .strafeToLinearHeading(new Vector2d(40, -58), Math.toRadians(90))
                 .lineToY(-60.5)
                 .setReversed(false)
                 .strafeToLinearHeading(new Vector2d(0, -30), Math.toRadians(90))
-//
-//                //Fifth Hang
+
+                //Fifth Hang
                 .setReversed(true)
                 .strafeToLinearHeading(new Vector2d(40, -58), Math.toRadians(90))
                 .lineToY(-60.5)
                 .setReversed(false)
                 .strafeToLinearHeading(new Vector2d(-3, -30), Math.toRadians(90))
-//
+
                 .setReversed(true)
                 .splineToLinearHeading(new Pose2d(40,-58, Math.toRadians(90)), Math.toRadians(-120))
 

@@ -98,150 +98,23 @@ public class RobotAuto {
 
 //********************************** Actions *****************************************
 
-    public class OSlidesAction {
-        public Action bucket() {return new Bucket();}
-        public Action hookUp() {return new HookUp();}
-        public Action hookGrab() {return new HookGrab();}
-        public Action hookReady() {return new HookReady();}
-        public Action ground() {return new Ground();}
-        public Action Ready() {return new Ready();}
+    public Action oSlidesBucketAction() {return new InstantAction(() -> oElevMove(Constants.eOElevatorState.Basket));}
+    public Action oSlideHookUpAction() {return new InstantAction(() -> oElevMove(Constants.eOElevatorState.Clip_Hang));}
+    public Action oSlideHookGrabAction() {return new InstantAction(() -> oElevMove(Constants.eOElevatorState.Clip_Grab));}
+    public Action oSlideHookReadyAction() {return new InstantAction(() -> oElevMove(Constants.eOElevatorState.Clip_Ready));}
+    public Action oSlideGroundAction() {return new InstantAction(() -> oElevMove(Constants.eOElevatorState.Ground));}
+    public Action oSlideReadyAction() {return new InstantAction(() -> oElevMove(Constants.eOElevatorState.Ready));}
 
-        private class Bucket implements Action {
-             boolean initialized = false;
+    public Action iSlideOutIntakeAction(){return new InstantAction(() -> iElevMove(Constants.eIElevatorState.OutIntake));}
+    public Action iSlideInIntakeAction(){return new InstantAction(() -> iElevMove(Constants.eIElevatorState.InIntake));}
+    public Action iSlideLowAction(){return new InstantAction(() -> iElevMove(Constants.eIElevatorState.ShortRange));}
+    public Action iSlideMediumAction(){return new InstantAction(() -> iElevMove(Constants.eIElevatorState.MidRange));}
+    public Action iSlideHighAction(){return new InstantAction(() -> iElevMove(Constants.eIElevatorState.LongRange));}
 
-            @Override
-            public boolean run(@NonNull TelemetryPacket telemetryPacket) {
-                if (!initialized) {
-                    oElevMove(Constants.eOElevatorState.Basket);
-                    initialized = true;
-                }
-
-                double pos = oElevGetHeight();
-
-                return pos < 1998.0;
-            }
-        }
-        private class HookUp implements Action {
-             boolean initialized = false;
-
-            @Override
-            public boolean run(@NonNull TelemetryPacket telemetryPacket) {
-                if (!initialized) {
-                    oElevMove(Constants.eOElevatorState.Clip_Hang);
-                    initialized = true;
-                }
-
-                double pos = oElevGetHeight();
-
-                if (pos > 998.0 && pos < 1002.0) {
-                    return false;
-                } else {
-                    return true;
-                }
-            }
-        }
-        private class HookGrab implements Action {
-             boolean initialized = false;
-
-            @Override
-            public boolean run(@NonNull TelemetryPacket telemetryPacket) {
-                if (!initialized) {
-                    oElevMove(Constants.eOElevatorState.Clip_Grab);
-                    initialized = true;
-                }
-
-                double pos = oElevGetHeight();
-
-                return pos >= 2.0;
-            }
-        }
-        private class HookReady implements Action{
-             boolean initialized = false;
-
-            @Override
-            public boolean run(@NonNull TelemetryPacket telemetryPacket) {
-                if (!initialized) {
-                    oElevMove(Constants.eOElevatorState.Clip_Ready);
-                    initialized = true;
-                }
-
-                double pos = oElevGetHeight();
-
-                return pos >= 2.0;
-            }
-        }
-        private class Ground implements Action {
-             boolean initialized = false;
-
-            @Override
-            public boolean run(@NonNull TelemetryPacket telemetryPacket) {
-                if (!initialized) {
-                    oElevMove(Constants.eOElevatorState.Ground);
-                    initialized = true;
-                }
-
-                double pos = oElevGetHeight();
-
-                return pos >= 2.0;
-            }
-        }
-        private class Ready implements Action {
-            private boolean initialized = false;
-
-            @Override
-            public boolean run(@NonNull TelemetryPacket telemetryPacket) {
-                if (!initialized) {
-                    oElevMove(Constants.eOElevatorState.Ready);
-                    initialized = true;
-                }
-
-                double pos = oElevGetHeight();
-                if (pos > 198.0 && pos < 202.0) {
-                    return false;
-                } else {
-                    return true;
-                }
-            }
-        }
-    }
     public class ISlideAction {
-        public Action inIntake() {return new InIntake();}
-        public Action outIntake() {return new OutIntake();}
-        public Action manualForward(int pos) {return new ManualForward(pos);}
-        public Action manualBack(int pos) {return new ManualBack(pos);}
+        public Action manualForwardAction(int pos) {return new ManualForward(pos);}
+        public Action manualBackAction(int pos) {return new ManualBack(pos);}
 
-        private class InIntake implements Action{
-
-            private boolean initialized = false;
-
-            @Override
-            public boolean run(@NonNull TelemetryPacket telemetryPacket) {
-                if(!initialized){
-                    iElevMove(Constants.eIElevatorState.InIntake);
-                    initialized = false;
-                }
-
-                double pos = iElevGetHeight();
-
-                return pos > 2;
-            }
-        }
-        private class OutIntake implements Action{
-
-            private boolean initialized = false;
-
-            @Override
-            public boolean run(@NonNull TelemetryPacket telemetryPacket) {
-                if(!initialized){
-                    iElevMove(Constants.eIElevatorState.OutIntake);
-                    initialized = false;
-                }
-
-                double pos = iElevGetHeight();
-
-                return pos < 898;
-            }
-        }
         private class ManualForward implements Action{
 
             private boolean initialized = false;
