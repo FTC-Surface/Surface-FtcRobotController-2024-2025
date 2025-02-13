@@ -28,5 +28,13 @@ public class LimelightCamera extends Subsystem {
     }
 
     public LLResult returnResult(){return limelight.getLatestResult();}
-    public double getAngle(){return returnResult().getPythonOutput()[0];}
+    public double getAngle(){
+        if (returnResult().getPythonOutput()[0] != -3) {
+            return returnResult().getPythonOutput()[0];
+        }
+
+        else {
+            return 0.00;
+        }
+    }
 }
