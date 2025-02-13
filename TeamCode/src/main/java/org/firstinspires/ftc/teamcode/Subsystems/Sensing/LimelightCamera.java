@@ -37,4 +37,8 @@ public class LimelightCamera extends Subsystem {
             return 0.00;
         }
     }
+
+    public double getMovementAngle() {
+        return returnResult().getTx();
+    }
 }
