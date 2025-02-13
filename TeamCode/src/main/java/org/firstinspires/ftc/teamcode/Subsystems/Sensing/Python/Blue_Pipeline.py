@@ -77,8 +77,6 @@ def runPipeline(image, llrobot):
                    largestContour = contour
                    closestDistance = distance
 
-
-
         if len(approx) == 4:
             for point in approx:
                 x1, y1 = point[0]
