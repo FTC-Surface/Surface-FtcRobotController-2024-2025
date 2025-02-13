@@ -13,11 +13,13 @@ public class OuttakeSubmarineTest extends LinearOpMode {
     Servo Wrist;
     Servo Claw;
     Servo Sub;
+    Servo SpeciArm;
 
     public static double ArmTarget = 0;
     public static double WristTarget = 0;
     public static double ClawTarget = 0.3;
     public static double SubTarget = 0;
+    public static double SpeciArmTarget = 0;
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -26,6 +28,7 @@ public class OuttakeSubmarineTest extends LinearOpMode {
         Wrist.setDirection(Servo.Direction.REVERSE);
         Claw = hardwareMap.get(Servo.class, "OClaw");
         Sub = hardwareMap.get(Servo.class, "Outtake Sub");
+        SpeciArm = hardwareMap.get(Servo.class, "Speci Arm");
 
         waitForStart();
 
@@ -34,6 +37,7 @@ public class OuttakeSubmarineTest extends LinearOpMode {
             Wrist.setPosition(WristTarget);
             Claw.setPosition((ClawTarget));
             Sub.setPosition(SubTarget);
+            SpeciArm.setPosition(SpeciArmTarget);
         }
     }
 }
