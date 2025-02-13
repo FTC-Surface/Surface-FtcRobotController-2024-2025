@@ -9,16 +9,12 @@ import com.qualcomm.robotcore.hardware.Servo;
 @Config
 public class OuttakeSubmarineTest extends LinearOpMode {
 
-    Servo Arm;
-    Servo Wrist;
-    Servo Claw;
-    Servo Sub;
-    Servo SpeciArm;
+    Servo Arm, Wrist, Claw, SubVerticalSlides, SubHorizontalSlide, SpeciArm;
 
     public static double ArmTarget = 0;
     public static double WristTarget = 0;
     public static double ClawTarget = 0.3;
-    public static double SubTarget = 0;
+    public static double SubVTarget = 0, SubHTarget=0;
     public static double SpeciArmTarget = 0;
 
     @Override
@@ -27,8 +23,9 @@ public class OuttakeSubmarineTest extends LinearOpMode {
         Wrist = hardwareMap.get(Servo.class, "Outtake Wrist Right");
         Wrist.setDirection(Servo.Direction.REVERSE);
         Claw = hardwareMap.get(Servo.class, "OClaw");
-        Sub = hardwareMap.get(Servo.class, "Outtake Sub");
+        SubVerticalSlides = hardwareMap.get(Servo.class, "SubVerticalSlides");
         SpeciArm = hardwareMap.get(Servo.class, "Speci Arm");
+        SubHorizontalSlide = hardwareMap.get(Servo.class, "SubHorizontalSlides");
 
         waitForStart();
 
@@ -36,7 +33,8 @@ public class OuttakeSubmarineTest extends LinearOpMode {
             Arm.setPosition(ArmTarget);
             Wrist.setPosition(WristTarget);
             Claw.setPosition((ClawTarget));
-            Sub.setPosition(SubTarget);
+            SubVerticalSlides.setPosition(SubVTarget);
+            SubHorizontalSlide.setPosition(SubHTarget);
             SpeciArm.setPosition(SpeciArmTarget);
         }
     }
