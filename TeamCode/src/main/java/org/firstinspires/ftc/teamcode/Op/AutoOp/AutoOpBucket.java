@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.OpMode.AutoOp;
+package org.firstinspires.ftc.teamcode.Op.AutoOp;
 
 import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.roadrunner.Action;

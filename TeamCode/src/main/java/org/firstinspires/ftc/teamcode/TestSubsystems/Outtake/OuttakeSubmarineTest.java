@@ -24,7 +24,7 @@ public class OuttakeSubmarineTest extends LinearOpMode {
         Wrist.setDirection(Servo.Direction.REVERSE);
         Claw = hardwareMap.get(Servo.class, "OClaw");
         SubVerticalSlides = hardwareMap.get(Servo.class, "SubVerticalSlides");
-        SpeciArm = hardwareMap.get(Servo.class, "Speci Arm");
+        //SpeciArm = hardwareMap.get(Servo.class, "Speci Arm");
         SubHorizontalSlide = hardwareMap.get(Servo.class, "SubHorizontalSlides");
 
         waitForStart();
@@ -35,7 +35,7 @@ public class OuttakeSubmarineTest extends LinearOpMode {
 //            Claw.setPosition((ClawTarget));
             SubVerticalSlides.setPosition(SubVTarget);
             SubHorizontalSlide.setPosition(SubHTarget);
-            SpeciArm.setPosition(SpeciArmTarget);
+            //SpeciArm.setPosition(SpeciArmTarget);
         }
     }
 }

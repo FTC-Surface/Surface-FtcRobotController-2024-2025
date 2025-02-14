@@ -1,9 +1,8 @@
-package org.firstinspires.ftc.teamcode.OpMode.TeleOp;
+package org.firstinspires.ftc.teamcode.Op.Teleop;
 
 import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
-
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.ElapsedTime;
@@ -11,9 +10,9 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.teamcode.Robot.Robot;
 import org.firstinspires.ftc.teamcode.Subsystems.Constants;
 
-@TeleOp(name = "Mecanum Blue", group = "Tele Op Modes")
+@TeleOp(name = "Mecanum Red", group = "Tele Op Modes")
 @Config
-public class TeleOpMode_Blue extends LinearOpMode{
+public class TeleOpMode_Red extends LinearOpMode{
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -47,8 +46,8 @@ public class TeleOpMode_Blue extends LinearOpMode{
         double drive_multiplier=0.8, strafe_multiplier=1, rotate_multiplier=0.8;
 
         //Change depending on alliance color
-        Constants.eColorSensed allianceColor = Constants.eColorSensed.blue;
-        Constants.eColorSensed enemyColor = Constants.eColorSensed.red;
+        Constants.eColorSensed allianceColor = Constants.eColorSensed.red;
+        Constants.eColorSensed enemyColor = Constants.eColorSensed.blue;
         Constants.eColorSensed currentColor;
 
         telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
@@ -80,8 +79,8 @@ public class TeleOpMode_Blue extends LinearOpMode{
 //
 //            telemetry.update();
 //
-//            robot.iSlideLoop();
-//            robot.oSlideLoop();
+            robot.iSlideLoop();
+            robot.oSlideLoop();
             currentColor= robot.getColorResult();
 
 //********** Player One Controls ***************************************************
@@ -92,15 +91,15 @@ public class TeleOpMode_Blue extends LinearOpMode{
             double rotate = -gamepad1.right_stick_x;
             
             robot.teleOpDrive(drive * drive_multiplier, strafe * strafe_multiplier, rotate * rotate_multiplier);
-            if (gamepad1.right_trigger >= 0.3) {
-                robot.iElevMove(Constants.eIElevatorState.ManualForward);
-                IslidesIn = false;
-            } else if (gamepad1.left_trigger >= 0.3) {
-                robot.iElevMove(Constants.eIElevatorState.ManualBackward);
-                IslidesIn = false;
-            } else {
-                robot.iElevMove(Constants.eIElevatorState.ManualStop);
-                IslidesIn = false;
+            if(gamepad1.right_trigger>=0.5)//speed up
+            {
+                drive_multiplier=1;
+            }
+            else if(gamepad1.left_trigger>=0.5){//speed down
+
+            }
+            else {
+                
             }
 
 //********** Player Two Controls ***************************************************
@@ -137,9 +136,9 @@ public class TeleOpMode_Blue extends LinearOpMode{
 //            }
 
 //            //Outtake_claw
-//            if (gamepad2.right_bumper) {
-//                robot.oCloseClaw();
-//            }
+            if (gamepad2.right_bumper) {
+                robot.oArmHookready();
+            }
 //            if (gamepad2.left_bumper)
 //                robot.oOpenClaw();
 //
@@ -162,10 +161,6 @@ public class TeleOpMode_Blue extends LinearOpMode{
                 robot.oArmHookgrab();
             }
 //
-            if(gamepad2.left_stick_button)
-            {
-                robot.oArmHookready();
-            }
 //
 //
 //            if(gamepad2.square && !stickmoved1) {
@@ -232,7 +227,27 @@ public class TeleOpMode_Blue extends LinearOpMode{
             }
 
 
-
+//            if (gamepad2.right_stick_y <= -0.3) {
+//                robot.iElevMove(Constants.eIElevatorState.ManualForward);
+//                IslidesIn = false;
+//            } else if (gamepad2.right_stick_y >= 0.3) {
+//                robot.iElevMove(Constants.eIElevatorState.ManualBackward);
+//                IslidesIn = false;
+//            } else {
+//                robot.iElevMove(Constants.eIElevatorState.ManualStop);
+//                IslidesIn = false;
+//            }
+//
+//            if (gamepad2.right_stick_y <= -0.3) {
+//                robot.iElevMove(Constants.eIElevatorState.ManualForward);
+//                IslidesIn = false;
+//            } else if (gamepad2.right_stick_y >= 0.3) {
+//                robot.iElevMove(Constants.eIElevatorState.ManualBackward);
+//                IslidesIn = false;
+//            } else {
+//                robot.iElevMove(Constants.eIElevatorState.ManualStop);
+//                IslidesIn = false;
+//            }
 
 
             if (gamepad2.right_trigger >= 0.3 && currentColor != allianceColor && currentColor != Constants.eColorSensed.yellow) {//specifically for red
@@ -247,22 +262,19 @@ public class TeleOpMode_Blue extends LinearOpMode{
 //
 //
 //Lagggggg
-            if ((currentColor == allianceColor || currentColor == Constants.eColorSensed.yellow) && !IntakeDone) {
+            if ((currentColor == allianceColor) && !IntakeDone) {
                 IntakeDone=true;
                 robot.iArmStart();
                 IntakeStartTime1 = (long) intakeTimer.milliseconds();
                 ArmTakeDone=false;
                 robot.iElevMove(Constants.eIElevatorState.InIntake);
-                if(currentColor==allianceColor)
-                {
-                    gamepad1.rumble(500);
-                    gamepad2.rumble(500);
-                }
+                    gamepad1.rumble(200);
+                    gamepad2.rumble(200);
                 blockinTimer1 = (long) blockinTimer.milliseconds();
                 BlockIn=false;
             }
             //outtake block a bit to avoid double control
-            if(!BlockIn && blockinTimer.milliseconds()-blockinTimer1 <= 300)
+            if(!BlockIn && blockinTimer.milliseconds()-blockinTimer1 <= 100)
             {
                 robot.iWheelOutBlock();
                 BlockIn=true;

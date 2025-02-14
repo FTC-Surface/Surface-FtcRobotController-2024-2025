@@ -23,6 +23,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpModeRegistrar;
 
 import org.firstinspires.ftc.robotcore.internal.opmode.OpModeMeta;
 import org.firstinspires.ftc.teamcode.Newroadrunner.MecanumDrive;
+import org.firstinspires.ftc.teamcode.Newroadrunner.PinpointLocalizer;
 import org.firstinspires.ftc.teamcode.Newroadrunner.TankDrive;
 import org.firstinspires.ftc.teamcode.Newroadrunner.ThreeDeadWheelLocalizer;
 import org.firstinspires.ftc.teamcode.Newroadrunner.TwoDeadWheelLocalizer;
@@ -74,6 +75,9 @@ public final class TuningOpModes {
                     TwoDeadWheelLocalizer dl = (TwoDeadWheelLocalizer) md.localizer;
                     parEncs.add(dl.par);
                     perpEncs.add(dl.perp);
+                }
+                else if (md.localizer instanceof PinpointLocalizer) {
+                    PinpointLocalizer dl = (PinpointLocalizer) md.localizer;
                 } else {
                     throw new RuntimeException("unknown localizer: " + md.localizer.getClass().getName());
                 }
