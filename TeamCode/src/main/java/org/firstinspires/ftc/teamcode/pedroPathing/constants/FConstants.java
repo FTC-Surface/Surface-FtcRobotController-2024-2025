@@ -22,7 +22,7 @@ public class FConstants {
 
         FollowerConstants.mass = 15;
 
-        FollowerConstants.xMovement = 57.8741;
+        FollowerConstants.xMovement = 79.6;
         FollowerConstants.yMovement = 52.295;
 
         FollowerConstants.forwardZeroPowerAcceleration = -41.278;
