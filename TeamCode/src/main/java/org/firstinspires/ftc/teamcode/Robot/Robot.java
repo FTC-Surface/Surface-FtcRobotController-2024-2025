@@ -142,6 +142,8 @@ public class Robot {
 
     public LLResult limeLightGetResult(){return limelightCamera.returnResult();}
     public double limeLightgetAngle(){return limelightCamera.getAngle();}
+
+    public double limeLightgetMovementAngle(){return limelightCamera.getMovementAngle();}
     public void limelightStart(int index){limelightCamera.limelightStart(index);}
 
     public Constants.eColorSensed getColorResult(){return colorSensor.getColor();}
