@@ -96,14 +96,10 @@ public class TeleOpMode_Red extends LinearOpMode{
                 drive_multiplier=1;
             }
             else if(gamepad1.left_trigger>=0.5){//speed down
-                drive_multiplier=0.2;
-                strafe_multiplier=0.2;
-                rotate_multiplier=0.2;
+
             }
             else {
-                drive_multiplier=0.8;
-                strafe_multiplier=1;
-                rotate_multiplier=0.8;
+                
             }
 
 //********** Player Two Controls ***************************************************
@@ -266,17 +262,14 @@ public class TeleOpMode_Red extends LinearOpMode{
 //
 //
 //Lagggggg
-            if ((currentColor == allianceColor || currentColor == Constants.eColorSensed.yellow) && !IntakeDone) {
+            if ((currentColor == allianceColor) && !IntakeDone) {
                 IntakeDone=true;
                 robot.iArmStart();
                 IntakeStartTime1 = (long) intakeTimer.milliseconds();
                 ArmTakeDone=false;
                 robot.iElevMove(Constants.eIElevatorState.InIntake);
-                if(currentColor==allianceColor)
-                {
                     gamepad1.rumble(200);
                     gamepad2.rumble(200);
-                }
                 blockinTimer1 = (long) blockinTimer.milliseconds();
                 BlockIn=false;
             }

@@ -42,9 +42,9 @@ public class OuttakeTest extends LinearOpMode {
 
         leftOuttakeMotor = hardwareMap.get(DcMotorEx.class, "outtakeLinearSlideOne");
         Claw = hardwareMap.get(Servo.class, "OClaw");
-
-        Sub = hardwareMap.get(Servo.class, "Outtake Sub");
-        SpeciArm = hardwareMap.get(Servo.class, "Speci Arm");
+//
+//        Sub = hardwareMap.get(Servo.class, "Outtake Sub");
+//        SpeciArm = hardwareMap.get(Servo.class, "Speci Arm");
 
 
         leftOuttakeMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -70,8 +70,8 @@ public class OuttakeTest extends LinearOpMode {
             Arm.setPosition(ArmTarget);
             Wrist.setPosition(WristTarget);
             Claw.setPosition(ClawTarget);
-            Sub.setPosition(SubTarget);
-            SpeciArm.setPosition(SpeciArmTarget);
+//            Sub.setPosition(SubTarget);
+//            SpeciArm.setPosition(SpeciArmTarget);
 
             leftOuttakeMotor.setTargetPosition(targetPos);
 

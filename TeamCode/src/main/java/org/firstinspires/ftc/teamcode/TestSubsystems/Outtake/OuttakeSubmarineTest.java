@@ -30,9 +30,9 @@ public class OuttakeSubmarineTest extends LinearOpMode {
         waitForStart();
 
         while(opModeIsActive() && !isStopRequested()){
-            Arm.setPosition(ArmTarget);
-            Wrist.setPosition(WristTarget);
-            Claw.setPosition((ClawTarget));
+//            Arm.setPosition(ArmTarget);
+//            Wrist.setPosition(WristTarget);
+//            Claw.setPosition((ClawTarget));
             SubVerticalSlides.setPosition(SubVTarget);
             SubHorizontalSlide.setPosition(SubHTarget);
             SpeciArm.setPosition(SpeciArmTarget);

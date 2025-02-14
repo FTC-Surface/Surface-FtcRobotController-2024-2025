@@ -92,19 +92,15 @@ public class TeleOpMode_Blue extends LinearOpMode{
             double rotate = -gamepad1.right_stick_x;
             
             robot.teleOpDrive(drive * drive_multiplier, strafe * strafe_multiplier, rotate * rotate_multiplier);
-            if(gamepad1.right_trigger>=0.5)//speed up
-            {
-                drive_multiplier=1;
-            }
-            else if(gamepad1.left_trigger>=0.5){//speed down
-                drive_multiplier=0.2;
-                strafe_multiplier=0.2;
-                rotate_multiplier=0.2;
-            }
-            else {
-                drive_multiplier=0.8;
-                strafe_multiplier=1;
-                rotate_multiplier=0.8;
+            if (gamepad1.right_trigger >= 0.3) {
+                robot.iElevMove(Constants.eIElevatorState.ManualForward);
+                IslidesIn = false;
+            } else if (gamepad1.left_trigger >= 0.3) {
+                robot.iElevMove(Constants.eIElevatorState.ManualBackward);
+                IslidesIn = false;
+            } else {
+                robot.iElevMove(Constants.eIElevatorState.ManualStop);
+                IslidesIn = false;
             }
 
 //********** Player Two Controls ***************************************************
@@ -236,16 +232,7 @@ public class TeleOpMode_Blue extends LinearOpMode{
             }
 
 
-//            if (gamepad2.right_stick_y <= -0.3) {
-//                robot.iElevMove(Constants.eIElevatorState.ManualForward);
-//                IslidesIn = false;
-//            } else if (gamepad2.right_stick_y >= 0.3) {
-//                robot.iElevMove(Constants.eIElevatorState.ManualBackward);
-//                IslidesIn = false;
-//            } else {
-//                robot.iElevMove(Constants.eIElevatorState.ManualStop);
-//                IslidesIn = false;
-//            }
+
 
 
             if (gamepad2.right_trigger >= 0.3 && currentColor != allianceColor && currentColor != Constants.eColorSensed.yellow) {//specifically for red
