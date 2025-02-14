@@ -67,7 +67,7 @@ public class IntakeLinearSlides extends Subsystem {
 
             case ManualForward:
 
-                if (currentPos < max_pos) {
+                if (currentPos < max_pos-50) {
                     intakeLinearSlideOne.setPower(-constants.IntakeElevatorMotorPower);
                     intakeLinearSlideTwo.setPower(-constants.IntakeElevatorMotorPower);
                 }
@@ -108,7 +108,7 @@ public class IntakeLinearSlides extends Subsystem {
         currentPos = getPos();
         targetPos = height;
 
-        if (Math.abs(currentPos-height)<=5)
+        if (Math.abs(currentPos-height)<=7.5)
         {
             intakeElevPower = 0;
         }

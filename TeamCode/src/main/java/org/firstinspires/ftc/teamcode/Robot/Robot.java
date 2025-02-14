@@ -19,6 +19,7 @@ import org.firstinspires.ftc.teamcode.Subsystems.Outtake.OuttakeArm;
 import org.firstinspires.ftc.teamcode.Subsystems.Outtake.OuttakeClaw;
 import org.firstinspires.ftc.teamcode.Subsystems.Outtake.OuttakeLinearSlides;
 
+import org.firstinspires.ftc.teamcode.Subsystems.Outtake.OuttakeSubmarine;
 import org.firstinspires.ftc.teamcode.Subsystems.Sensing.LimelightCamera;
 
 import org.firstinspires.ftc.teamcode.Subsystems.Constants;
@@ -30,6 +31,7 @@ public class Robot {
     OuttakeClaw oClaw = new OuttakeClaw();
     OuttakeArm oArm = new OuttakeArm();
     OuttakeLinearSlides oSlides = new OuttakeLinearSlides();
+    OuttakeSubmarine oSub = new OuttakeSubmarine();
 
     IntakeWheel iWheel = new IntakeWheel();
     IntakeArm iArm = new IntakeArm();
@@ -58,6 +60,7 @@ public class Robot {
         oClaw.init(hardwareMap);
         oArm.init(hardwareMap);
         oSlides.init(hardwareMap);
+        //oSub.init(hardwareMap);
 
         iSlides.init((hardwareMap));
         iArm.init(hardwareMap);

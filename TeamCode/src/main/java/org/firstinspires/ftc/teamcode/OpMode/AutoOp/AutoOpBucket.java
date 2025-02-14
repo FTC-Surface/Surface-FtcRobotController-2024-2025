@@ -106,8 +106,8 @@ public class AutoOpBucket extends LinearOpMode {
                                 new SequentialAction(
                                     new SleepAction(0.1),
                                     robot.oSlideReadyAction(),
-                                    robot.oArmTakeAction(),
-                                    robot.iArmGrabAction()
+                                    robot.oArmTakeAction()
+
                                 )
                             ),
 
@@ -115,6 +115,7 @@ public class AutoOpBucket extends LinearOpMode {
                                 //Change this to match location of block
                                 robot.iSlideLowAction(),
                                 new SleepAction(1),
+                                    robot.iArmGrabAction(),
                                 robot.iWheelTakeBlockAction(),
                                 new SleepAction(0.2),
                                 robot.iWheelNoBlockAction()
