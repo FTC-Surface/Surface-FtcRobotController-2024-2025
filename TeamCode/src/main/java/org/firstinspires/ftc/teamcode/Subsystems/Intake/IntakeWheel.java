@@ -23,4 +23,6 @@ public class IntakeWheel extends Subsystem {
     public void noBlock() {wheel.setPower(0);}
 
     public void outBlock() {wheel.setPower(constants.IntakeWheelPowOut);}
+
+    public void TransferBlock() {wheel.setPower(constants.IntakeWheelPowTransfer);}
 }

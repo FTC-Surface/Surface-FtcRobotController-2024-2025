@@ -63,7 +63,8 @@ public class Constants {
 
     //Intake
     public final double IntakeWheelPowIn = 1;
-    public final double IntakeWheelPowOut =-0.5;
+    public final double IntakeWheelPowOut =-0.75;
+    public final double IntakeWheelPowTransfer=0.5;
 
     public final double IntakeArmStartPos = 0.1;
     public final double IntakeArmGrabPos = 0.53;

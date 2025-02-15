@@ -3,8 +3,6 @@ package org.firstinspires.ftc.teamcode.Op.AutoOp;
 import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.roadrunner.Action;
 import com.acmerobotics.roadrunner.Pose2d;
-import com.acmerobotics.roadrunner.VelConstraint;
-import com.acmerobotics.roadrunner.AccelConstraint;
 import com.acmerobotics.roadrunner.ParallelAction;
 import com.acmerobotics.roadrunner.SequentialAction;
 import com.acmerobotics.roadrunner.SleepAction;
@@ -16,11 +14,10 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.Newroadrunner.MecanumDrive;
 import org.firstinspires.ftc.teamcode.Robot.RobotAuto;
-import org.firstinspires.ftc.teamcode.Subsystems.Constants;
 
 @Config
-@Autonomous(name = "Active Intake Hook", group = "Autonomous")
-public class AutoOpHook extends LinearOpMode {
+@Autonomous(name = "Auto Hook 5+0", group = "Autonomous")
+public class AutoOpHook5_0 extends LinearOpMode {
     
     @Override
     public void runOpMode() throws InterruptedException {
@@ -72,25 +69,25 @@ public class AutoOpHook extends LinearOpMode {
 //                .waitSeconds(0.5);
 
         TrajectoryActionBuilder depositFirst = push.endTrajectory().fresh()
-                .strafeToLinearHeading(new Vector2d(3,-26), Math.toRadians(90));
+                .strafeToLinearHeading(new Vector2d(-3,-26), Math.toRadians(90));
 
         TrajectoryActionBuilder depositSecond = depositFirst.endTrajectory().fresh()
 //                .strafeToLinearHeading(new Vector2d(6, -40), Math.toRadians(90))
-                .strafeToLinearHeading(new Vector2d(38,-63.5), Math.toRadians(90))
-                .strafeToLinearHeading(new Vector2d(3,-26), Math.toRadians(90));
+                .strafeToLinearHeading(new Vector2d(38,-62), Math.toRadians(90))
+                .strafeToLinearHeading(new Vector2d(-1,-25), Math.toRadians(90));
 
         TrajectoryActionBuilder depositThird = depositSecond.endTrajectory().fresh()
                 //.strafeToLinearHeading(new Vector2d(5, -40), Math.toRadians(90))
-                .strafeToLinearHeading(new Vector2d(38,-63.5), Math.toRadians(90))
-                .strafeToLinearHeading(new Vector2d(-1,-26), Math.toRadians(90));
+                .strafeToLinearHeading(new Vector2d(38,-62), Math.toRadians(90))
+                .strafeToLinearHeading(new Vector2d(1,-25), Math.toRadians(90));
 
         TrajectoryActionBuilder depositFourth = depositThird.endTrajectory().fresh()
                 //.strafeToLinearHeading(new Vector2d(4, -40), Math.toRadians(90))
-                .strafeToLinearHeading(new Vector2d(38,-63.5), Math.toRadians(90))
-                .strafeToLinearHeading(new Vector2d(-1,-26), Math.toRadians(90));
+                .strafeToLinearHeading(new Vector2d(38,-62), Math.toRadians(90))
+                .strafeToLinearHeading(new Vector2d(3,-25), Math.toRadians(90));
 
         TrajectoryActionBuilder park = depositFourth.endTrajectory().fresh()
-                .strafeToLinearHeading(new Vector2d(0,-50), Math.toRadians(90));
+                .strafeToLinearHeading(new Vector2d(3,-50), Math.toRadians(90));
 
 
 
