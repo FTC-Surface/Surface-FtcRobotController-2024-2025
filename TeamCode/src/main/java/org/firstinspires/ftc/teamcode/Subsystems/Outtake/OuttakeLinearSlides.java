@@ -44,10 +44,10 @@ public class OuttakeLinearSlides extends Subsystem {
                 move(1000);
                 break;
             case Ground:
-                move(0);
+                move(-100);
                 break;
             case Basket:
-                move(2000);
+                move(2500);
                 break;
             case Ready:
                 move(200);
@@ -77,10 +77,10 @@ public class OuttakeLinearSlides extends Subsystem {
             outtakeElevMotPow = 0;
         }
         else if(currentPos > height){
-            outtakeElevMotPow = -constants.OuttakeElevatorMotorPower;
+            outtakeElevMotPow = constants.OuttakeElevatorMotorPower;
         }
         else if(currentPos < height){
-            outtakeElevMotPow = constants.OuttakeElevatorMotorPower;
+            outtakeElevMotPow = -constants.OuttakeElevatorMotorPower;
         }
 
         outtakeLinearSlideOne.setPower(outtakeElevMotPow);
