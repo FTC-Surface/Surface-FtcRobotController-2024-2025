@@ -48,17 +48,17 @@ public class Tele_Red_Sample extends LinearOpMode{
         double drive_multiplier=0.8, strafe_multiplier=1, rotate_multiplier=0.8;
 
         //Change depending on alliance color
-        Constants.eColorSensed allianceColor = Constants.eColorSensed.red;
-        Constants.eColorSensed enemyColor = Constants.eColorSensed.blue;
+        Constants.eColorSensed allianceColor = Constants.eColorSensed.blue;
+        Constants.eColorSensed enemyColor = Constants.eColorSensed.red;
         Constants.eColorSensed currentColor;
 
         telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
 
         waitForStart();
 
-        //robot.oElevMove(Constants.eOElevatorState.Ready);
+        robot.oElevMove(Constants.eOElevatorState.Ready);
 
-        robot.iArmStart();
+        robot.iArmGrab();
 
         robot.oOpenClaw();
         robot.oArmTake();
@@ -78,6 +78,7 @@ public class Tele_Red_Sample extends LinearOpMode{
 ////            telemetry.addData("Block Color: ", robot.getColorBlock());
             telemetry.addData("Intake Slides In: ", IslidesIn);
             telemetry.addData("Intake Arm at Start: ", Arm_Start_position);
+            telemetry.update();
 //
 //
 //            telemetry.update();
@@ -154,12 +155,11 @@ public class Tele_Red_Sample extends LinearOpMode{
             }
             if (Outtakepressed1 && !LinearSlidereadyDone && OuttakeclawDone && outtakeTimer.milliseconds() - OuttakeStartTime1 >= 600) {//700
                 robot.oElevMove(Constants.eOElevatorState.Basket);
-                robot.iArmStart();
-                IntakeStartTime1 = (long) intakeTimer.milliseconds();
-                ArmTakeDone=false;
+                robot.iArmGrab();
+                Arm_Start_position = false;
                 LinearSlidereadyDone = true;
             }
-            if (Outtakepressed1 && OuttakeclawDone && LinearSlidereadyDone && outtakeTimer.milliseconds() - OuttakeStartTime1 >= 800) {//1200
+            if (Outtakepressed1 && OuttakeclawDone && LinearSlidereadyDone && outtakeTimer.milliseconds() - OuttakeStartTime1 >= 1400) {//1200
                 robot.oArmDumpRelease();
                 Outtakepressed1 = false;
             }
@@ -209,6 +209,7 @@ public class Tele_Red_Sample extends LinearOpMode{
                 robot.iArmMiddle();
             }
 
+
 //
 //            if(gamepad2.square && !stickmoved1) {
 //                robot.oElevMove(Constants.eOElevatorState.Clip_Hang);
@@ -248,6 +249,7 @@ public class Tele_Red_Sample extends LinearOpMode{
                 if(currentColor == enemyColor) robot.iArmMiddle(); else robot.iArmGrab();
                 robot.iWheelTakeBlock();
                 Arm_Start_position = false;
+                IntakeDone=false;
             } else if (gamepad2.left_trigger >= 0.3) {
                 robot.iWheelOutBlock();
             } else if(gamepad2.right_stick_y >=0.3)
@@ -263,7 +265,7 @@ public class Tele_Red_Sample extends LinearOpMode{
             }
 //
 //
-            if ((currentColor == allianceColor) || (currentColor == Constants.eColorSensed.yellow) && !IntakeDone) {
+            if (((currentColor == allianceColor) || (currentColor == Constants.eColorSensed.yellow)) && !IntakeDone) {
                 IntakeDone=true;
                 robot.iArmStart();
                 IntakeStartTime1 = (long) intakeTimer.milliseconds();
@@ -280,14 +282,14 @@ public class Tele_Red_Sample extends LinearOpMode{
                 robot.iWheelOutBlock();
                 BlockIn=true;
             }
-//
-            if (Arm_Start_position && (currentColor == Constants.eColorSensed.yellow||currentColor == allianceColor) && IslidesIn) {// && !blockIndone&&!transferDone
-                robot.iWheelTakeBlock();
-//                if(!transferDone) {
-//                    transferTimer1 = (long) transferTimer.milliseconds();
-//                    transferDone = true;
-//                }
-            }
+////
+//            if (Arm_Start_position && (currentColor == Constants.eColorSensed.yellow||currentColor == allianceColor) && IslidesIn) {// && !blockIndone&&!transferDone
+//                robot.iWheelTakeBlock();
+////                if(!transferDone) {
+////                    transferTimer1 = (long) transferTimer.milliseconds();
+////                    transferDone = true;
+////                }
+//            }
 //            if(!transferDone && transferTimer.milliseconds()-transferTimer1>=1000)
 //            {
 //                blockIndone=true;
@@ -306,13 +308,13 @@ public class Tele_Red_Sample extends LinearOpMode{
                 r = g = 250;
                 b = 0;
             } else {
-                //set the color to green if there is no block
+                //set the color to white if there is no block
                 r = 255;
                 g = 255;
                 b = 255;
             }
-            gamepad1.setLedColor(r, g, b, 500);
-            gamepad2.setLedColor(r, g, b, 500);
+            gamepad1.setLedColor(r, g, b, 600);
+            gamepad2.setLedColor(r, g, b, 600);
         }
     }
     //

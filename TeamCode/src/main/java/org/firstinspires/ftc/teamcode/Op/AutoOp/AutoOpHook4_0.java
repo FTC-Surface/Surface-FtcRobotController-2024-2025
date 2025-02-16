@@ -36,12 +36,12 @@ public class AutoOpHook4_0 extends LinearOpMode {
         TrajectoryActionBuilder push = depositback.endTrajectory().fresh()
                 .strafeToLinearHeading(new Vector2d(25, -36), Math.toRadians(90))
                 //push first
-                .splineToLinearHeading(new Pose2d(50, -12, Math.toRadians(90)),Math.toRadians(0))
+                .splineToLinearHeading(new Pose2d(51, -12, Math.toRadians(90)),Math.toRadians(0))
                 //push first
-                .strafeToLinearHeading(new Vector2d(50, -50), Math.toRadians(90))
+                .strafeToLinearHeading(new Vector2d(51, -50), Math.toRadians(90))
 
                 //push second
-                .strafeToConstantHeading(new Vector2d(50, -12))
+                .strafeToConstantHeading(new Vector2d(51, -12))
                 .strafeToConstantHeading(new Vector2d(60, -12))
                 .strafeToLinearHeading(new Vector2d(60, -50), Math.toRadians(90))
                 .strafeToLinearHeading(new Vector2d(44, -50), Math.toRadians(90))
@@ -71,27 +71,28 @@ public class AutoOpHook4_0 extends LinearOpMode {
 //                .waitSeconds(0.5);
 
         TrajectoryActionBuilder depositFirst = push.endTrajectory().fresh()
-                .strafeToLinearHeading(new Vector2d(1,-25.5), Math.toRadians(90));
+                .strafeToLinearHeading(new Vector2d(-2,-25.5), Math.toRadians(90));
 
         TrajectoryActionBuilder depositSecond = depositFirst.endTrajectory().fresh()
+                .strafeToLinearHeading(new Vector2d(-2, -40), Math.toRadians(90))
+                .strafeToLinearHeading(new Vector2d(43,-58), Math.toRadians(90))
+                .strafeToLinearHeading(new Vector2d(43,-61.5), Math.toRadians(90))
+                .strafeToLinearHeading(new Vector2d(1,-24.75), Math.toRadians(90));
+
+        TrajectoryActionBuilder depositThird = depositSecond.endTrajectory().fresh()
                 .strafeToLinearHeading(new Vector2d(1, -40), Math.toRadians(90))
                 .strafeToLinearHeading(new Vector2d(43,-58), Math.toRadians(90))
                 .strafeToLinearHeading(new Vector2d(43,-61.5), Math.toRadians(90))
-                .strafeToLinearHeading(new Vector2d(3,-24.75), Math.toRadians(90));
-
-        TrajectoryActionBuilder depositThird = depositSecond.endTrajectory().fresh()
-                .strafeToLinearHeading(new Vector2d(3, -40), Math.toRadians(90))
-                .strafeToLinearHeading(new Vector2d(43,-58), Math.toRadians(90))
-                .strafeToLinearHeading(new Vector2d(43,-61.5), Math.toRadians(90))
-                .strafeToLinearHeading(new Vector2d(5,-24.75), Math.toRadians(90));
+                .strafeToLinearHeading(new Vector2d(4,-24.75), Math.toRadians(90));
 
         TrajectoryActionBuilder depositFourth = depositThird.endTrajectory().fresh()
-                .strafeToLinearHeading(new Vector2d(5, -40), Math.toRadians(90))
+                .strafeToLinearHeading(new Vector2d(4, -40), Math.toRadians(90))
                 .strafeToLinearHeading(new Vector2d(43,-58), Math.toRadians(90))
                 .strafeToLinearHeading(new Vector2d(43,-61.5), Math.toRadians(90))
-                .strafeToLinearHeading(new Vector2d(7,-24.75), Math.toRadians(90));
+                .strafeToLinearHeading(new Vector2d(6.5,-24.75), Math.toRadians(90));
 
         TrajectoryActionBuilder park = depositThird.endTrajectory().fresh()
+                .strafeToLinearHeading(new Vector2d(6.5,-40), Math.toRadians(90))
                 .setReversed(true)
                 .splineToLinearHeading(new Pose2d(38,-62, Math.toRadians(90)), Math.toRadians(-90));
 

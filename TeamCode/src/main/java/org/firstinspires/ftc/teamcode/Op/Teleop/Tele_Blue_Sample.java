@@ -56,9 +56,9 @@ public class Tele_Blue_Sample extends LinearOpMode{
 
         waitForStart();
 
-        //robot.oElevMove(Constants.eOElevatorState.Ready);
+        robot.oElevMove(Constants.eOElevatorState.Ready);
 
-        robot.iArmStart();
+        robot.iArmGrab();
 
         robot.oOpenClaw();
         robot.oArmTake();
@@ -78,6 +78,7 @@ public class Tele_Blue_Sample extends LinearOpMode{
 ////            telemetry.addData("Block Color: ", robot.getColorBlock());
             telemetry.addData("Intake Slides In: ", IslidesIn);
             telemetry.addData("Intake Arm at Start: ", Arm_Start_position);
+            telemetry.update();
 //
 //
 //            telemetry.update();
@@ -92,7 +93,7 @@ public class Tele_Blue_Sample extends LinearOpMode{
             double drive = -gamepad1.left_stick_y;
             double strafe = -gamepad1.left_stick_x;
             double rotate = -gamepad1.right_stick_x;
-            
+
             robot.teleOpDrive(drive * drive_multiplier, strafe * strafe_multiplier, rotate * rotate_multiplier);
 //            if (gamepad1.right_trigger >= 0.3) {
 //                robot.iElevMove(Constants.eIElevatorState.ManualForward);
@@ -101,7 +102,7 @@ public class Tele_Blue_Sample extends LinearOpMode{
 //                robot.iElevMove(Constants.eIElevatorState.ManualBackward);
 //                IslidesIn = false;
 //            }
-//            else 
+//            else
             if (gamepad2.dpad_down) {
                 robot.iArmStart();
                 ArmTakeDone=false;
@@ -140,7 +141,7 @@ public class Tele_Blue_Sample extends LinearOpMode{
             //Outtake
 
             //Slide_down + Claw_close + Arm_dump + Slide_up (4 If statement together)
-            if ((gamepad2.cross && !Outtakepressed1 || blockIndone)){
+            if ((gamepad2.cross && !Outtakepressed1)){// || blockIndone
                 Outtakepressed1 = true;
                 OuttakeclawDone = false;
                 LinearSlidereadyDone = false;
@@ -154,12 +155,11 @@ public class Tele_Blue_Sample extends LinearOpMode{
             }
             if (Outtakepressed1 && !LinearSlidereadyDone && OuttakeclawDone && outtakeTimer.milliseconds() - OuttakeStartTime1 >= 600) {//700
                 robot.oElevMove(Constants.eOElevatorState.Basket);
-                robot.iArmStart();
-                IntakeStartTime1 = (long) intakeTimer.milliseconds();
-                ArmTakeDone=false;
+                robot.iArmGrab();
+                Arm_Start_position = false;
                 LinearSlidereadyDone = true;
             }
-            if (Outtakepressed1 && OuttakeclawDone && LinearSlidereadyDone && outtakeTimer.milliseconds() - OuttakeStartTime1 >= 800) {//1200
+            if (Outtakepressed1 && OuttakeclawDone && LinearSlidereadyDone && outtakeTimer.milliseconds() - OuttakeStartTime1 >= 1400) {//1200
                 robot.oArmDumpRelease();
                 Outtakepressed1 = false;
             }
@@ -249,6 +249,7 @@ public class Tele_Blue_Sample extends LinearOpMode{
                 if(currentColor == enemyColor) robot.iArmMiddle(); else robot.iArmGrab();
                 robot.iWheelTakeBlock();
                 Arm_Start_position = false;
+                IntakeDone=false;
             } else if (gamepad2.left_trigger >= 0.3) {
                 robot.iWheelOutBlock();
             } else if(gamepad2.right_stick_y >=0.3)
@@ -264,7 +265,7 @@ public class Tele_Blue_Sample extends LinearOpMode{
             }
 //
 //
-            if ((currentColor == allianceColor) || (currentColor == Constants.eColorSensed.yellow) && !IntakeDone) {
+            if (((currentColor == allianceColor) || (currentColor == Constants.eColorSensed.yellow)) && !IntakeDone) {
                 IntakeDone=true;
                 robot.iArmStart();
                 IntakeStartTime1 = (long) intakeTimer.milliseconds();
@@ -276,19 +277,23 @@ public class Tele_Blue_Sample extends LinearOpMode{
                 BlockIn=false;
             }
             //outtake block a bit to avoid double control
-
-//
-            if (Arm_Start_position && (currentColor == Constants.eColorSensed.yellow||currentColor == allianceColor) && IslidesIn && !blockIndone&&!transferDone) {
-                robot.iWheelTakeBlock();
-                if(!transferDone) {
-                    transferTimer1 = (long) transferTimer.milliseconds();
-                    transferDone = true;
-                }
-            }
-            if(!transferDone && transferTimer.milliseconds()-transferTimer1>=1000)
+            if(!BlockIn && blockinTimer.milliseconds()-blockinTimer1 <= 150)
             {
-                blockIndone=true;
+                robot.iWheelOutBlock();
+                BlockIn=true;
             }
+////
+//            if (Arm_Start_position && (currentColor == Constants.eColorSensed.yellow||currentColor == allianceColor) && IslidesIn) {// && !blockIndone&&!transferDone
+//                robot.iWheelTakeBlock();
+////                if(!transferDone) {
+////                    transferTimer1 = (long) transferTimer.milliseconds();
+////                    transferDone = true;
+////                }
+//            }
+//            if(!transferDone && transferTimer.milliseconds()-transferTimer1>=1000)
+//            {
+//                blockIndone=true;
+//            }
 
 //********** Controller Color ***************************************************
 
@@ -303,16 +308,16 @@ public class Tele_Blue_Sample extends LinearOpMode{
                 r = g = 250;
                 b = 0;
             } else {
-                //set the color to green if there is no block
+                //set the color to white if there is no block
                 r = 255;
                 g = 255;
                 b = 255;
             }
-            gamepad1.setLedColor(r, g, b, 500);
-            gamepad2.setLedColor(r, g, b, 500);
+            gamepad1.setLedColor(r, g, b, 600);
+            gamepad2.setLedColor(r, g, b, 600);
         }
     }
-//
+    //
     public void waitForSeconds(double seconds) {
         ElapsedTime timer = new ElapsedTime(ElapsedTime.Resolution.SECONDS);
         timer.reset();
