@@ -26,7 +26,7 @@ import org.firstinspires.ftc.teamcode.pedroPathing.constants.LConstants;
  */
 
 @Autonomous(name = "Bucket Auto 6+0", group = "Auto")
-public class ExampleBucketAuto extends OpMode {
+public class BucketAuto6_0 extends OpMode {
 
     private Follower follower;
     private Timer pathTimer, actionTimer, opmodeTimer;
