@@ -37,7 +37,7 @@ public class Robot {
     IntakeArm iArm = new IntakeArm();
     IntakeLinearSlides iSlides = new IntakeLinearSlides();
 
-    LimelightCamera limelightCamera = new LimelightCamera();
+    static LimelightCamera limelightCamera = new LimelightCamera();
     RevColorSensorColor colorSensor = new RevColorSensorColor();
 
     double maxSpeed;
@@ -144,8 +144,8 @@ public class Robot {
     public LLResult limeLightGetResult(){return limelightCamera.returnResult();}
     public double limeLightgetAngle(){return limelightCamera.getAngle();}
 
-    public double limeLightgetMovementAngle(){return limelightCamera.getMovementAngle();}
-    public void limelightStart(int index){limelightCamera.limelightStart(index);}
+    public static double limeLightgetMovementAngle(){return limelightCamera.getMovementAngle();}//Tx
+    public static void limelightStart(int index){limelightCamera.limelightStart(index);}
 
     public Constants.eColorSensed getColorResult(){return colorSensor.getColor();}
     public String getColorBlock(){return colorSensor.TelemetryColor();}

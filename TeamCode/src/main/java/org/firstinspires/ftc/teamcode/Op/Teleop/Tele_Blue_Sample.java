@@ -69,6 +69,7 @@ public class Tele_Blue_Sample extends LinearOpMode{
         transferTimer.reset();
         intakeTimer.reset();
         blockinTimer.reset();
+        Robot.limelightStart(0);
         while (opModeIsActive() && !isStopRequested()) {
 //********** Telemetry **********************************************************
 
@@ -78,6 +79,7 @@ public class Tele_Blue_Sample extends LinearOpMode{
 ////            telemetry.addData("Block Color: ", robot.getColorBlock());
             telemetry.addData("Intake Slides In: ", IslidesIn);
             telemetry.addData("Intake Arm at Start: ", Arm_Start_position);
+            telemetry.addData("Angle: ", Robot.limeLightgetMovementAngle());
             telemetry.update();
 //
 //
