@@ -6,6 +6,8 @@ import com.pedropathing.util.Constants;
 import  com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
+import org.firstinspires.ftc.teamcode.Robot.Robot;
+
 import org.firstinspires.ftc.teamcode.pedroPathing.constants.FConstants;
 import org.firstinspires.ftc.teamcode.pedroPathing.constants.LConstants;
 
@@ -20,6 +22,7 @@ import org.firstinspires.ftc.teamcode.pedroPathing.constants.LConstants;
 public class ExampleFieldCentricTeleop extends OpMode {
     private Follower follower;
     private final Pose startPose = new Pose(0,0,0);
+    Robot robot = new Robot(hardwareMap);
 
     /** This method is call once when init is played, it initializes the follower **/
     @Override
@@ -38,6 +41,7 @@ public class ExampleFieldCentricTeleop extends OpMode {
     @Override
     public void start() {
         follower.startTeleopDrive();
+        Robot.limelightStart(0);
     }
 
     /** This is the main loop of the opmode and runs continuously after play **/
@@ -58,9 +62,13 @@ public class ExampleFieldCentricTeleop extends OpMode {
         telemetry.addData("X", follower.getPose().getX());
         telemetry.addData("Y", follower.getPose().getY());
         telemetry.addData("Heading in Degrees", Math.toDegrees(follower.getPose().getHeading()));
+        telemetry.addData("Angle: ", Robot.limeLightgetMovementAngle());
 
         /* Update Telemetry to the Driver Hub */
         telemetry.update();
+        if(gamepad1.cross) {
+            follower.turnDegrees(Robot.limeLightgetMovementAngle(),false);
+        }
 
     }
 
